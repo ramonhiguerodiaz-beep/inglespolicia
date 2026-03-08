@@ -34,6 +34,16 @@ header p{color:#7aa3cc;font-size:12px;margin-top:4px}
 .start-sub{font-size:12px;color:#9ec3ea;max-width:500px}
 .start-btn{border:1px solid rgba(232,184,75,.7);background:linear-gradient(135deg,#f3c14d,#e8b84b);color:#10213d;padding:10px 14px;border-radius:9px;font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;letter-spacing:.7px;cursor:pointer}
 .start-btn:hover{filter:brightness(1.05)}
+.start-controls{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.ctrl-block{display:flex;flex-direction:column;gap:4px}
+.ctrl-block label{font-size:11px;color:#9ec3ea;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+.ctrl-input{height:38px;min-width:95px;padding:0 10px;border-radius:8px;border:1px solid rgba(122,163,204,.6);background:#0b1a30;color:#fff;font-weight:700}
+.sections-box{display:flex;gap:7px;flex-wrap:wrap;max-width:620px;margin-top:8px}
+.sec-chip{display:flex;align-items:center;gap:6px;background:rgba(11,26,48,.72);border:1px solid rgba(122,163,204,.45);border-radius:999px;padding:6px 10px;font-size:12px;color:#dbe9f9}
+.sec-chip input{accent-color:#f3c14d}
+.sec-actions{display:flex;gap:8px;margin-top:8px}
+.sec-link{background:transparent;border:1px solid rgba(122,163,204,.5);color:#cfe3f9;font-size:11px;padding:4px 8px;border-radius:7px;cursor:pointer}
+.sec-link:hover{background:rgba(122,163,204,.15)}
 .history-panel{text-align:left;margin:6px 0 18px;padding:12px;border:1px solid #b4c6df;border-radius:9px;background:#f5f9ff}
 .history-panel h3{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#1a3a6b;margin-bottom:9px}
 .history-empty{font-size:12px;color:#4a6a99}
@@ -141,9 +151,21 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
   <section class="start-panel">
     <div>
       <div class="start-title">Generador de test policial</div>
-      <div class="start-sub">Test aleatorio único (sin subsecciones). Funciona sin conexión en iPhone/iPad al añadirlo a pantalla de inicio.</div>
+      <div class="start-sub">Selecciona cuántas preguntas quieres (máx. 30) y si el test será aleatorio total o solo de uno o varios apartados.</div>
+      <div class="sections-box" id="sectionsBox"></div>
+      <div class="sec-actions">
+        <button class="sec-link" onclick="toggleSections(true)">Seleccionar todo</button>
+        <button class="sec-link" onclick="toggleSections(false)">Quitar selección</button>
+      </div>
     </div>
-    <button class="start-btn" onclick="startRandomMode()">🎲 Generar test aleatorio</button>
+    <div class="start-controls">
+      <div class="ctrl-block">
+        <label for="qCount">Nº preguntas</label>
+        <input class="ctrl-input" id="qCount" type="number" min="1" max="30" value="30">
+      </div>
+      <button class="start-btn" onclick="startCustomMode()">🎯 Generar test</button>
+      <button class="start-btn" onclick="startRandomMode()">🎲 Aleatorio total</button>
+    </div>
   </section>
   <div class="q-meta" id="qm"></div>
   <div id="app"></div>
@@ -1888,10 +1910,12 @@ rows:[
 
 
 const FAILED_DB_KEY="cgpc_failed_exams";
-const TEST_SIZE=30;
+const MAX_TEST_SIZE=30;
 const TLAB={vocab:"Vocabulario",gram:"Gramática",idiom:"Idioms",false:"False Friend",coll:"Collocation",read:"Reading"};
 const TPILL={vocab:"pill-vocab",gram:"pill-gram",idiom:"pill-idiom",false:"pill-false",coll:"pill-coll",read:"pill-read"};
 let qs=[],cur=0,okN=0,errN=0,cSt={},wrongQs=[];
+let selectedSections=[];
+let requestedCount=MAX_TEST_SIZE;
 
 const CAT_TO_SEC={
   "Delitos":"Vocabulario policial",
@@ -1913,14 +1937,49 @@ function secOf(q){
 }
 
 function shu(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
-function getQ(){
-  return shu(Q).slice(0,Math.min(TEST_SIZE,Q.length));
+function getQ(count=requestedCount,secs=selectedSections){
+  const useSecs=Array.isArray(secs)?secs:[];
+  const pool=useSecs.length?Q.filter(q=>useSecs.includes(secOf(q))):Q;
+  const n=Math.min(Math.max(1,Number(count)||MAX_TEST_SIZE),MAX_TEST_SIZE,pool.length||Q.length);
+  return shu(pool.length?pool:Q).slice(0,n);
 }
 
 function cleanTxt(s){return String(s||"").replace(/<[^>]*>/g,"").replace(/\s+/g," ").trim()}
 
+function getRequestedCount(){
+  const el=document.getElementById("qCount");
+  const v=Math.min(MAX_TEST_SIZE,Math.max(1,parseInt(el?.value||`${MAX_TEST_SIZE}`,10)||MAX_TEST_SIZE));
+  if(el)el.value=v;
+  return v;
+}
+
+function getCheckedSections(){
+  return Array.from(document.querySelectorAll('.sec-check:checked')).map(i=>i.value);
+}
+
+function toggleSections(flag){
+  document.querySelectorAll('.sec-check').forEach(c=>{c.checked=!!flag});
+}
+
 function startRandomMode(){
+  const checks=document.querySelectorAll('.sec-check');
+  checks.forEach(c=>{c.checked=false});
+  requestedCount=getRequestedCount();
+  selectedSections=[];
   rst();
+}
+
+function startCustomMode(){
+  requestedCount=getRequestedCount();
+  selectedSections=getCheckedSections();
+  rst();
+}
+
+function renderSectionFilters(){
+  const box=document.getElementById('sectionsBox');
+  if(!box)return;
+  const secs=[...new Set(Q.map(secOf))].sort((a,b)=>a.localeCompare(b,'es'));
+  box.innerHTML=secs.map((s,i)=>`<label class="sec-chip"><input class="sec-check" type="checkbox" value="${s}"> ${s}</label>`).join('');
 }
 
 function validateQ(){
@@ -1942,7 +2001,8 @@ function upd(){
   const t=qs.length,pct=t?Math.round((cur/t)*100):0;
   document.getElementById("pf").style.width=pct+"%";
   document.getElementById("sMid").textContent=cur<t?`Pregunta ${cur+1} de ${t}`:"Completado";
-  document.getElementById("qm").textContent=`Test aleatorio B1 policial · ${t} preguntas mixtas`;
+  const scope=selectedSections.length?`Apartados: ${selectedSections.join(", ")}`:"Aleatorio global";
+  document.getElementById("qm").textContent=`${scope} · ${t} preguntas`;
 }
 
 function rQ(){
@@ -2044,8 +2104,20 @@ function rRes(){
   </div>`;
 }
 
-function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ();upd();rQ()}
-rst();
+function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ(requestedCount,selectedSections);upd();rQ()}
+
+function showStartState(){
+  cur=0;okN=0;errN=0;cSt={};wrongQs=[];qs=[];
+  document.getElementById("sOk").textContent="0";
+  document.getElementById("sErr").textContent="0";
+  document.getElementById("pf").style.width="0%";
+  document.getElementById("sMid").textContent="Configura tu test";
+  document.getElementById("qm").textContent="Elige número de preguntas y apartados";
+  document.getElementById("app").innerHTML="";
+}
+
+renderSectionFilters();
+showStartState();
 
 
 if('serviceWorker' in navigator){

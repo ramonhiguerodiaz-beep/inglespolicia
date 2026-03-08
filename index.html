@@ -8,7 +8,9 @@
 <style>
 :root{--navy:#0b1a30;--blue:#1a3a6b;--blue2:#1e4d99;--gold:#e8b84b;--gold2:#f5d07a;--green:#1e7e4a;--green-bg:#e8f6ee;--green-border:#a3d9b8;--red:#b52b27;--red-bg:#fdecea;--red-border:#f0b0ad;--amber:#d97706;--amber-bg:#fffbeb;--white:#f7f9fc;--card:#ffffff;--gray:#7a8899;--border:#cdd5e0;--text:#1a2438}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Barlow',sans-serif;background:var(--navy);min-height:100vh}
+body{font-family:'Barlow',sans-serif;background:var(--navy);min-height:100vh;position:relative;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:url('h2d-logo.svg') no-repeat center 56%/min(74vw,640px);opacity:.12;pointer-events:none;z-index:0}
+body>*{position:relative;z-index:1}
 header{background:linear-gradient(150deg,#06101f 0%,#0f2347 60%,#1a3a6b 100%);border-bottom:3px solid var(--gold);padding:18px 20px 14px;text-align:center}
 .h-badge{display:inline-block;background:var(--gold);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:7px}
 header h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;color:#fff;letter-spacing:1px;line-height:1.1}
@@ -1492,7 +1494,7 @@ rows:[
 ],note:"🎓 En preguntas de examen, fíjate en verbos clave como <em>admitted</em>, <em>confessed</em>, <em>denied</em>."}},
 
 {cat:"Examen / Simulacro",type:"read",mode:"exam",
-q:"The officers arrived quickly and ___ the incident near the shopping center.",
+q:"The officers arrived quickly and ___ the incident near the shopping centre.",
 opts:["a) responded to","b) cooked","c) introduced","d) pretended"],ans:0,
 exp:{h:"✓ Respuesta correcta: a) responded to",
 rows:[
@@ -1538,7 +1540,7 @@ rows:[
 
 {cat:"Idioms",type:"idiom",
 q:"The officers saw the suspect stealing and caught him ___.",
-opts:["a) red-handed","b) under weather","c) blue moon","d) on cloud"],ans:0,
+opts:["a) red-handed","b) under the weather","c) once in a blue moon","d) on cloud nine"],ans:0,
 exp:{h:"✓ Respuesta correcta: a) red-handed",
 rows:[
 {ok:1,l:"A",t:"<strong>Caught red-handed</strong> ✓: pillado in fraganti."},
@@ -1579,6 +1581,183 @@ rows:[
 {ok:0,l:"C",t:"Pronóstico meteorológico no guarda relación con el caso."},
 {ok:0,l:"D",t:"<strong>Boarding pass</strong> es tarjeta de embarque."},
 ],note:"🎓 Léxico de examen: <em>statement</em>, <em>testimony</em>, <em>report</em>."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The suspect was carrying a loaded ___ hidden inside his jacket.",
+opts:["a) helmet","b) firearm","c) torch","d) whistle"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) firearm",
+rows:[
+{ok:0,l:"A",t:"<strong>Helmet</strong> no es un arma."},
+{ok:1,l:"B",t:"<strong>Firearm</strong> ✓: arma de fuego (pistola, revólver, etc.)."},
+{ok:0,l:"C",t:"<strong>Torch</strong> = linterna en inglés británico."},
+{ok:0,l:"D",t:"<strong>Whistle</strong> = silbato."},
+],note:"🎓 Léxico útil: <em>firearm</em>, <em>weapon</em>, <em>ammunition</em>."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"Before entering the flat, officers asked for a search ___ signed by a judge.",
+opts:["a) warrant","b) receipt","c) invoice","d) ticket"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) warrant",
+rows:[
+{ok:1,l:"A",t:"<strong>Search warrant</strong> ✓: orden judicial de registro."},
+{ok:0,l:"B",t:"<strong>Receipt</strong> = recibo de compra."},
+{ok:0,l:"C",t:"<strong>Invoice</strong> = factura."},
+{ok:0,l:"D",t:"<strong>Ticket</strong> no encaja en contexto judicial."},
+],note:"🎓 Collocation clave: <em>arrest warrant</em> / <em>search warrant</em>."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The witness said the suspect wore a black hoodie and a surgical ___.",
+opts:["a) mask","b) rope","c) ladder","d) badge"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) mask",
+rows:[
+{ok:1,l:"A",t:"<strong>Mask</strong> ✓: elemento para cubrir el rostro."},
+{ok:0,l:"B",t:"<strong>Rope</strong> = cuerda."},
+{ok:0,l:"C",t:"<strong>Ladder</strong> = escalera."},
+{ok:0,l:"D",t:"<strong>Badge</strong> = placa/insignia."},
+],note:"🎓 En descripciones físicas: <em>height, build, clothes, mask</em>."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The forensic team collected blood samples for DNA ___.",
+opts:["a) analysis","b) holiday","c) payment","d) transport"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) analysis",
+rows:[
+{ok:1,l:"A",t:"<strong>DNA analysis</strong> ✓: análisis de ADN."},
+{ok:0,l:"B",t:"No tiene sentido semántico."},
+{ok:0,l:"C",t:"No guarda relación con criminalística."},
+{ok:0,l:"D",t:"No encaja con el contexto forense."},
+],note:"🎓 Término frecuente: <em>forensic analysis</em>."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The officers had to set up a road ___ near the airport to stop the vehicle.",
+opts:["a) block","b) letter","c) mirror","d) pillow"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) block",
+rows:[
+{ok:1,l:"A",t:"<strong>Roadblock</strong> ✓: control o bloqueo policial en carretera."},
+{ok:0,l:"B",t:"No corresponde al contexto."},
+{ok:0,l:"C",t:"No expresa operativo policial."},
+{ok:0,l:"D",t:"No tiene relación con seguridad vial."},
+],note:"🎓 También verás <em>checkpoint</em> en textos de operación."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The victim was taken to hospital by ___ after the stabbing.",
+opts:["a) ambulance","b) scooter","c) taxi rank","d) tractor"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) ambulance",
+rows:[
+{ok:1,l:"A",t:"<strong>Ambulance</strong> ✓: vehículo sanitario de emergencias."},
+{ok:0,l:"B",t:"No es medio estándar para urgencias médicas graves."},
+{ok:0,l:"C",t:"No es un vehículo."},
+{ok:0,l:"D",t:"No corresponde al contexto urbano de emergencia."},
+],note:"🎓 Léxico de emergencia: <em>paramedics</em>, <em>ambulance</em>, <em>critical condition</em>."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The officers checked the suspect's fingerprints against the police ___.",
+opts:["a) database","b) dessert","c) playground","d) luggage"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) database",
+rows:[
+{ok:1,l:"A",t:"<strong>Police database</strong> ✓: base de datos policial."},
+{ok:0,l:"B",t:"No tiene relación con investigación."},
+{ok:0,l:"C",t:"No encaja con comparación de huellas."},
+{ok:0,l:"D",t:"No es el término técnico."},
+],note:"🎓 Expresión útil: <em>run fingerprints through the database</em>."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"He was accused of money ___ through several fake companies.",
+opts:["a) laundering","b) washing machine","c) camping","d) gardening"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) laundering",
+rows:[
+{ok:1,l:"A",t:"<strong>Money laundering</strong> ✓: blanqueo de capitales."},
+{ok:0,l:"B",t:"Distractor literal sin valor legal."},
+{ok:0,l:"C",t:"No guarda relación con delitos financieros."},
+{ok:0,l:"D",t:"No corresponde al contexto."},
+],note:"🎓 Delito económico clave de examen: <em>money laundering</em>."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The cybercrime unit traced the attack to an IP ___.",
+opts:["a) address","b) jacket","c) ticket","d) witness"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) address",
+rows:[
+{ok:1,l:"A",t:"<strong>IP address</strong> ✓: identificador de red."},
+{ok:0,l:"B",t:"No es término tecnológico."},
+{ok:0,l:"C",t:"No corresponde."},
+{ok:0,l:"D",t:"No encaja en ciberinvestigación."},
+],note:"🎓 Léxico actual: <em>cybercrime, data breach, phishing, malware</em>."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The police released CCTV ___ from the station to identify the suspect.",
+opts:["a) footage","b) perfume","c) furniture","d) umbrella"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) footage",
+rows:[
+{ok:1,l:"A",t:"<strong>CCTV footage</strong> ✓: grabación de cámaras de seguridad."},
+{ok:0,l:"B",t:"No guarda relación con vídeo."},
+{ok:0,l:"C",t:"No corresponde al contexto."},
+{ok:0,l:"D",t:"No es término audiovisual."},
+],note:"🎓 Expresión muy frecuente en noticias policiales."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"After the crash, officers closed the lane due to traffic ___.",
+opts:["a) congestion","b) melody","c) friendship","d) perfume"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) congestion",
+rows:[
+{ok:1,l:"A",t:"<strong>Traffic congestion</strong> ✓: congestión de tráfico."},
+{ok:0,l:"B",t:"No tiene valor semántico aquí."},
+{ok:0,l:"C",t:"No corresponde a movilidad."},
+{ok:0,l:"D",t:"No encaja en informes de tráfico."},
+],note:"🎓 Vocabulario de seguridad vial útil para pruebas B1."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The suspect tried to ___ evidence by deleting files from his laptop.",
+opts:["a) destroy","b) cook","c) polish","d) water"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) destroy",
+rows:[
+{ok:1,l:"A",t:"<strong>Destroy evidence</strong> ✓: destruir pruebas."},
+{ok:0,l:"B",t:"No es el verbo correcto."},
+{ok:0,l:"C",t:"No corresponde al contexto criminal."},
+{ok:0,l:"D",t:"No tiene sentido aquí."},
+],note:"🎓 También puedes ver <em>tamper with evidence</em> (manipular pruebas)."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"He admitted he had acted in self-___ during the fight.",
+opts:["a) defence","b) shopping","c) driving","d) painting"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) defence",
+rows:[
+{ok:1,l:"A",t:"<strong>Self-defence</strong> ✓: legítima defensa."},
+{ok:0,l:"B",t:"No corresponde al ámbito legal."},
+{ok:0,l:"C",t:"No encaja en contexto de agresión."},
+{ok:0,l:"D",t:"No guarda relación con juicio."},
+],note:"🎓 Ortografía británica coherente: <em>defence</em>."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The prosecutor argued there was clear ___ linking him to the robbery.",
+opts:["a) evidence","b) sunshine","c) recipe","d) luggage"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) evidence",
+rows:[
+{ok:1,l:"A",t:"<strong>Evidence</strong> ✓: pruebas con valor legal."},
+{ok:0,l:"B",t:"No tiene relación jurídica."},
+{ok:0,l:"C",t:"No corresponde al proceso penal."},
+{ok:0,l:"D",t:"No encaja en un juicio."},
+],note:"🎓 Recuerda: <em>evidence</em> es incontable en inglés."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"Officers found illegal drugs hidden in a secret ___ of the van.",
+opts:["a) compartment","b) melody","c) battery","d) picnic"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) compartment",
+rows:[
+{ok:1,l:"A",t:"<strong>Secret compartment</strong> ✓: compartimento oculto."},
+{ok:0,l:"B",t:"No corresponde a objetos físicos."},
+{ok:0,l:"C",t:"No encaja con ocultación de objetos."},
+{ok:0,l:"D",t:"No guarda relación con vehículos."},
+],note:"🎓 Léxico operativo frecuente en registros de vehículos."}},
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"The operation targeted a criminal ___ involved in drug trafficking.",
+opts:["a) network","b) rainbow","c) notebook","d) sandwich"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) network",
+rows:[
+{ok:1,l:"A",t:"<strong>Criminal network</strong> ✓: red criminal organizada."},
+{ok:0,l:"B",t:"No tiene relación semántica."},
+{ok:0,l:"C",t:"No expresa estructura delictiva."},
+{ok:0,l:"D",t:"No corresponde al contexto."},
+],note:"🎓 También verás <em>criminal gang</em> / <em>organized crime group</em>."}},
+
 
 ];
 

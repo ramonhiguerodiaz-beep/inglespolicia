@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="H-2-D FIT logo">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#003b24" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="1000" fill="none"/>
+  <g filter="url(#shadow)">
+    <circle cx="500" cy="500" r="310" fill="none" stroke="#005f3a" stroke-width="34"/>
+    <circle cx="500" cy="500" r="275" fill="none" stroke="#efe7d0" stroke-width="24"/>
+    <text x="500" y="560" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-size="220" font-weight="900" fill="#f4ecd9" stroke="#005f3a" stroke-width="18" letter-spacing="6">H-2-D</text>
+    <text x="500" y="650" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-size="78" font-weight="700" fill="#f4ecd9" stroke="#005f3a" stroke-width="3" letter-spacing="18">FIT</text>
+  </g>
+</svg>

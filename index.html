@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEST B1 · Policía Local de Canarias</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1a30;--blue:#1a3a6b;--blue2:#1e4d99;--gold:#e8b84b;--gold2:#f5d07a;--green:#1e7e4a;--green-bg:#e8f6ee;--green-border:#a3d9b8;--red:#b52b27;--red-bg:#fdecea;--red-border:#f0b0ad;--amber:#d97706;--amber-bg:#fffbeb;--white:#f7f9fc;--card:#ffffff;--gray:#7a8899;--border:#cdd5e0;--text:#1a2438}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Barlow',sans-serif;background:var(--navy);min-height:100vh}
+header{background:linear-gradient(150deg,#06101f 0%,#0f2347 60%,#1a3a6b 100%);border-bottom:3px solid var(--gold);padding:18px 20px 14px;text-align:center}
+.h-badge{display:inline-block;background:var(--gold);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:7px}
+header h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;color:#fff;letter-spacing:1px;line-height:1.1}
+header h1 em{color:var(--gold);font-style:normal}
+header p{color:#7aa3cc;font-size:12px;margin-top:4px}
+.prog-wrap{height:5px;background:rgba(255,255,255,.07)}
+.prog-fill{height:5px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .5s ease}
+.stats{display:flex;justify-content:space-between;align-items:center;background:#0a1525;padding:9px 18px;border-bottom:1px solid rgba(255,255,255,.06)}
+.stat{display:flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#7aa3cc;letter-spacing:.4px}
+.dot{width:8px;height:8px;border-radius:50%}
+.dot-ok{background:var(--green)}.dot-err{background:var(--red)}
+.stat b{color:#fff;font-size:16px;margin-left:1px}
+.stat-mid{font-size:12px;color:#4a6a99;text-align:center}
+.filter-outer{position:relative}
+.filter-outer::after{content:'';position:absolute;right:0;top:0;bottom:0;width:40px;background:linear-gradient(to right,transparent,var(--navy));pointer-events:none;border-radius:0 8px 8px 0}
+.filter-wrap{padding:12px 14px 8px;overflow-x:auto;overflow-y:visible;display:flex;gap:7px;scrollbar-width:thin;scrollbar-color:#22406e transparent;-webkit-overflow-scrolling:touch;touch-action:pan-x;cursor:grab;user-select:none}
+.filter-wrap:active{cursor:grabbing}
+.filter-wrap::-webkit-scrollbar{height:3px}
+.filter-wrap::-webkit-scrollbar-track{background:transparent}
+.filter-wrap::-webkit-scrollbar-thumb{background:#22406e;border-radius:3px}
+.f-btn{flex-shrink:0;padding:5px 13px;border-radius:20px;border:1.5px solid #22406e;background:transparent;color:#6a92bf;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.4px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.f-btn:hover{border-color:var(--gold);color:var(--gold)}
+.f-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
+.q-meta{text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a99;font-weight:600;margin-bottom:10px}
+.q-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.45);animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.q-head{background:var(--blue);padding:12px 18px;display:flex;align-items:center;gap:11px}
+.q-num{background:var(--gold);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:15px;min-width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-cat-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8ab0d8}
+.q-type-pill{margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;letter-spacing:1px;text-transform:uppercase}
+.pill-vocab{background:rgba(232,184,75,.15);color:var(--gold);border:1px solid rgba(232,184,75,.3)}
+.pill-gram{background:rgba(30,77,153,.3);color:#8ab0d8;border:1px solid rgba(138,176,216,.2)}
+.pill-idiom{background:rgba(30,126,74,.15);color:#4ec47a;border:1px solid rgba(78,196,122,.2)}
+.pill-false{background:rgba(181,43,39,.15);color:#e87a77;border:1px solid rgba(232,122,119,.2)}
+.pill-coll{background:rgba(217,119,6,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.2)}
+.pill-read{background:rgba(109,40,217,.15);color:#a78bfa;border:1px solid rgba(167,139,250,.2)}
+.pill-sim{background:rgba(234,88,12,.15);color:#fb923c;border:1px solid rgba(251,146,60,.3)}
+.q-body{padding:18px 20px 6px}
+.q-sentence{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:700;color:var(--text);line-height:1.45;margin-bottom:5px}
+.q-sentence .blank{display:inline-block;min-width:80px;border-bottom:3px solid var(--blue2);color:var(--blue2);font-style:italic;text-align:center;padding:0 5px}
+.q-ctx{font-size:12px;color:var(--gray);margin-bottom:5px;font-style:italic;padding-left:2px}
+.q-hint{display:inline-block;font-size:11px;color:var(--amber);background:var(--amber-bg);border:1px solid rgba(217,119,6,.2);border-radius:4px;padding:2px 8px;margin-bottom:12px;font-weight:600}
+.q-inst{font-size:12px;color:#aab;margin-bottom:16px}
+.opts{padding:0 20px 16px;display:flex;flex-direction:column;gap:8px}
+.o-btn{display:flex;align-items:flex-start;gap:11px;border:2px solid var(--border);border-radius:9px;background:#fff;padding:11px 14px;cursor:pointer;transition:all .15s;text-align:left;font-family:'Barlow',sans-serif;font-size:14px;color:var(--text);font-weight:500;line-height:1.4}
+.o-btn:hover:not(:disabled){border-color:var(--blue2);background:#f0f5ff;transform:translateX(4px)}
+.o-letter{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;min-width:26px;height:26px;border-radius:6px;background:#edf0f7;color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .15s}
+.o-btn.ok{border-color:var(--green);background:var(--green-bg)}
+.o-btn.ok .o-letter{background:var(--green);color:#fff}
+.o-btn.err{border-color:var(--red);background:var(--red-bg)}
+.o-btn.err .o-letter{background:var(--red);color:#fff}
+.o-btn.show-ok{border-color:var(--green);background:var(--green-bg)}
+.o-btn.show-ok .o-letter{background:var(--green);color:#fff}
+.o-btn:disabled{cursor:default}
+.exp-box{display:none;margin:0 20px 18px;border-radius:9px;border:1px solid var(--border);overflow:hidden;animation:fadeIn .25s ease}
+.exp-box.show{display:block}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.exp-verdict{padding:9px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:.8px;text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.exp-verdict.v-ok{background:var(--green);color:#fff}
+.exp-verdict.v-err{background:var(--red);color:#fff}
+.exp-ans{padding:7px 14px;background:#f0faf6;border-bottom:1px solid var(--green-border);font-size:13px;font-weight:700;color:var(--green)}
+.exp-body{background:#fff;padding:12px 14px;display:flex;flex-direction:column;gap:9px}
+.exp-row{display:flex;gap:9px;align-items:flex-start;padding-bottom:8px;border-bottom:1px solid #f0f2f5;font-size:13px;line-height:1.55}
+.exp-row:last-child{border-bottom:none;padding-bottom:0}
+.rl{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;min-width:30px;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;letter-spacing:.3px}
+.rl-ok{background:#d4edda;color:#1a5c30}
+.rl-err{background:#f8d7da;color:#721c24}
+.exp-row-text{color:#333}
+.exp-row-text strong{color:var(--text)}
+.exp-row-text em{color:var(--blue2);font-style:normal;font-weight:600}
+.tip{display:inline-block;background:#fff8e1;border:1px solid #ffe57f;border-radius:3px;padding:1px 5px;font-size:10px;font-weight:700;color:#b45309;margin-left:3px}
+.acad-note{background:#f8f4ff;border-left:3px solid #7c3aed;border-radius:0 6px 6px 0;padding:8px 12px;margin-top:2px;font-size:12px;color:#4c1d95;line-height:1.55}
+.acad-note strong{color:#6d28d9}
+.btn-next{display:none;width:calc(100% - 40px);margin:0 20px 18px;padding:12px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;border-radius:9px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.btn-next:hover{background:linear-gradient(135deg,var(--blue2),#2a6ae0);transform:translateY(-1px);box-shadow:0 5px 18px rgba(26,58,107,.4)}
+.btn-next.show{display:block}
+.res-card{background:var(--card);border-radius:12px;padding:30px 22px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.45);animation:fadeUp .3s ease}
+.res-badge{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+.res-score{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:80px;color:var(--text);line-height:1}
+.res-score span{font-size:30px}
+.res-sub{font-size:14px;color:var(--gray);margin-bottom:22px}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:20px}
+.res-box{border-radius:9px;padding:14px}
+.rb-ok{background:var(--green-bg);border:1px solid var(--green-border)}
+.rb-err{background:var(--red-bg);border:1px solid var(--red-border)}
+.rb-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px}
+.rb-ok .rb-val{color:var(--green)}.rb-err .rb-val{color:var(--red)}
+.rb-lbl{font-size:12px;color:var(--gray);font-weight:600;margin-top:2px}
+.verdict{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;padding:12px 18px;border-radius:9px;margin-bottom:22px}
+.vd-pass{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.vd-fail{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.btn-restart{width:100%;padding:13px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;border-radius:9px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.btn-restart:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(26,58,107,.4)}
+.cat-breakdown{text-align:left;margin-bottom:18px}
+.cat-breakdown h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:9px}
+.cat-row{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.cat-name{min-width:120px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px}
+.cat-bar-wrap{flex:1;height:8px;background:#e8edf5;border-radius:4px;overflow:hidden}
+.cat-bar-fill{height:8px;border-radius:4px;transition:width .8s ease}
+.cat-pct{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;min-width:38px;text-align:right}
+</style>
+</head>
+<body>
+<header>
+  <div class="h-badge">Oposiciones · Inglés B1</div>
+  <h1>TEST <em>Policía Local</em> de Canarias</h1>
+  <p>Vocabulario policial · Gramática · Collocations · Idioms · False Friends · Reading</p>
+</header>
+<div class="prog-wrap"><div class="prog-fill" id="pf" style="width:0%"></div></div>
+<div class="stats">
+  <div class="stat"><div class="dot dot-ok"></div>Correctas <b id="sOk">0</b></div>
+  <div class="stat-mid" id="sMid">Pregunta 1</div>
+  <div class="stat"><div class="dot dot-err"></div>Errores <b id="sErr">0</b></div>
+</div>
+<main>
+  <div class="filter-outer"><div class="filter-wrap" id="fb"></div></div>
+  <div class="q-meta" id="qm"></div>
+  <div id="app"></div>
+</main>
+<script>
+const Q=[
+// ── DELITOS ──
+{cat:"Delitos",type:"vocab",
+q:"Someone entered my house through a broken window while I was sleeping and stole my laptop. This crime is called ___",
+opts:["a) robbery","b) burglary","c) theft","d) mugging"],ans:1,
+ctx:"Contexto: denuncia de robo en domicilio.",hint:"⚠ Trampas frecuentes: robbery ≠ burglary",
+exp:{h:"✓ Respuesta correcta: b) burglary",
+rows:[
+{ok:0,l:"A",t:"<strong>Robbery</strong>: robo con <em>violencia o intimidación directa</em>. Requiere confrontación cara a cara con la víctima. Aquí la víctima estaba dormida → no aplica."},
+{ok:1,l:"B",t:"<strong>Burglary</strong> ✓: allanamiento de morada con intención de robar. Clave: <em>entrar ilegalmente en un edificio</em>. El criminal = <em>burglar</em>. Verbo: <em>to burgle</em>."},
+{ok:0,l:"C",t:"<strong>Theft</strong>: hurto genérico (tomar algo ajeno). No especifica allanamiento de morada. Es el término 'paraguas'; burglary es más específico."},
+{ok:0,l:"D",t:"<strong>Mugging</strong>: atraco callejero, siempre en la vía pública, con violencia. No ocurre dentro de una vivienda."},
+],note:"🎓 ACADEMIA · La tabla de delito ↔ criminal: <strong>theft</strong>/thief · <strong>robbery</strong>/robber · <strong>burglary</strong>/burglar · <strong>mugging</strong>/mugger · <strong>pickpocketing</strong>/pickpocket. MEMORIZA estos pares."}},
+
+{cat:"Delitos",type:"vocab",
+q:"A man grabbed a woman's bag in the street, pushed her and ran away. This is an example of ___",
+opts:["a) burglary","b) pickpocketing","c) mugging","d) fraud"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) mugging",
+rows:[
+{ok:0,l:"A",t:"<strong>Burglary</strong>: allanamiento de edificio. No ocurre en la calle."},
+{ok:0,l:"B",t:"<strong>Pickpocketing</strong>: carterismo. El ladrón actúa SIN violencia y sin que la víctima lo note. Aquí hay empujón = fuerza física → descartado."},
+{ok:1,l:"C",t:"<strong>Mugging</strong> ✓: atraco callejero con violencia o fuerza. Siempre en espacio público + agresión o intimidación. Criminal = <em>mugger</em>."},
+{ok:0,l:"D",t:"<strong>Fraud</strong>: fraude, estafa con engaño o documentos falsos. Aquí hay fuerza física, no engaño."},
+],note:"🎓 ACADEMIA · Clave de mugging: (1) lugar = vía pública + (2) violencia/intimidación. Si falta uno de los dos, busca otro delito."}},
+
+{cat:"Delitos",type:"vocab",
+q:"He took my wallet from my jacket pocket on the metro without me noticing anything. This is ___",
+opts:["a) robbery","b) burglary","c) mugging","d) pickpocketing"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) pickpocketing",
+rows:[
+{ok:0,l:"A",t:"<strong>Robbery</strong>: requiere violencia. El carterista actúa en silencio, sin confrontación."},
+{ok:0,l:"B",t:"<strong>Burglary</strong>: allanamiento de edificio. El metro no es un domicilio."},
+{ok:0,l:"C",t:"<strong>Mugging</strong>: con violencia. Aquí no la hay."},
+{ok:1,l:"D",t:"<strong>Pickpocketing</strong> ✓: carterismo. El ladrón (<em>pickpocket</em>) roba sin violencia y sin que la víctima lo perciba. Transporte público = escenario típico."},
+],note:"🎓 ACADEMIA · Palabra clave en el enunciado: <em>'without me noticing'</em> = sin violencia + sin percepción = pickpocketing. Esta pista aparece siempre."}},
+
+{cat:"Delitos",type:"vocab",
+q:"He used fake documents and a false identity to transfer money from other accounts. He committed ___",
+opts:["a) assault","b) vandalism","c) fraud","d) arson"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) fraud",
+rows:[
+{ok:0,l:"A",t:"<strong>Assault</strong>: agresión física. No hay contacto físico en este caso."},
+{ok:0,l:"B",t:"<strong>Vandalism</strong>: daños deliberados a la propiedad. Sin relación con documentos falsos."},
+{ok:1,l:"C",t:"<strong>Fraud</strong> ✓: fraude/estafa. Uso de engaño, documentos o identidades falsas para obtener beneficio. También: <em>identity fraud</em>, <em>financial fraud</em>."},
+{ok:0,l:"D",t:"<strong>Arson</strong>: incendio provocado. Sin relación con dinero ni documentos."},
+],note:"🎓 ACADEMIA · Delitos adicionales: <strong>arson</strong> (incendio) · <strong>assault</strong> (agresión) · <strong>vandalism</strong> (daños) · <strong>kidnapping</strong> (secuestro) · <strong>shoplifting</strong> (hurto en tienda) · <strong>drug trafficking</strong> (tráfico de drogas)."}},
+
+{cat:"Delitos",type:"vocab",
+q:"The gang kidnapped the businessman and demanded one million euros for his freedom. This crime is called ___",
+opts:["a) arson","b) kidnapping","c) mugging","d) trespassing"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) kidnapping",
+rows:[
+{ok:0,l:"A",t:"<strong>Arson</strong>: incendio provocado. No tiene relación con retener personas."},
+{ok:1,l:"B",t:"<strong>Kidnapping</strong> ✓: secuestro. Retener a alguien ilegalmente para pedir rescate (<em>ransom</em>). Verbo: <em>to kidnap</em>. Criminal: <em>kidnapper</em>."},
+{ok:0,l:"C",t:"<strong>Mugging</strong>: atraco callejero rápido. No implica retener a la persona ni pedir rescate."},
+{ok:0,l:"D",t:"<strong>Trespassing</strong>: entrar sin permiso en propiedad privada. No implica retener personas."},
+],note:"🎓 ACADEMIA · <strong>Kidnapping + ransom</strong> (rescate) es vocabulario de examen frecuente. <em>Hold hostage</em> = retener como rehén. <em>Ransom demand</em> = exigencia de rescate."}},
+
+{cat:"Delitos",type:"vocab",
+q:"Some teenagers broke car windows and painted graffiti on the school walls. They were charged with ___",
+opts:["a) theft","b) trespassing","c) vandalism","d) shoplifting"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) vandalism",
+rows:[
+{ok:0,l:"A",t:"<strong>Theft</strong>: robar objetos. Aquí no se roban objetos, se destruyen."},
+{ok:0,l:"B",t:"<strong>Trespassing</strong>: entrar sin permiso. No implica causar destrozos."},
+{ok:1,l:"C",t:"<strong>Vandalism</strong> ✓: daños deliberados a la propiedad ajena. Persona: <em>vandal</em>. Verbo: <em>to vandalise</em>. Incluye grafitis, destrozos, pintadas."},
+{ok:0,l:"D",t:"<strong>Shoplifting</strong>: hurto en tiendas. No tiene relación con destrozos o pintadas."},
+],note:"🎓 ACADEMIA · <strong>Shoplifting</strong> = robar en tiendas sin pagar (criminal = <em>shoplifter</em>). <strong>Vandalism</strong> = destruir o dañar propiedad ajena. Confusión frecuente."}},
+
+// ── PERSONAS ──
+{cat:"Personas",type:"vocab",
+q:"The police think this man may have committed the crime, but they have not proved it yet. He is a ___",
+opts:["a) convict","b) offender","c) witness","d) suspect"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) suspect",
+rows:[
+{ok:0,l:"A",t:"<strong>Convict</strong>: persona ya condenada por un tribunal. Aquí no hay pruebas ni condena."},
+{ok:0,l:"B",t:"<strong>Offender</strong>: infractor/delincuente. Se usa cuando ya se sabe que cometió el delito. Aquí hay duda."},
+{ok:0,l:"C",t:"<strong>Witness</strong>: testigo. Presenció los hechos. No es el investigado."},
+{ok:1,l:"D",t:"<strong>Suspect</strong> ✓: sospechoso. La policía cree que puede ser culpable pero no hay pruebas. Verbo: <em>to suspect someone of + -ing</em>."},
+],note:"🎓 ACADEMIA · Progresión: <strong>suspect</strong> (sospechoso) → si hay pruebas → <strong>offender/criminal</strong> → si el tribunal lo declara culpable → <strong>convict</strong>. Este orden aparece en textos de examen."}},
+
+{cat:"Personas",type:"vocab",
+q:"She saw the accident from across the street and called the police. She is an important ___",
+opts:["a) suspect","b) offender","c) witness","d) victim"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) witness",
+rows:[
+{ok:0,l:"A",t:"<strong>Suspect</strong>: sospechoso. Ella no cometió nada."},
+{ok:0,l:"B",t:"<strong>Offender</strong>: delincuente. Ella no cometió el delito."},
+{ok:1,l:"C",t:"<strong>Witness</strong> ✓: testigo. Presenció los hechos y puede dar información. Tipo: <em>eyewitness</em> (testigo presencial)."},
+{ok:0,l:"D",t:"<strong>Victim</strong>: víctima. Sufre el delito. Ella solo lo observó, no fue perjudicada."},
+],note:"🎓 ACADEMIA · Colocaciones con <em>witness</em>: <em>eyewitness account</em> (testimonio presencial) · <em>witness statement</em> (declaración del testigo) · <em>call a witness</em> (llamar a un testigo al estrado)."}},
+
+{cat:"Personas",type:"vocab",
+q:"The detective found that the robber had a ___ who helped him plan the robbery but never entered the bank.",
+opts:["a) victim","b) witness","c) accomplice","d) constable"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) accomplice",
+rows:[
+{ok:0,l:"A",t:"<strong>Victim</strong>: quien sufre el delito, no quien lo planifica."},
+{ok:0,l:"B",t:"<strong>Witness</strong>: observa los hechos, no los planifica."},
+{ok:1,l:"C",t:"<strong>Accomplice</strong> ✓: cómplice. Ayuda a cometer el delito sin ser el autor principal. Sinónimo formal: <em>accessory</em>."},
+{ok:0,l:"D",t:"<strong>Constable</strong>: agente de policía. Es un cargo policial, no un criminal."},
+],note:"🎓 ACADEMIA · <em>Accomplice / accessory</em> = cómplice. Colocación: <em>arrest sb as an accomplice</em> (detener a alguien como cómplice). En textos: <em>accessory to a crime</em> (cómplice de un delito)."}},
+
+{cat:"Personas",type:"vocab",
+q:"The man who broke into three houses stealing jewellery and cash is called a ___",
+opts:["a) thief","b) robber","c) mugger","d) burglar"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) burglar",
+rows:[
+{ok:0,l:"A",t:"<strong>Thief</strong>: ladrón genérico. No especifica el método ni el lugar."},
+{ok:0,l:"B",t:"<strong>Robber</strong>: atracador, usa violencia o intimidación. Ej: atraco a un banco con arma."},
+{ok:0,l:"C",t:"<strong>Mugger</strong>: atracador callejero. Actúa en vía pública."},
+{ok:1,l:"D",t:"<strong>Burglar</strong> ✓: el que entra ilegalmente en edificios para robar. Su delito = <em>burglary</em>. Verbo: <em>to burgle</em>."},
+],note:"🎓 ACADEMIA · Tabla completa: thief→theft · robber→robbery · burglar→burglary · mugger→mugging · pickpocket→pickpocketing. Memorizar los pares es imprescindible para examen."}},
+
+// ── INVESTIGACIÓN ──
+{cat:"Investigación",type:"vocab",
+q:"The first thing the officers did when they arrived at the crime scene was to ___ the area.",
+opts:["a) arrest","b) sentence","c) secure","d) convict"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) secure",
+rows:[
+{ok:0,l:"A",t:"<strong>Arrest</strong>: detener a alguien. No se arresta a una zona, se arresta a personas."},
+{ok:0,l:"B",t:"<strong>Sentence</strong>: condenar a una pena. Acción del juez, no de la policía en el terreno."},
+{ok:1,l:"C",t:"<strong>Secure the area</strong> ✓: asegurar/acordonar la zona. Primer paso estándar tras llegar a un incidente. Colocación fija de examen."},
+{ok:0,l:"D",t:"<strong>Convict</strong>: declarar culpable. También es acción del tribunal."},
+],note:"🎓 ACADEMIA · Secuencia policial estándar (aparece en textos): <em>respond to an incident → secure the area → gather evidence → question witnesses → arrest a suspect → file a report</em>."}},
+
+{cat:"Investigación",type:"vocab",
+q:"The investigators spent days gathering ___ at the crime scene before making any arrest.",
+opts:["a) verdict","b) sentence","c) clues","d) evidence"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) evidence",
+rows:[
+{ok:0,l:"A",t:"<strong>Verdict</strong>: veredicto del jurado. Decisión judicial, no algo que se recoge en la escena."},
+{ok:0,l:"B",t:"<strong>Sentence</strong>: condena/pena. Resultado judicial."},
+{ok:0,l:"C",t:"<strong>Clues</strong>: pistas. También policial, pero con <em>gather</em> la colocación técnica formal es <em>evidence</em>."},
+{ok:1,l:"D",t:"<strong>Evidence</strong> ✓: pruebas. Colocación fija: <em>gather evidence</em>. Término técnico clave en investigación policial."},
+],note:"🎓 ACADEMIA · <strong>evidence</strong> (pruebas formales, valor legal) / <strong>clue</strong> (pista que ayuda a seguir la investigación) / <strong>proof</strong> (prueba definitiva de culpabilidad). Con <em>gather</em> → siempre <em>evidence</em>."}},
+
+{cat:"Investigación",type:"vocab",
+q:"After the incident, the officer had to ___ a report at the station.",
+opts:["a) make","b) do","c) file","d) take"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) file",
+rows:[
+{ok:0,l:"A",t:"<strong>Make a report</strong>: posible en inglés informal, pero en contexto policial formal la colocación fija es <em>file</em>."},
+{ok:0,l:"B",t:"<strong>Do a report</strong>: incorrecta. No es colocación válida en inglés policial."},
+{ok:1,l:"C",t:"<strong>File a report</strong> ✓: presentar/registrar formalmente un informe. <em>File</em> = archivar, registrar oficialmente. Imprescindible."},
+{ok:0,l:"D",t:"<strong>Take a report</strong>: incorrecto. No existe esta colocación."},
+],note:"🎓 ACADEMIA · Colocaciones con <em>report</em>: <em>file a report</em> (presentar) · <em>submit a report</em> (entregar) · <em>write a report</em> (redactar). Con <em>arrest</em>: <em>make an arrest</em> · <em>place under arrest</em> · <em>take into custody</em>."}},
+
+{cat:"Investigación",type:"vocab",
+q:"The detective decided to ___ the main suspect for several hours at the police station.",
+opts:["a) sentence","b) convict","c) interrogate","d) charge"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) interrogate",
+rows:[
+{ok:0,l:"A",t:"<strong>Sentence</strong>: condenar. Acción del juez."},
+{ok:0,l:"B",t:"<strong>Convict</strong>: declarar culpable. Acción del tribunal."},
+{ok:1,l:"C",t:"<strong>Interrogate</strong> ✓: interrogar formalmente con intensidad. Más formal y serio que <em>question</em>. <em>Interrogate a suspect/witness</em>."},
+{ok:0,l:"D",t:"<strong>Charge</strong>: imputar, formular cargos. Acción legal distinta de interrogar."},
+],note:"🎓 ACADEMIA · <em>question</em> (preguntar, general/informal) ≠ <em>interrogate</em> (interrogar formalmente con presión). En policiales: sospechosos → <em>interrogate</em>; testigos → <em>question</em>."}},
+
+{cat:"Investigación",type:"vocab",
+q:"The police officer ___ the suspect and took him to the station.",
+opts:["a) sentenced","b) convicted","c) arrested","d) filed"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) arrested",
+rows:[
+{ok:0,l:"A",t:"<strong>Sentenced</strong>: condenó a una pena. Acción del juez, no de un agente en la calle."},
+{ok:0,l:"B",t:"<strong>Convicted</strong>: declaró culpable. Acción del tribunal."},
+{ok:1,l:"C",t:"<strong>Arrested</strong> ✓: detuvo, arrestó. <em>arrest a suspect</em> / <em>make an arrest</em> / <em>place under arrest</em>."},
+{ok:0,l:"D",t:"<strong>Filed</strong>: archivó/presentó. Va con <em>report</em> o <em>complaint</em>, no con personas."},
+],note:"🎓 ACADEMIA · Sinónimos de detener: <em>arrest</em> · <em>detain</em> · <em>apprehend</em> · <em>take into custody</em>. Los cuatro pueden aparecer en textos de examen."}},
+
+{cat:"Investigación",type:"vocab",
+q:"The police found a knife with fingerprints near the body. This knife is a piece of ___",
+opts:["a) verdict","b) evidence","c) sentence","d) conviction"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) evidence",
+rows:[
+{ok:0,l:"A",t:"<strong>Verdict</strong>: veredicto. No es un objeto físico."},
+{ok:1,l:"B",t:"<strong>Evidence</strong> ✓: prueba material. <em>A piece of evidence</em> = un elemento probatorio. Arma + huellas = pruebas físicas."},
+{ok:0,l:"C",t:"<strong>Sentence</strong>: condena. Resultado judicial, no un objeto."},
+{ok:0,l:"D",t:"<strong>Conviction</strong>: condena judicial. Igual, es un resultado del proceso."},
+],note:"🎓 ACADEMIA · Tipos de prueba: <em>physical evidence</em> · <em>forensic evidence</em> · <em>circumstantial evidence</em> (indiciaria) · <em>DNA evidence</em> · <em>eyewitness evidence</em>."}},
+
+// ── JUICIO ──
+{cat:"Juicio",type:"vocab",
+q:"After the trial, the twelve members of the jury said he was guilty. They announced their ___",
+opts:["a) sentence","b) conviction","c) verdict","d) charge"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) verdict",
+rows:[
+{ok:0,l:"A",t:"<strong>Sentence</strong>: condena/pena (decide el <em>JUEZ</em>, no el jurado). Viene después del veredicto."},
+{ok:0,l:"B",t:"<strong>Conviction</strong>: condena en sentido amplio. Pero la acción concreta de anunciar guilty/not guilty es el <em>verdict</em>."},
+{ok:1,l:"C",t:"<strong>Verdict</strong> ✓: veredicto. Decisión del jurado: <em>guilty</em> o <em>not guilty</em>. Solo el jurado lo da."},
+{ok:0,l:"D",t:"<strong>Charge</strong>: cargo, acusación. Viene ANTES del juicio."},
+],note:"🎓 ACADEMIA · Orden del proceso: <em>charge</em> → <em>trial</em> → <em>verdict</em> (jurado) → <em>sentence</em> (juez) → <em>conviction</em>. Pregunta de examen muy habitual."}},
+
+{cat:"Juicio",type:"vocab",
+q:"The judge ordered him to ___ eight years in prison for armed robbery.",
+opts:["a) do","b) serve","c) make","d) take"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) serve",
+rows:[
+{ok:0,l:"A",t:"<strong>Do time</strong>: cumplir condena en inglés <em>coloquial</em>. En contexto formal de tribunal con 'the judge ordered', la colocación correcta es <em>serve</em>."},
+{ok:1,l:"B",t:"<strong>Serve a sentence</strong> ✓: cumplir una condena. Colocación formal correcta. También: <em>serve time</em>."},
+{ok:0,l:"C",t:"<strong>Make a sentence</strong>: incorrecto. No existe."},
+{ok:0,l:"D",t:"<strong>Take a sentence</strong>: incorrecto. No existe."},
+],note:"🎓 ACADEMIA · Colocaciones con <em>sentence</em>: <em>serve a sentence</em> (cumplir) · <em>receive a sentence</em> (recibir) · <em>reduce a sentence</em> (reducir) · <em>life sentence</em> (cadena perpetua) · <em>suspended sentence</em> (condena suspendida)."}},
+
+{cat:"Juicio",type:"vocab",
+q:"The victim's family decided to ___ charges against the attacker after the incident.",
+opts:["a) do","b) make","c) press","d) bring up"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) press",
+rows:[
+{ok:0,l:"A",t:"<strong>Do charges</strong>: incorrecto. No existe esta colocación."},
+{ok:0,l:"B",t:"<strong>Make charges</strong>: incorrecto en este contexto. La colocación fija es <em>press</em>."},
+{ok:1,l:"C",t:"<strong>Press charges</strong> ✓: presentar cargos formalmente. Colocación FIJA imprescindible. Opuesto: <em>drop charges</em> = retirar cargos."},
+{ok:0,l:"D",t:"<strong>Bring up charges</strong>: no es la expresión estándar. Existe <em>bring charges</em> pero <em>press</em> es la más examinada."},
+],note:"🎓 ACADEMIA · Colocaciones con <em>charges</em>: <em>press charges</em> (presentar) · <em>drop charges</em> (retirar) · <em>face charges</em> (enfrentarse a) · <em>be charged with</em> (ser acusado de)."}},
+
+{cat:"Juicio",type:"vocab",
+q:"After two years in prison, he was found ___ of all charges and released immediately.",
+opts:["a) guilty","b) not guilty","c) convicted","d) charged"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) not guilty",
+rows:[
+{ok:0,l:"A",t:"<strong>Guilty</strong>: culpable. Si fuera culpable, seguiría en prisión. El contexto dice 'released immediately'."},
+{ok:1,l:"B",t:"<strong>Not guilty</strong> ✓: inocente. El veredicto de inocencia lleva a la liberación. Equivalente: <em>be acquitted</em>."},
+{ok:0,l:"C",t:"<strong>Convicted</strong>: condenado. Si fuera condenado, no sería liberado."},
+{ok:0,l:"D",t:"<strong>Charged</strong>: acusado. Ser acusado no implica ser liberado."},
+],note:"🎓 ACADEMIA · <em>Be found guilty</em> (ser declarado culpable) ≠ <em>be found not guilty / be acquitted</em> (ser absuelto). <em>Be convicted</em> (ser condenado). Antónimo: <em>be acquitted</em>."}},
+
+{cat:"Juicio",type:"vocab",
+q:"The criminal was ___ to ten years in prison by the judge.",
+opts:["a) arrested","b) charged","c) sentenced","d) convicted"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) sentenced",
+rows:[
+{ok:0,l:"A",t:"<strong>Arrested</strong>: detenido. Ocurre antes del juicio."},
+{ok:0,l:"B",t:"<strong>Charged</strong>: acusado. También antes del juicio."},
+{ok:1,l:"C",t:"<strong>Sentenced</strong> ✓: condenado a una pena por el juez. Estructura: <em>be sentenced to [pena] for [delito]</em>."},
+{ok:0,l:"D",t:"<strong>Convicted</strong>: declarado culpable. Paso previo a la sentencia; no especifica la pena."},
+],note:"🎓 ACADEMIA · <em>Be convicted</em> (declarado culpable) → <em>be sentenced to</em> (condenado a una pena). Son dos pasos distintos del mismo proceso."}},
+
+// ── COLLOCATIONS ──
+{cat:"Collocations",type:"coll",
+q:"The officer decided to ___ the suspect into custody after finding stolen goods in his car.",
+opts:["a) put","b) take","c) bring","d) carry"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) take",
+rows:[
+{ok:0,l:"A",t:"<strong>Put into custody</strong>: no es la colocación estándar."},
+{ok:1,l:"B",t:"<strong>Take into custody</strong> ✓: poner bajo custodia policial, detener formalmente. Colocación fija en inglés policial."},
+{ok:0,l:"C",t:"<strong>Bring into custody</strong>: posible pero menos frecuente que <em>take</em>."},
+{ok:0,l:"D",t:"<strong>Carry into custody</strong>: incorrecto."},
+],note:"🎓 ACADEMIA · Colocaciones con <em>custody</em>: <em>take into custody</em> · <em>hold in custody</em> (mantener detenido) · <em>remand in custody</em> (prisión preventiva) · <em>release from custody</em> (poner en libertad)."}},
+
+{cat:"Collocations",type:"coll",
+q:"After three days of investigation, the detectives finally ___ an arrest.",
+opts:["a) did","b) had","c) made","d) took"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) made",
+rows:[
+{ok:0,l:"A",t:"<strong>Did an arrest</strong>: incorrecto. <em>Do</em> no se usa con <em>arrest</em>."},
+{ok:0,l:"B",t:"<strong>Had an arrest</strong>: incorrecto."},
+{ok:1,l:"C",t:"<strong>Made an arrest</strong> ✓: colocación FIJA. <em>Make an arrest</em> = efectuar una detención. Inamovible en inglés policial."},
+{ok:0,l:"D",t:"<strong>Took an arrest</strong>: incorrecto."},
+],note:"🎓 ACADEMIA · <em>MAKE</em> en policiales: <em>make an arrest</em> · <em>make a statement</em> · <em>make a complaint</em> · <em>make a decision</em>."}},
+
+{cat:"Collocations",type:"coll",
+q:"The officers had to ___ a thorough search of the building before confirming it was safe.",
+opts:["a) make","b) carry out","c) do","d) have"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) carry out",
+rows:[
+{ok:0,l:"A",t:"<strong>Make a search</strong>: no es la colocación natural."},
+{ok:1,l:"B",t:"<strong>Carry out a search</strong> ✓: llevar a cabo un registro. <em>Carry out</em> es el verbo colocacional para operaciones e investigaciones policiales."},
+{ok:0,l:"C",t:"<strong>Do a search</strong>: posible en inglés informal. En examen, <em>carry out</em> es la opción formal correcta."},
+{ok:0,l:"D",t:"<strong>Have a search</strong>: incorrecto."},
+],note:"🎓 ACADEMIA · <em>Carry out</em> en policiales: <em>carry out an investigation</em> · <em>carry out a raid</em> (redada) · <em>carry out an arrest</em> · <em>carry out a search</em>."}},
+
+{cat:"Collocations",type:"coll",
+q:"The suspect refused to ___ a statement when questioned about his movements that evening.",
+opts:["a) do","b) make","c) give","d) say"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) give",
+rows:[
+{ok:0,l:"A",t:"<strong>Do a statement</strong>: incorrecto."},
+{ok:0,l:"B",t:"<strong>Make a statement</strong>: también correcto y frecuente. Si la opción es 'give', es igual de válida. Ambas son colocaciones correctas."},
+{ok:1,l:"C",t:"<strong>Give a statement</strong> ✓: dar una declaración. Igual de válido que <em>make a statement</em>. Ambas colocaciones son correctas en inglés policial."},
+{ok:0,l:"D",t:"<strong>Say a statement</strong>: incorrecto."},
+],note:"🎓 ACADEMIA · Con <em>statement</em>: <em>give/make a statement</em> (dar declaración) · <em>written statement</em> · <em>witness statement</em> · <em>sworn statement</em> (declaración jurada)."}},
+
+{cat:"Collocations",type:"coll",
+q:"The police had to ___ order when the fight broke out at the festival.",
+opts:["a) keep","b) do","c) make","d) bring"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) keep",
+rows:[
+{ok:1,l:"A",t:"<strong>Keep order</strong> ✓: mantener el orden. Colocación habitual en contextos de seguridad pública. También: <em>maintain order</em>."},
+{ok:0,l:"B",t:"<strong>Do order</strong>: incorrecto."},
+{ok:0,l:"C",t:"<strong>Make order</strong>: incorrecto."},
+{ok:0,l:"D",t:"<strong>Bring order</strong>: no es la colocación estándar."},
+],note:"🎓 ACADEMIA · Vocabulario de orden público: <em>keep/maintain order</em> · <em>restore order</em> (restablecer) · <em>maintain law and order</em> · <em>disturb the peace</em> (alterar la paz)."}},
+
+// ── GRAMÁTICA ──
+{cat:"Gramática",type:"gram",
+q:"When I arrived at the scene, the suspect ___ already escaped through the back door.",
+opts:["a) has","b) have","c) had","d) was"],ans:2,hint:"⚠ Clave: dos acciones pasadas. ¿Cuál ocurrió primero?",
+exp:{h:"✓ Respuesta correcta: c) had",
+rows:[
+{ok:0,l:"A",t:"<strong>Has escaped</strong>: Present Perfect. <span class='tip'>REGLA</span> Con tiempo pasado definido (<em>when I arrived</em>) NUNCA se usa Present Perfect. Error muy típico de examen."},
+{ok:0,l:"B",t:"<strong>Have</strong>: forma incorrecta aquí."},
+{ok:1,l:"C",t:"<strong>Had escaped</strong> ✓: Past Perfect. La huida ocurrió ANTES de que el agente llegara. Estructura: <em>when + past simple → past perfect</em> para la acción anterior."},
+{ok:0,l:"D",t:"<strong>Was escaped</strong>: no existe en inglés."},
+],note:"🎓 ACADEMIA · <strong>Past Perfect = had + participio</strong>. Úsalo para la acción más antigua cuando hay dos acciones pasadas. Palabras clave: <em>already, just, before, when, by the time</em>."}},
+
+{cat:"Gramática",type:"gram",
+q:"She ___ as a police officer in Las Palmas for ten years and she still works there.",
+opts:["a) works","b) worked","c) has worked","d) is working"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) has worked",
+rows:[
+{ok:0,l:"A",t:"<strong>Works</strong>: Present Simple. No indica duración desde el pasado hasta ahora."},
+{ok:0,l:"B",t:"<strong>Worked</strong>: Past Simple. Implicaría que ya no trabaja allí. Pero dice 'she still works there'."},
+{ok:1,l:"C",t:"<strong>Has worked</strong> ✓: Present Perfect. Acción iniciada en el pasado que continúa en el presente. Marcador: <em>for ten years</em>."},
+{ok:0,l:"D",t:"<strong>Is working</strong>: Present Continuous. Solo para acciones en este momento exacto, no para duraciones con <em>for</em>."},
+],note:"🎓 ACADEMIA · <strong>Present Perfect + FOR/SINCE</strong> = acción que empezó en el pasado y CONTINÚA ahora. <em>For</em> + duración (for 10 years) · <em>Since</em> + punto de inicio (since 2015)."}},
+
+{cat:"Gramática",type:"gram",
+q:"The report ___ written by the duty officer last night after the incident.",
+opts:["a) is","b) was","c) has been","d) were"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) was",
+rows:[
+{ok:0,l:"A",t:"<strong>Is written</strong>: pasiva de presente. Pero <em>last night</em> indica pasado definido."},
+{ok:1,l:"B",t:"<strong>Was written</strong> ✓: Past Simple Passive. Estructura: <em>was/were + participio</em>. Correcto con <em>last night</em>."},
+{ok:0,l:"C",t:"<strong>Has been written</strong>: Present Perfect Passive. <span class='tip'>REGLA</span> Con tiempo definido (<em>last night</em>) → NUNCA Present Perfect."},
+{ok:0,l:"D",t:"<strong>Were</strong>: incorrecto. <em>Report</em> es singular → <em>was</em>."},
+],note:"🎓 ACADEMIA · <strong>Pasiva B1</strong>: <em>is/are + pp</em> (presente) · <em>was/were + pp</em> (pasado) · <em>has/have been + pp</em> (present perfect) · <em>will be + pp</em> (futuro). Identificar el tiempo = clave."}},
+
+{cat:"Gramática",type:"gram",
+q:"The suspect ___ the area when the patrol car arrived.",
+opts:["a) left","b) was leaving","c) has left","d) leaves"],ans:1,hint:"⚠ Dos acciones en el pasado: ¿cuál estaba en progreso?",
+exp:{h:"✓ Respuesta correcta: b) was leaving",
+rows:[
+{ok:0,l:"A",t:"<strong>Left</strong>: Past Simple. Posible, pero no transmite que la acción estaba EN CURSO cuando llegó la patrulla."},
+{ok:1,l:"B",t:"<strong>Was leaving</strong> ✓: Past Continuous. Acción en desarrollo interrumpida por otra más corta (<em>the patrol car arrived</em>). Estructura clásica de examen B1."},
+{ok:0,l:"C",t:"<strong>Has left</strong>: Present Perfect. No válido con tiempo pasado definido."},
+{ok:0,l:"D",t:"<strong>Leaves</strong>: Present Simple. No aplica en narración pasada."},
+],note:"🎓 ACADEMIA · <strong>was/were + -ing</strong> (acción larga en progreso) + <strong>when</strong> + Past Simple (acción que interrumpe). Estructura más examinada en B1 policial."}},
+
+{cat:"Gramática",type:"gram",
+q:"The officer ___ patrol in the south district when he noticed the broken window.",
+opts:["a) did","b) has done","c) was doing","d) does"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) was doing",
+rows:[
+{ok:0,l:"A",t:"<strong>Did patrol</strong>: Past Simple. No transmite que era una acción en curso cuando ocurrió el aviso."},
+{ok:0,l:"B",t:"<strong>Has done</strong>: Present Perfect. Incorrecto con tiempo definido."},
+{ok:1,l:"C",t:"<strong>Was doing patrol</strong> ✓: Past Continuous. Acción de fondo en desarrollo interrumpida por <em>noticed</em> (Past Simple). Misma estructura PC + when + PS."},
+{ok:0,l:"D",t:"<strong>Does</strong>: Present Simple. No aplica en relato pasado."},
+],note:"🎓 ACADEMIA · Vocabulario asociado: <em>be on patrol</em> / <em>patrol an area</em> / <em>patrol car</em>. Cuando ves <em>when + noticed/saw/heard</em>, la acción de fondo probablemente va en Past Continuous."}},
+
+{cat:"Gramática",type:"gram",
+q:"She ___ to work for the police until she was 18, but then she changed her mind.",
+opts:["a) didn't use","b) wasn't use","c) used to not","d) not used to"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) didn't use",
+rows:[
+{ok:1,l:"A",t:"<strong>Didn't use to</strong> ✓: forma negativa correcta de <em>used to</em>. Estructura: <em>didn't use to + infinitivo</em>. Atención: 'use' sin 'd' final."},
+{ok:0,l:"B",t:"<strong>Wasn't use to</strong>: incorrecto. Mezcla de pasiva y modal que no existe."},
+{ok:0,l:"C",t:"<strong>Used to not</strong>: incorrecto. La negación es con <em>didn't</em>."},
+{ok:0,l:"D",t:"<strong>Not used to</strong>: incorrecto como negación. <em>Not used to</em> existe pero significa 'no estar acostumbrado a algo' (diferente significado)."},
+],note:"🎓 ACADEMIA · <strong>USED TO</strong> · Afirmativa: <em>used to + inf</em> · Negativa: <em>didn't use to + inf</em> (sin 'd'!) · Interrogativa: <em>Did you use to...?</em>. Error frecuente: ✗ didn't <u>used</u> to → ✓ didn't <u>use</u> to."}},
+
+{cat:"Gramática",type:"gram",
+q:"If you ___ the training programme, you will become a police officer.",
+opts:["a) pass","b) passed","c) will pass","d) had passed"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) pass",
+rows:[
+{ok:1,l:"A",t:"<strong>Pass</strong> ✓: First Conditional. Estructura: <em>If + present simple → will + infinitivo</em>. Situación real y posible."},
+{ok:0,l:"B",t:"<strong>Passed</strong>: en Second Conditional usaría <em>would</em>. Pero el resultado (<em>will become</em>) indica First Conditional."},
+{ok:0,l:"C",t:"<strong>Will pass</strong>: incorrecto. En la cláusula con <em>if</em> del First Conditional NUNCA va <em>will</em>."},
+{ok:0,l:"D",t:"<strong>Had passed</strong>: Third Conditional (hipótesis pasada). No aplica."},
+],note:"🎓 ACADEMIA · Condicionales: 1st: <em>If + present, will + inf</em> (posible) · 2nd: <em>If + past, would + inf</em> (hipotético) · 3rd: <em>If + past perfect, would have + pp</em> (pasado hipotético)."}},
+
+{cat:"Gramática",type:"gram",
+q:"You ___ carry a weapon without a licence. It is strictly prohibited.",
+opts:["a) mustn't","b) don't have to","c) shouldn't","d) needn't"],ans:0,hint:"⚠ TRAMPA CLÁSICA: mustn't ≠ don't have to",
+exp:{h:"✓ Respuesta correcta: a) mustn't",
+rows:[
+{ok:1,l:"A",t:"<strong>Mustn't</strong> ✓: prohibición absoluta. <em>Must not = está PROHIBIDO hacerlo</em>."},
+{ok:0,l:"B",t:"<strong>Don't have to</strong>: no es obligatorio (pero puedes si quieres). Aquí no se trata de obligación sino de prohibición. <span class='tip'>ERROR TÍPICO DE EXAMEN</span>"},
+{ok:0,l:"C",t:"<strong>Shouldn't</strong>: no deberías (consejo). No tiene la fuerza de prohibición absoluta."},
+{ok:0,l:"D",t:"<strong>Needn't</strong>: no es necesario. Igual que <em>don't have to</em>. No expresa prohibición."},
+],note:"🎓 ACADEMIA · <strong>TRAMPA CLÁSICA:</strong> <em>mustn't</em> (PROHIBICIÓN: no puedes) ≠ <em>don't have to</em> (NO OBLIGACIÓN: no hace falta, pero puedes). Esta distinción aparece en casi todos los exámenes B1."}},
+
+// ── IDIOMS ──
+{cat:"Idioms",type:"idiom",
+q:"The thief was still holding the stolen phone when the police stopped him. They caught him ___",
+opts:["a) in the act","b) red-handed","c) on the run","d) behind bars"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) red-handed",
+rows:[
+{ok:0,l:"A",t:"<strong>In the act</strong>: en pleno acto. Significado similar, pero el idiom fijo más examinado es <em>caught red-handed</em>."},
+{ok:1,l:"B",t:"<strong>Caught red-handed</strong> ✓: pillado con las manos en la masa. El idiom policial más frecuente en examen. Origen: manos manchadas de sangre tras el crimen."},
+{ok:0,l:"C",t:"<strong>On the run</strong>: en fuga. Aquí fue atrapado, no está huyendo."},
+{ok:0,l:"D",t:"<strong>Behind bars</strong>: entre rejas, en prisión. Ya encarcelado, no el momento de la captura."},
+],note:"🎓 ACADEMIA · Otros idioms de captura: <em>catch someone in the act</em> · <em>nab a criminal</em> (coger a un criminal, informal) · <em>collar sb</em> (atrapar, informal)."}},
+
+{cat:"Idioms",type:"idiom",
+q:"After five years on the run, the criminal decided to ___ and handed himself to the police.",
+opts:["a) beat around the bush","b) come clean","c) crack the case","d) do time"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) come clean",
+rows:[
+{ok:0,l:"A",t:"<strong>Beat around the bush</strong>: andarse por las ramas. Lo contrario de confesarlo directamente."},
+{ok:1,l:"B",t:"<strong>Come clean</strong> ✓: confesarlo todo, sincerarse. <em>He came clean about everything</em>. Implica voluntariedad."},
+{ok:0,l:"C",t:"<strong>Crack the case</strong>: resolver el caso. Es el detective quien hace esto, no el criminal."},
+{ok:0,l:"D",t:"<strong>Do time</strong>: cumplir condena. Es una consecuencia, no el acto de entregarse."},
+],note:"🎓 ACADEMIA · <em>Come clean</em> = confesar voluntariamente. Usar en contexto de interrogatorios o cuando el sospechoso decide colaborar. Frecuente en textos B1 de examen."}},
+
+{cat:"Idioms",type:"idiom",
+q:"After months of investigation, the detective finally managed to ___ the murder.",
+opts:["a) beat the case","b) do time","c) crack the case","d) go by the book"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) crack the case",
+rows:[
+{ok:0,l:"A",t:"<strong>Beat the case</strong>: no es un idiom estándar."},
+{ok:0,l:"B",t:"<strong>Do time</strong>: cumplir condena. Solo aplica al criminal condenado, no al detective."},
+{ok:1,l:"C",t:"<strong>Crack the case</strong> ✓: resolver el caso, descubrir la solución. Solo la policía o el detective puede 'crack' un caso. <em>Crack = resolver algo difícil</em>."},
+{ok:0,l:"D",t:"<strong>Go by the book</strong>: seguir el reglamento al pie de la letra. No tiene que ver con resolver casos."},
+],note:"🎓 ACADEMIA · Idioms del detective: <em>crack the case</em> (resolver) · <em>follow a lead</em> (seguir una pista) · <em>piece together</em> (reconstruir) · <em>go by the book</em> (seguir el protocolo)."}},
+
+{cat:"Idioms",type:"idiom",
+q:"The criminal ___ for three months before the police finally caught him in Tenerife.",
+opts:["a) was behind bars","b) was on the run","c) came clean","d) cracked the case"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) was on the run",
+rows:[
+{ok:0,l:"A",t:"<strong>Was behind bars</strong>: estaba en la cárcel. Si estuviera preso, no podrían arrestarle de nuevo."},
+{ok:1,l:"B",t:"<strong>Was on the run</strong> ✓: estaba huyendo, en fuga. Se usa cuando alguien evita ser capturado durante un tiempo."},
+{ok:0,l:"C",t:"<strong>Came clean</strong>: confesó. Si hubiera confesado, no habrían necesitado buscarlo."},
+{ok:0,l:"D",t:"<strong>Cracked the case</strong>: resolvió el caso. Lo hace el detective, no el criminal."},
+],note:"🎓 ACADEMIA · <em>On the run</em> = en fuga. Parecido: <em>at large</em> = en paradero desconocido, sin capturar. <em>The suspect is still at large</em> = el sospechoso sigue libre."}},
+
+{cat:"Idioms",type:"idiom",
+q:"The accountant ___ for years, creating false invoices to steal money from the company.",
+opts:["a) went by the book","b) cooked the books","c) came clean","d) did time"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) cooked the books",
+rows:[
+{ok:0,l:"A",t:"<strong>Went by the book</strong>: siguió el reglamento. Totalmente opuesto a cometer fraude contable."},
+{ok:1,l:"B",t:"<strong>Cooked the books</strong> ✓: falsificar la contabilidad, manipular registros contables. <em>To cook the books = to falsify accounts</em>."},
+{ok:0,l:"C",t:"<strong>Came clean</strong>: confesó la verdad. Aquí estaba ocultando el fraude."},
+{ok:0,l:"D",t:"<strong>Did time</strong>: cumplió condena. Es la consecuencia, no el delito en sí."},
+],note:"🎓 ACADEMIA · <em>Cook the books</em> = fraude contable. <em>The books</em> = los libros contables. Frecuente en textos sobre crimen económico. Formal: <em>falsify accounts / commit accounting fraud</em>."}},
+
+// ── FALSE FRIENDS ──
+{cat:"False Friends",type:"false",
+q:"The officer didn't ___ that the man he had spoken to earlier was actually the suspect.",
+opts:["a) realize","b) actualize","c) realise","d) a and c are correct"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) a and c are correct",
+rows:[
+{ok:1,l:"A",t:"<strong>Realize</strong> ✓: darse cuenta. Grafía americana. Correcta."},
+{ok:0,l:"B",t:"<strong>Actualize</strong>: no es inglés estándar en este contexto. No significa 'darse cuenta'."},
+{ok:1,l:"C",t:"<strong>Realise</strong> ✓: darse cuenta. Grafía británica. Igualmente correcta."},
+{ok:1,l:"D",t:"<strong>A y C correctas</strong> ✓: ambas grafías son válidas y significan lo mismo."},
+],note:"🎓 ACADEMIA · <strong>FALSE FRIEND:</strong> <em>realize/realise</em> = darse cuenta ≠ <em>realizar</em> (español) = carry out / do. 'Voy a realizar el examen' → 'I am going to <em>take/sit</em> the exam' (NOT <em>realize</em>)."}},
+
+{cat:"False Friends",type:"false",
+q:"He tried to ___ he was a police officer to enter the building without permission.",
+opts:["a) pretend","b) intend","c) extend","d) present"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) pretend",
+rows:[
+{ok:1,l:"A",t:"<strong>Pretend</strong> ✓: fingir, hacerse pasar por. <em>He pretended to be a police officer</em> = fingió ser policía."},
+{ok:0,l:"B",t:"<strong>Intend</strong>: tener la intención de. No significa fingir."},
+{ok:0,l:"C",t:"<strong>Extend</strong>: extender, ampliar. Sin relación."},
+{ok:0,l:"D",t:"<strong>Present</strong>: presentar, mostrar. No implica engaño."},
+],note:"🎓 ACADEMIA · <strong>FALSE FRIEND:</strong> <em>pretend</em> = fingir ≠ <em>pretender</em> (español, aspirar a algo) = <em>aim for / want to achieve</em>. 'Pretendo ser policía' → 'I <em>want to be / aim to become</em> a police officer' (NOT <em>pretend</em>)."}},
+
+{cat:"False Friends",type:"false",
+q:"This officer is very ___ — she always thinks carefully before making decisions.",
+opts:["a) sensible","b) sensitive","c) senseless","d) sensing"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) sensible",
+rows:[
+{ok:1,l:"A",t:"<strong>Sensible</strong> ✓: sensato, razonable. 'Thinks carefully before deciding' = persona con buen criterio = <em>sensible</em>."},
+{ok:0,l:"B",t:"<strong>Sensitive</strong>: susceptible, emotivo, sensible a sentimientos. Ej: <em>He is sensitive to criticism</em>. No es lo mismo que sensato."},
+{ok:0,l:"C",t:"<strong>Senseless</strong>: sin sentido, insensato. Contrario de lo que se busca."},
+{ok:0,l:"D",t:"<strong>Sensing</strong>: percibiendo. Verbo, no adjetivo."},
+],note:"🎓 ACADEMIA · <strong>CLÁSICO:</strong> <em>sensible</em> (inglés) = sensato ≠ <em>sensible</em> (español) = <em>sensitive</em> en inglés. Dos palabras iguales, dos significados opuestos."}},
+
+{cat:"False Friends",type:"false",
+q:"The suspect's ___ parents live in Las Palmas. What does 'parents' mean here?",
+opts:["a) Parientes (familia en general)","b) Padres (madre y padre)","c) Padrinos","d) Abuelos"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) Padres (mother and father)",
+rows:[
+{ok:0,l:"A",t:"<em>Parientes</em> = <strong>relatives</strong> en inglés, no <em>parents</em>."},
+{ok:1,l:"B",t:"<strong>Parents</strong> ✓ = PADRES (madre y padre exclusivamente). No significa parientes."},
+{ok:0,l:"C",t:"<em>Padrinos</em> = <strong>godparents</strong> en inglés."},
+{ok:0,l:"D",t:"<em>Abuelos</em> = <strong>grandparents</strong>."},
+],note:"🎓 ACADEMIA · <strong>FALSE FRIEND CLÁSICO:</strong> <em>parents</em> = padres (madre y padre) ≠ <em>parientes</em> (español, familia extendida) = <em>relatives / family members</em>. Error muy frecuente en escritura."}},
+
+{cat:"False Friends",type:"false",
+q:"The new law about weapons will ___ next month. What does 'come into effect' mean?",
+opts:["a) Ser derogada","b) Entrar en vigor","c) Ser revisada","d) Ser presentada al parlamento"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) Entrar en vigor",
+rows:[
+{ok:0,l:"A",t:"<em>Ser derogada</em> = <strong>be repealed/abolished</strong>. Lo contrario."},
+{ok:1,l:"B",t:"<strong>Come into effect</strong> ✓: entrar en vigor. Colocación formal muy habitual en textos legales y policiales."},
+{ok:0,l:"C",t:"<em>Ser revisada</em> = <strong>be reviewed / be amended</strong>."},
+{ok:0,l:"D",t:"<em>Ser presentada</em> = <strong>be introduced / be submitted</strong>."},
+],note:"🎓 ACADEMIA · Vocabulario legal/policial: <em>come into effect/force</em> (entrar en vigor) · <em>be repealed</em> (derogar) · <em>enforce the law</em> (hacer cumplir la ley) · <em>break the law</em> (infringir la ley)."}},
+
+// ── PRISIÓN ──
+{cat:"Prisión",type:"vocab",
+q:"He was ___ for two years before his trial because the judge considered him a flight risk.",
+opts:["a) convicted","b) sentenced","c) remanded in custody","d) placed on probation"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) remanded in custody",
+rows:[
+{ok:0,l:"A",t:"<strong>Convicted</strong>: declarado culpable. Aquí no hay juicio todavía."},
+{ok:0,l:"B",t:"<strong>Sentenced</strong>: condenado a pena. También ocurre después del juicio."},
+{ok:1,l:"C",t:"<strong>Remanded in custody</strong> ✓: prisión preventiva. Detenido antes del juicio por riesgo de fuga o reincidencia. Término técnico de examen."},
+{ok:0,l:"D",t:"<strong>Placed on probation</strong>: en libertad condicional/vigilada. Lo contrario, implica estar en libertad con condiciones."},
+],note:"🎓 ACADEMIA · Vocabulario de prisión: <em>remand in custody</em> (preventiva) · <em>bail</em> (fianza) · <em>on probation</em> (libertad condicional) · <em>parole</em> (libertad vigilada) · <em>life sentence</em> (cadena perpetua)."}},
+
+{cat:"Prisión",type:"vocab",
+q:"The prison released him early because of his good behaviour. He was released ___ parole.",
+opts:["a) in","b) at","c) on","d) by"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) on",
+rows:[
+{ok:0,l:"A",t:"<strong>In parole</strong>: preposición incorrecta."},
+{ok:0,l:"B",t:"<strong>At parole</strong>: preposición incorrecta."},
+{ok:1,l:"C",t:"<strong>On parole</strong> ✓: colocación FIJA. <em>Release on parole</em> = poner en libertad condicional. La preposición es siempre <em>on</em>."},
+{ok:0,l:"D",t:"<strong>By parole</strong>: preposición incorrecta."},
+],note:"🎓 ACADEMIA · Preposiciones FIJAS: <em>on parole</em> · <em>on bail</em> · <em>in custody</em> · <em>in prison/jail</em> · <em>under arrest</em> · <em>on probation</em>. No admiten otras preposiciones."}},
+
+// ── PREPOSICIONES Y PHRASAL VERBS ──
+{cat:"Preposiciones",type:"gram",
+q:"The man was charged ___ armed robbery and released ___ bail.",
+opts:["a) with / in","b) of / on","c) with / on","d) for / by"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) with / on",
+rows:[
+{ok:0,l:"A",t:"<em>Charged with</em> ✓ pero <em>in bail</em> ✗. La preposición de bail siempre es <em>on</em>."},
+{ok:0,l:"B",t:"<em>Charged of</em> ✗: siempre es <em>charged with</em>."},
+{ok:1,l:"C",t:"<strong>Charged with + on bail</strong> ✓: <em>charged with a crime</em> (acusado de) + <em>released on bail</em> (en libertad bajo fianza). Ambas son colocaciones fijas."},
+{ok:0,l:"D",t:"<em>Charged for</em> ✗ · <em>by bail</em> ✗."},
+],note:"🎓 ACADEMIA · Preposiciones FIJAS: <em>charged <u>with</u></em> · <em>accused <u>of</u></em> · <em>guilty <u>of</u></em> · <em>convicted <u>of</u></em> · <em>on bail/parole/probation</em> · <em>in custody/prison</em> · <em>under arrest</em>."}},
+
+{cat:"Preposiciones",type:"gram",
+q:"The police are ___ the murder of a local businessman found dead last Monday.",
+opts:["a) looking into","b) looking for","c) investigating","d) a and c are correct"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) a and c are correct",
+rows:[
+{ok:1,l:"A",t:"<strong>Looking into</strong>: investigar, examinar en profundidad. <em>Look into = investigate</em>. Correcto."},
+{ok:0,l:"B",t:"<strong>Looking for</strong>: buscar a alguien o algo. No significa investigar un crimen."},
+{ok:1,l:"C",t:"<strong>Investigating</strong>: investigando. Correcto y formal."},
+{ok:1,l:"D",t:"<strong>A y C correctas</strong> ✓: <em>look into</em> (phrasal verb) ≈ <em>investigate</em> (formal). Ambas válidas."},
+],note:"🎓 ACADEMIA · Phrasal verbs policiales: <em>look into</em> (investigar) · <em>look for</em> (buscar) · <em>track down</em> (localizar tras búsqueda) · <em>round up</em> (detener a un grupo) · <em>break in</em> (allanar)."}},
+
+{cat:"Preposiciones",type:"gram",
+q:"The officer wrote ___ all the details of the incident in his notebook.",
+opts:["a) up","b) down","c) in","d) out"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) down",
+rows:[
+{ok:0,l:"A",t:"<strong>Write up</strong>: redactar un informe completo. Es posible, pero no describe apuntar en un cuaderno."},
+{ok:1,l:"B",t:"<strong>Write down</strong> ✓: anotar, apuntar en papel. <em>Write down details</em> = apuntar datos. Colocación natural para tomar notas."},
+{ok:0,l:"C",t:"<strong>Write in</strong>: escribir dentro de algo / escribir a alguien. No es natural para apuntar detalles."},
+{ok:0,l:"D",t:"<strong>Write out</strong>: copiar algo por completo. No es lo que indica el contexto."},
+],note:"🎓 ACADEMIA · Phrasal verbs de escritura: <em>write down</em> (apuntar) · <em>write up</em> (redactar formalmente) · <em>fill in/out a form</em> (rellenar formulario) · <em>note down</em> (anotar)."}},
+
+// ── READING ──
+{cat:"Reading",type:"read",
+q:"Read: 'The police warned residents not to leave valuables in their cars after a series of break-ins.' — What did the police advise?",
+opts:["a) Not to park their cars in the area","b) To avoid driving at night","c) To keep valuables out of their vehicles","d) To report all vehicles in the area"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) To keep valuables out of their vehicles",
+rows:[
+{ok:0,l:"A",t:"No se menciona no aparcar. El texto habla de no dejar objetos de valor, no de aparcar."},
+{ok:0,l:"B",t:"No hay ninguna referencia a conducir de noche."},
+{ok:1,l:"C",t:"<strong>Paráfrasis correcta</strong> ✓: <em>not to leave valuables in their cars</em> → <em>keep valuables out of their vehicles</em>. Cambios: <em>warned</em> → <em>advised</em> · <em>leave</em> → <em>keep out</em> · <em>cars</em> → <em>vehicles</em>."},
+{ok:0,l:"D",t:"No se menciona reportar vehículos."},
+],note:"🎓 ACADEMIA · Técnica de paráfrasis: identifica la idea central y cámbiala con sinónimos. Nunca copies literalmente. Cambios realizados: <em>warned=recommended</em> · <em>not to leave=keep out</em> · <em>cars=vehicles</em>."}},
+
+{cat:"Reading",type:"read",
+q:"Read: 'Officers found the building unsecured and with signs of forced entry at the rear.' — What did the officers discover?",
+opts:["a) The building was set on fire at the back","b) The building was unlocked and showed signs of a break-in at the back","c) The building was completely safe","d) Someone had damaged the front entrance"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The building was unlocked and showed signs of a break-in at the back",
+rows:[
+{ok:0,l:"A",t:"No se menciona incendio. <em>Forced entry</em> ≠ fire."},
+{ok:1,l:"B",t:"<strong>Paráfrasis correcta</strong> ✓: <em>unsecured</em> → <em>unlocked</em> · <em>signs of forced entry</em> → <em>signs of a break-in</em> · <em>at the rear</em> → <em>at the back</em>. Paráfrasis perfecta."},
+{ok:0,l:"C",t:"Totalmente opuesto. El edificio no estaba seguro."},
+{ok:0,l:"D",t:"El texto dice <em>rear</em> (parte trasera), no la entrada delantera."},
+],note:"🎓 ACADEMIA · Vocabulario del texto: <em>unsecured</em> = sin asegurar · <em>forced entry</em> = entrada forzada · <em>rear</em> = parte trasera. Todos son términos policiales de examen."}},
+
+{cat:"Reading",type:"read",
+q:"Read: 'Witnesses stated that the attacker fled northbound on foot shortly after the incident took place.' — What happened according to witnesses?",
+opts:["a) The attacker was arrested immediately","b) The attacker escaped by car going south","c) The attacker ran away on foot heading north","d) Witnesses refused to give information"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) The attacker ran away on foot heading north",
+rows:[
+{ok:0,l:"A",t:"No hay detención. <em>Fled</em> = huyó. Lo contrario de ser arrestado."},
+{ok:0,l:"B",t:"<em>On foot</em> ≠ by car. <em>Northbound</em> ≠ south. Dos errores."},
+{ok:1,l:"C",t:"<strong>Paráfrasis correcta</strong> ✓: <em>fled</em> → <em>ran away/escaped</em> · <em>northbound</em> → <em>heading north</em> · <em>on foot</em> = a pie (sin cambio necesario)."},
+{ok:0,l:"D",t:"Lo contrario: los testigos SÍ dieron información (<em>witnesses stated</em>)."},
+],note:"🎓 ACADEMIA · Vocabulario policial: <em>flee/fled</em> (huir) · <em>northbound</em> (dirección norte) · <em>on foot</em> (a pie) · <em>take place</em> (ocurrir). Muy habitual en textos de comprensión lectora de examen."}},
+
+// ── SIMULACRO 023 APOLOCAN · READING: MURDER MYSTERY ──
+// TEXTO: Una profesora que murió durante un juego de misterio en Cambridge,
+// luego organizó su propia empresa de cenas de misterio en castillos y restaurantes.
+
+{cat:"Simulacro 023",type:"sim",
+q:"[MURDER MYSTERY] The children knew the situation was serious as many teachers were 'dying', so they were all very excited. — What primarily contributed to the students' heightened excitement?",
+ctx:"📄 Simulacro APOLOCAN 023 · Sección 1 — Texto: 'Murder Mystery'. Lee el fragmento y elige la opción correcta.",
+opts:["a) Their chance to perform on stage in front of the whole school","b) The realistic portrayal of multiple teachers 'dying' throughout the game","c) The competitive prizes offered to the best detective group"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The realistic portrayal of multiple teachers 'dying'",
+rows:[
+{ok:0,l:"A",t:"El texto no menciona que los alumnos actuaran en un escenario. Eran los PROFESORES quienes actuaban."},
+{ok:1,l:"B",t:"<strong>Respuesta del texto</strong> ✓: <em>'The children knew the situation was serious as many teachers were dying, so they were all very excited.'</em> El realismo de ver a los profesores 'morir' generó la emoción."},
+{ok:0,l:"C",t:"El texto no menciona premios en este episodio de Cambridge. Los premios aparecen en la empresa adulta, no en la escuela."},
+],note:"🎓 ACADEMIA · Estrategia de lectura: Localiza en el texto la causa directa de la emoción. La pregunta es <em>'what caused'</em>. La pista está en la frase que menciona 'dying' + 'excited' juntos."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[MURDER MYSTERY] In the narrator's early experience at the dinner-party mystery, what aspect of the game appealed to them the most?",
+ctx:"📄 Texto clave: 'I wasn't very good at the police investigation part, but I loved playing a part and the excitement of knowing that one of the people in the room was a murderer.'",
+opts:["a) The strategic reasoning required to identify inconsistencies in testimonies","b) The immersive role-playing and the suspense of being among potential 'murderers'","c) The detailed investigation reports everyone had to prepare"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The immersive role-playing and the suspense",
+rows:[
+{ok:0,l:"A",t:"El texto dice explícitamente que NO era buena en la parte de investigación (<em>'I wasn't very good at the police investigation part'</em>). Esta opción contradice el texto."},
+{ok:1,l:"B",t:"<strong>Paráfrasis del texto</strong> ✓: <em>'I loved playing a part'</em> → <em>role-playing</em>. <em>'The excitement of knowing one of the people was a murderer'</em> → <em>suspense of being among potential murderers</em>."},
+{ok:0,l:"C",t:"El texto no menciona informes de investigación en la cena. Esta opción es una trampa que suena plausible pero no está en el texto."},
+],note:"🎓 ACADEMIA · Trampa clásica: la opción A usa vocabulario sofisticado (<em>inconsistencies, testimonies</em>) para sonar válida. Pero el texto la desmiente directamente. Siempre busca la <strong>evidencia textual directa</strong>."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[MURDER MYSTERY] What does the narrator imply about the logistics of hosting murder mystery events in public places?",
+ctx:"📄 Texto clave: 'Usually I hire a private room so that the murder doesn't upset other guests.'",
+opts:["a) Public venues often require special permits for theatrical activities","b) The events must be kept separate to avoid alarming uninvolved guests","c) Restaurant owners usually participate as actors in the scenario"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The events must be kept separate to avoid alarming uninvolved guests",
+rows:[
+{ok:0,l:"A",t:"Los permisos teatrales no se mencionan en ningún momento. Opción inventada."},
+{ok:1,l:"B",t:"<strong>Paráfrasis del texto</strong> ✓: <em>'hire a private room so that the murder doesn't upset other guests'</em> → <em>kept separate to avoid alarming uninvolved guests</em>. Cambios: <em>upset</em> → <em>alarm</em> · <em>other guests</em> → <em>uninvolved guests</em> · <em>private room</em> → <em>kept separate</em>."},
+{ok:0,l:"C",t:"El texto no dice que los dueños del restaurante actúen. Los actores son contratados por la narradora."},
+],note:"🎓 ACADEMIA · Paráfrasis del texto: <em>upset</em> = alarmar/molestar → <em>alarm</em>. <em>other guests</em> = <em>uninvolved guests</em>. La idea central es la misma aunque las palabras cambian. Esto es exactamente lo que evalúa el examen."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[MURDER MYSTERY] Why does the narrator particularly value historic venues such as castles for their events?",
+ctx:"📄 Texto clave: 'Castles are particularly popular with my guests because they're so atmospheric, so I use them if they're available.'",
+opts:["a) They provide acoustics that enhance the performance of the actors","b) They are associated with real historical crimes which enrich the plot","c) Their ambience intensifies the dramatic impact of the staged murder"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) Their ambience intensifies the dramatic impact",
+rows:[
+{ok:0,l:"A",t:"La acústica no se menciona en ningún momento del texto. Opción trampa."},
+{ok:0,l:"B",t:"Crímenes históricos reales tampoco se mencionan. El texto solo habla de <em>atmospheric</em>."},
+{ok:1,l:"C",t:"<strong>Paráfrasis del texto</strong> ✓: <em>'so atmospheric'</em> → <em>ambience intensifies the dramatic impact</em>. <em>Atmospheric</em> = que crea atmósfera, ambiente dramático. Es la palabra clave del fragmento."},
+],note:"🎓 ACADEMIA · La palabra clave es <strong>atmospheric</strong> = que tiene atmósfera, que crea ambiente. <em>Ambience</em> es su sinónimo exacto en la respuesta correcta. Identificar el sinónimo de la palabra del texto = técnica de examen."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[MURDER MYSTERY] What feature of the narrator's events seems to be the audience's favourite element?",
+ctx:"📄 Texto clave: 'There is always a lot of excitement when the police arrive to take fingerprints and interview key suspects. People tell me that's the best part.'",
+opts:["a) The arrival of the 'police', who gather evidence and interrogate suspects","b) The final reveal of the murderer, announced by the narrator","c) The competitive aspect of winning a prize at the end of the evening"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) The arrival of the 'police', who gather evidence and interrogate suspects",
+rows:[
+{ok:1,l:"A",t:"<strong>Paráfrasis del texto</strong> ✓: <em>'police arrive to take fingerprints and interview key suspects'</em> → <em>'police gather evidence and interrogate suspects'</em>. Cambios: <em>take fingerprints</em> → <em>gather evidence</em> · <em>interview</em> → <em>interrogate</em>."},
+{ok:0,l:"B",t:"El texto no dice que sea la narradora quien anuncia al asesino. El final tiene un premio para quién lo adivine, pero no es el favorito."},
+{ok:0,l:"C",t:"El premio se menciona pero no se identifica como el favorito. El texto dice explícitamente que la llegada de la policía es <em>'the best part'</em>."},
+],note:"🎓 ACADEMIA · Doble paráfrasis: <em>take fingerprints</em> = recoger huellas → parte de <em>gather evidence</em>. <em>Interview suspects</em> → <em>interrogate suspects</em>. Ambos son sinónimos válidos. La clave textual es <em>'People tell me that's the best part'</em>."}},
+
+// ── SIMULACRO 023 · SECCIÓN 2: IDIOMS ──
+{cat:"Simulacro 023",type:"sim",
+q:"[SIMULACRO 023 · Sección 2] Original: 'The politician avoided answering the question directly.' — Rephrase using an idiom: The politician ___",
+ctx:"📄 APOLOCAN 023 · Sección 2 — Elige el idiom correcto para reformular la frase original.",
+opts:["a) go straight","b) beat around the bush","c) cooked the books"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) beat around the bush",
+rows:[
+{ok:0,l:"A",t:"<strong>Go straight</strong>: dejar la vida criminal, rehabilitarse. Nada que ver con evitar una pregunta."},
+{ok:1,l:"B",t:"<strong>Beat around the bush</strong> ✓: andarse por las ramas, evitar el tema principal. <em>'Avoided answering directly'</em> = <em>'beat around the bush'</em>. Paráfrasis perfecta."},
+{ok:0,l:"C",t:"<strong>Cooked the books</strong>: falsificar la contabilidad. No tiene relación con evitar responder."},
+],note:"🎓 ACADEMIA · <em>Beat around the bush</em> = andarse por las ramas, no ir al grano. Antónimo: <em>get straight to the point</em> (ir directamente al grano). Contexto: políticos, interrogatorios, evasión."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[SIMULACRO 023 · Sección 2] Original: 'He confessed everything during the police interview.' — Rephrase: He decided to ___",
+ctx:"📄 APOLOCAN 023 · Sección 2 — Elige el idiom correcto.",
+opts:["a) come clean","b) turn a blind eye","c) bend the rules"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) come clean",
+rows:[
+{ok:1,l:"A",t:"<strong>Come clean</strong> ✓: confesarlo todo, sincerarse voluntariamente. <em>'Confessed everything'</em> = <em>'came clean'</em>. Paráfrasis exacta."},
+{ok:0,l:"B",t:"<strong>Turn a blind eye</strong>: hacer la vista gorda, ignorar algo deliberadamente. Lo contrario de confesar."},
+{ok:0,l:"C",t:"<strong>Bend the rules</strong>: saltarse las normas, hacer excepciones. No significa confesar."},
+],note:"🎓 ACADEMIA · <em>Turn a blind eye</em> = hacer la vista gorda. Muy frecuente en textos de corrupción policial: <em>'Some officers turned a blind eye to the crime'</em>. Opuesto a <em>come clean</em>."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[SIMULACRO 023 · Sección 2] Original: 'She escaped the scandal without any consequences.' — Rephrase: She managed to ___",
+ctx:"📄 APOLOCAN 023 · Sección 2 — Elige el idiom correcto.",
+opts:["a) get away with murder","b) hit the sack","c) break the ice"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) get away with murder",
+rows:[
+{ok:1,l:"A",t:"<strong>Get away with murder</strong> ✓: literalmente 'salirse con la suya con un asesinato', figuradamente = hacer algo grave sin sufrir consecuencias. <em>'Escaped without consequences'</em> = <em>'got away with murder'</em>."},
+{ok:0,l:"B",t:"<strong>Hit the sack</strong>: irse a la cama, dormir. Sin relación con escándalo o consecuencias."},
+{ok:0,l:"C",t:"<strong>Break the ice</strong>: romper el hielo, iniciar una situación incómoda. Sin relación."},
+],note:"🎓 ACADEMIA · <em>Get away with something</em> = salirse con la suya. <em>Get away with murder</em> = versión más intensa. Ambas expresiones aparecen frecuentemente en textos de examen sobre impunidad o corrupción."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[SIMULACRO 023 · Sección 2] Original: 'They illegally changed the financial reports to hide losses.' — Rephrase: They ___",
+ctx:"📄 APOLOCAN 023 · Sección 2 — Elige el idiom correcto.",
+opts:["a) hit the nail on the head","b) cooked the books","c) kept their heads above water"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) cooked the books",
+rows:[
+{ok:0,l:"A",t:"<strong>Hit the nail on the head</strong>: dar en el clavo, acertar plenamente. Sin relación con fraude contable."},
+{ok:1,l:"B",t:"<strong>Cooked the books</strong> ✓: falsificar la contabilidad. <em>'Illegally changed financial reports to hide losses'</em> = <em>'cooked the books'</em>. Paráfrasis directa."},
+{ok:0,l:"C",t:"<strong>Kept their heads above water</strong>: mantenerse a flote (económicamente). Implica sobrevivir con dificultades, no falsificar."},
+],note:"🎓 ACADEMIA · <em>Cook the books</em> = falsificar cuentas. <em>The books</em> = los libros contables. Relacionado con: <em>fraud</em>, <em>embezzlement</em> (malversación), <em>money laundering</em> (blanqueo de dinero)."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[SIMULACRO 023 · Sección 2] Original: 'He followed the rules strictly even when others didn't.' — Rephrase: He always ___",
+ctx:"📄 APOLOCAN 023 · Sección 2 — Elige el idiom correcto.",
+opts:["a) went by the book","b) let the cat out of the bag","c) threw in the towel"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) went by the book",
+rows:[
+{ok:1,l:"A",t:"<strong>Went by the book</strong> ✓: seguir el reglamento al pie de la letra. <em>'Followed the rules strictly'</em> = <em>'went by the book'</em>. El 'book' = el reglamento."},
+{ok:0,l:"B",t:"<strong>Let the cat out of the bag</strong>: revelar un secreto sin querer. Sin relación con seguir las normas."},
+{ok:0,l:"C",t:"<strong>Threw in the towel</strong>: rendirse, tirar la toalla. Lo contrario de seguir las normas con constancia."},
+],note:"🎓 ACADEMIA · <em>Go by the book</em> = seguir el protocolo. En policiales: <em>'The officer always went by the book'</em>. Antónimo: <em>bend the rules</em> (saltarse las normas). Ambas expresiones son de examen frecuente."}},
+
+// ── SIMULACRO 023 · SECCIÓN 3: VOCABULARIO Y PARÁFRASIS ──
+{cat:"Simulacro 023",type:"sim",
+q:"[SIMULACRO 023 · Sección 3] Original: 'The detective suspected that the witness was lying.' — Rephrase: The detective ___ the witness wasn't telling the truth.",
+ctx:"📄 APOLOCAN 023 · Sección 3 — Elige el verbo correcto para reformular la frase.",
+opts:["a) presumed","b) pretended","c) attended"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) presumed",
+rows:[
+{ok:1,l:"A",t:"<strong>Presumed</strong> ✓: dio por supuesto, supuso. <em>'Suspected'</em> → <em>'presumed'</em>. Ambos implican creer algo sin certeza total. Paráfrasis válida y natural."},
+{ok:0,l:"B",t:"<strong>Pretended</strong>: fingió. False friend clásico. Fingir ≠ sospechar. No encaja."},
+{ok:0,l:"C",t:"<strong>Attended</strong>: asistió a un lugar. False friend de 'atender'. No tiene relación con sospechar."},
+],note:"🎓 ACADEMIA · <strong>FALSE FRIENDS:</strong> <em>pretend</em> = fingir (≠ pretender) · <em>attend</em> = asistir a un lugar (≠ atender). <em>Presumed</em> = dio por supuesto / presumió. Sinónimos de <em>suspect</em>: <em>presume, assume, believe, think</em>."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[SIMULACRO 023 · Sección 3] Original: 'The prosecutor demanded a harsh penalty for the offender.' — Rephrase: The prosecutor ___ a severe punishment for the offender.",
+ctx:"📄 APOLOCAN 023 · Sección 3 — Elige el verbo correcto.",
+opts:["a) Solicited","b) Requested","c) Assisted"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) Requested",
+rows:[
+{ok:0,l:"A",t:"<strong>Solicited</strong>: en inglés tiene connotación de solicitar servicios ilegales o sexuales. No es la paráfrasis adecuada de 'demanded' en contexto judicial formal."},
+{ok:1,l:"B",t:"<strong>Requested</strong> ✓: solicitó, pidió formalmente. <em>'Demanded'</em> → <em>'requested'</em>. En contexto judicial, <em>request</em> es el término formal para pedir una pena."},
+{ok:0,l:"C",t:"<strong>Assisted</strong>: ayudó. False friend de 'asistir'. No tiene relación con exigir una pena."},
+],note:"🎓 ACADEMIA · <em>Demand</em> (exigir, más imperativo) ≈ <em>request</em> (solicitar, más formal y neutro). En contexto judicial: <em>The prosecutor requested a sentence of...</em> Colocación frecuente de examen."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[SIMULACRO 023 · Sección 3] The criminals ___ documents to access the bank system.",
+ctx:"📄 APOLOCAN 023 · Sección 3 — Elige el verbo más adecuado para documentos falsos.",
+opts:["a) Manufactured","b) Fabricated","c) Elaborated"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) Fabricated",
+rows:[
+{ok:0,l:"A",t:"<strong>Manufactured</strong>: fabricó en el sentido industrial/material. No se usa naturalmente para documentos falsos o mentiras."},
+{ok:1,l:"B",t:"<strong>Fabricated</strong> ✓: fabricó/falsificó documentos. <em>Fabricate documents</em> = crear documentos falsos. También: <em>fabricate evidence</em> (falsificar pruebas). Término técnico en contexto policial y judicial."},
+{ok:0,l:"C",t:"<strong>Elaborated</strong>: false friend de 'elaborar'. En inglés <em>elaborate</em> significa dar más detalles sobre algo, no crear documentos. 'Elaborate on that' = dar más información."},
+],note:"🎓 ACADEMIA · <em>Fabricate</em> = falsificar, inventar. <em>Fabricated documents</em> · <em>fabricated evidence</em> · <em>fabricated alibi</em>. Sinónimos: <em>forge documents</em> (falsificar documentos con firma) · <em>counterfeit</em> (falsificar billetes)."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[SIMULACRO 023 · Sección 3] Original: 'The judge delayed the trial due to administrative issues.' — Rephrase: The judge ___ the trial due to administrative issues.",
+ctx:"📄 APOLOCAN 023 · Sección 3 — Elige el verbo correcto.",
+opts:["a) postponed","b) proposed","c) exposed"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) postponed",
+rows:[
+{ok:1,l:"A",t:"<strong>Postponed</strong> ✓: aplazó, pospuso. <em>'Delayed'</em> → <em>'postponed'</em>. Ambos = mover algo para más tarde. Colocación habitual: <em>postpone the trial / the hearing / the verdict</em>."},
+{ok:0,l:"B",t:"<strong>Proposed</strong>: propuso. Implica sugerir algo nuevo, no aplazar."},
+{ok:0,l:"C",t:"<strong>Exposed</strong>: expuso, reveló. Sin relación con aplazar un juicio."},
+],note:"🎓 ACADEMIA · Vocabulario judicial: <em>postpone/adjourn the trial</em> (aplazar el juicio) · <em>adjourn</em> es más específico del contexto judicial. <em>The hearing was adjourned</em> = la vista fue aplazada."}},
+
+{cat:"Simulacro 023",type:"sim",
+q:"[SIMULACRO 023 · Sección 3] The lawyer explained that the evidence was not ___",
+ctx:"📄 APOLOCAN 023 · Sección 3 — Elige la forma correcta del adjetivo.",
+opts:["a) convincing","b) convincible","c) conclusives"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) convincing",
+rows:[
+{ok:1,l:"A",t:"<strong>Convincing</strong> ✓: convincente, forma correcta del adjetivo. <em>The evidence was not convincing</em> = la evidencia no era convincente. Forma -ing = adjetivo activo."},
+{ok:0,l:"B",t:"<strong>Convincible</strong>: no existe como adjetivo en inglés estándar. Inventado por influencia del español 'convincente'."},
+{ok:0,l:"C",t:"<strong>Conclusives</strong>: dos errores. (1) <em>Conclusive</em> ya es adjetivo y no lleva 's' cuando modifica a 'evidence' (incontable). (2) La forma plural es errónea en este contexto."},
+],note:"🎓 ACADEMIA · <em>Convincing</em> (convincente) ≠ <em>convinced</em> (convencido). Ejemplo: <em>The evidence was convincing</em> (la prueba era convincente) · <em>The jury was convinced</em> (el jurado estaba convencido). Diferencia activo/pasivo con adjetivos en -ing/-ed."}},
+
+// ── GRAMÁTICA EXTRA ──
+{cat:"Gramática",type:"gram",
+q:"The police officer said that he ___ the suspect the previous night.",
+ctx:"Contexto: reported speech (estilo indirecto).",
+opts:["a) arrested","b) had arrested","c) has arrested","d) would arrest"],ans:1,hint:"⚠ Reported speech: el tiempo original retrocede un paso.",
+exp:{h:"✓ Respuesta correcta: b) had arrested",
+rows:[
+{ok:0,l:"A",t:"<strong>Arrested</strong>: Past Simple. En reported speech, el Past Simple retrocede a Past Perfect."},
+{ok:1,l:"B",t:"<strong>Had arrested</strong> ✓: Past Perfect en reported speech. Regla: cuando el verbo principal está en pasado (<em>said</em>), el tiempo original retrocede: Present → Past · Past Simple → Past Perfect."},
+{ok:0,l:"C",t:"<strong>Has arrested</strong>: Present Perfect. No puede usarse en reported speech con verbo principal en pasado."},
+{ok:0,l:"D",t:"<strong>Would arrest</strong>: se usa para el futuro en reported speech (<em>will → would</em>). No aplica aquí."},
+],note:"🎓 ACADEMIA · <strong>REPORTED SPEECH</strong> — retroceso de tiempos: <em>arrest → had arrested</em> · <em>is → was</em> · <em>has arrested → had arrested</em> · <em>will arrest → would arrest</em>. Muy frecuente en textos de declaraciones policiales."}},
+
+{cat:"Gramática",type:"gram",
+q:"The officer ___ have called for backup before entering the building. It was very dangerous.",
+opts:["a) should","b) must","c) can","d) need"],ans:0,hint:"⚠ Consejo retrospectivo: ¿qué modal se usa para reprochar algo que no se hizo?",
+exp:{h:"✓ Respuesta correcta: a) should",
+rows:[
+{ok:1,l:"A",t:"<strong>Should have + pp</strong> ✓: debería haber hecho algo (pero no lo hizo). Expresa reproche o consejo retrospectivo. <em>Should have called = debería haber llamado (pero no lo hizo)</em>."},
+{ok:0,l:"B",t:"<strong>Must have + pp</strong>: deducción lógica sobre el pasado. <em>'He must have been there'</em> = deduzco que estuvo allí. No expresa reproche."},
+{ok:0,l:"C",t:"<strong>Can</strong>: no tiene forma de pasado con <em>have + pp</em> en este sentido."},
+{ok:0,l:"D",t:"<strong>Need</strong>: necesitar. No expresa reproche."},
+],note:"🎓 ACADEMIA · <strong>Modales perfectos:</strong> <em>should have + pp</em> (debería haber) · <em>must have + pp</em> (debió de haber, deducción) · <em>could have + pp</em> (podría haber) · <em>might have + pp</em> (puede que haya). Frecuentes en textos de incidentes."}},
+
+{cat:"Gramática",type:"gram",
+q:"The man ___ was arrested last night is known to police from previous incidents.",
+opts:["a) which","b) what","c) who","d) whom"],ans:2,
+hint:"⚠ Pronombre relativo: ¿para personas o cosas?",
+exp:{h:"✓ Respuesta correcta: c) who",
+rows:[
+{ok:0,l:"A",t:"<strong>Which</strong>: pronombre relativo para cosas u objetos. El antecedente aquí es <em>'the man'</em> = persona."},
+{ok:0,l:"B",t:"<strong>What</strong>: no es pronombre relativo. No se puede usar para conectar cláusulas relativas."},
+{ok:1,l:"C",t:"<strong>Who</strong> ✓: pronombre relativo para personas. <em>The man who was arrested</em> = el hombre que fue arrestado."},
+{ok:0,l:"D",t:"<strong>Whom</strong>: también para personas pero como objeto. Aquí el relativo es sujeto de la relativa (<em>who was arrested</em>), no objeto."},
+],note:"🎓 ACADEMIA · Pronombres relativos: <em>who</em> (personas, sujeto) · <em>whom</em> (personas, objeto: <em>the man whom they arrested</em>) · <em>which</em> (cosas) · <em>whose</em> (posesivo: <em>the officer whose badge was stolen</em>)."}},
+
+// ── IDIOMS EXTRA ──
+{cat:"Idioms",type:"idiom",
+q:"Some officers at the station ___ the drug trafficking happening in the area because they were being bribed.",
+opts:["a) came clean about","b) turned a blind eye to","c) cracked down on","d) went by the book with"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) turned a blind eye to",
+rows:[
+{ok:0,l:"A",t:"<strong>Came clean about</strong>: confesaron. Lo contrario de ignorar."},
+{ok:1,l:"B",t:"<strong>Turned a blind eye to</strong> ✓: hicieron la vista gorda a algo. Ignorar deliberadamente algo ilegal o incorrecto. Muy frecuente en textos sobre corrupción policial."},
+{ok:0,l:"C",t:"<strong>Cracked down on</strong>: actuar con dureza contra algo. Lo contrario de ignorarlo."},
+{ok:0,l:"D",t:"<strong>Went by the book</strong>: seguir el reglamento. Si hubieran seguido el reglamento, no habrían ignorado el tráfico."},
+],note:"🎓 ACADEMIA · <em>Turn a blind eye to something</em> = hacer la vista gorda. Origen: Nelson, que en la batalla de Copenhague se llevó el catalejo al ojo ciego para ignorar la señal de retirada. Frecuente en textos de corrupción."}},
+
+{cat:"Idioms",type:"idiom",
+q:"The new police chief decided to ___ drug dealers in the tourist areas of the island.",
+opts:["a) turn a blind eye to","b) crack down on","c) come clean about","d) beat around the bush with"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) crack down on",
+rows:[
+{ok:0,l:"A",t:"<strong>Turn a blind eye to</strong>: hacer la vista gorda. Opuesto de actuar con dureza."},
+{ok:1,l:"B",t:"<strong>Crack down on</strong> ✓: actuar con dureza contra algo, tomar medidas contundentes. <em>Crack down on crime / drug dealers / vandalism</em>. Phrasal verb muy frecuente en textos de seguridad pública."},
+{ok:0,l:"C",t:"<strong>Come clean about</strong>: confesar. El jefe de policía no confiesa; actúa."},
+{ok:0,l:"D",t:"<strong>Beat around the bush</strong>: andarse por las ramas. No tiene relación con actuar contra el crimen."},
+],note:"🎓 ACADEMIA · <em>Crack down on</em> = tomar medidas enérgicas contra. Sustantivo: <em>crackdown</em>. <em>'A major crackdown on drug trafficking'</em> = una operación contundente contra el tráfico de drogas. Muy frecuente en noticias policiales."}},
+
+// ── VOCABULARIO EXTRA ──
+{cat:"Delitos",type:"vocab",
+q:"The man threatened shop staff with a knife and took all the money from the till. He committed ___",
+opts:["a) burglary","b) theft","c) robbery","d) shoplifting"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) robbery",
+rows:[
+{ok:0,l:"A",t:"<strong>Burglary</strong>: allanamiento de morada/edificio sin confrontación directa con violencia."},
+{ok:0,l:"B",t:"<strong>Theft</strong>: hurto genérico. No implica violencia o intimidación."},
+{ok:1,l:"C",t:"<strong>Robbery</strong> ✓: robo con violencia o intimidación. El cuchillo = arma = intimidación directa. Criminal: <em>robber</em>. Típico: atraco a banco, tienda, caja."},
+{ok:0,l:"D",t:"<strong>Shoplifting</strong>: hurto en tienda sin violencia y sin que el personal lo note. Aquí hay amenaza directa con arma → robbery."},
+],note:"🎓 ACADEMIA · La clave de <strong>robbery</strong> es la confrontación + violencia/intimidación. Ejemplos: <em>armed robbery</em> (atraco a mano armada) · <em>bank robbery</em> (atraco a banco) · <em>highway robbery</em> (atraco en carretera)."}},
+
+{cat:"Investigación",type:"vocab",
+q:"The detective asked the witness to provide an ___ — a detailed account of the crime they had seen.",
+opts:["a) alibi","b) statement","c) allegation","d) conviction"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) statement",
+rows:[
+{ok:0,l:"A",t:"<strong>Alibi</strong>: coartada. Prueba de que el sospechoso estaba en otro lugar cuando ocurrió el crimen. Aplica al sospechoso, no al testigo."},
+{ok:1,l:"B",t:"<strong>Statement</strong> ✓: declaración. Relato formal de lo que una persona vio o sabe. <em>Give/make a statement = hacer una declaración</em>."},
+{ok:0,l:"C",t:"<strong>Allegation</strong>: acusación, denuncia sin pruebas confirmadas. No es lo que da un testigo sobre lo que vio."},
+{ok:0,l:"D",t:"<strong>Conviction</strong>: condena judicial. No es una declaración de testigo."},
+],note:"🎓 ACADEMIA · <em>Alibi</em> (coartada) vs <em>statement</em> (declaración) vs <em>allegation</em> (acusación/denuncia) vs <em>testimony</em> (testimonio en juicio). Los cuatro son frecuentes en textos de examen."}},
+
+{cat:"Investigación",type:"vocab",
+q:"The suspect claimed he was at home when the crime occurred. The police needed to check his ___",
+opts:["a) verdict","b) alibi","c) sentence","d) charges"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) alibi",
+rows:[
+{ok:0,l:"A",t:"<strong>Verdict</strong>: veredicto. Decisión del jurado. No es lo que proporciona el sospechoso."},
+{ok:1,l:"B",t:"<strong>Alibi</strong> ✓: coartada. Prueba de que el sospechoso estaba en otro lugar. Viene del latín: <em>alibi = elsewhere</em>. <em>Have an alibi</em> / <em>check the alibi</em> / <em>solid alibi</em>."},
+{ok:0,l:"C",t:"<strong>Sentence</strong>: condena. Resultado del juicio, no algo que presenta el sospechoso antes."},
+{ok:0,l:"D",t:"<strong>Charges</strong>: cargos. Los pone la fiscalía, no los proporciona el sospechoso."},
+],note:"🎓 ACADEMIA · Vocabulario del alibi: <em>solid/watertight alibi</em> (coartada sólida) · <em>false alibi</em> (coartada falsa) · <em>check/verify the alibi</em> (verificar la coartada) · <em>alibi witness</em> (testigo de la coartada)."}},
+
+{cat:"Collocations",type:"coll",
+q:"The new law ___ effect on the 1st of January, making it illegal to carry certain weapons.",
+opts:["a) took","b) came into","c) went into","d) b and c are correct"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) b and c are correct",
+rows:[
+{ok:0,l:"A",t:"<strong>Took effect</strong>: también posible en inglés. Pero las opciones B y C son más correctas."},
+{ok:1,l:"B",t:"<strong>Come into effect</strong> ✓: entrar en vigor. Colocación formal habitual en textos legales."},
+{ok:1,l:"C",t:"<strong>Go into effect</strong> ✓: también correcta. Especialmente habitual en inglés americano."},
+{ok:1,l:"D",t:"<strong>B y C son correctas</strong> ✓: ambas colocaciones son válidas: <em>come into effect</em> (BrE) ≈ <em>go into effect</em> (AmE)."},
+],note:"🎓 ACADEMIA · Vocabulario legal: <em>come/go into effect/force</em> (entrar en vigor) · <em>be repealed</em> (ser derogado) · <em>enforce the law</em> (hacer cumplir la ley) · <em>comply with the law</em> (cumplir la ley)."}},
+
+
+// ══════════════════════════════════════════════════════════
+// BLOQUE: PASIVA CON REPORTING VERBS (B1+, frecuente en examen)
+// ══════════════════════════════════════════════════════════
+{cat:"Gramática",type:"gram",
+q:"___ that the suspect had already left the country before the arrest warrant was issued.",
+ctx:"⚠ Pasiva con verbo de reporte: It is/was believed/said/reported...",
+opts:["a) They believed","b) It was believed","c) It believed","d) People believed"],ans:1,hint:"⚠ Pasiva con verbo de reporte: It is/was + pp + that...",
+exp:{h:"✓ Respuesta correcta: b) It was believed",
+rows:[
+{ok:0,l:"A",t:"<strong>They believed</strong>: activa con sujeto genérico. Posible, pero en inglés formal (noticias, informes policiales) se prefiere la pasiva impersonal."},
+{ok:1,l:"B",t:"<strong>It was believed</strong> ✓: pasiva con verbo de reporte. Estructura: <em>It + passive verb + that + clause</em>. Muy frecuente en textos policiales y periodísticos."},
+{ok:0,l:"C",t:"<strong>It believed</strong>: gramaticalmente incorrecto. <em>Believe</em> no es verbo activo con <em>it</em> como sujeto en este contexto."},
+{ok:0,l:"D",t:"<strong>People believed</strong>: posible pero informal. En contextos formales y noticias se usa la pasiva impersonal."},
+],note:"🎓 ACADEMIA · <strong>Pasiva con reporting verbs</strong> (muy frecuente en textos de examen): <em>It is/was believed that...</em> · <em>It is/was reported that...</em> · <em>It is/was said that...</em> · Alternativa: <em>The suspect was believed to have left...</em>"}},
+
+{cat:"Gramática",type:"gram",
+q:"___ that the stolen car was found near the airport early this morning.",
+opts:["a) It is reported","b) It reports","c) They reported that is","d) Report says that"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) It is reported",
+rows:[
+{ok:1,l:"A",t:"<strong>It is reported</strong> ✓: pasiva de reporte en presente. Muy habitual en noticias y partes policiales. Significa: se informa de que / según los informes."},
+{ok:0,l:"B",t:"<strong>It reports</strong>: incorrecto. <em>Report</em> aquí necesita ser pasivo para la construcción impersonal."},
+{ok:0,l:"C",t:"<strong>They reported that is</strong>: mezcla incorrecta de estructuras."},
+{ok:0,l:"D",t:"<strong>Report says that</strong>: hay que añadir artículo: <em>The report says</em>. Sin artículo es incorrecto."},
+],note:"🎓 ACADEMIA · Otros ejemplos de textos reales: <em>'It is alleged that the officer used excessive force'</em> · <em>'It was confirmed that three people were arrested'</em>. <em>Alleged</em> (presunto/a) = término policial clave."}},
+
+// ══════════════════════════════════════════════════════════
+// BLOQUE: GERUNDIO vs INFINITIVO
+// ══════════════════════════════════════════════════════════
+{cat:"Gramática",type:"gram",
+q:"The officer stopped ___ the report to answer an urgent call.",
+opts:["a) to write","b) writing","c) write","d) written"],ans:1,hint:"⚠ stop + -ing vs stop + to do: significados opuestos.",
+exp:{h:"✓ Respuesta correcta: b) writing",
+rows:[
+{ok:0,l:"A",t:"<strong>Stopped to write</strong>: paró para escribir (dejó lo que hacía CON EL PROPÓSITO de escribir). Aquí el contexto es el contrario: dejó de escribir porque llegó una llamada."},
+{ok:1,l:"B",t:"<strong>Stopped writing</strong> ✓: dejó de escribir (interrumpió la acción de escribir). <em>Stop + -ing = dejar de hacer algo</em>."},
+{ok:0,l:"C",t:"<strong>Stop write</strong>: incorrecto. Después de <em>stop</em> necesita gerundio o infinitivo."},
+{ok:0,l:"D",t:"<strong>Stop written</strong>: incorrecto. El participio pasado no sigue a <em>stop</em> directamente."},
+],note:"🎓 ACADEMIA · <strong>TRAMPA CLÁSICA</strong>: <em>stop + -ing</em> (dejar de hacer algo) ≠ <em>stop + to do</em> (parar para hacer algo). Igual con <em>remember</em>: <em>remember doing</em> (recordar haber hecho) ≠ <em>remember to do</em> (acordarse de hacer)."}},
+
+{cat:"Gramática",type:"gram",
+q:"I remember ___ the suspect near the crime scene the night before.",
+opts:["a) to see","b) see","c) seeing","d) seen"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) seeing",
+rows:[
+{ok:0,l:"A",t:"<strong>Remember to see</strong>: acordarse de ver (algo que hay que hacer en el futuro). Ej: <em>Remember to lock the door</em> = recuerda cerrar la puerta (orden futura)."},
+{ok:0,l:"B",t:"<strong>Remember see</strong>: incorrecto gramaticalmente."},
+{ok:1,l:"C",t:"<strong>Remember seeing</strong> ✓: recordar haber visto (un evento pasado que se recuerda). Aquí el testigo recuerda algo que ocurrió. <em>Remember + -ing = recordar haber hecho algo en el pasado</em>."},
+{ok:0,l:"D",t:"<strong>Remember seen</strong>: incorrecto. El participio no sigue directamente a <em>remember</em>."},
+],note:"🎓 ACADEMIA · <em>remember/forget + -ing</em> = recordar/olvidar algo que ya ocurrió · <em>remember/forget + to do</em> = acordarse/olvidarse de hacer algo (futuro/presente). Muy frecuente en textos de testimonio."}},
+
+// ══════════════════════════════════════════════════════════
+// BLOQUE: LINKING WORDS / CONECTORES
+// ══════════════════════════════════════════════════════════
+{cat:"Gramática",type:"gram",
+q:"___ the strong evidence against him, the jury found him not guilty.",
+opts:["a) Although","b) Despite","c) However","d) Because of"],ans:1,hint:"⚠ despite/although: misma idea, diferente estructura.",
+exp:{h:"✓ Respuesta correcta: b) Despite",
+rows:[
+{ok:0,l:"A",t:"<strong>Although</strong>: aunque. Correcto en significado PERO requiere cláusula: <em>Although the evidence was strong...</em> No puede ir seguido directamente de un sintagma nominal."},
+{ok:1,l:"B",t:"<strong>Despite</strong> ✓: a pesar de. Estructura: <em>Despite + noun/gerund</em>. Aquí va seguido de <em>'the strong evidence'</em> = sintagma nominal → correcto."},
+{ok:0,l:"C",t:"<strong>However</strong>: sin embargo. Conector de contraste que va al inicio de oración nueva, no en medio de una misma cláusula."},
+{ok:0,l:"D",t:"<strong>Because of</strong>: a causa de. Causalidad, no contraste. Sentido opuesto."},
+],note:"🎓 ACADEMIA · <em>Despite / In spite of</em> + nombre/gerundio · <em>Although / Even though</em> + cláusula (sujeto + verbo) · <em>However</em> = sin embargo (entre oraciones) · <em>Nevertheless</em> = no obstante. Las dos primeras son la trampa clásica de examen."}},
+
+{cat:"Gramática",type:"gram",
+q:"The suspect confessed ___ there was little evidence against him.",
+opts:["a) despite","b) however","c) even though","d) in spite"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) even though",
+rows:[
+{ok:0,l:"A",t:"<strong>Despite</strong>: a pesar de. Requiere nombre/gerundio, no cláusula completa (<em>there was little evidence</em>)."},
+{ok:0,l:"B",t:"<strong>However</strong>: sin embargo. Se usa al inicio de una oración nueva, no dentro de la misma oración."},
+{ok:1,l:"C",t:"<strong>Even though</strong> ✓: aunque, a pesar de que. Igual que <em>although</em>, requiere cláusula completa (sujeto + verbo). Aquí: <em>even though + there was...</em> → correcto."},
+{ok:0,l:"D",t:"<strong>In spite</strong>: incompleto. La forma correcta es <em>in spite of</em> seguido de nombre/gerundio."},
+],note:"🎓 ACADEMIA · Tabla de contrastes: <strong>despite/in spite of</strong> + nombre · <strong>although/even though/though</strong> + cláusula · <strong>however/nevertheless/nonetheless</strong> + oración nueva. Esta distinción aparece en casi todos los exámenes B1."}},
+
+{cat:"Gramática",type:"gram",
+q:"The police arrived quickly. ___, the burglar had already escaped.",
+opts:["a) Despite","b) Although","c) However","d) Because"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) However",
+rows:[
+{ok:0,l:"A",t:"<strong>Despite</strong>: a pesar de. Requiere nombre/gerundio, no puede iniciar una oración nueva después de punto."},
+{ok:0,l:"B",t:"<strong>Although</strong>: aunque. En este contexto se usaría: <em>Although the police arrived quickly, the burglar had already escaped</em> — en la misma oración, no después de punto."},
+{ok:1,l:"C",t:"<strong>However</strong> ✓: sin embargo. Conecta dos oraciones separadas con contraste. Uso: punto/punto y coma + <em>However</em> + coma."},
+{ok:0,l:"D",t:"<strong>Because</strong>: porque. Causalidad, no contraste."},
+],note:"🎓 ACADEMIA · Conectores de contraste: <em>However</em> (sin embargo) · <em>Nevertheless/Nonetheless</em> (no obstante, sin embargo) · <em>On the other hand</em> (por otro lado) · <em>In contrast</em> (en contraste). Todos inician oración nueva."}},
+
+// ══════════════════════════════════════════════════════════
+// BLOQUE: WORD FORMATION (formación de palabras)
+// ══════════════════════════════════════════════════════════
+{cat:"Gramática",type:"gram",
+q:"After the trial, the criminal received a ___ of five years in prison. (CONVICT)",
+ctx:"⚠ Word formation: transforma la palabra base en la forma correcta.",
+opts:["a) conviction","b) convicted","c) convicting","d) convince"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) conviction",
+rows:[
+{ok:1,l:"A",t:"<strong>Conviction</strong> ✓: sustantivo = condena judicial. La forma nominal de <em>convict</em>. Necesitamos un sustantivo después del artículo <em>a</em>."},
+{ok:0,l:"B",t:"<strong>Convicted</strong>: adjetivo/participio. <em>A convicted criminal</em> (un criminal condenado). No funciona como objeto del verbo <em>received</em>."},
+{ok:0,l:"C",t:"<strong>Convicting</strong>: gerundio/participio presente. No es la forma nominal correcta."},
+{ok:0,l:"D",t:"<strong>Convince</strong>: convencer. Verbo diferente, sin relación con condena judicial."},
+],note:"🎓 ACADEMIA · Familia léxica clave: <em>convict</em> (v./n. condenar/convicto) · <em>conviction</em> (n. condena) · <em>convicted</em> (adj. condenado) · <em>convince</em> (v. convencer) · <em>convincing</em> (adj. convincente). Distintos significados."}},
+
+{cat:"Gramática",type:"gram",
+q:"The ___ of the crime took place in broad daylight. (INVESTIGATE)",
+ctx:"⚠ Word formation: elige la forma correcta de la palabra base.",
+opts:["a) investigator","b) investigation","c) investigative","d) investigated"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) investigation",
+rows:[
+{ok:0,l:"A",t:"<strong>Investigator</strong>: sustantivo persona = investigador. El sujeto es <em>'the [something] of the crime'</em>, que necesita un sustantivo abstracto (proceso/hecho)."},
+{ok:1,l:"B",t:"<strong>Investigation</strong> ✓: sustantivo = investigación. <em>The investigation of the crime</em> = la investigación del crimen. Forma nominal del proceso."},
+{ok:0,l:"C",t:"<strong>Investigative</strong>: adjetivo = investigativo. <em>Investigative journalism</em>. No funciona como sujeto en esta estructura."},
+{ok:0,l:"D",t:"<strong>Investigated</strong>: participio/pasado. No es sustantivo."},
+],note:"🎓 ACADEMIA · Familia: <em>investigate</em> (v.) · <em>investigation</em> (n. proceso) · <em>investigator</em> (n. persona) · <em>investigative</em> (adj.) · <em>under investigation</em> = bajo investigación."}},
+
+// ══════════════════════════════════════════════════════════
+// BLOQUE: READING EXTRA (textos breves tipo examen)
+// ══════════════════════════════════════════════════════════
+{cat:"Reading",type:"read",
+q:"Read: 'The new regulations require all officers to submit their incident reports within 24 hours of the event. Failure to comply may result in disciplinary action.' — What happens if officers do not follow this rule?",
+opts:["a) They must rewrite their reports from the beginning","b) They could face disciplinary consequences","c) Their reports will be automatically submitted by a supervisor","d) They will be suspended without pay immediately"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) They could face disciplinary consequences",
+rows:[
+{ok:0,l:"A",t:"El texto no menciona reescribir informes."},
+{ok:1,l:"B",t:"<strong>Paráfrasis correcta</strong> ✓: <em>'may result in disciplinary action'</em> → <em>'could face disciplinary consequences'</em>. Cambios: <em>may result in</em> → <em>could face</em> · <em>disciplinary action</em> → <em>disciplinary consequences</em>."},
+{ok:0,l:"C",t:"El texto no menciona supervisores ni presentación automática."},
+{ok:0,l:"D",t:"<em>Disciplinary action</em> no especifica suspensión sin sueldo. Esa es información que no está en el texto."},
+],note:"🎓 ACADEMIA · Vocabulario del texto: <em>comply with</em> (cumplir con) · <em>disciplinary action</em> (medida disciplinaria) · <em>regulations</em> (normativa) · <em>submit a report</em> (presentar un informe). Todos son términos policiales/administrativos frecuentes."}},
+
+{cat:"Reading",type:"read",
+q:"Read: 'Officers are reminded that the use of force must be proportional to the threat posed. Any excessive use of force will be subject to internal review and possible criminal charges.' — What does this text state about the use of force?",
+opts:["a) Officers may never use force under any circumstances","b) Officers may use force freely in all dangerous situations","c) Force must match the level of threat, and misuse may lead to legal consequences","d) Criminal charges only apply when officers use weapons"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) Force must match the level of threat, and misuse may lead to legal consequences",
+rows:[
+{ok:0,l:"A",t:"'Never use force' es demasiado absoluto. El texto dice que puede usarse si es proporcional."},
+{ok:0,l:"B",t:"'Freely in all situations' contradice la idea de proporcionalidad del texto."},
+{ok:1,l:"C",t:"<strong>Paráfrasis correcta</strong> ✓: <em>'proportional to the threat'</em> → <em>'must match the level of threat'</em> · <em>'possible criminal charges'</em> → <em>'legal consequences'</em>."},
+{ok:0,l:"D",t:"El texto no limita las consecuencias a uso de armas. Habla de fuerza excesiva en general."},
+],note:"🎓 ACADEMIA · Vocabulario clave: <em>proportional</em> (proporcional) · <em>excessive use of force</em> (uso excesivo de la fuerza) · <em>internal review</em> (revisión interna) · <em>be subject to</em> (estar sujeto a). Terminología habitual en textos de procedimiento policial."}},
+
+{cat:"Reading",type:"read",
+q:"Read: 'The suspect was known to police, having been arrested on two previous occasions for similar offences.' — What does this tell us about the suspect?",
+opts:["a) The suspect had never been in trouble with the police before","b) The police had no information about the suspect","c) The suspect had previous arrests for comparable crimes","d) The suspect was arrested for the first time"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) The suspect had previous arrests for comparable crimes",
+rows:[
+{ok:0,l:"A",t:"Totalmente opuesto al texto. <em>'Known to police'</em> = conocido por la policía, con antecedentes."},
+{ok:0,l:"B",t:"Lo contrario: <em>'was known to police'</em> = la policía sí tenía información del sospechoso."},
+{ok:1,l:"C",t:"<strong>Paráfrasis correcta</strong> ✓: <em>'arrested on two previous occasions'</em> → <em>'previous arrests'</em> · <em>'similar offences'</em> → <em>'comparable crimes'</em>."},
+{ok:0,l:"D",t:"El texto dice 'two previous occasions' = no era la primera vez."},
+],note:"🎓 ACADEMIA · Vocabulario policial: <em>known to police</em> = con antecedentes policiales · <em>previous offences</em> = delitos anteriores · <em>criminal record</em> = antecedentes penales · <em>repeat offender</em> = reincidente."}},
+
+// ══════════════════════════════════════════════════════════
+// BLOQUE: FALSE FRIENDS EXTRA
+// ══════════════════════════════════════════════════════════
+{cat:"False Friends",type:"false",
+q:"The ___ of the new security law was approved by parliament last week. (actual = real/verdadero)",
+ctx:"⚠ Cuidado: este es un false friend muy frecuente en examen.",
+opts:["a) actual implementation","b) the actual problem","c) actually the law","d) eventual implementation"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) actual implementation",
+rows:[
+{ok:1,l:"A",t:"<strong>Actual</strong> ✓: real, verdadero, de hecho. <em>Actual implementation</em> = la implementación real. NO significa 'actual' en el sentido español de 'actual/corriente'."},
+{ok:0,l:"B",t:"<strong>The actual problem</strong>: aunque <em>actual</em> es correcto aquí, no responde a la pregunta sobre la ley."},
+{ok:0,l:"C",t:"<strong>Actually</strong>: de hecho, en realidad. Es adverbio, no sustantivo."},
+{ok:0,l:"D",t:"<strong>Eventual</strong>: otro false friend. En inglés <em>eventual</em> = final, último (no 'eventual/posible' en español). <em>The eventual outcome</em> = el resultado final."},
+],note:"🎓 ACADEMIA · <strong>FALSE FRIENDS clave:</strong> <em>actual</em> (inglés) = real, verdadero ≠ <em>actual</em> (español) = current/present. <em>eventually</em> (inglés) = finalmente ≠ <em>eventualmente</em> (español) = possibly. Dos errores en uno."}},
+
+{cat:"False Friends",type:"false",
+q:"The officer explained that she ___ the new procedure at the training last month.",
+ctx:"⚠ False friend: ¿cómo se dice 'practicar' en inglés?",
+opts:["a) practised","b) practiced","c) rehearsed","d) a and b are correct"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) a and b are correct",
+rows:[
+{ok:1,l:"A",t:"<strong>Practised</strong> ✓: grafía británica de 'practicar'. Correcta."},
+{ok:1,l:"B",t:"<strong>Practiced</strong> ✓: grafía americana de 'practicar'. También correcta."},
+{ok:0,l:"C",t:"<strong>Rehearsed</strong>: ensayar (una obra, una representación). Más específico para teatro/música, no para procedimientos de trabajo."},
+{ok:1,l:"D",t:"<strong>A y B correctas</strong> ✓: <em>practise</em> (BrE verbo) / <em>practice</em> (AmE verbo) son la misma palabra con diferente ortografía regional."},
+],note:"🎓 ACADEMIA · Diferencia BrE/AmE: <em>practise</em> (BrE verbo) / <em>practice</em> (nombre en BrE, verbo y nombre en AmE). En examen español se acepta ambas. <em>Practice</em> = práctica (nombre) en inglés británico."}},
+
+{cat:"False Friends",type:"false",
+q:"The witness ___ the main events in the correct order during his testimony.",
+ctx:"⚠ False friend: 'narrar/relatar' en inglés.",
+opts:["a) narrated","b) related","c) reported","d) a and c are correct"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) a and c are correct",
+rows:[
+{ok:1,l:"A",t:"<strong>Narrated</strong> ✓: narró, relató. Correcto."},
+{ok:0,l:"B",t:"<strong>Related</strong>: aunque puede significar 'relatar' en inglés formal, más habitualmente significa 'relacionado con'. En examen, <em>narrated</em> y <em>reported</em> son más claros."},
+{ok:1,l:"C",t:"<strong>Reported</strong> ✓: informó de, declaró. En contexto policial es el término más natural."},
+{ok:1,l:"D",t:"<strong>A y C son correctas</strong> ✓: ambas son válidas en contexto de testimonio policial."},
+],note:"🎓 ACADEMIA · Verbos de reporte en inglés policial: <em>report</em> (informar/declarar) · <em>state</em> (declarar formalmente) · <em>claim</em> (afirmar, reclamar) · <em>allege</em> (alegar, sin probar) · <em>confirm</em> (confirmar)."}},
+
+// ══════════════════════════════════════════════════════════
+// BLOQUE: COLLOCATIONS EXTRA
+// ══════════════════════════════════════════════════════════
+{cat:"Collocations",type:"coll",
+q:"The police officer ___ a description of the suspect based on witness accounts.",
+opts:["a) did","b) made","c) drew up","d) b and c are correct"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) b and c are correct",
+rows:[
+{ok:0,l:"A",t:"<strong>Did a description</strong>: incorrecto. <em>Do</em> no se usa con <em>description</em>."},
+{ok:1,l:"B",t:"<strong>Made a description</strong>: posible, aunque menos frecuente que <em>gave</em> o <em>drew up</em>."},
+{ok:1,l:"C",t:"<strong>Drew up a description</strong> ✓: redactó/elaboró una descripción formal. <em>Draw up</em> = redactar un documento oficial. También: <em>drew up a profile</em>."},
+{ok:1,l:"D",t:"<strong>B y C son correctas</strong> ✓."},
+],note:"🎓 ACADEMIA · <em>Draw up</em> = redactar formalmente: <em>draw up a report</em> · <em>draw up a profile</em> · <em>draw up a list of suspects</em>. Sinónimos: <em>compile</em> (recopilar) · <em>prepare</em>."}},
+
+{cat:"Collocations",type:"coll",
+q:"The detective managed to ___ the identity of the main suspect after weeks of investigation.",
+opts:["a) establish","b) find","c) make","d) a and b are correct"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) a and b are correct",
+rows:[
+{ok:1,l:"A",t:"<strong>Establish the identity</strong> ✓: colocación formal y técnica. Muy habitual en informes policiales y judiciales."},
+{ok:1,l:"B",t:"<strong>Find out the identity</strong>: también correcto y natural. Más informal pero válido."},
+{ok:0,l:"C",t:"<strong>Make the identity</strong>: incorrecto. <em>Make</em> no coloca con <em>identity</em> en este sentido."},
+{ok:1,l:"D",t:"<strong>A y B son correctas</strong> ✓."},
+],note:"🎓 ACADEMIA · Colocaciones con <em>identity</em>: <em>establish identity</em> · <em>verify identity</em> · <em>conceal identity</em> (ocultar) · <em>false identity</em> (identidad falsa) · <em>identity theft</em> (robo de identidad)."}},
+
+{cat:"Collocations",type:"coll",
+q:"The forensic team ___ the scene for several hours looking for fingerprints.",
+opts:["a) examined","b) searched","c) combed","d) all are correct"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) all are correct",
+rows:[
+{ok:1,l:"A",t:"<strong>Examined the scene</strong> ✓: examinó la escena del crimen. Colocación forense habitual."},
+{ok:1,l:"B",t:"<strong>Searched the scene</strong> ✓: registró la escena. También correcto."},
+{ok:1,l:"C",t:"<strong>Combed the scene</strong> ✓: rastreó/peinó meticulosamente la escena. <em>Comb an area</em> = buscar exhaustivamente. Muy técnico y muy de examen."},
+{ok:1,l:"D",t:"<strong>Las tres son correctas</strong> ✓: todas son colocaciones válidas con <em>crime scene</em>."},
+],note:"🎓 ACADEMIA · <em>Comb an area/scene</em> = rastrear minuciosamente. Muy frecuente en textos policiales en inglés. También: <em>scour the area</em> (peinar la zona) · <em>sweep the scene</em> (barrer la escena)."}},
+
+// ══════════════════════════════════════════════════════════
+// BLOQUE: VOCABULARIO POLICIAL AVANZADO
+// ══════════════════════════════════════════════════════════
+{cat:"Investigación",type:"vocab",
+q:"The officer asked the witness for a physical ___ of the attacker, including height, build and clothing.",
+opts:["a) profile","b) description","c) certificate","d) record"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) description",
+rows:[
+{ok:0,l:"A",t:"<strong>Profile</strong>: perfil psicológico o criminal completo. Más específico y elaborado que una descripción física básica."},
+{ok:1,l:"B",t:"<strong>Description</strong> ✓: descripción física. <em>Give a description of the attacker</em> = dar una descripción del agresor. Colocación estándar."},
+{ok:0,l:"C",t:"<strong>Certificate</strong>: certificado. Sin relación con descripción física."},
+{ok:0,l:"D",t:"<strong>Record</strong>: historial, registro. <em>Criminal record</em> = antecedentes penales. No es una descripción física."},
+],note:"🎓 ACADEMIA · Vocabulario de descripción policial: <em>physical description</em> · <em>suspect profile</em> · <em>e-fit / photofit</em> (retrato robot) · <em>CCTV footage</em> (imágenes de cámara de seguridad) · <em>eyewitness account</em>."}},
+
+{cat:"Investigación",type:"vocab",
+q:"The officer had to ___ the scene to prevent anyone from disturbing the evidence.",
+opts:["a) surround","b) cordon off","c) close","d) a and b are correct"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) a and b are correct",
+rows:[
+{ok:1,l:"A",t:"<strong>Surround the scene</strong>: rodear la escena. Correcto y natural."},
+{ok:1,l:"B",t:"<strong>Cordon off the scene</strong> ✓: acordonar la escena con cinta policial. Término técnico específico y muy frecuente en textos policiales."},
+{ok:0,l:"C",t:"<strong>Close the scene</strong>: posible pero vago. No captura la idea de acordonar con cinta."},
+{ok:1,l:"D",t:"<strong>A y B son correctas</strong> ✓."},
+],note:"🎓 ACADEMIA · <em>Cordon off</em> = acordonar (con cinta policial). Muy frecuente: <em>The police cordoned off the area</em>. Relacionado: <em>police tape/cordon</em> (cinta policial) · <em>crime scene perimeter</em> (perímetro de la escena)."}},
+
+{cat:"Delitos",type:"vocab",
+q:"The officer discovered that the man had been ___ — he was using a false name and fake documents.",
+opts:["a) impersonating someone","b) operating under a false identity","c) committing identity fraud","d) all are correct"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) all are correct",
+rows:[
+{ok:1,l:"A",t:"<strong>Impersonating someone</strong>: hacerse pasar por alguien. <em>Impersonate</em> = suplantar la identidad."},
+{ok:1,l:"B",t:"<strong>Operating under a false identity</strong>: actuar con identidad falsa. Correcto y habitual en textos de inteligencia policial."},
+{ok:1,l:"C",t:"<strong>Committing identity fraud</strong>: cometiendo fraude de identidad. Término legal correcto."},
+{ok:1,l:"D",t:"<strong>Todas correctas</strong> ✓: las tres expresiones describen el mismo delito desde ángulos distintos."},
+],note:"🎓 ACADEMIA · Vocabulario de identidad falsa: <em>impersonate</em> (suplantar) · <em>identity fraud/theft</em> (fraude/robo de identidad) · <em>false identity</em> · <em>fake documents</em> (documentos falsos) · <em>forged documents</em> (documentos falsificados con firma)."}},
+
+// ══════════════════════════════════════════════════════════
+// BLOQUE: PREGUNTAS TIPO KEY WORD TRANSFORMATION (B1)
+// ══════════════════════════════════════════════════════════
+{cat:"Gramática",type:"gram",
+q:"ACTIVE: 'The police arrested the suspect last night.' — PASSIVE: 'The suspect ___ by the police last night.'",
+ctx:"⚠ Key Word Transformation: pasa a pasiva manteniendo el sentido.",
+opts:["a) is arrested","b) was arrested","c) has been arrested","d) had been arrested"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) was arrested",
+rows:[
+{ok:0,l:"A",t:"<strong>Is arrested</strong>: presente pasivo. Pero <em>last night</em> indica pasado definido → Past Simple Passive."},
+{ok:1,l:"B",t:"<strong>Was arrested</strong> ✓: Past Simple Passive. <em>Was/were + past participle</em>. Con <em>last night</em> = pasado definido = Past Simple."},
+{ok:0,l:"C",t:"<strong>Has been arrested</strong>: Present Perfect Passive. <span class='tip'>REGLA</span> Con tiempo definido (<em>last night</em>) → NUNCA Present Perfect."},
+{ok:0,l:"D",t:"<strong>Had been arrested</strong>: Past Perfect Passive. Solo si hubiera otra acción pasada anterior como referencia."},
+],note:"🎓 ACADEMIA · Transformación activa → pasiva: <em>The police arrested</em> → <em>The suspect was arrested by the police</em>. Agente (<em>by the police</em>) puede omitirse si no aporta información nueva. Muy frecuente en Key Word Transformation."}},
+
+{cat:"Gramática",type:"gram",
+q:"DIRECT: 'I saw the robber near the bank,' said the witness. — REPORTED: 'The witness said that she ___ the robber near the bank.'",
+ctx:"⚠ Reported speech: cambia el tiempo verbal correctamente.",
+opts:["a) sees","b) saw","c) had seen","d) has seen"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) had seen",
+rows:[
+{ok:0,l:"A",t:"<strong>Sees</strong>: Present Simple. No puede usarse en reported speech con verbo principal en pasado (<em>said</em>)."},
+{ok:0,l:"B",t:"<strong>Saw</strong>: Past Simple. Podría parecer correcto, pero el retroceso de tiempos en reported speech convierte Past Simple → Past Perfect."},
+{ok:1,l:"C",t:"<strong>Had seen</strong> ✓: Past Perfect en reported speech. <em>Saw</em> (pasado simple) retrocede a <em>had seen</em> (past perfect) cuando el verbo principal (<em>said</em>) está en pasado."},
+{ok:0,l:"D",t:"<strong>Has seen</strong>: Present Perfect. No puede usarse en reported speech con pasado."},
+],note:"🎓 ACADEMIA · Retroceso de tiempos en reported speech con <em>said/told</em>: <em>see → had seen</em> · <em>is → was</em> · <em>will → would</em> · <em>can → could</em> · <em>may → might</em> · <em>am doing → was doing</em>."}},
+
+];
+
+// ── STATE ──
+const CATS=["Todas",...new Set(Q.map(q=>q.cat))];
+const TLAB={vocab:"Vocabulario",gram:"Gramática",idiom:"Idiom",false:"False Friend",coll:"Collocation",read:"Reading",sim:"Simulacro 023"};
+const TPILL={vocab:"pill-vocab",gram:"pill-gram",idiom:"pill-idiom",false:"pill-false",coll:"pill-coll",read:"pill-read",sim:"pill-sim"};
+let qs=[],cur=0,okN=0,errN=0,filt="Todas",cSt={};
+
+function shu(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+function getQ(){return shu(filt==="Todas"?Q:Q.filter(q=>q.cat===filt))}
+
+function buildF(){
+  const el=document.getElementById("fb");el.innerHTML="";
+  CATS.forEach(c=>{
+    const b=document.createElement("button");
+    b.className="f-btn"+(c===filt?" active":"");
+    const n=c==="Todas"?Q.length:Q.filter(q=>q.cat===c).length;
+    b.textContent=`${c} (${n})`;
+    b.onclick=()=>{filt=c;rst()};
+    el.appendChild(b);
+  });
+}
+
+function upd(){
+  document.getElementById("sOk").textContent=okN;
+  document.getElementById("sErr").textContent=errN;
+  const t=qs.length,pct=t?Math.round((cur/t)*100):0;
+  document.getElementById("pf").style.width=pct+"%";
+  document.getElementById("sMid").textContent=cur<t?`Pregunta ${cur+1} de ${t}`:"Completado";
+  document.getElementById("qm").textContent=filt!=="Todas"?`Bloque: ${filt} · ${t} preguntas`:`${t} preguntas · todos los bloques`;
+}
+
+function rQ(){
+  const app=document.getElementById("app");
+  if(cur>=qs.length){rRes();return}
+  const q=qs[cur];upd();
+  const sent=q.q.replace("___",`<span class="blank">_______</span>`);
+  const oH=q.opts.map((o,i)=>{
+    const L=String.fromCharCode(65+i),lbl=o.replace(/^[a-d]\)\s*/i,"");
+    return`<button class="o-btn" onclick="pick(${i})" id="o${i}"><span class="o-letter">${L}</span><span>${lbl}</span></button>`;
+  }).join("");
+  const eR=q.exp.rows.map(r=>`<div class="exp-row"><div class="rl ${r.ok?'rl-ok':'rl-err'}">${r.ok?'✓':'✗'} ${r.l}</div><div class="exp-row-text">${r.t}</div></div>`).join("");
+  const nH=q.exp.note?`<div class="acad-note">${q.exp.note}</div>`:"";
+  app.innerHTML=`<div class="q-card">
+  <div class="q-head"><div class="q-num">${cur+1}</div><div><div class="q-cat-label">${q.cat}</div></div><div class="q-type-pill ${TPILL[q.type]||'pill-vocab'}">${TLAB[q.type]||''}</div></div>
+  <div class="q-body"><div class="q-sentence">${sent}</div>${q.ctx?`<div class="q-ctx">${q.ctx}</div>`:""} ${q.hint?`<div class="q-hint">${q.hint}</div>`:""}<div class="q-inst">Elige la opción correcta →</div></div>
+  <div class="opts">${oH}</div>
+  <div class="exp-box" id="eb"><div class="exp-verdict" id="ev"></div><div class="exp-ans">${q.exp.h}</div><div class="exp-body">${eR}${nH}</div></div>
+  <button class="btn-next" id="bn" onclick="nxt()">${cur<qs.length-1?"Siguiente pregunta →":"Ver resultado final →"}</button>
+  </div>`;
+}
+
+function pick(i){
+  const q=qs[cur],ok=i===q.ans;
+  if(ok){okN++;if(!cSt[q.cat])cSt[q.cat]={ok:0,total:0};cSt[q.cat].ok++}else errN++;
+  if(!cSt[q.cat])cSt[q.cat]={ok:0,total:0};cSt[q.cat].total++;
+  for(let j=0;j<q.opts.length;j++){
+    const b=document.getElementById("o"+j);b.disabled=true;
+    if(j===q.ans)b.classList.add(ok&&j===i?"ok":"show-ok");
+    if(j===i&&!ok)b.classList.add("err");
+  }
+  const ev=document.getElementById("ev");
+  ev.className="exp-verdict "+(ok?"v-ok":"v-err");
+  ev.textContent=ok?"✓ ¡Correcto!":"✗ Incorrecto — revisa la explicación";
+  document.getElementById("eb").classList.add("show");
+  document.getElementById("bn").classList.add("show");
+  upd();
+}
+function nxt(){cur++;rQ()}
+
+function rRes(){
+  const t=qs.length,pct=Math.round((okN/t)*100),pass=pct>=60;
+  document.getElementById("pf").style.width="100%";
+  document.getElementById("sMid").textContent="Test completado";
+  const catH=Object.entries(cSt).map(([c,s])=>{
+    const p=Math.round((s.ok/s.total)*100),col=p>=75?"#1e7e4a":p>=50?"#d97706":"#b52b27";
+    return`<div class="cat-row"><span class="cat-name">${c}</span><div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${p}%;background:${col}"></div></div><span class="cat-pct" style="color:${col}">${p}%</span></div>`;
+  }).join("");
+  document.getElementById("app").innerHTML=`<div class="res-card">
+  <div class="res-badge">Resultado final · Policía Local Canarias · B1</div>
+  <div class="res-score">${pct}<span>%</span></div>
+  <div class="res-sub">${okN} correctas de ${t} preguntas</div>
+  <div class="res-grid"><div class="res-box rb-ok"><div class="rb-val">${okN}</div><div class="rb-lbl">Correctas ✓</div></div><div class="res-box rb-err"><div class="rb-val">${errN}</div><div class="rb-lbl">Errores ✗</div></div></div>
+  ${catH?`<div class="cat-breakdown"><h3>Resultado por bloque</h3>${catH}</div>`:""}
+  <div class="verdict ${pass?"vd-pass":"vd-fail"}">${pass?"✓ APTO · Buen nivel para el examen de Policía Local":"✗ SIGUE PRACTICANDO · Repasa los bloques con menor puntuación"}</div>
+  <button class="btn-restart" onclick="rst()">↺ Repetir test</button>
+  </div>`;
+}
+
+function rst(){cur=0;okN=0;errN=0;cSt={};qs=getQ();buildF();upd();rQ()}
+rst();
+
+// ── DRAG TO SCROLL filtros ──
+(function(){
+  const el=document.getElementById('fb');
+  let down=false,startX,scrollL;
+  el.addEventListener('mousedown',e=>{down=true;startX=e.pageX-el.offsetLeft;scrollL=el.scrollLeft;el.style.cursor='grabbing'});
+  document.addEventListener('mouseup',()=>{down=false;el.style.cursor='grab'});
+  document.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();const x=e.pageX-el.offsetLeft;el.scrollLeft=scrollL-(x-startX)});
+})();
+</script>
+</body>
+</html>

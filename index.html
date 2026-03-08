@@ -33,17 +33,16 @@ header p{color:#7aa3cc;font-size:12px;margin-top:4px}
 .f-btn:hover{border-color:var(--gold);color:var(--gold)}
 .f-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy)}
 
-.visual-board{background:linear-gradient(145deg,rgba(12,30,58,.9),rgba(10,23,42,.95));border:1px solid rgba(122,163,204,.35);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
-.visual-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.visual-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:.5px}
-.visual-sub{font-size:12px;color:#9ec3ea}
-.rand-btn{border:1px solid rgba(232,184,75,.6);background:rgba(232,184,75,.12);color:#ffd98e;padding:7px 11px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.5px;cursor:pointer}
-.rand-btn:hover{background:rgba(232,184,75,.2)}
-.visual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-.v-card{background:rgba(255,255,255,.97);border-radius:10px;padding:10px 10px 9px;border:1px solid #d3deea}
-.v-card h3{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.6px;color:#133666;margin-bottom:6px}
-.v-list{display:flex;flex-wrap:wrap;gap:6px}
-.v-chip{font-size:11px;background:#f1f6fd;border:1px solid #d6e3f2;color:#123156;padding:3px 7px;border-radius:999px}
+.start-panel{background:linear-gradient(145deg,rgba(12,30,58,.9),rgba(10,23,42,.95));border:1px solid rgba(122,163,204,.35);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 8px 30px rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.start-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:.5px}
+.start-sub{font-size:12px;color:#9ec3ea;max-width:500px}
+.start-btn{border:1px solid rgba(232,184,75,.7);background:linear-gradient(135deg,#f3c14d,#e8b84b);color:#10213d;padding:10px 14px;border-radius:9px;font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.7px;cursor:pointer}
+.start-btn:hover{filter:brightness(1.05)}
+.history-panel{text-align:left;margin:6px 0 18px;padding:12px;border:1px solid #b4c6df;border-radius:9px;background:#f5f9ff}
+.history-panel h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#1a3a6b;margin-bottom:9px}
+.history-empty{font-size:12px;color:#4a6a99}
+.history-item{padding:7px 0;border-top:1px dashed #c9d8eb;font-size:12px;color:#1a2438}
+.history-item:first-of-type{border-top:none;padding-top:0}
 
 main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
 .q-meta{text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a99;font-weight:600;margin-bottom:10px}
@@ -144,15 +143,12 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
   <div class="stat"><div class="dot dot-err"></div>Errores <b id="sErr">0</b></div>
 </div>
 <main>
-  <section class="visual-board">
-    <div class="visual-top">
-      <div>
-        <div class="visual-title">Panel visual · Inglés policial definitivo</div>
-        <div class="visual-sub">Resumen rápido de vocabulario, expresiones y errores típicos para repasar antes de test.</div>
-      </div>
-      <button class="rand-btn" onclick="startRandomMode()">🎲 Generar test aleatorio</button>
+  <section class="start-panel">
+    <div>
+      <div class="start-title">Generador de test policial</div>
+      <div class="start-sub">Se ha retirado el panel principal. Pulsa para crear un test mixto y practicar directamente.</div>
     </div>
-    <div class="visual-grid" id="visualGrid"></div>
+    <button class="start-btn" onclick="startRandomMode()">🎲 Generar test</button>
   </section>
   <div class="filter-outer"><div class="filter-wrap" id="fb"></div></div>
   <div class="q-meta" id="qm"></div>
@@ -1506,21 +1502,86 @@ rows:[
 {ok:0,l:"D",t:"<strong>Pretended</strong> = fingir, no acción operativa."},
 ],note:"🎓 Estructura frecuente en reportes: <em>officers responded to the incident and secured the area</em>."}},
 
+
+{cat:"Vocabulario extra",type:"vocab",
+q:"During the inspection, officers found several ___ documents proving tax evasion.",
+opts:["a) forged","b) honest","c) polite","d) regular"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) forged",
+rows:[
+{ok:1,l:"A",t:"<strong>Forged documents</strong> ✓: documentos falsificados. Muy habitual en fraude documental."},
+{ok:0,l:"B",t:"<strong>Honest</strong> significa 'honesto', justo lo contrario de falseado."},
+{ok:0,l:"C",t:"<strong>Polite</strong> (educado) no describe documentos."},
+{ok:0,l:"D",t:"<strong>Regular</strong> aquí no transmite falsificación ni delito."},
+],note:"🎓 Vocabulario útil: <em>forged signature</em>, <em>forgery</em>, <em>identity theft</em>."}},
+
+{cat:"Collocations",type:"coll",
+q:"After collecting fingerprints, the team decided to ___ a full investigation.",
+opts:["a) launch","b) throw","c) invite","d) decorate"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) launch",
+rows:[
+{ok:1,l:"A",t:"<strong>Launch an investigation</strong> ✓ collocation estándar policial y periodística."},
+{ok:0,l:"B",t:"<strong>Throw</strong> no combina con investigation en este contexto formal."},
+{ok:0,l:"C",t:"<strong>Invite</strong> no expresa iniciar un procedimiento."},
+{ok:0,l:"D",t:"<strong>Decorate</strong> no tiene relación semántica con investigar."},
+],note:"🎓 Parafraseo típico: <em>start / open / launch an investigation</em>."}},
+
+{cat:"Fixed expressions",type:"read",
+q:"If the witness refuses to answer, the officer may ask him to ___ with the procedure.",
+opts:["a) cooperate","b) borrow","c) celebrate","d) accuse"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) cooperate",
+rows:[
+{ok:1,l:"A",t:"<strong>Cooperate with the procedure</strong> ✓: colaborar con el proceso policial/judicial."},
+{ok:0,l:"B",t:"<strong>Borrow</strong> (pedir prestado) no encaja."},
+{ok:0,l:"C",t:"<strong>Celebrate</strong> tampoco se relaciona con una investigación."},
+{ok:0,l:"D",t:"<strong>Accuse</strong> requiere objeto y cambia totalmente el significado."},
+],note:"🎓 Pregunta funcional frecuente: <em>Please cooperate with the police</em>."}},
+
+{cat:"Idioms",type:"idiom",
+q:"The officers saw the suspect stealing and caught him ___.",
+opts:["a) red-handed","b) under weather","c) blue moon","d) on cloud"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) red-handed",
+rows:[
+{ok:1,l:"A",t:"<strong>Caught red-handed</strong> ✓: pillado in fraganti."},
+{ok:0,l:"B",t:"<strong>Under the weather</strong> = encontrarse mal de salud."},
+{ok:0,l:"C",t:"<strong>Once in a blue moon</strong> = muy raramente."},
+{ok:0,l:"D",t:"<strong>On cloud nine</strong> = muy feliz."},
+],note:"🎓 En exámenes: <em>in the act</em> suele parafrasear <em>red-handed</em>."}},
+
+{cat:"False Friends",type:"false",
+q:"Choose the correct meaning: 'The suspect eventually confessed.'",
+opts:["a) eventualmente confesó","b) finalmente confesó","c) posiblemente confesó","d) rápidamente confesó"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) finalmente confesó",
+rows:[
+{ok:0,l:"A",t:"<strong>Eventualmente</strong> en español NO equivale a <em>eventually</em> en inglés."},
+{ok:1,l:"B",t:"<strong>Eventually</strong> ✓ significa 'finalmente, al final'."},
+{ok:0,l:"C",t:"<strong>Posiblemente</strong> sería <em>possibly/perhaps</em>."},
+{ok:0,l:"D",t:"<strong>Rápidamente</strong> sería <em>quickly</em>."},
+],note:"🎓 False friend clásico de oposición: <em>eventually = finalmente</em>."}},
+
+{cat:"Examen / Simulacro",type:"read",mode:"exam",
+q:"Paraphrase: 'The suspect denied involvement' means he ___.",
+opts:["a) admitted he did it","b) said he was not involved","c) escaped from prison","d) asked for a lawyer"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) said he was not involved",
+rows:[
+{ok:0,l:"A",t:"<strong>Admitted</strong> es lo contrario de <em>denied</em>."},
+{ok:1,l:"B",t:"<strong>Deny involvement</strong> ✓: negar participación en los hechos."},
+{ok:0,l:"C",t:"Escapar de prisión no aparece en la frase base."},
+{ok:0,l:"D",t:"Pedir abogado puede ocurrir, pero no es el significado de deny."},
+],note:"🎓 Parafraseo útil: <em>deny = claim not to have done something</em>."}},
+
+{cat:"Examen / Simulacro",type:"read",mode:"exam",
+q:"The victim gave a detailed ___ to help officers identify the attacker.",
+opts:["a) witness statement","b) shopping list","c) weather forecast","d) boarding pass"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) witness statement",
+rows:[
+{ok:1,l:"A",t:"<strong>Witness statement</strong> ✓: declaración detallada de testigo/víctima."},
+{ok:0,l:"B",t:"Una lista de compra no tiene valor probatorio."},
+{ok:0,l:"C",t:"Pronóstico meteorológico no guarda relación con el caso."},
+{ok:0,l:"D",t:"<strong>Boarding pass</strong> es tarjeta de embarque."},
+],note:"🎓 Léxico de examen: <em>statement</em>, <em>testimony</em>, <em>report</em>."}},
+
 ];
 
-
-// ── PANEL VISUAL ──
-const VISUAL_SECTIONS=[
-  {title:"Vocabulario policial básico",items:["incident","evidence","eyewitness","police officers","security guard","crime / offence","crime scene","police station","security camera / CCTV","footage","shopping center","store","assistant manager","fingerprints","burglary / break-in","pickpocketing","mugging","sentence","verdict","conviction"]},
-  {title:"Verbos útiles",items:["arrest","report","identify","check","search","seize","issue","escort","question","approach","detain","investigate","collect evidence","confirm","follow","stop","examine","contact","flee / run away","threaten","force open","steal","find","claim","insist","say"]},
-  {title:"Collocations importantes",items:["make an arrest","place someone under arrest","commit a crime","carry out an investigation","launch an inquiry","gather evidence","question a suspect","file a report","press charges","open / close a case","patrol an area","respond to an incident","use reasonable force","break the law","face charges","give evidence","serve a sentence","take a risk","make a decision","make a mistake","strong evidence","serious offence","investigate thoroughly","be found guilty / not guilty"]},
-  {title:"Fixed expressions",items:["respond to an incident","confess to a crime","cooperate with the police","take someone into custody","be under arrest","be on the run","be released on bail","break into a house / shop / building","cordon off an area","comply with the rules"]},
-  {title:"Idioms (tipo examen)",items:["be caught red-handed","book someone","get away with it","crack the case","follow a lead","question / interrogate a suspect","be framed","do time","be behind bars","rat someone out","chase / pursue a suspect","come clean","go by the book","turn a blind eye","bend the rules","hit the nail on the head","let the cat out of the bag","throw in the towel"]},
-  {title:"False friends",items:["eventually = finalmente","actual = real","assist = ayudar","library = biblioteca","introduce = presentar","sensible = razonable","realize = darse cuenta","parents = padres","fabric = tela","pretend = fingir","lecture = conferencia"]},
-  {title:"Diferencias jurídico-policiales",items:["crime vs offence/offence","felony (grave) vs misdemeanor (menor)","evidence vs proof","clues vs exhibits","prison vs jail","penitentiary / correctional facility"]},
-  {title:"Preguntas funcionales",items:["What's your full name?","Can you spell your surname, please?","What's your date of birth?","How old are you?","What's your nationality?","What's your address?","What's your phone number?","Can I see your ID, please?","Who should we contact in an emergency?"]},
-  {title:"Errores frecuentes",items:["didn't know (no didn't knew)","looked for","didn't cooperate","returned to normal","issue a summons","commit a crime","issue/impose a fine","draw attention","handcuff him","How old are you?","Can I see your ID, please?","Where do you live?"]}
-];
 
 const SECS=[
 
@@ -1535,6 +1596,7 @@ const SECS=[
   "Examen / Simulacro"
 ];
 const SIMS=[10,15,20];
+const FAILED_DB_KEY="cgpc_failed_exams";
 const TLAB={vocab:"Vocabulario",gram:"Gramática",idiom:"Idioms",false:"False Friend",coll:"Collocation",read:"Reading"};
 const TPILL={vocab:"pill-vocab",gram:"pill-gram",idiom:"pill-idiom",false:"pill-false",coll:"pill-coll",read:"pill-read"};
 let qs=[],cur=0,okN=0,errN=0,filt=SECS[0],cSt={},wrongQs=[],simN=0;
@@ -1572,11 +1634,6 @@ function getQ(){
 }
 
 function cleanTxt(s){return String(s||"").replace(/<[^>]*>/g,"").replace(/\s+/g," ").trim()}
-
-function renderVisualBoard(){
-  const grid=document.getElementById("visualGrid");
-  grid.innerHTML=VISUAL_SECTIONS.map(sec=>`<article class="v-card"><h3>${sec.title}</h3><div class="v-list">${sec.items.map(i=>`<span class="v-chip">${i}</span>`).join("")}</div></article>`).join("");
-}
 
 function startRandomMode(){
   simN=-1;
@@ -1688,6 +1745,24 @@ function pick(i){
 }
 function nxt(){cur++;rQ()}
 
+
+function getFailedExams(){
+  try{return JSON.parse(localStorage.getItem(FAILED_DB_KEY)||"[]")}catch{return []}
+}
+
+function saveFailedExam(rec){
+  const db=getFailedExams();
+  db.unshift(rec);
+  localStorage.setItem(FAILED_DB_KEY,JSON.stringify(db.slice(0,40)));
+}
+
+function renderFailedHistory(){
+  const db=getFailedExams();
+  if(!db.length)return '<div class="history-panel"><h3>Base de datos de exámenes fallados</h3><div class="history-empty">Aún no hay exámenes suspendidos guardados.</div></div>';
+  const items=db.slice(0,8).map((r,i)=>`<div class="history-item">${i+1}. ${r.date} · ${r.score}% · ${r.errors} fallos en ${r.total} preguntas.</div>`).join("");
+  return `<div class="history-panel"><h3>Base de datos de exámenes fallados</h3>${items}</div>`;
+}
+
 function rRes(){
   const t=qs.length,pct=t?Math.round((okN/t)*100):0,pass=pct>=60;
   document.getElementById("pf").style.width="100%";
@@ -1697,6 +1772,10 @@ function rRes(){
     return`<div class="cat-row"><span class="cat-name">${c}</span><div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${p}%;background:${col}"></div></div><span class="cat-pct" style="color:${col}">${p}%</span></div>`;
   }).join("");
   const wrongH=wrongQs.length?`<div class="wrong-breakdown"><h3>Resumen de falladas</h3>${wrongQs.map((w,n)=>`<div class="wrong-item"><div class="wrong-title">${n+1}. [${w.cat}] ${w.q}</div><div class="wrong-ans">Tu respuesta: ${w.sel.replace(/^[a-d]\)\s*/i,"")} · Correcta: ${w.cor.replace(/^[a-d]\)\s*/i,"")}</div><div class="wrong-ans"><strong>Por qué es correcta:</strong> ${w.why}</div><div class="wrong-ans"><strong>Explicación breve (ES):</strong> ${w.esp.replace(/^✓\s*Respuesta correcta:\s*/i,"")}</div><div class="wrong-ans"><strong>Mini truco:</strong> ${w.trick.replace(/^🎓\s*ACADEMIA\s*·\s*/i,"")}</div></div>`).join("")}</div>`:"";
+  if(!pass){
+    saveFailedExam({date:new Date().toLocaleString("es-ES"),score:pct,errors:errN,total:t,wrong:wrongQs});
+  }
+  const histH=renderFailedHistory();
   document.getElementById("app").innerHTML=`<div class="res-card">
   <div class="res-badge">Resultado final · Policía Local Canarias · B1</div>
   <div class="res-score">${pct}<span>%</span></div>
@@ -1704,13 +1783,13 @@ function rRes(){
   <div class="res-grid"><div class="res-box rb-ok"><div class="rb-val">${okN}</div><div class="rb-lbl">Correctas ✓</div></div><div class="res-box rb-err"><div class="rb-val">${errN}</div><div class="rb-lbl">Errores ✗</div></div></div>
   ${catH?`<div class="cat-breakdown"><h3>Resultado por bloque</h3>${catH}</div>`:""}
   ${wrongH}
+  ${histH}
   <div class="verdict ${pass?"vd-pass":"vd-fail"}">${pass?"✓ APTO · Buen nivel para la oposición":"✗ SIGUE PRACTICANDO · Revisa el resumen de falladas"}</div>
   <button class="btn-restart" onclick="rst()">↺ Repetir test</button>
   </div>`;
 }
 
 function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ();buildF();upd();rQ()}
-renderVisualBoard();
 rst();
 
 // ── DRAG TO SCROLL filtros ──

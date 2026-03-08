@@ -46,6 +46,10 @@ header p{color:#7aa3cc;font-size:12px;margin-top:4px}
 .history-empty{font-size:12px;color:#4a6a99}
 .history-item{padding:7px 0;border-top:1px dashed #c9d8eb;font-size:12px;color:#1a2438}
 .history-item:first-of-type{border-top:none;padding-top:0}
+.history-item b{color:#0f2347}
+.history-pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin-left:6px}
+.hp-pass{background:#e8f6ee;color:#1e7e4a;border:1px solid #a3d9b8}
+.hp-fail{background:#fdecea;color:#b52b27;border:1px solid #f0b0ad}
 
 main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
 .q-meta{text-align:right;font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:12px;color:#4a6a99;font-weight:600;margin-bottom:10px}
@@ -155,6 +159,10 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
       <div class="ctrl-block">
         <label for="qCount">Nº preguntas</label>
         <input class="ctrl-input" id="qCount" type="number" min="1" max="30" value="30">
+      </div>
+      <div class="ctrl-block">
+        <label for="qStart">Desde nº pregunta</label>
+        <input class="ctrl-input" id="qStart" type="number" min="1" value="1">
       </div>
       <button class="start-btn" onclick="startCustomMode()">🎯 Generar test</button>
       <button class="start-btn" onclick="startRandomMode()">🎲 Aleatorio total</button>
@@ -1903,12 +1911,15 @@ rows:[
 
 
 const FAILED_DB_KEY="cgpc_failed_exams";
+const EXAM_DB_KEY="cgpc_exam_bank";
 const MAX_TEST_SIZE=30;
 const TLAB={vocab:"Vocabulario",gram:"Gramática",idiom:"Idioms",false:"False Friend",coll:"Collocation",read:"Reading"};
 const TPILL={vocab:"pill-vocab",gram:"pill-gram",idiom:"pill-idiom",false:"pill-false",coll:"pill-coll",read:"pill-read"};
 let qs=[],cur=0,okN=0,errN=0,cSt={},wrongQs=[];
 let selectedSections=[];
 let requestedCount=MAX_TEST_SIZE;
+let requestedStart=1;
+let currentMode="custom";
 
 const CAT_TO_SEC={
   "Delitos":"Vocabulario policial",
@@ -1930,11 +1941,16 @@ function secOf(q){
 }
 
 function shu(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
-function getQ(count=requestedCount,secs=selectedSections){
+function getQ(count=requestedCount,secs=selectedSections,start=requestedStart){
   const useSecs=Array.isArray(secs)?secs:[];
   const pool=useSecs.length?Q.filter(q=>useSecs.includes(secOf(q))):Q;
   const n=Math.min(Math.max(1,Number(count)||MAX_TEST_SIZE),MAX_TEST_SIZE,pool.length||Q.length);
-  return shu(pool.length?pool:Q).slice(0,n);
+  const src=pool.length?pool:Q;
+  if((Number(start)||1)>1){
+    const startIdx=Math.min(src.length-1,Math.max(0,(Number(start)||1)-1));
+    return [...src.slice(startIdx),...src.slice(0,startIdx)].slice(0,n);
+  }
+  return shu(src).slice(0,n);
 }
 
 function cleanTxt(s){return String(s||"").replace(/<[^>]*>/g,"").replace(/\s+/g," ").trim()}
@@ -1943,6 +1959,14 @@ function getRequestedCount(){
   const el=document.getElementById("qCount");
   const v=Math.min(MAX_TEST_SIZE,Math.max(1,parseInt(el?.value||`${MAX_TEST_SIZE}`,10)||MAX_TEST_SIZE));
   if(el)el.value=v;
+  return v;
+}
+
+function getRequestedStart(){
+  const el=document.getElementById("qStart");
+  const max=(selectedSections.length?Q.filter(q=>selectedSections.includes(secOf(q))).length:Q.length)||1;
+  const v=Math.min(max,Math.max(1,parseInt(el?.value||"1",10)||1));
+  if(el){el.max=max;el.value=v;}
   return v;
 }
 
@@ -1955,12 +1979,16 @@ function startRandomMode(){
   checks.forEach(c=>{c.checked=false});
   requestedCount=getRequestedCount();
   selectedSections=[];
+  requestedStart=1;
+  currentMode="random";
   rst();
 }
 
 function startCustomMode(){
   requestedCount=getRequestedCount();
   selectedSections=getCheckedSections();
+  requestedStart=getRequestedStart();
+  currentMode="custom";
   rst();
 }
 
@@ -1969,6 +1997,8 @@ function renderSectionFilters(){
   if(!box)return;
   const secs=[...new Set(Q.map(secOf))].sort((a,b)=>a.localeCompare(b,'es'));
   box.innerHTML=secs.map((s,i)=>`<label class="sec-chip"><input class="sec-check" type="checkbox" value="${s}"> ${s}</label>`).join('');
+  const sIn=document.getElementById("qStart");
+  if(sIn){sIn.max=Q.length;}
 }
 
 function validateQ(){
@@ -2060,11 +2090,28 @@ function saveFailedExam(rec){
   localStorage.setItem(FAILED_DB_KEY,JSON.stringify(db.slice(0,40)));
 }
 
+function getExamBank(){
+  try{return JSON.parse(localStorage.getItem(EXAM_DB_KEY)||"[]")}catch{return []}
+}
+
+function saveExamBank(rec){
+  const db=getExamBank();
+  db.unshift(rec);
+  localStorage.setItem(EXAM_DB_KEY,JSON.stringify(db.slice(0,80)));
+}
+
 function renderFailedHistory(){
   const db=getFailedExams();
   if(!db.length)return '<div class="history-panel"><h3>Base de datos de exámenes fallados</h3><div class="history-empty">Aún no hay exámenes suspendidos guardados.</div></div>';
   const items=db.slice(0,8).map((r,i)=>`<div class="history-item">${i+1}. ${r.date} · ${r.score}% · ${r.errors} fallos en ${r.total} preguntas.</div>`).join("");
   return `<div class="history-panel"><h3>Base de datos de exámenes fallados</h3>${items}</div>`;
+}
+
+function renderExamBank(){
+  const db=getExamBank();
+  if(!db.length)return '<div class="history-panel"><h3>Banco de exámenes realizados</h3><div class="history-empty">Todavía no hay tests guardados.</div></div>';
+  const items=db.slice(0,10).map((r,i)=>`<div class="history-item"><b>${i+1}. ${r.date}</b> · ${r.score}% (${r.ok}/${r.total}) · ${r.mode}${r.start>1?` · desde #${r.start}`:""}${r.sections?` · ${r.sections}`:""}<span class="history-pill ${r.pass?'hp-pass':'hp-fail'}">${r.pass?'Apto':'No apto'}</span></div>`).join("");
+  return `<div class="history-panel"><h3>Banco de exámenes realizados</h3>${items}</div>`;
 }
 
 function rRes(){
@@ -2079,7 +2126,18 @@ function rRes(){
   if(!pass){
     saveFailedExam({date:new Date().toLocaleString("es-ES"),score:pct,errors:errN,total:t,wrong:wrongQs});
   }
+  saveExamBank({
+    date:new Date().toLocaleString("es-ES"),
+    score:pct,
+    ok:okN,
+    total:t,
+    pass,
+    mode:currentMode==="random"?"Aleatorio total":"Personalizado",
+    start:requestedStart,
+    sections:selectedSections.length?selectedSections.join(", "):"Todos los bloques"
+  });
   const histH=renderFailedHistory();
+  const bankH=renderExamBank();
   document.getElementById("app").innerHTML=`<div class="res-card">
   <div class="res-badge">Resultado final · Policía Local Canarias · B1</div>
   <div class="res-score">${pct}<span>%</span></div>
@@ -2088,12 +2146,13 @@ function rRes(){
   ${catH?`<div class="cat-breakdown"><h3>Resultado por bloque</h3>${catH}</div>`:""}
   ${wrongH}
   ${histH}
+  ${bankH}
   <div class="verdict ${pass?"vd-pass":"vd-fail"}">${pass?"✓ APTO · Buen nivel para la oposición":"✗ SIGUE PRACTICANDO · Revisa el resumen de falladas"}</div>
   <button class="btn-restart" onclick="rst()">↺ Repetir test</button>
   </div>`;
 }
 
-function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ(requestedCount,selectedSections);upd();rQ()}
+function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ(requestedCount,selectedSections,requestedStart);upd();rQ()}
 renderSectionFilters();
 rst();
 

@@ -1822,15 +1822,16 @@ function pick(i){
     cSt[sec].ok++;
   }else{
     errN++;
-    const rowOk=(q.exp?.rows||[]).find(r=>r.ok);
+    const rows=(q.exp&&Array.isArray(q.exp.rows))?q.exp.rows:[];
+    const rowOk=rows.find(r=>r.ok);
     wrongQs.push({
       cat:sec,
       q:q.q,
       sel:q.opts[i]||"",
       cor:q.opts[q.ans]||"",
-      why:cleanTxt(rowOk?.t||"Respuesta válida según uso estándar en contexto policial."),
-      esp:cleanTxt(q.exp?.h||""),
-      trick:cleanTxt(q.exp?.note||"Repasa la colocación y el contexto del enunciado.")
+      why:cleanTxt((rowOk&&rowOk.t)||"Respuesta válida según uso estándar en contexto policial."),
+      esp:cleanTxt((q.exp&&q.exp.h)||""),
+      trick:cleanTxt((q.exp&&q.exp.note)||"Repasa la colocación y el contexto del enunciado.")
     })
   }
   if(!cSt[sec])cSt[sec]={ok:0,total:0};cSt[sec].total++;

@@ -32,6 +32,19 @@ header p{color:#7aa3cc;font-size:12px;margin-top:4px}
 .f-btn{flex-shrink:0;padding:5px 13px;border-radius:20px;border:1.5px solid #22406e;background:transparent;color:#6a92bf;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.4px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .f-btn:hover{border-color:var(--gold);color:var(--gold)}
 .f-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+
+.visual-board{background:linear-gradient(145deg,rgba(12,30,58,.9),rgba(10,23,42,.95));border:1px solid rgba(122,163,204,.35);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.visual-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.visual-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:.5px}
+.visual-sub{font-size:12px;color:#9ec3ea}
+.rand-btn{border:1px solid rgba(232,184,75,.6);background:rgba(232,184,75,.12);color:#ffd98e;padding:7px 11px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.5px;cursor:pointer}
+.rand-btn:hover{background:rgba(232,184,75,.2)}
+.visual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.v-card{background:rgba(255,255,255,.97);border-radius:10px;padding:10px 10px 9px;border:1px solid #d3deea}
+.v-card h3{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.6px;color:#133666;margin-bottom:6px}
+.v-list{display:flex;flex-wrap:wrap;gap:6px}
+.v-chip{font-size:11px;background:#f1f6fd;border:1px solid #d6e3f2;color:#123156;padding:3px 7px;border-radius:999px}
+
 main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
 .q-meta{text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a99;font-weight:600;margin-bottom:10px}
 .q-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.45);animation:fadeUp .3s ease}
@@ -131,6 +144,16 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
   <div class="stat"><div class="dot dot-err"></div>Errores <b id="sErr">0</b></div>
 </div>
 <main>
+  <section class="visual-board">
+    <div class="visual-top">
+      <div>
+        <div class="visual-title">Panel visual · Inglés policial definitivo</div>
+        <div class="visual-sub">Resumen rápido de vocabulario, expresiones y errores típicos para repasar antes de test.</div>
+      </div>
+      <button class="rand-btn" onclick="startRandomMode()">🎲 Generar test aleatorio</button>
+    </div>
+    <div class="visual-grid" id="visualGrid"></div>
+  </section>
   <div class="filter-outer"><div class="filter-wrap" id="fb"></div></div>
   <div class="q-meta" id="qm"></div>
   <div id="app"></div>
@@ -1485,8 +1508,22 @@ rows:[
 
 ];
 
-// ── STATE ──
+
+// ── PANEL VISUAL ──
+const VISUAL_SECTIONS=[
+  {title:"Vocabulario policial básico",items:["incident","evidence","eyewitness","police officers","security guard","crime / offence","crime scene","police station","security camera / CCTV","footage","shopping center","store","assistant manager","fingerprints","burglary / break-in","pickpocketing","mugging","sentence","verdict","conviction"]},
+  {title:"Verbos útiles",items:["arrest","report","identify","check","search","seize","issue","escort","question","approach","detain","investigate","collect evidence","confirm","follow","stop","examine","contact","flee / run away","threaten","force open","steal","find","claim","insist","say"]},
+  {title:"Collocations importantes",items:["make an arrest","place someone under arrest","commit a crime","carry out an investigation","launch an inquiry","gather evidence","question a suspect","file a report","press charges","open / close a case","patrol an area","respond to an incident","use reasonable force","break the law","face charges","give evidence","serve a sentence","take a risk","make a decision","make a mistake","strong evidence","serious offence","investigate thoroughly","be found guilty / not guilty"]},
+  {title:"Fixed expressions",items:["respond to an incident","confess to a crime","cooperate with the police","take someone into custody","be under arrest","be on the run","be released on bail","break into a house / shop / building","cordon off an area","comply with the rules"]},
+  {title:"Idioms (tipo examen)",items:["be caught red-handed","book someone","get away with it","crack the case","follow a lead","question / interrogate a suspect","be framed","do time","be behind bars","rat someone out","chase / pursue a suspect","come clean","go by the book","turn a blind eye","bend the rules","hit the nail on the head","let the cat out of the bag","throw in the towel"]},
+  {title:"False friends",items:["eventually = finalmente","actual = real","assist = ayudar","library = biblioteca","introduce = presentar","sensible = razonable","realize = darse cuenta","parents = padres","fabric = tela","pretend = fingir","lecture = conferencia"]},
+  {title:"Diferencias jurídico-policiales",items:["crime vs offence/offence","felony (grave) vs misdemeanor (menor)","evidence vs proof","clues vs exhibits","prison vs jail","penitentiary / correctional facility"]},
+  {title:"Preguntas funcionales",items:["What's your full name?","Can you spell your surname, please?","What's your date of birth?","How old are you?","What's your nationality?","What's your address?","What's your phone number?","Can I see your ID, please?","Who should we contact in an emergency?"]},
+  {title:"Errores frecuentes",items:["didn't know (no didn't knew)","looked for","didn't cooperate","returned to normal","issue a summons","commit a crime","issue/impose a fine","draw attention","handcuff him","How old are you?","Can I see your ID, please?","Where do you live?"]}
+];
+
 const SECS=[
+
   "Vocabulario policial",
   "Verbos policiales",
   "Collocations",
@@ -1525,11 +1562,27 @@ function secOf(q){
 function shu(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 function getQ(){
   const studyPool=Q.filter(q=>secOf(q)!=="Examen / Simulacro");
+  if(simN===-1){
+    const n=Math.min(Q.length,12+Math.floor(Math.random()*10));
+    return shu(Q).slice(0,n);
+  }
   const base=simN?studyPool:Q.filter(q=>secOf(q)===filt);
   const mixed=shu(base);
   return simN?mixed.slice(0,Math.min(simN,mixed.length)):mixed;
 }
+
 function cleanTxt(s){return String(s||"").replace(/<[^>]*>/g,"").replace(/\s+/g," ").trim()}
+
+function renderVisualBoard(){
+  const grid=document.getElementById("visualGrid");
+  grid.innerHTML=VISUAL_SECTIONS.map(sec=>`<article class="v-card"><h3>${sec.title}</h3><div class="v-list">${sec.items.map(i=>`<span class="v-chip">${i}</span>`).join("")}</div></article>`).join("");
+}
+
+function startRandomMode(){
+  simN=-1;
+  filt="Examen / Simulacro";
+  rst();
+}
 
 function validateQ(){
   const errs=[];
@@ -1562,7 +1615,13 @@ function buildF(){
     b.onclick=()=>{filt="Examen / Simulacro";simN=n;rst()};
     el.appendChild(b);
   });
+  const rb=document.createElement('button');
+  rb.className='f-btn'+(simN===-1?' active':'');
+  rb.textContent='🎲 Aleatorio PRO';
+  rb.onclick=()=>startRandomMode();
+  el.appendChild(rb);
 }
+
 
 function upd(){
   document.getElementById("sOk").textContent=okN;
@@ -1570,8 +1629,8 @@ function upd(){
   const t=qs.length,pct=t?Math.round((cur/t)*100):0;
   document.getElementById("pf").style.width=pct+"%";
   document.getElementById("sMid").textContent=cur<t?`Pregunta ${cur+1} de ${t}`:"Completado";
-  const mode=simN?`Simulacro ${simN} · `:"";
-  document.getElementById("qm").textContent=simN?`${mode}${t} preguntas mixtas (solo estudio)`:`Bloque: ${filt} · ${t} preguntas`;
+  const mode=simN>0?`Simulacro ${simN} · `:"";
+  document.getElementById("qm").textContent=simN===-1?`Aleatorio PRO · ${t} preguntas mixtas (todas las categorías)`:simN?`${mode}${t} preguntas mixtas (solo estudio)`:`Bloque: ${filt} · ${t} preguntas`;
 }
 
 function rQ(){
@@ -1651,6 +1710,7 @@ function rRes(){
 }
 
 function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ();buildF();upd();rQ()}
+renderVisualBoard();
 rst();
 
 // ── DRAG TO SCROLL filtros ──

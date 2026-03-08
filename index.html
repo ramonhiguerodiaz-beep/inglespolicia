@@ -4,73 +4,66 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TEST B1 · Policía Local · CGPC</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0b1a30">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="B1 Policía">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="h2d-logo.svg">
 <style>
 :root{--navy:#0b1a30;--blue:#1a3a6b;--blue2:#1e4d99;--gold:#e8b84b;--gold2:#f5d07a;--green:#1e7e4a;--green-bg:#e8f6ee;--green-border:#a3d9b8;--red:#b52b27;--red-bg:#fdecea;--red-border:#f0b0ad;--amber:#d97706;--amber-bg:#fffbeb;--white:#f7f9fc;--card:#ffffff;--gray:#7a8899;--border:#cdd5e0;--text:#1a2438}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Barlow',sans-serif;background:var(--navy);min-height:100vh;position:relative;overflow-x:hidden}
+body{font-family:'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--navy);min-height:100vh;position:relative;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background:url('h2d-logo.svg') no-repeat center 56%/min(74vw,640px);opacity:.12;pointer-events:none;z-index:0}
 body>*{position:relative;z-index:1}
 header{background:linear-gradient(150deg,#06101f 0%,#0f2347 60%,#1a3a6b 100%);border-bottom:3px solid var(--gold);padding:18px 20px 14px;text-align:center}
-.h-badge{display:inline-block;background:var(--gold);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:7px}
-header h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;color:#fff;letter-spacing:1px;line-height:1.1}
+.h-badge{display:inline-block;background:var(--gold);color:var(--navy);font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:900;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:7px}
+header h1{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:900;font-size:24px;color:#fff;letter-spacing:1px;line-height:1.1}
 header h1 em{color:var(--gold);font-style:normal}
 header p{color:#7aa3cc;font-size:12px;margin-top:4px}
 .prog-wrap{height:5px;background:rgba(255,255,255,.07)}
 .prog-fill{height:5px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .5s ease}
 .stats{display:flex;justify-content:space-between;align-items:center;background:#0a1525;padding:9px 18px;border-bottom:1px solid rgba(255,255,255,.06)}
-.stat{display:flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#7aa3cc;letter-spacing:.4px}
+.stat{display:flex;align-items:center;gap:6px;font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:13px;font-weight:600;color:#7aa3cc;letter-spacing:.4px}
 .dot{width:8px;height:8px;border-radius:50%}
 .dot-ok{background:var(--green)}.dot-err{background:var(--red)}
 .stat b{color:#fff;font-size:16px;margin-left:1px}
 .stat-mid{font-size:12px;color:#4a6a99;text-align:center}
-.filter-outer{position:relative}
-.filter-outer::after{content:'';position:absolute;right:0;top:0;bottom:0;width:40px;background:linear-gradient(to right,transparent,var(--navy));pointer-events:none;border-radius:0 8px 8px 0}
-.filter-wrap{padding:12px 14px 8px;overflow-x:auto;overflow-y:visible;display:flex;gap:7px;scrollbar-width:thin;scrollbar-color:#22406e transparent;-webkit-overflow-scrolling:touch;touch-action:pan-x;cursor:grab;user-select:none}
-.filter-wrap:active{cursor:grabbing}
-.filter-wrap::-webkit-scrollbar{height:3px}
-.filter-wrap::-webkit-scrollbar-track{background:transparent}
-.filter-wrap::-webkit-scrollbar-thumb{background:#22406e;border-radius:3px}
-.f-btn{flex-shrink:0;padding:5px 13px;border-radius:20px;border:1.5px solid #22406e;background:transparent;color:#6a92bf;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.4px;cursor:pointer;transition:all .2s;white-space:nowrap}
-.f-btn:hover{border-color:var(--gold);color:var(--gold)}
-.f-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy)}
-
 .start-panel{background:linear-gradient(145deg,rgba(12,30,58,.9),rgba(10,23,42,.95));border:1px solid rgba(122,163,204,.35);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 8px 30px rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.start-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:.5px}
+.start-title{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:.5px}
 .start-sub{font-size:12px;color:#9ec3ea;max-width:500px}
-.start-btn{border:1px solid rgba(232,184,75,.7);background:linear-gradient(135deg,#f3c14d,#e8b84b);color:#10213d;padding:10px 14px;border-radius:9px;font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.7px;cursor:pointer}
+.start-btn{border:1px solid rgba(232,184,75,.7);background:linear-gradient(135deg,#f3c14d,#e8b84b);color:#10213d;padding:10px 14px;border-radius:9px;font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;letter-spacing:.7px;cursor:pointer}
 .start-btn:hover{filter:brightness(1.05)}
 .history-panel{text-align:left;margin:6px 0 18px;padding:12px;border:1px solid #b4c6df;border-radius:9px;background:#f5f9ff}
-.history-panel h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#1a3a6b;margin-bottom:9px}
+.history-panel h3{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#1a3a6b;margin-bottom:9px}
 .history-empty{font-size:12px;color:#4a6a99}
 .history-item{padding:7px 0;border-top:1px dashed #c9d8eb;font-size:12px;color:#1a2438}
 .history-item:first-of-type{border-top:none;padding-top:0}
 
 main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
-.q-meta{text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a99;font-weight:600;margin-bottom:10px}
+.q-meta{text-align:right;font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:12px;color:#4a6a99;font-weight:600;margin-bottom:10px}
 .q-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.45);animation:fadeUp .3s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .q-head{background:var(--blue);padding:12px 18px;display:flex;align-items:center;gap:11px}
-.q-num{background:var(--gold);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:15px;min-width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.q-cat-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8ab0d8}
-.q-type-pill{margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;letter-spacing:1px;text-transform:uppercase}
+.q-num{background:var(--gold);color:var(--navy);font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:900;font-size:15px;min-width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-cat-label{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8ab0d8}
+.q-type-pill{margin-left:auto;font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;letter-spacing:1px;text-transform:uppercase}
 .pill-vocab{background:rgba(232,184,75,.15);color:var(--gold);border:1px solid rgba(232,184,75,.3)}
 .pill-gram{background:rgba(30,77,153,.3);color:#8ab0d8;border:1px solid rgba(138,176,216,.2)}
 .pill-idiom{background:rgba(30,126,74,.15);color:#4ec47a;border:1px solid rgba(78,196,122,.2)}
 .pill-false{background:rgba(181,43,39,.15);color:#e87a77;border:1px solid rgba(232,122,119,.2)}
 .pill-coll{background:rgba(217,119,6,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.2)}
 .pill-read{background:rgba(109,40,217,.15);color:#a78bfa;border:1px solid rgba(167,139,250,.2)}
-.pill-sim{background:rgba(234,88,12,.15);color:#fb923c;border:1px solid rgba(251,146,60,.3)}
 .q-body{padding:18px 20px 6px}
-.q-sentence{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:700;color:var(--text);line-height:1.45;margin-bottom:5px}
+.q-sentence{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:21px;font-weight:700;color:var(--text);line-height:1.45;margin-bottom:5px}
 .q-sentence .blank{display:inline-block;min-width:80px;border-bottom:3px solid var(--blue2);color:var(--blue2);font-style:italic;text-align:center;padding:0 5px}
 .q-ctx{font-size:12px;color:var(--gray);margin-bottom:5px;font-style:italic;padding-left:2px}
 .q-hint{display:inline-block;font-size:11px;color:var(--amber);background:var(--amber-bg);border:1px solid rgba(217,119,6,.2);border-radius:4px;padding:2px 8px;margin-bottom:12px;font-weight:600}
 .q-inst{font-size:12px;color:#aab;margin-bottom:16px}
 .opts{padding:0 20px 16px;display:flex;flex-direction:column;gap:8px}
-.o-btn{display:flex;align-items:flex-start;gap:11px;border:2px solid var(--border);border-radius:9px;background:#fff;padding:11px 14px;cursor:pointer;transition:all .15s;text-align:left;font-family:'Barlow',sans-serif;font-size:14px;color:var(--text);font-weight:500;line-height:1.4}
+.o-btn{display:flex;align-items:flex-start;gap:11px;border:2px solid var(--border);border-radius:9px;background:#fff;padding:11px 14px;cursor:pointer;transition:all .15s;text-align:left;font-family:'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-size:14px;color:var(--text);font-weight:500;line-height:1.4}
 .o-btn:hover:not(:disabled){border-color:var(--blue2);background:#f0f5ff;transform:translateX(4px)}
-.o-letter{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;min-width:26px;height:26px;border-radius:6px;background:#edf0f7;color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .15s}
+.o-letter{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;font-size:13px;min-width:26px;height:26px;border-radius:6px;background:#edf0f7;color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .15s}
 .o-btn.ok{border-color:var(--green);background:var(--green-bg)}
 .o-btn.ok .o-letter{background:var(--green);color:#fff}
 .o-btn.err{border-color:var(--red);background:var(--red-bg)}
@@ -81,14 +74,14 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
 .exp-box{display:none;margin:0 20px 18px;border-radius:9px;border:1px solid var(--border);overflow:hidden;animation:fadeIn .25s ease}
 .exp-box.show{display:block}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.exp-verdict{padding:9px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:.8px;text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.exp-verdict{padding:9px 14px;font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;font-size:13px;letter-spacing:.8px;text-transform:uppercase;display:flex;align-items:center;gap:7px}
 .exp-verdict.v-ok{background:var(--green);color:#fff}
 .exp-verdict.v-err{background:var(--red);color:#fff}
 .exp-ans{padding:7px 14px;background:#f0faf6;border-bottom:1px solid var(--green-border);font-size:13px;font-weight:700;color:var(--green)}
 .exp-body{background:#fff;padding:12px 14px;display:flex;flex-direction:column;gap:9px}
 .exp-row{display:flex;gap:9px;align-items:flex-start;padding-bottom:8px;border-bottom:1px solid #f0f2f5;font-size:13px;line-height:1.55}
 .exp-row:last-child{border-bottom:none;padding-bottom:0}
-.rl{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;min-width:30px;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;letter-spacing:.3px}
+.rl{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;font-size:12px;min-width:30px;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;letter-spacing:.3px}
 .rl-ok{background:#d4edda;color:#1a5c30}
 .rl-err{background:#f8d7da;color:#721c24}
 .exp-row-text{color:#333}
@@ -97,35 +90,35 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
 .tip{display:inline-block;background:#fff8e1;border:1px solid #ffe57f;border-radius:3px;padding:1px 5px;font-size:10px;font-weight:700;color:#b45309;margin-left:3px}
 .acad-note{background:#f8f4ff;border-left:3px solid #7c3aed;border-radius:0 6px 6px 0;padding:8px 12px;margin-top:2px;font-size:12px;color:#4c1d95;line-height:1.55}
 .acad-note strong{color:#6d28d9}
-.btn-next{display:none;width:calc(100% - 40px);margin:0 20px 18px;padding:12px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;border-radius:9px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.btn-next{display:none;width:calc(100% - 40px);margin:0 20px 18px;padding:12px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;border-radius:9px;font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;font-size:15px;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .2s}
 .btn-next:hover{background:linear-gradient(135deg,var(--blue2),#2a6ae0);transform:translateY(-1px);box-shadow:0 5px 18px rgba(26,58,107,.4)}
 .btn-next.show{display:block}
 .res-card{background:var(--card);border-radius:12px;padding:30px 22px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.45);animation:fadeUp .3s ease}
-.res-badge{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
-.res-score{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:80px;color:var(--text);line-height:1}
+.res-badge{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:10px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+.res-score{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:900;font-size:80px;color:var(--text);line-height:1}
 .res-score span{font-size:30px}
 .res-sub{font-size:14px;color:var(--gray);margin-bottom:22px}
 .res-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:20px}
 .res-box{border-radius:9px;padding:14px}
 .rb-ok{background:var(--green-bg);border:1px solid var(--green-border)}
 .rb-err{background:var(--red-bg);border:1px solid var(--red-border)}
-.rb-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px}
+.rb-val{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:900;font-size:36px}
 .rb-ok .rb-val{color:var(--green)}.rb-err .rb-val{color:var(--red)}
 .rb-lbl{font-size:12px;color:var(--gray);font-weight:600;margin-top:2px}
-.verdict{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;padding:12px 18px;border-radius:9px;margin-bottom:22px}
+.verdict{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:16px;font-weight:800;padding:12px 18px;border-radius:9px;margin-bottom:22px}
 .vd-pass{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
 .vd-fail{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
-.btn-restart{width:100%;padding:13px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;border-radius:9px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.btn-restart{width:100%;padding:13px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;border-radius:9px;font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;font-size:16px;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .2s}
 .btn-restart:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(26,58,107,.4)}
 .cat-breakdown{text-align:left;margin-bottom:18px}
-.cat-breakdown h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:9px}
+.cat-breakdown h3{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:9px}
 .cat-row{display:flex;align-items:center;gap:9px;margin-bottom:7px}
-.cat-name{min-width:120px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px}
+.cat-name{min-width:120px;color:var(--text);font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:700;font-size:13px}
 .cat-bar-wrap{flex:1;height:8px;background:#e8edf5;border-radius:4px;overflow:hidden}
 .cat-bar-fill{height:8px;border-radius:4px;transition:width .8s ease}
-.cat-pct{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;min-width:38px;text-align:right}
+.cat-pct{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:13px;font-weight:700;min-width:38px;text-align:right}
 .wrong-breakdown{text-align:left;margin:6px 0 18px;padding:12px;border:1px solid var(--red-border);border-radius:9px;background:#fff7f7}
-.wrong-breakdown h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:9px}
+.wrong-breakdown h3{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:9px}
 .wrong-item{padding:8px 0;border-top:1px dashed #efcaca}
 .wrong-item:first-of-type{border-top:none}
 .wrong-title{font-size:12px;color:var(--text);font-weight:600;line-height:1.35}
@@ -148,11 +141,10 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
   <section class="start-panel">
     <div>
       <div class="start-title">Generador de test policial</div>
-      <div class="start-sub">Se ha retirado el panel principal. Pulsa para crear un test mixto y practicar directamente.</div>
+      <div class="start-sub">Test aleatorio único (sin subsecciones). Funciona sin conexión en iPhone/iPad al añadirlo a pantalla de inicio.</div>
     </div>
-    <button class="start-btn" onclick="startRandomMode()">🎲 Generar test</button>
+    <button class="start-btn" onclick="startRandomMode()">🎲 Generar test aleatorio</button>
   </section>
-  <div class="filter-outer"><div class="filter-wrap" id="fb"></div></div>
   <div class="q-meta" id="qm"></div>
   <div id="app"></div>
 </main>
@@ -1482,7 +1474,7 @@ rows:[
 {ok:0,l:"D",t:"<strong>Watch</strong> no es el verbo adecuado para solicitar documento."},
 ],note:"🎓 Error típico: traducción literal de términos administrativos españoles. En test B1 prioriza fórmulas internacionales."}},
 
-{cat:"Examen / Simulacro",type:"read",mode:"exam",
+{cat:"Reading",type:"read",mode:"exam",
 q:"At the police station, the suspect decided to ___ and admitted the theft.",
 opts:["a) go by the book","b) come clean","c) break the ice","d) bend the rules"],ans:1,
 exp:{h:"✓ Respuesta correcta: b) come clean",
@@ -1493,7 +1485,7 @@ rows:[
 {ok:0,l:"D",t:"<strong>Bend the rules</strong> = forzar/saltarse reglas."},
 ],note:"🎓 En preguntas de examen, fíjate en verbos clave como <em>admitted</em>, <em>confessed</em>, <em>denied</em>."}},
 
-{cat:"Examen / Simulacro",type:"read",mode:"exam",
+{cat:"Reading",type:"read",mode:"exam",
 q:"The officers arrived quickly and ___ the incident near the shopping centre.",
 opts:["a) responded to","b) cooked","c) introduced","d) pretended"],ans:0,
 exp:{h:"✓ Respuesta correcta: a) responded to",
@@ -1560,7 +1552,7 @@ rows:[
 {ok:0,l:"D",t:"<strong>Rápidamente</strong> sería <em>quickly</em>."},
 ],note:"🎓 False friend clásico de oposición: <em>eventually = finalmente</em>."}},
 
-{cat:"Examen / Simulacro",type:"read",mode:"exam",
+{cat:"Reading",type:"read",mode:"exam",
 q:"Paraphrase: 'The suspect denied involvement' means he ___.",
 opts:["a) admitted he did it","b) said he was not involved","c) escaped from prison","d) asked for a lawyer"],ans:1,
 exp:{h:"✓ Respuesta correcta: b) said he was not involved",
@@ -1571,7 +1563,7 @@ rows:[
 {ok:0,l:"D",t:"Pedir abogado puede ocurrir, pero no es el significado de deny."},
 ],note:"🎓 Parafraseo útil: <em>deny = claim not to have done something</em>."}},
 
-{cat:"Examen / Simulacro",type:"read",mode:"exam",
+{cat:"Reading",type:"read",mode:"exam",
 q:"The victim gave a detailed ___ to help officers identify the attacker.",
 opts:["a) witness statement","b) shopping list","c) weather forecast","d) boarding pass"],ans:0,
 exp:{h:"✓ Respuesta correcta: a) witness statement",
@@ -1759,26 +1751,147 @@ rows:[
 ],note:"🎓 También verás <em>criminal gang</em> / <em>organized crime group</em>."}},
 
 
+{cat:"Atención ciudadana",type:"vocab",
+q:"Good evening, sir. Could you please ___ me your driving licence and ID card?",
+opts:["a) show","b) borrow","c) pass","d) teach"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) show",
+rows:[
+{ok:1,l:"A",t:"<strong>Show me your licence</strong> ✓: fórmula estándar en control policial."},
+{ok:0,l:"B",t:"<strong>Borrow</strong> = pedir prestado. No encaja en una orden policial."},
+{ok:0,l:"C",t:"<strong>Pass</strong> no se usa así en este contexto formal."},
+{ok:0,l:"D",t:"<strong>Teach</strong> = enseñar (dar clase)."},
+],note:"🎓 Expresión B1 clave: <em>Could you please show me...?</em>"}},
+
+{cat:"Atención ciudadana",type:"vocab",
+q:"Please stay ___ and keep your hands where I can see them.",
+opts:["a) relaxedly","b) calm","c) softness","d) quietness"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) calm",
+rows:[
+{ok:0,l:"A",t:"Adverbio incorrecto en esta estructura."},
+{ok:1,l:"B",t:"<strong>Stay calm</strong> ✓: instrucción habitual para reducir tensión."},
+{ok:0,l:"C",t:"Forma nominal, no adjetivo."},
+{ok:0,l:"D",t:"No es la colocación natural."},
+],note:"🎓 Collocation: <em>stay calm</em> / <em>remain calm</em>."}},
+
+{cat:"Tráfico",type:"coll",
+q:"The patrol stopped the car because the driver was ___ over the speed limit.",
+opts:["a) doing","b) running","c) driving","d) going"],ans:3,
+exp:{h:"✓ Respuesta correcta: d) going",
+rows:[
+{ok:0,l:"A",t:"No se usa con límites de velocidad."},
+{ok:0,l:"B",t:"<em>Run</em> no es natural aquí para B1."},
+{ok:0,l:"C",t:"<em>Driving over</em> suena forzado."},
+{ok:1,l:"D",t:"<strong>Going over the speed limit</strong> ✓: estructura clara y frecuente."},
+],note:"🎓 También: <em>exceed the speed limit</em> (más formal)."}},
+
+{cat:"Tráfico",type:"vocab",
+q:"You must wear your seat belt at all times. Otherwise, you may receive a ___",
+opts:["a) reward","b) fine","c) medal","d) discount"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) fine",
+rows:[
+{ok:0,l:"A",t:"No tiene sentido sancionador."},
+{ok:1,l:"B",t:"<strong>Fine</strong> ✓: multa administrativa."},
+{ok:0,l:"C",t:"No aplica al contexto de infracciones."},
+{ok:0,l:"D",t:"Lo contrario de una sanción."},
+],note:"🎓 Léxico básico de tráfico: <em>issue a fine</em>, <em>pay a fine</em>."}},
+
+{cat:"Radio policial",type:"coll",
+q:"Control, we need ___ at Plaza Mayor. One suspect is running away.",
+opts:["a) backup","b) suitcase","c) silence","d) luggage"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) backup",
+rows:[
+{ok:1,l:"A",t:"<strong>Need backup</strong> ✓: pedir apoyo inmediato por radio."},
+{ok:0,l:"B",t:"Objeto no relacionado."},
+{ok:0,l:"C",t:"No encaja con la urgencia operativa."},
+{ok:0,l:"D",t:"No tiene relación policial."},
+],note:"🎓 Expresión operativa muy frecuente en patrulla urbana."}},
+
+{cat:"Radio policial",type:"vocab",
+q:"The suspect is wearing a black hoodie and blue jeans. This is his ___",
+opts:["a) location","b) description","c) evidence","d) sentence"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) description",
+rows:[
+{ok:0,l:"A",t:"<strong>Location</strong> = ubicación, no rasgos físicos."},
+{ok:1,l:"B",t:"<strong>Description</strong> ✓: descripción física de la persona."},
+{ok:0,l:"C",t:"<strong>Evidence</strong> = prueba material."},
+{ok:0,l:"D",t:"<strong>Sentence</strong> = condena judicial."},
+],note:"🎓 Fórmula útil: <em>Can you give me a description of the suspect?</em>"}},
+
+{cat:"Documentación",type:"vocab",
+q:"If your passport is stolen, you should report it to the police as soon as ___.",
+opts:["a) possible","b) maybe","c) quickly","d) usual"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) possible",
+rows:[
+{ok:1,l:"A",t:"<strong>As soon as possible</strong> ✓: locución fija."},
+{ok:0,l:"B",t:"No forma una estructura idiomática correcta."},
+{ok:0,l:"C",t:"Falta estructura completa; suena incompleta."},
+{ok:0,l:"D",t:"No corresponde al significado de urgencia."},
+],note:"🎓 Chunk B1 imprescindible para atención al ciudadano."}},
+
+{cat:"Entrevista policial",type:"gram",
+q:"The witness said she ___ a loud noise before the alarm started.",
+opts:["a) hears","b) has heard","c) heard","d) hearing"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) heard",
+rows:[
+{ok:0,l:"A",t:"Presente simple; no concuerda con la narración en pasado."},
+{ok:0,l:"B",t:"Present perfect no es natural con marcador pasado cerrado."},
+{ok:1,l:"C",t:"<strong>Heard</strong> ✓: pasado simple para relato de hechos concluidos."},
+{ok:0,l:"D",t:"Gerundio sin auxiliar."},
+],note:"🎓 En atestados narrativos B1 predomina <em>past simple</em>."}},
+
+{cat:"Entrevista policial",type:"gram",
+q:"We ___ the CCTV footage yet, but we will check it this afternoon.",
+opts:["a) don't review","b) didn't reviewed","c) haven't reviewed","d) not reviewed"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) haven't reviewed",
+rows:[
+{ok:0,l:"A",t:"Presente simple no expresa 'todavía no' hasta ahora."},
+{ok:0,l:"B",t:"Forma verbal incorrecta."},
+{ok:1,l:"C",t:"<strong>Haven't reviewed ... yet</strong> ✓: present perfect negativo con <em>yet</em>."},
+{ok:0,l:"D",t:"Falta auxiliar."},
+],note:"🎓 Patrón B1: <em>have/has + past participle + yet</em>."}},
+
+{cat:"Comunicación",type:"false",
+q:"En una intervención, 'eventually' significa ___",
+opts:["a) actualmente","b) finalmente","c) posiblemente","d) puntualmente"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) finalmente",
+rows:[
+{ok:0,l:"A",t:"Falso amigo con <em>actually</em>."},
+{ok:1,l:"B",t:"<strong>Eventually</strong> ✓: al final, tras un proceso."},
+{ok:0,l:"C",t:"Eso sería <em>possibly</em>/<em>maybe</em>."},
+{ok:0,l:"D",t:"No corresponde al significado real."},
+],note:"🎓 Binomio clave: <em>actually = en realidad</em> / <em>eventually = finalmente</em>."}},
+
+{cat:"Comunicación",type:"idiom",
+q:"The suspect refused to answer and kept ___ around the issue.",
+opts:["a) beating around the bush","b) hitting the road","c) breaking the ice","d) cutting corners"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) beating around the bush",
+rows:[
+{ok:1,l:"A",t:"<strong>Beat around the bush</strong> ✓: dar rodeos y evitar el punto principal."},
+{ok:0,l:"B",t:"Significa marcharse."},
+{ok:0,l:"C",t:"Significa iniciar conversación en ambiente tenso."},
+{ok:0,l:"D",t:"Significa hacer algo de forma descuidada para ahorrar."},
+],note:"🎓 Útil en entrevistas: <em>Please be direct and do not beat around the bush.</em>"}},
+
+{cat:"Procedimiento",type:"coll",
+q:"Before entering the flat, officers asked for a search ___ from the judge.",
+opts:["a) ticket","b) warrant","c) permitation","d) warning"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) warrant",
+rows:[
+{ok:0,l:"A",t:"No corresponde a terminología judicial."},
+{ok:1,l:"B",t:"<strong>Search warrant</strong> ✓: orden judicial de registro."},
+{ok:0,l:"C",t:"Forma incorrecta; sería <em>permission</em> pero no es término técnico."},
+{ok:0,l:"D",t:"No expresa autorización judicial."},
+],note:"🎓 Collocations legales: <em>search warrant</em> / <em>arrest warrant</em>."}},
+
+
 ];
 
 
-const SECS=[
-
-  "Vocabulario policial",
-  "Verbos policiales",
-  "Collocations",
-  "Fixed expressions",
-  "Idioms",
-  "False friends",
-  "Contrastes útiles",
-  "Errores frecuentes",
-  "Examen / Simulacro"
-];
-const SIMS=[10,15,20];
 const FAILED_DB_KEY="cgpc_failed_exams";
+const TEST_SIZE=30;
 const TLAB={vocab:"Vocabulario",gram:"Gramática",idiom:"Idioms",false:"False Friend",coll:"Collocation",read:"Reading"};
 const TPILL={vocab:"pill-vocab",gram:"pill-gram",idiom:"pill-idiom",false:"pill-false",coll:"pill-coll",read:"pill-read"};
-let qs=[],cur=0,okN=0,errN=0,filt=SECS[0],cSt={},wrongQs=[],simN=0;
+let qs=[],cur=0,okN=0,errN=0,cSt={},wrongQs=[];
 
 const CAT_TO_SEC={
   "Delitos":"Vocabulario policial",
@@ -1792,31 +1905,21 @@ const CAT_TO_SEC={
   "False Friends":"False friends",
   "Gramática":"Errores frecuentes",
   "Preposiciones":"Errores frecuentes",
-  "Reading":"Examen / Simulacro"
+  "Reading":"Reading"
 };
 
 function secOf(q){
-  if(q.mode==="exam"||q.cat==="Examen / Simulacro")return "Examen / Simulacro";
   return CAT_TO_SEC[q.cat]||q.cat;
 }
 
 function shu(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 function getQ(){
-  const studyPool=Q.filter(q=>secOf(q)!=="Examen / Simulacro");
-  if(simN===-1){
-    const n=Math.min(Q.length,12+Math.floor(Math.random()*10));
-    return shu(Q).slice(0,n);
-  }
-  const base=simN?studyPool:Q.filter(q=>secOf(q)===filt);
-  const mixed=shu(base);
-  return simN?mixed.slice(0,Math.min(simN,mixed.length)):mixed;
+  return shu(Q).slice(0,Math.min(TEST_SIZE,Q.length));
 }
 
 function cleanTxt(s){return String(s||"").replace(/<[^>]*>/g,"").replace(/\s+/g," ").trim()}
 
 function startRandomMode(){
-  simN=-1;
-  filt="Examen / Simulacro";
   rst();
 }
 
@@ -1828,36 +1931,10 @@ function validateQ(){
     if(seen.has(key))errs.push(`Duplicada #${idx+1} con #${seen.get(key)+1}`); else seen.set(key,idx);
     if(!Array.isArray(q.opts)||q.opts.length<2)errs.push(`Opciones inválidas #${idx+1}`);
     if(typeof q.ans!=="number"||q.ans<0||q.ans>=q.opts.length)errs.push(`Respuesta fuera de rango #${idx+1}`);
-    if(!SECS.includes(secOf(q)))errs.push(`Sección inválida #${idx+1}: ${secOf(q)}`);
   });
   if(errs.length)console.warn("VALIDACIÓN Q",errs.slice(0,20));
   return errs;
 }
-
-function buildF(){
-  const el=document.getElementById("fb");el.innerHTML="";
-  SECS.forEach(c=>{
-    const b=document.createElement("button");
-    b.className="f-btn"+(c===filt&&simN===0?" active":"");
-    const n=Q.filter(q=>secOf(q)===c).length;
-    b.textContent=`${c} (${n})`;
-    b.onclick=()=>{filt=c;simN=0;rst()};
-    el.appendChild(b);
-  });
-  SIMS.forEach(n=>{
-    const b=document.createElement("button");
-    b.className="f-btn"+(simN===n?" active":"");
-    b.textContent=`Simulacro ${n}`;
-    b.onclick=()=>{filt="Examen / Simulacro";simN=n;rst()};
-    el.appendChild(b);
-  });
-  const rb=document.createElement('button');
-  rb.className='f-btn'+(simN===-1?' active':'');
-  rb.textContent='🎲 Aleatorio PRO';
-  rb.onclick=()=>startRandomMode();
-  el.appendChild(rb);
-}
-
 
 function upd(){
   document.getElementById("sOk").textContent=okN;
@@ -1865,8 +1942,7 @@ function upd(){
   const t=qs.length,pct=t?Math.round((cur/t)*100):0;
   document.getElementById("pf").style.width=pct+"%";
   document.getElementById("sMid").textContent=cur<t?`Pregunta ${cur+1} de ${t}`:"Completado";
-  const mode=simN>0?`Simulacro ${simN} · `:"";
-  document.getElementById("qm").textContent=simN===-1?`Aleatorio PRO · ${t} preguntas mixtas (todas las categorías)`:simN?`${mode}${t} preguntas mixtas (solo estudio)`:`Bloque: ${filt} · ${t} preguntas`;
+  document.getElementById("qm").textContent=`Test aleatorio B1 policial · ${t} preguntas mixtas`;
 }
 
 function rQ(){
@@ -1968,17 +2044,16 @@ function rRes(){
   </div>`;
 }
 
-function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ();buildF();upd();rQ()}
+function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ();upd();rQ()}
 rst();
 
-// ── DRAG TO SCROLL filtros ──
-(function(){
-  const el=document.getElementById('fb');
-  let down=false,startX,scrollL;
-  el.addEventListener('mousedown',e=>{down=true;startX=e.pageX-el.offsetLeft;scrollL=el.scrollLeft;el.style.cursor='grabbing'});
-  document.addEventListener('mouseup',()=>{down=false;el.style.cursor='grab'});
-  document.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();const x=e.pageX-el.offsetLeft;el.scrollLeft=scrollL-(x-startX)});
-})();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  });
+}
+
 </script>
 </body>
 </html>

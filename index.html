@@ -160,10 +160,6 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
         <label for="qCount">Nº preguntas</label>
         <input class="ctrl-input" id="qCount" type="number" min="1" max="30" value="30">
       </div>
-      <div class="ctrl-block">
-        <label for="qStart">Desde nº pregunta</label>
-        <input class="ctrl-input" id="qStart" type="number" min="1" value="1">
-      </div>
       <button class="start-btn" onclick="startCustomMode()">🎯 Generar test</button>
       <button class="start-btn" onclick="startRandomMode()">🎲 Aleatorio total</button>
     </div>
@@ -1918,22 +1914,44 @@ const TPILL={vocab:"pill-vocab",gram:"pill-gram",idiom:"pill-idiom",false:"pill-
 let qs=[],cur=0,okN=0,errN=0,cSt={},wrongQs=[];
 let selectedSections=[];
 let requestedCount=MAX_TEST_SIZE;
-let requestedStart=1;
 let currentMode="custom";
 
+const SEC_ORDER=[
+  "1. Comprensión",
+  "2. Expresiones",
+  "3. Comunicación policial",
+  "4. Lenguaje técnico-policial",
+  "5. Especialidades"
+];
+
 const CAT_TO_SEC={
-  "Delitos":"Vocabulario policial",
-  "Personas":"Vocabulario policial",
-  "Investigación":"Vocabulario policial",
-  "Juicio":"Vocabulario policial",
-  "Prisión":"Vocabulario policial",
-  "Vocabulario extra":"Vocabulario policial",
-  "Collocations":"Collocations",
-  "Idioms":"Idioms",
-  "False Friends":"False friends",
-  "Gramática":"Errores frecuentes",
-  "Preposiciones":"Errores frecuentes",
-  "Reading":"Reading"
+  "Reading":"1. Comprensión",
+  "Contrastes útiles":"1. Comprensión",
+  "False Friends":"1. Comprensión",
+  "Errores frecuentes":"1. Comprensión",
+  "Gramática":"1. Comprensión",
+  "Preposiciones":"1. Comprensión",
+
+  "Idioms":"2. Expresiones",
+  "Fixed expressions":"2. Expresiones",
+  "Collocations":"2. Expresiones",
+
+  "Comunicación":"3. Comunicación policial",
+  "Atención ciudadana":"3. Comunicación policial",
+  "Entrevista policial":"3. Comunicación policial",
+  "Radio policial":"3. Comunicación policial",
+
+  "Procedimiento":"4. Lenguaje técnico-policial",
+  "Documentación":"4. Lenguaje técnico-policial",
+  "Verbos policiales":"4. Lenguaje técnico-policial",
+  "Delitos":"4. Lenguaje técnico-policial",
+  "Personas":"4. Lenguaje técnico-policial",
+  "Investigación":"4. Lenguaje técnico-policial",
+  "Juicio":"4. Lenguaje técnico-policial",
+  "Prisión":"4. Lenguaje técnico-policial",
+  "Vocabulario extra":"4. Lenguaje técnico-policial",
+
+  "Tráfico":"5. Especialidades"
 };
 
 function secOf(q){
@@ -1941,15 +1959,11 @@ function secOf(q){
 }
 
 function shu(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
-function getQ(count=requestedCount,secs=selectedSections,start=requestedStart){
+function getQ(count=requestedCount,secs=selectedSections){
   const useSecs=Array.isArray(secs)?secs:[];
   const pool=useSecs.length?Q.filter(q=>useSecs.includes(secOf(q))):Q;
   const n=Math.min(Math.max(1,Number(count)||MAX_TEST_SIZE),MAX_TEST_SIZE,pool.length||Q.length);
   const src=pool.length?pool:Q;
-  if((Number(start)||1)>1){
-    const startIdx=Math.min(src.length-1,Math.max(0,(Number(start)||1)-1));
-    return [...src.slice(startIdx),...src.slice(0,startIdx)].slice(0,n);
-  }
   return shu(src).slice(0,n);
 }
 
@@ -1962,14 +1976,6 @@ function getRequestedCount(){
   return v;
 }
 
-function getRequestedStart(){
-  const el=document.getElementById("qStart");
-  const max=(selectedSections.length?Q.filter(q=>selectedSections.includes(secOf(q))).length:Q.length)||1;
-  const v=Math.min(max,Math.max(1,parseInt(el?.value||"1",10)||1));
-  if(el){el.max=max;el.value=v;}
-  return v;
-}
-
 function getCheckedSections(){
   return Array.from(document.querySelectorAll('.sec-check:checked')).map(i=>i.value);
 }
@@ -1979,7 +1985,6 @@ function startRandomMode(){
   checks.forEach(c=>{c.checked=false});
   requestedCount=getRequestedCount();
   selectedSections=[];
-  requestedStart=1;
   currentMode="random";
   rst();
 }
@@ -1987,7 +1992,6 @@ function startRandomMode(){
 function startCustomMode(){
   requestedCount=getRequestedCount();
   selectedSections=getCheckedSections();
-  requestedStart=getRequestedStart();
   currentMode="custom";
   rst();
 }
@@ -1995,10 +1999,9 @@ function startCustomMode(){
 function renderSectionFilters(){
   const box=document.getElementById('sectionsBox');
   if(!box)return;
-  const secs=[...new Set(Q.map(secOf))].sort((a,b)=>a.localeCompare(b,'es'));
+  const available=new Set(Q.map(secOf));
+  const secs=SEC_ORDER.filter(s=>available.has(s));
   box.innerHTML=secs.map((s,i)=>`<label class="sec-chip"><input class="sec-check" type="checkbox" value="${s}"> ${s}</label>`).join('');
-  const sIn=document.getElementById("qStart");
-  if(sIn){sIn.max=Q.length;}
 }
 
 function validateQ(){
@@ -2133,7 +2136,6 @@ function rRes(){
     total:t,
     pass,
     mode:currentMode==="random"?"Aleatorio total":"Personalizado",
-    start:requestedStart,
     sections:selectedSections.length?selectedSections.join(", "):"Todos los bloques"
   });
   const histH=renderFailedHistory();
@@ -2152,7 +2154,7 @@ function rRes(){
   </div>`;
 }
 
-function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ(requestedCount,selectedSections,requestedStart);upd();rQ()}
+function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ(requestedCount,selectedSections);upd();rQ()}
 renderSectionFilters();
 rst();
 

@@ -32,6 +32,11 @@ header p{color:#7aa3cc;font-size:12px;margin-top:4px}
 .f-btn{flex-shrink:0;padding:5px 13px;border-radius:20px;border:1.5px solid #22406e;background:transparent;color:#6a92bf;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.4px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .f-btn:hover{border-color:var(--gold);color:var(--gold)}
 .f-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.quick-actions{display:flex;justify-content:flex-end;margin:8px 0 10px}
+.quick-rand{border:1px solid rgba(232,184,75,.6);background:rgba(232,184,75,.12);color:#ffd98e;padding:7px 11px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.5px;cursor:pointer}
+.quick-rand:hover{background:rgba(232,184,75,.2)}
+
+
 main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
 .q-meta{text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a99;font-weight:600;margin-bottom:10px}
 .q-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.45);animation:fadeUp .3s ease}
@@ -131,6 +136,7 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
   <div class="stat"><div class="dot dot-err"></div>Errores <b id="sErr">0</b></div>
 </div>
 <main>
+  <div class="quick-actions"><button class="quick-rand" onclick="startRandomMode()">🎲 Generar test aleatorio</button></div>
   <div class="filter-outer"><div class="filter-wrap" id="fb"></div></div>
   <div class="q-meta" id="qm"></div>
   <div id="app"></div>
@@ -1483,10 +1489,99 @@ rows:[
 {ok:0,l:"D",t:"<strong>Pretended</strong> = fingir, no acción operativa."},
 ],note:"🎓 Estructura frecuente en reportes: <em>officers responded to the incident and secured the area</em>."}},
 
+
+{cat:"Investigación",type:"vocab",
+q:"The detective compared the ___ found on the window with the suspect's hands.",
+opts:["a) footage","b) fingerprints","c) verdict","d) sentence"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) fingerprints",
+rows:[
+{ok:0,l:"A",t:"<strong>Footage</strong> = grabación de vídeo; no se compara con manos."},
+{ok:1,l:"B",t:"<strong>Fingerprints</strong> ✓: huellas dactilares, prueba física típica en investigación."},
+{ok:0,l:"C",t:"<strong>Verdict</strong> = veredicto judicial, fase de juicio."},
+{ok:0,l:"D",t:"<strong>Sentence</strong> = condena impuesta por juez."},
+],note:"🎓 Pista: si hablan de ventana/superficie + sospechoso, suele ser <em>fingerprints</em>."}},
+
+{cat:"Investigación",type:"coll",
+q:"After interviewing witnesses, the officers decided to ___ to find more proof.",
+opts:["a) launch an inquiry","b) cook the books","c) break the ice","d) do time"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) launch an inquiry",
+rows:[
+{ok:1,l:"A",t:"<strong>Launch an inquiry</strong> ✓: iniciar una investigación formal."},
+{ok:0,l:"B",t:"<strong>Cook the books</strong> = falsear cuentas, idiom financiero."},
+{ok:0,l:"C",t:"<strong>Break the ice</strong> = romper tensión social."},
+{ok:0,l:"D",t:"<strong>Do time</strong> = cumplir condena en prisión."},
+],note:"🎓 Collocation clave de examen: <em>carry out an investigation / launch an inquiry</em>."}},
+
+{cat:"False Friends",type:"false",
+q:"Choose the correct meaning: 'Eventually, the suspect admitted everything.'",
+opts:["a) Eventualmente","b) Al final / finalmente","c) Posiblemente","d) De forma actual"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) Al final / finalmente",
+rows:[
+{ok:0,l:"A",t:"<strong>Eventualmente</strong> en español significa 'de forma ocasional', no equivalente aquí."},
+{ok:1,l:"B",t:"<strong>Eventually</strong> ✓ = finalmente, al final."},
+{ok:0,l:"C",t:"No expresa posibilidad, sino resultado final en el tiempo."},
+{ok:0,l:"D",t:"Confusión con <em>actual</em>, otro false friend."},
+],note:"🎓 False friend clásico en oposiciones: <em>eventually</em> ≠ eventualmente."}},
+
+{cat:"Reading",type:"gram",mode:"exam",
+q:"Interview question: ___",
+opts:["a) How many years do you have?","b) How old are you?","c) What years have you?","d) Which age are you?"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) How old are you?",
+rows:[
+{ok:0,l:"A",t:"Traducción literal del español; no natural en inglés."},
+{ok:1,l:"B",t:"<strong>How old are you?</strong> ✓ fórmula correcta para preguntar edad."},
+{ok:0,l:"C",t:"Estructura incorrecta en inglés."},
+{ok:0,l:"D",t:"No se usa <em>which age</em> en este contexto."},
+],note:"🎓 Error típico: evitar traducción palabra por palabra."}},
+
+{cat:"Reading",type:"gram",mode:"exam",
+q:"At reception, the officer asked: '___'",
+opts:["a) Can you spell your surname, please?","b) Spell me your surname","c) You can spell your surname?","d) Tell surname spell"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) Can you spell your surname, please?",
+rows:[
+{ok:1,l:"A",t:"<strong>Can you spell your surname, please?</strong> ✓ pregunta funcional natural y cortés."},
+{ok:0,l:"B",t:"Orden y estructura incorrectos."},
+{ok:0,l:"C",t:"Forma interrogativa poco natural para examen."},
+{ok:0,l:"D",t:"Frase gramaticalmente incompleta."},
+],note:"🎓 En entrevistas formales, usa estructuras corteses con <em>Can you... please?</em>."}},
+
+{cat:"Gramática",type:"gram",
+q:"Choose the correct sentence:",
+opts:["a) The suspect didn't knew anything.","b) The suspect didn't know anything.","c) The suspect don't knew anything.","d) The suspect not knew anything."],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The suspect didn't know anything.",
+rows:[
+{ok:0,l:"A",t:"Tras <em>didn't</em>, el verbo va en infinitivo: know."},
+{ok:1,l:"B",t:"<strong>Didn't + know</strong> ✓ estructura correcta en pasado negativo."},
+{ok:0,l:"C",t:"<em>Don't knew</em> mezcla tiempos incorrectamente."},
+{ok:0,l:"D",t:"Falta auxiliar correcto en negativo."},
+],note:"🎓 Regla de oro: <em>did/didn't + base verb</em>."}},
+
+{cat:"Juicio",type:"vocab",
+q:"In legal English, a general illegal act is a ___, while a minor violation is usually an ___",
+opts:["a) clue / exhibit","b) crime / offence","c) jail / prison","d) proof / evidence"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) crime / offence",
+rows:[
+{ok:0,l:"A",t:"<strong>Clue/exhibit</strong> son tipos de pruebas, no categorías legales generales."},
+{ok:1,l:"B",t:"<strong>Crime / offence</strong> ✓: crime = delito general; offence = infracción/violación legal (a menudo menor según contexto)."},
+{ok:0,l:"C",t:"<strong>Jail/prison</strong> son lugares de reclusión, no tipos de ilegalidad."},
+{ok:0,l:"D",t:"<strong>Proof/evidence</strong> son conceptos probatorios."},
+],note:"🎓 Diferencia útil para test: <em>crime</em> (general) vs <em>offence</em> (infracción)."}},
+
+{cat:"Collocations",type:"coll",
+q:"When the patrol saw the suspect running, they decided to ___ and then question him.",
+opts:["a) chase / pursue a suspect","b) throw in the towel","c) turn a blind eye","d) break the ice"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) chase / pursue a suspect",
+rows:[
+{ok:1,l:"A",t:"<strong>Chase / pursue a suspect</strong> ✓ colocación policial natural."},
+{ok:0,l:"B",t:"<strong>Throw in the towel</strong> = rendirse."},
+{ok:0,l:"C",t:"<strong>Turn a blind eye</strong> = mirar hacia otro lado."},
+{ok:0,l:"D",t:"<strong>Break the ice</strong> = iniciar conversación social."},
+],note:"🎓 Si hay persecución en contexto policial, piensa en <em>pursue/chase</em>."}},
+
 ];
 
-// ── STATE ──
 const SECS=[
+
   "Vocabulario policial",
   "Verbos policiales",
   "Collocations",
@@ -1525,11 +1620,22 @@ function secOf(q){
 function shu(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 function getQ(){
   const studyPool=Q.filter(q=>secOf(q)!=="Examen / Simulacro");
+  if(simN===-1){
+    const n=Math.min(Q.length,12+Math.floor(Math.random()*10));
+    return shu(Q).slice(0,n);
+  }
   const base=simN?studyPool:Q.filter(q=>secOf(q)===filt);
   const mixed=shu(base);
   return simN?mixed.slice(0,Math.min(simN,mixed.length)):mixed;
 }
+
 function cleanTxt(s){return String(s||"").replace(/<[^>]*>/g,"").replace(/\s+/g," ").trim()}
+
+function startRandomMode(){
+  simN=-1;
+  filt="Examen / Simulacro";
+  rst();
+}
 
 function validateQ(){
   const errs=[];
@@ -1562,7 +1668,13 @@ function buildF(){
     b.onclick=()=>{filt="Examen / Simulacro";simN=n;rst()};
     el.appendChild(b);
   });
+  const rb=document.createElement('button');
+  rb.className='f-btn'+(simN===-1?' active':'');
+  rb.textContent='🎲 Aleatorio PRO';
+  rb.onclick=()=>startRandomMode();
+  el.appendChild(rb);
 }
+
 
 function upd(){
   document.getElementById("sOk").textContent=okN;
@@ -1570,8 +1682,8 @@ function upd(){
   const t=qs.length,pct=t?Math.round((cur/t)*100):0;
   document.getElementById("pf").style.width=pct+"%";
   document.getElementById("sMid").textContent=cur<t?`Pregunta ${cur+1} de ${t}`:"Completado";
-  const mode=simN?`Simulacro ${simN} · `:"";
-  document.getElementById("qm").textContent=simN?`${mode}${t} preguntas mixtas (solo estudio)`:`Bloque: ${filt} · ${t} preguntas`;
+  const mode=simN>0?`Simulacro ${simN} · `:"";
+  document.getElementById("qm").textContent=simN===-1?`Aleatorio PRO · ${t} preguntas mixtas (todas las categorías)`:simN?`${mode}${t} preguntas mixtas (solo estudio)`:`Bloque: ${filt} · ${t} preguntas`;
 }
 
 function rQ(){

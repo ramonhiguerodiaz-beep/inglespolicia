@@ -160,6 +160,15 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
         <label for="qCount">Nº preguntas</label>
         <input class="ctrl-input" id="qCount" type="number" min="1" max="30" value="30">
       </div>
+      <div class="ctrl-block">
+        <label for="difficultyFilter">Dificultad</label>
+        <select class="ctrl-input" id="difficultyFilter">
+          <option value="all">Todas</option>
+          <option value="basic">Básico</option>
+          <option value="intermediate">Intermedio</option>
+          <option value="advanced">Avanzado</option>
+        </select>
+      </div>
       <button class="start-btn" onclick="startCustomMode()">🎯 Generar test</button>
       <button class="start-btn" onclick="startRandomMode()">🎲 Aleatorio total</button>
     </div>
@@ -1902,6 +1911,50 @@ rows:[
 {ok:0,l:"D",t:"No expresa autorización judicial."},
 ],note:"🎓 Collocations legales: <em>search warrant</em> / <em>arrest warrant</em>."}},
 
+{cat:"Paráfrasis",type:"coll",level:"basic",
+q:"In an emergency, officers must ___ citizens quickly from the building.",
+opts:["a) carry out","b) move out","c) get out","d) rule out"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) get out",
+rows:[
+{ok:0,l:"A",t:"<strong>Carry out</strong>: realizar (una tarea), no sacar personas de un lugar."},
+{ok:0,l:"B",t:"<strong>Move out</strong>: mudarse, normalmente de forma permanente. No encaja en evacuaciones urgentes."},
+{ok:1,l:"C",t:"<strong>Get out</strong> ✓: salir / sacar rápidamente. Frase de dos palabras muy usada en emergencias: <em>Get out now!</em>."},
+{ok:0,l:"D",t:"<strong>Rule out</strong>: descartar una hipótesis."},
+],note:"🎓 PARÁFRASIS · <em>evacuate immediately</em> = <em>get out now</em>. Frase corta y frecuente en instrucciones policiales."}},
+
+{cat:"Paráfrasis",type:"coll",level:"intermediate",
+q:"The detective checked the CCTV again to ___ any possible suspect.",
+opts:["a) rule out","b) bring in","c) go over","d) look after"],ans:0,
+exp:{h:"✓ Respuesta correcta: a) rule out",
+rows:[
+{ok:1,l:"A",t:"<strong>Rule out</strong> ✓: descartar. Frase de dos palabras clave en investigación: <em>rule out a suspect</em>."},
+{ok:0,l:"B",t:"<strong>Bring in</strong>: traer/detener para interrogar. No significa descartar."},
+{ok:0,l:"C",t:"<strong>Go over</strong>: revisar. Se acerca, pero no expresa la idea final de 'descartar'."},
+{ok:0,l:"D",t:"<strong>Look after</strong>: cuidar de alguien."},
+],note:"🎓 PARÁFRASIS · <em>exclude a suspect</em> = <em>rule out a suspect</em>. Añade este binomio al vocabulario técnico."}},
+
+{cat:"Paráfrasis",type:"coll",level:"intermediate",
+q:"We need to ___ the witness statement once more before sending the report.",
+opts:["a) set up","b) go over","c) back up","d) run into"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) go over",
+rows:[
+{ok:0,l:"A",t:"<strong>Set up</strong>: organizar/instalar. No significa revisar un documento."},
+{ok:1,l:"B",t:"<strong>Go over</strong> ✓: repasar/revisar con detalle. Muy útil para parafrasear <em>review</em> o <em>check carefully</em>."},
+{ok:0,l:"C",t:"<strong>Back up</strong>: apoyar o hacer copia de seguridad. No encaja en este contexto."},
+{ok:0,l:"D",t:"<strong>Run into</strong>: encontrarse con / chocar con un problema."},
+],note:"🎓 PARÁFRASIS · <em>review the statement</em> = <em>go over the statement</em>. Frase de dos palabras típica de examen."}},
+
+{cat:"Vocabulario extra",type:"vocab",level:"advanced",
+q:"The victim identified the suspect from a digital ___ produced by the forensic team.",
+opts:["a) mugshot","b) photofit","c) handcuffs","d) patrol"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) photofit",
+rows:[
+{ok:0,l:"A",t:"<strong>Mugshot</strong>: foto policial tomada tras la detención. No es un retrato compuesto."},
+{ok:1,l:"B",t:"<strong>Photofit</strong> ✓: retrato robot digital basado en la descripción de testigos. Término técnico útil en oposición."},
+{ok:0,l:"C",t:"<strong>Handcuffs</strong>: esposas."},
+{ok:0,l:"D",t:"<strong>Patrol</strong>: patrulla o patrullar."},
+],note:"🎓 VOCAB EXTRA · Términos que suelen faltar: <em>photofit</em>, <em>mugshot</em>, <em>bodycam footage</em>, <em>forensic unit</em>, <em>chain of custody</em>."}},
+
 
 ];
 
@@ -1914,6 +1967,7 @@ const TPILL={vocab:"pill-vocab",gram:"pill-gram",idiom:"pill-idiom",false:"pill-
 let qs=[],cur=0,okN=0,errN=0,cSt={},wrongQs=[];
 let selectedSections=[];
 let requestedCount=MAX_TEST_SIZE;
+let selectedDifficulty="all";
 let currentMode="custom";
 
 const SEC_ORDER=[
@@ -1942,6 +1996,7 @@ const CAT_TO_SEC={
   "Radio policial":"3. Comunicación policial",
 
   "Procedimiento":"4. Lenguaje técnico-policial",
+  "Paráfrasis":"4. Lenguaje técnico-policial",
   "Documentación":"4. Lenguaje técnico-policial",
   "Verbos policiales":"4. Lenguaje técnico-policial",
   "Delitos":"4. Lenguaje técnico-policial",
@@ -1959,9 +2014,18 @@ function secOf(q){
 }
 
 function shu(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
-function getQ(count=requestedCount,secs=selectedSections){
+function qLevel(q){
+  if(q.level)return q.level;
+  if(q.type==="read")return "advanced";
+  if(q.type==="vocab"||q.type==="coll")return "basic";
+  if(q.type==="idiom"||q.type==="false")return "intermediate";
+  return "intermediate";
+}
+
+function getQ(count=requestedCount,secs=selectedSections,diff=selectedDifficulty){
   const useSecs=Array.isArray(secs)?secs:[];
-  const pool=useSecs.length?Q.filter(q=>useSecs.includes(secOf(q))):Q;
+  const bySection=useSecs.length?Q.filter(q=>useSecs.includes(secOf(q))):Q;
+  const pool=diff&&diff!=="all"?bySection.filter(q=>qLevel(q)===diff):bySection;
   const n=Math.min(Math.max(1,Number(count)||MAX_TEST_SIZE),MAX_TEST_SIZE,pool.length||Q.length);
   const src=pool.length?pool:Q;
   return shu(src).slice(0,n);
@@ -1980,11 +2044,16 @@ function getCheckedSections(){
   return Array.from(document.querySelectorAll('.sec-check:checked')).map(i=>i.value);
 }
 
+function getDifficulty(){
+  return document.getElementById("difficultyFilter")?.value||"all";
+}
+
 function startRandomMode(){
   const checks=document.querySelectorAll('.sec-check');
   checks.forEach(c=>{c.checked=false});
   requestedCount=getRequestedCount();
   selectedSections=[];
+  selectedDifficulty=getDifficulty();
   currentMode="random";
   rst();
 }
@@ -1992,6 +2061,7 @@ function startRandomMode(){
 function startCustomMode(){
   requestedCount=getRequestedCount();
   selectedSections=getCheckedSections();
+  selectedDifficulty=getDifficulty();
   currentMode="custom";
   rst();
 }
@@ -2024,7 +2094,8 @@ function upd(){
   document.getElementById("pf").style.width=pct+"%";
   document.getElementById("sMid").textContent=cur<t?`Pregunta ${cur+1} de ${t}`:"Completado";
   const scope=selectedSections.length?`Apartados: ${selectedSections.join(", ")}`:"Aleatorio global";
-  document.getElementById("qm").textContent=`${scope} · ${t} preguntas`;
+  const diffLabel={all:"todas las dificultades",basic:"básico",intermediate:"intermedio",advanced:"avanzado"}[selectedDifficulty]||"todas las dificultades";
+  document.getElementById("qm").textContent=`${scope} · Dificultad: ${diffLabel} · ${t} preguntas`;
 }
 
 function rQ(){
@@ -2039,7 +2110,7 @@ function rQ(){
   const eR=q.exp.rows.map(r=>`<div class="exp-row"><div class="rl ${r.ok?'rl-ok':'rl-err'}">${r.ok?'✓':'✗'} ${r.l}</div><div class="exp-row-text">${r.t}</div></div>`).join("");
   const nH=q.exp.note?`<div class="acad-note">${q.exp.note}</div>`:"";
   app.innerHTML=`<div class="q-card">
-  <div class="q-head"><div class="q-num">${cur+1}</div><div><div class="q-cat-label">${q.cat}</div></div><div class="q-type-pill ${TPILL[q.type]||'pill-vocab'}">${TLAB[q.type]||''}</div></div>
+  <div class="q-head"><div class="q-num">${cur+1}</div><div><div class="q-cat-label">${q.cat} · ${qLevel(q)==='basic'?'Básico':qLevel(q)==='advanced'?'Avanzado':'Intermedio'}</div></div><div class="q-type-pill ${TPILL[q.type]||'pill-vocab'}">${TLAB[q.type]||''}</div></div>
   <div class="q-body"><div class="q-sentence">${sent}</div>${q.ctx?`<div class="q-ctx">${q.ctx}</div>`:""} ${q.hint?`<div class="q-hint">${q.hint}</div>`:""}<div class="q-inst">Elige la opción correcta →</div></div>
   <div class="opts">${oH}</div>
   <div class="exp-box" id="eb"><div class="exp-verdict" id="ev"></div><div class="exp-ans">${q.exp.h}</div><div class="exp-body">${eR}${nH}</div></div>
@@ -2154,7 +2225,7 @@ function rRes(){
   </div>`;
 }
 
-function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ(requestedCount,selectedSections);upd();rQ()}
+function rst(){cur=0;okN=0;errN=0;cSt={};wrongQs=[];validateQ();qs=getQ(requestedCount,selectedSections,selectedDifficulty);upd();rQ()}
 renderSectionFilters();
 rst();
 

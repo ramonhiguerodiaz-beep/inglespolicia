@@ -187,27 +187,6 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
       <button class="start-btn" onclick="startRandomMode()">🎲 Aleatorio total</button>
     </div>
   </section>
-  <section class="study-panel" aria-label="Preguntas de tiempos verbales">
-    <h2>📝 Sección de preguntas: tiempos verbales</h2>
-    <p>Practica únicamente con preguntas de tiempos verbales en contexto policial.</p>
-    <div class="study-grid">
-      <article class="study-card full">
-        <span class="study-tag">Solo preguntas</span>
-        <ul>
-          <li>1) The suspect ___ (run) away when the officer arrived.</li>
-          <li>2) While the witness ___ (wait) outside, two officers entered the building.</li>
-          <li>3) By the time the patrol got there, the thief ___ (escape).</li>
-          <li>4) She ___ (live) in this neighborhood since 2018.</li>
-          <li>5) They ___ (not / see) the suspect before that night.</li>
-          <li>6) The victim ___ (talk) to the police when her phone rang.</li>
-          <li>7) We ___ (already / check) the CCTV before the report came in.</li>
-          <li>8) He ___ (drive) too fast when the accident happened.</li>
-          <li>9) I ___ (never / be) to that police station before.</li>
-          <li>10) When the officers knocked, the suspect ___ (hide) in the bathroom.</li>
-        </ul>
-      </article>
-    </div>
-  </section>
   <div class="q-meta" id="qm"></div>
   <div id="app"></div>
 </main>
@@ -2234,6 +2213,62 @@ rows:[
 {ok:0,l:"D",t:"<strong>Run into</strong>: encontrarse con / chocar con un problema."},
 ],note:"🎓 PARÁFRASIS · <em>review the statement</em> = <em>go over the statement</em>. Frase de dos palabras típica de examen."}},
 
+
+
+{cat:"Tiempos verbales",type:"gram",level:"intermediate",
+q:"The suspect ___ away when the officer arrived.",
+opts:["a) run","b) was running","c) has run","d) runs"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) was running",
+rows:[
+{ok:0,l:"A",t:"<strong>Run</strong>: infinitivo/base, falta conjugación."},
+{ok:1,l:"B",t:"<strong>Was running</strong> ✓: pasado continuo para acción en progreso interrumpida por pasado simple (<em>arrived</em>)."},
+{ok:0,l:"C",t:"<strong>Has run</strong>: present perfect, no encaja con referencia temporal cerrada en pasado."},
+{ok:0,l:"D",t:"<strong>Runs</strong>: presente simple."},
+],note:"🎓 Patrón clave: <em>Past Continuous + when + Past Simple</em>."}},
+
+{cat:"Tiempos verbales",type:"gram",level:"intermediate",
+q:"By the time the patrol arrived, the thief ___ .",
+opts:["a) escaped","b) has escaped","c) had escaped","d) was escaping"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) had escaped",
+rows:[
+{ok:0,l:"A",t:"<strong>Escaped</strong>: pasado simple, pero falta marcar anterioridad respecto a otro pasado."},
+{ok:0,l:"B",t:"<strong>Has escaped</strong>: present perfect, no combina con marco pasado cerrado."},
+{ok:1,l:"C",t:"<strong>Had escaped</strong> ✓: past perfect para la acción que ocurrió antes de <em>arrived</em>."},
+{ok:0,l:"D",t:"<strong>Was escaping</strong>: acción en progreso, no la idea de acción completada previa."},
+],note:"🎓 Señal típica: <em>by the time + past</em> suele pedir <em>past perfect</em>."}},
+
+{cat:"Tiempos verbales",type:"gram",level:"basic",
+q:"She ___ in this neighborhood since 2018.",
+opts:["a) lives","b) lived","c) has lived","d) is living"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) has lived",
+rows:[
+{ok:0,l:"A",t:"<strong>Lives</strong>: presente simple, no expresa duración desde el pasado hasta ahora."},
+{ok:0,l:"B",t:"<strong>Lived</strong>: pasado simple, acción cerrada."},
+{ok:1,l:"C",t:"<strong>Has lived</strong> ✓: present perfect con <em>since</em> para continuidad hasta el presente."},
+{ok:0,l:"D",t:"<strong>Is living</strong>: posible temporalmente, pero con <em>since 2018</em> se espera present perfect."},
+],note:"🎓 Regla rápida: <em>since + punto inicial</em> → normalmente <em>present perfect</em>."}},
+
+{cat:"Tiempos verbales",type:"gram",level:"intermediate",
+q:"We ___ the CCTV before the report came in.",
+opts:["a) already checked","b) had already checked","c) have already checked","d) were already checking"],ans:1,
+exp:{h:"✓ Respuesta correcta: b) had already checked",
+rows:[
+{ok:0,l:"A",t:"Falta auxiliar para construir correctamente el tiempo verbal."},
+{ok:1,l:"B",t:"<strong>Had already checked</strong> ✓: past perfect para acción completada antes de otro momento pasado."},
+{ok:0,l:"C",t:"<strong>Have already checked</strong>: present perfect, no encaja con <em>came in</em> (pasado cerrado)."},
+{ok:0,l:"D",t:"<strong>Were already checking</strong>: progreso, pero el contexto pide acción previa ya realizada."},
+],note:"🎓 <em>Before + past simple</em> suele activar <em>past perfect</em>."}},
+
+{cat:"Tiempos verbales",type:"gram",level:"basic",
+q:"When the officers knocked, the suspect ___ in the bathroom.",
+opts:["a) hides","b) has hidden","c) was hiding","d) hid"],ans:2,
+exp:{h:"✓ Respuesta correcta: c) was hiding",
+rows:[
+{ok:0,l:"A",t:"<strong>Hides</strong>: presente simple."},
+{ok:0,l:"B",t:"<strong>Has hidden</strong>: present perfect, sin referencia al presente."},
+{ok:1,l:"C",t:"<strong>Was hiding</strong> ✓: pasado continuo para describir la situación en ese momento del pasado."},
+{ok:0,l:"D",t:"<strong>Hid</strong>: pasado simple posible en otros contextos, pero aquí se enfatiza estado/acción en curso al llamar."},
+],note:"🎓 Con <em>when + acción puntual</em>, usa <em>past continuous</em> para el fondo de la escena."}},
 {cat:"Vocabulario extra",type:"vocab",level:"advanced",
 q:"The victim identified the suspect from a digital ___ produced by the forensic team.",
 opts:["a) mugshot","b) photofit","c) handcuffs","d) patrol"],ans:1,
@@ -2265,7 +2300,8 @@ const SEC_ORDER=[
   "2. Expresiones",
   "3. Comunicación policial",
   "4. Lenguaje técnico-policial",
-  "5. Especialidades"
+  "5. Especialidades",
+  "6. Tiempos verbales"
 ];
 
 const CAT_TO_SEC={
@@ -2296,7 +2332,8 @@ const CAT_TO_SEC={
   "Prisión":"4. Lenguaje técnico-policial",
   "Vocabulario extra":"4. Lenguaje técnico-policial",
 
-  "Tráfico":"5. Especialidades"
+  "Tráfico":"5. Especialidades",
+  "Tiempos verbales":"6. Tiempos verbales"
 };
 
 function secOf(q){

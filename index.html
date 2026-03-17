@@ -50,6 +50,20 @@ header p{color:#7aa3cc;font-size:12px;margin-top:4px}
 .history-pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin-left:6px}
 .hp-pass{background:#e8f6ee;color:#1e7e4a;border:1px solid #a3d9b8}
 .hp-fail{background:#fdecea;color:#b52b27;border:1px solid #f0b0ad}
+.study-panel{background:#fff;border:1px solid #cdd5e0;border-radius:12px;padding:16px;margin:0 0 14px;box-shadow:0 8px 26px rgba(5,19,40,.2)}
+.study-panel h2{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:20px;color:#0f2347;letter-spacing:.6px;margin-bottom:8px}
+.study-panel p{font-size:13px;color:#344861;line-height:1.5;margin-bottom:10px}
+.study-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.study-card{border:1px solid #d8e1ee;border-radius:10px;padding:11px;background:#f8fbff}
+.study-card h3{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:14px;letter-spacing:.7px;color:#1a3a6b;text-transform:uppercase;margin-bottom:6px}
+.study-card ul{padding-left:18px;display:grid;gap:5px}
+.study-card li{font-size:13px;color:#1a2438;line-height:1.45}
+.study-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;background:#e8f1ff;color:#1a3a6b;border:1px solid #b9cdeb;border-radius:999px;padding:3px 8px;margin-bottom:6px}
+
+@media (min-width:760px){
+  .study-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .study-card.full{grid-column:1/-1}
+}
 
 main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
 .q-meta{text-align:right;font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;font-size:12px;color:#4a6a99;font-weight:600;margin-bottom:10px}
@@ -171,6 +185,55 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
       </div>
       <button class="start-btn" onclick="startCustomMode()">🎯 Generar test</button>
       <button class="start-btn" onclick="startRandomMode()">🎲 Aleatorio total</button>
+    </div>
+  </section>
+  <section class="study-panel" aria-label="Guía rápida de tiempos verbales">
+    <h2>📚 Apartado de tiempos verbales</h2>
+    <p>Resumen táctico para elegir el tiempo verbal correcto en contexto policial sin dudar.</p>
+    <div class="study-grid">
+      <article class="study-card">
+        <span class="study-tag">1 · Tiempos clave</span>
+        <ul>
+          <li><strong>Past Simple (hechos puntuales):</strong> acciones completas y terminadas. Ej.: <em>The suspect fled the scene.</em></li>
+          <li><strong>Past Continuous (escena en movimiento):</strong> acción en progreso o contexto antes de interrupción. Ej.: <em>The tourists were drinking alcohol.</em></li>
+          <li><strong>Past Perfect (antecedente):</strong> el “pasado del pasado”, lo que ocurrió antes de que llegara la policía. Ej.: <em>The suspect had escaped before the police arrived.</em></li>
+          <li><strong>Present Perfect (acciones continuas):</strong> empezó en el pasado y sigue vigente. Ej.: <em>I've lived here since I was a child.</em></li>
+        </ul>
+      </article>
+
+      <article class="study-card">
+        <span class="study-tag">2 · Palabras clave</span>
+        <ul>
+          <li><strong>Since / For</strong> → <strong>Present Perfect</strong>. <em>Since</em> = punto concreto; <em>For</em> = duración.</li>
+          <li><strong>Already / Just / Never / By the time</strong> → señal directa de <strong>Past Perfect</strong>.</li>
+          <li><strong>While</strong> → suele activar <strong>Past Continuous</strong> para describir la escena.</li>
+          <li><strong>When</strong> → normalmente introduce <strong>Past Simple</strong> como acción que interrumpe.</li>
+        </ul>
+      </article>
+
+      <article class="study-card">
+        <span class="study-tag">3 · Vocabulario táctico 🚔</span>
+        <ul>
+          <li><strong>Flee / Fled</strong>: huir.</li>
+          <li><strong>Steal / Stole</strong>: robar.</li>
+          <li><strong>Shoot / Shot</strong>: disparar.</li>
+          <li><strong>Catch / Caught</strong>: atrapar.</li>
+        </ul>
+      </article>
+
+      <article class="study-card">
+        <span class="study-tag">4 · Trampas de examen ❌</span>
+        <ul>
+          <li><strong>Used to</strong>: en negativa, siempre <strong>didn't use to</strong> (nunca <em>didn't used to</em>).</li>
+          <li><strong>Remind vs Remember</strong>: <em>Remind</em> = recordar algo a otra persona; <em>Remember</em> = acordarte tú mismo.</li>
+          <li><strong>Voz pasiva</strong>: <strong>was/were + participio</strong> (3.ª columna). Ej.: <em>was written</em>, nunca <em>was wrote</em>.</li>
+        </ul>
+      </article>
+
+      <article class="study-card full">
+        <h3>Regla ultra-rápida</h3>
+        <p>Si hay <strong>interrupción</strong>, piensa en <strong>Past Continuous + when + Past Simple</strong>. Si hay una acción anterior a otra en pasado, usa <strong>Past Perfect</strong> para la más antigua.</p>
+      </article>
     </div>
   </section>
   <div class="q-meta" id="qm"></div>

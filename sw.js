@@ -1,9 +1,14 @@
-const CACHE_NAME = 'b1-policia-v2';
+const CACHE_NAME = 'b1-policia-v3';
 const APP_SHELL = [
   './',
   './index.html',
   './h2d-logo.svg',
-  './manifest.webmanifest'
+  './manifest.webmanifest',
+  './styles.css',
+  './app.js',
+  './guia_maestra.json',
+  './preguntas.json',
+  './schema.md'
 ];
 
 self.addEventListener('install', (event) => {

@@ -1,5 +1,8 @@
 from __future__ import annotations
-import json, re
+
+import json
+import re
+from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,11 +37,33 @@ KEYWORDS = {
     'Exámenes / sets / simulacros': ['set 01', 'set 02', 'set 03', 'canaria examen', 'local examen'],
 }
 
+SPANISH_HINTS = {
+    'al', 'alguien', 'algo', 'antes', 'bajo', 'cámara', 'carterismo', 'caso', 'cerca', 'citación', 'claro', 'comisaría',
+    'con', 'condena', 'culpable', 'custodia', 'delito', 'detener', 'detenido', 'dinero', 'documentos', 'evidencia',
+    'expresión', 'falso', 'grave', 'hecho', 'huellas', 'huir', 'ilegal', 'impune', 'infracción', 'interrogar', 'juicio',
+    'ley', 'menor', 'multa', 'oficialmente', 'pistas', 'prisión', 'prueba', 'pruebas', 'real', 'rehén', 'resolver',
+    'retener', 'retirar', 'robar', 'robo', 'seguridad', 'sentencia', 'seguir', 'señal', 'sospechoso', 'suceso',
+    'testigo', 'tienda', 'vigilante', 'verdadero', 'violencia', 'culpa', 'acusado', 'agentes', 'escena', 'crimen',
+    'detención', 'registrar', 'rescate', 'pregunta', 'respuesta', 'significado', 'significa', 'explica', 'explicar',
+    'pasado', 'presente', 'hábito', 'duración', 'momento', 'lugar', 'mientras', 'aunque', 'porque', 'resultado',
+}
 
-def slug(s: str) -> str:
-    s = s.lower().strip()
-    s = re.sub(r'[^a-z0-9áéíóúüñ]+', '-', s)
-    return s.strip('-') or 'item'
+ENGLISH_ALLOWLIST = {
+    'a', 'an', 'and', 'arrest', 'assistant', 'away', 'bail', 'bank', 'be', 'been', 'break', 'broken', 'by', 'camera',
+    'case', 'caught', 'charge', 'clue', 'crime', 'criminal', 'cross', 'custody', 'evidence', 'false', 'file', 'follow',
+    'for', 'gather', 'get', 'guard', 'handed', 'have', 'identity', 'incident', 'into', 'jail', 'law', 'lead', 'manager',
+    'murder', 'offence', 'officer', 'officers', 'on', 'out', 'piece', 'place', 'police', 'proof', 'question', 'red',
+    'report', 'scene', 'search', 'security', 'someone', 'station', 'suspect', 'take', 'the', 'their', 'under', 'with',
+    'witness', 'word', 'words', 'work', 'working', 'follow', 'crack', 'break', 'actual', 'crime', 'felony', 'misdemeanor',
+    'summons', 'book', 'press', 'charges', 'footage', 'shopping', 'center', 'store', 'pickpocketing', 'mugging', 'burglary',
+    'sentence', 'penalty', 'ruling', 'security', 'camera', 'cctv', 'crime', 'scene', 'police', 'station', 'assistant',
+}
+
+
+def slug(value: str) -> str:
+    value = value.lower().strip()
+    value = re.sub(r'[^a-z0-9áéíóúüñ]+', '-', value)
+    return value.strip('-') or 'item'
 
 
 def normalize_heading(text: str) -> str:
@@ -47,9 +72,9 @@ def normalize_heading(text: str) -> str:
 
 def map_section(stack: list[str], block: str) -> str:
     hay = ' '.join(stack + [block]).lower()
-    for sec, keys in KEYWORDS.items():
-        if any(k in hay for k in keys):
-            return sec
+    for section, keys in KEYWORDS.items():
+        if any(key in hay for key in keys):
+            return section
     return 'Reading y Paráfrasis'
 
 
@@ -61,11 +86,11 @@ def kind_for(stack: list[str], block: str) -> str:
         return 'exam_item'
     if 'incorrecto correcto' in text or 'error típico' in text or 'errores' in text:
         return 'mistake_note'
-    if any(x in text for x in ['regla rápida', 'estructura', 'cuándo', 'uso (es)', 'trampas', 'pistas rápidas']):
+    if any(value in text for value in ['regla rápida', 'estructura', 'cuándo', 'uso (es)', 'trampas', 'pistas rápidas']):
         return 'grammar_rule'
-    if any(x in text for x in ['model answer', 'respuesta modelo']):
+    if any(value in text for value in ['model answer', 'respuesta modelo']):
         return 'model_answer'
-    if any(x in text for x in ['coletilla', 'expresión', 'palabra', 'significado', 'sinónimos', 'fixed expression']):
+    if any(value in text for value in ['coletilla', 'expresión', 'palabra', 'significado', 'sinónimos', 'fixed expression']):
         return 'reference'
     return 'mini_lesson'
 
@@ -88,115 +113,261 @@ def block_type(kind: str, block: str) -> str:
 
 
 def clean_block(lines: list[str]) -> str:
-    out = []
+    cleaned = []
     for line in lines:
         if line.strip().startswith('<!--'):
             continue
-        out.append(line.rstrip())
-    text = '\n'.join(out).strip()
-    text = re.sub(r'\n{3,}', '\n\n', text)
-    return text.strip()
+        cleaned.append(line.rstrip())
+    text = '\n'.join(cleaned).strip()
+    return re.sub(r'\n{3,}', '\n\n', text).strip()
 
 
 def parse_blocks(lines: list[str]):
     blocks = []
-    stack: list[tuple[int,str,int]] = []
-    buf: list[str] = []
+    stack: list[tuple[int, str, int]] = []
+    buffer: list[str] = []
     start_line = 1
 
     def flush(end_line: int):
-        nonlocal buf, start_line
-        text = clean_block(buf)
+        nonlocal buffer, start_line
+        text = clean_block(buffer)
         if text:
-            headings = [h for _, h, _ in stack]
             blocks.append({
-                'headings': headings.copy(),
+                'headings': [heading for _, heading, _ in stack],
                 'content': text,
                 'line_start': start_line,
                 'line_end': end_line,
             })
-        buf = []
+        buffer = []
         start_line = end_line + 1
 
-    for idx, line in enumerate(lines, 1):
+    for index, line in enumerate(lines, 1):
         if re.match(r'^#{1,6} ', line):
-            flush(idx - 1)
+            flush(index - 1)
             level = len(line) - len(line.lstrip('#'))
             heading = normalize_heading(line)
             while stack and stack[-1][0] >= level:
                 stack.pop()
-            stack.append((level, heading, idx))
-            start_line = idx
+            stack.append((level, heading, index))
+            start_line = index
         else:
-            buf.append(line)
+            buffer.append(line)
     flush(len(lines))
     return blocks
 
 
-def extract_questions_from_bullets(lines: list[str]):
+def compact_text(text: str) -> str:
+    return re.sub(r'\s+', ' ', str(text or '')).strip()
+
+
+def make_choice_objects(options: list[str]) -> list[dict[str, str]]:
+    letters = ['a', 'b', 'c', 'd']
+    return [{'key': letters[index], 'label': option} for index, option in enumerate(options[:4])]
+
+
+def build_question_item(*, item_id: str, section: str, subsection: str, qtype: str, title: str, prompt: str,
+                        choices: list[dict[str, str]], answer_index: int, explanation: str, source_block: str,
+                        difficulty: str = 'intermediate', tags: list[str] | None = None, reading_id: str | None = None):
+    answer = f"{chr(97 + answer_index)}) {choices[answer_index]['label']}" if choices else ''
+    return {
+        'id': item_id,
+        'section': section,
+        'subsection': subsection,
+        'kind': 'question',
+        'type': qtype,
+        'title': title,
+        'prompt': prompt,
+        'content_es': prompt,
+        'content_en': '',
+        'choices': choices,
+        'answer': answer,
+        'acceptable_answers': [answer, choices[answer_index]['key']] if choices else [],
+        'model_answer': '',
+        'bad_answers': [],
+        'explanation_es': explanation,
+        'examples': [],
+        'mistakes': [],
+        'difficulty': difficulty,
+        'tags': tags or [],
+        'source_block': source_block,
+        **({'reading_id': reading_id} if reading_id else {}),
+    }
+
+
+def looks_spanish_token(token: str) -> bool:
+    cleaned = token.strip('.,;:()[]¿?¡!*/').lower()
+    if not cleaned:
+        return False
+    if any(char in cleaned for char in 'áéíóúñü'):
+        return True
+    if cleaned in SPANISH_HINTS:
+        return True
+    if cleaned in ENGLISH_ALLOWLIST:
+        return False
+    if cleaned.endswith(('ción', 'sión', 'mente', 'dad', 'tad', 'ario', 'aria', 'ez', 'eza', 'ado', 'ada', 'idos', 'idas', 'ismo', 'ista')):
+        return True
+    return False
+
+
+def split_term_definition(text: str) -> tuple[str, str]:
+    cleaned = compact_text(re.sub(r'^[*\-]\s*', '', text))
+    cleaned = re.split(r'\b(?:What this|It means|This expression|Model answer|Example:|Error típico|Clave:|Correcta:|Incorrecta:)\b', cleaned)[0].strip()
+    cleaned = re.split(r'\s[*][A-Za-z]', cleaned)[0].strip()
+    tokens = cleaned.split()
+    if len(tokens) < 2:
+        return cleaned, ''
+
+    boundary = None
+    for index in range(1, min(len(tokens), 8)):
+        if looks_spanish_token(tokens[index]):
+            boundary = index
+            break
+    if boundary is None:
+        boundary = 1
+
+    term = compact_text(' '.join(tokens[:boundary]))
+    definition = compact_text(' '.join(tokens[boundary:]))
+    return term, definition
+
+
+def extract_definition_questions(lines: list[str]) -> list[dict]:
+    parsed_entries = []
+    current_headings: list[str] = []
+
+    for line_number, raw_line in enumerate(lines, 1):
+        line = raw_line.rstrip()
+        if re.match(r'^#{1,6} ', line):
+            heading = normalize_heading(line)
+            level = len(line) - len(line.lstrip('#'))
+            current_headings = current_headings[:max(level - 1, 0)]
+            current_headings.append(heading)
+            continue
+
+        if not line.lstrip().startswith('*'):
+            continue
+
+        section = map_section(current_headings, line)
+        if section == 'Exámenes / sets / simulacros':
+            continue
+
+        term, definition = split_term_definition(line)
+        if not term or not definition:
+            continue
+
+        subsection = current_headings[-1] if current_headings else section
+        parsed_entries.append({
+            'term': term,
+            'definition': definition,
+            'section': section,
+            'subsection': subsection,
+            'line_number': line_number,
+            'raw': compact_text(line),
+        })
+
+    by_bucket: dict[tuple[str, str], list[dict]] = defaultdict(list)
+    for entry in parsed_entries:
+        by_bucket[(entry['section'], entry['subsection'])].append(entry)
+
     questions = []
-    current = None
-    current_section = None
-    for idx, line in enumerate(lines, 1):
-        low = line.lower().strip()
-        if line.startswith('#'):
-            current_section = normalize_heading(line)
-        if low.startswith('*'):
-            text = line.lstrip('*').strip()
-            if not text:
+    for (section, subsection), entries in by_bucket.items():
+        for index, entry in enumerate(entries):
+            distractor_pool = [candidate['term'] for candidate in entries if candidate['term'] != entry['term']]
+            if len(distractor_pool) < 3:
+                distractor_pool.extend([
+                    candidate['term']
+                    for candidate in parsed_entries
+                    if candidate['section'] == section and candidate['term'] != entry['term'] and candidate['term'] not in distractor_pool
+                ])
+            distractors = distractor_pool[:3]
+            if len(distractors) < 3:
                 continue
-            sec = map_section([current_section or ''], text)
-            qid = f"q-{slug(sec)}-{idx}"
-            questions.append({
-                'id': qid,
-                'section': sec,
-                'subsection': current_section or sec,
-                'kind': 'question',
-                'type': 'translation_choice' if sec != 'Verbos irregulares y regulares policiales' else 'fill_in_the_blank',
-                'title': f'Práctica derivada: {text.split()[0]}',
-                'prompt': f"Usa este elemento del documento en contexto o identifica su significado: {text}",
-                'content_es': text,
-                'content_en': text,
-                'answer': text.split(' ')[0],
-                'acceptable_answers': [text.split(' ')[0]],
-                'model_answer': f"Example: {text.split(' ')[0]} can be used correctly in a police/B1 context.",
-                'bad_answers': [],
-                'explanation_es': 'Ejercicio derivado automáticamente a partir de un elemento explícito del documento maestro. Se conserva el elemento original y se invita a usarlo o reconocerlo en contexto.',
-                'examples': [text],
-                'mistakes': [],
-                'difficulty': 'intermediate',
-                'tags': [slug(sec), 'derived-from-master'],
-                'source_block': f'ingles-definitivo-maestro.md:{idx}',
-                'original_phrase': text,
-                'corrected_phrase': text,
-            })
+
+            options = [entry['term'], *distractors]
+            choices = make_choice_objects(options)
+            prompt = f"¿Qué expresión o término encaja mejor con esta idea? {entry['definition']}"
+            questions.append(build_question_item(
+                item_id=f"def-{slug(section)}-{slug(subsection)}-{index + 1}",
+                section=section,
+                subsection=subsection,
+                qtype='multiple_choice',
+                title=f'{subsection} · definición',
+                prompt=prompt,
+                choices=choices,
+                answer_index=0,
+                explanation=f"Elemento derivado directamente del documento maestro: {entry['raw']}",
+                source_block=f'ingles-definitivo-maestro.md:{entry["line_number"]}',
+                tags=[slug(section), 'derived-definition'],
+            ))
     return questions
 
 
-def extract_exam_items(text: str):
+def extract_grammar_examples(lines: list[str]) -> list[dict]:
+    questions = []
+    current_headings: list[str] = []
+
+    for line_number, raw_line in enumerate(lines, 1):
+        line = compact_text(raw_line)
+        if re.match(r'^#{1,6} ', raw_line):
+            heading = normalize_heading(raw_line)
+            level = len(raw_line) - len(raw_line.lstrip('#'))
+            current_headings = current_headings[:max(level - 1, 0)]
+            current_headings.append(heading)
+            continue
+
+        match = re.search(r'A:\s*(.+?)\s+N:\s*(.+?)\s+Q:\s*(.+)', line)
+        if not match:
+            continue
+
+        affirmative, negative, interrogative = [compact_text(group) for group in match.groups()]
+        section = map_section(current_headings, line)
+        subsection = current_headings[-1] if current_headings else section
+        title = subsection if subsection != section else 'Gramática'
+
+        prompts = [
+            ('affirmative', '¿Cuál es el ejemplo afirmativo correcto según el documento?', affirmative, [affirmative, negative, interrogative]),
+            ('negative', '¿Cuál es el ejemplo negativo correcto según el documento?', negative, [negative, affirmative, interrogative]),
+            ('question', '¿Cuál es la pregunta correcta según el documento?', interrogative, [interrogative, affirmative, negative]),
+        ]
+
+        for offset, (label, prompt, answer, options) in enumerate(prompts, 1):
+            questions.append(build_question_item(
+                item_id=f"grammar-{slug(subsection)}-{line_number}-{offset}",
+                section='Tiempos verbales y gramática',
+                subsection=subsection,
+                qtype='grammar_choice',
+                title=f'{title} · {label}',
+                prompt=prompt,
+                choices=make_choice_objects(options),
+                answer_index=0,
+                explanation=f"Ejemplo A/N/Q conservado del documento maestro. Línea original: {line}",
+                source_block=f'ingles-definitivo-maestro.md:{line_number}',
+                tags=['grammar', slug(subsection), label],
+            ))
+    return questions
+
+
+def extract_exam_items(text: str) -> list[dict]:
     items = []
     set_pattern = re.compile(r'## (Set 0[123].*?)(?=\n## |\Z)', re.S)
-    for m in set_pattern.finditer(text):
-        title = m.group(1).strip()
-        body = m.group(0)
-        q_matches = list(re.finditer(r'(?:^|\n)(?:-\s*)?(\d+)\)\s*(.*?)(?=(?:\n(?:-\s*)?\d+\)|\Z))', body, re.S))
-        for qm in q_matches:
-            num = qm.group(1)
-            chunk = qm.group(2).strip()
+    for match in set_pattern.finditer(text):
+        title = compact_text(match.group(1))
+        body = match.group(0)
+        question_matches = list(re.finditer(r'(?:^|\n)(?:-\s*)?(\d+)\)\s*(.*?)(?=(?:\n(?:-\s*)?\d+\)|\Z))', body, re.S))
+        for question_match in question_matches:
+            number = question_match.group(1)
+            chunk = compact_text(question_match.group(2))
             answer = ''
-            am = re.search(r'Respuesta\s+correcta:\s*(.+?)(?:\n|$)', chunk, re.I)
-            if not am:
-                am = re.search(r'Respuesta correcta:\s*(.+?)(?:\n|$)', chunk, re.I)
-            if am:
-                answer = am.group(1).strip()
+            answer_match = re.search(r'Respuesta\s+correcta:\s*(.+?)(?:\s+Explicación|\n|$)', chunk, re.I)
+            if answer_match:
+                answer = compact_text(answer_match.group(1))
             items.append({
-                'id': f"exam-{slug(title)}-{num}",
+                'id': f"exam-{slug(title)}-{number}",
                 'section': 'Exámenes / sets / simulacros',
                 'subsection': title,
                 'kind': 'exam_item',
                 'type': 'multiple_choice',
-                'title': f'{title} · Pregunta {num}',
-                'prompt': chunk.split('###')[0].strip(),
+                'title': f'{title} · Pregunta {number}',
+                'prompt': chunk,
                 'content_es': chunk,
                 'content_en': '',
                 'choices': [],
@@ -204,7 +375,7 @@ def extract_exam_items(text: str):
                 'acceptable_answers': [answer] if answer else [],
                 'model_answer': '',
                 'bad_answers': [],
-                'explanation_es': 'Ítem conservado del simulacro del documento maestro. El bloque completo incluye opciones y explicación por opción dentro del contenido asociado.',
+                'explanation_es': 'Ítem conservado del simulacro del documento maestro. El bloque completo incluye opciones y explicación por opción en el contenido.',
                 'examples': [],
                 'mistakes': [],
                 'difficulty': 'intermediate',
@@ -214,16 +385,16 @@ def extract_exam_items(text: str):
     return items
 
 
-def extract_reading_questions(lines: list[str]):
+def extract_reading_questions(lines: list[str]) -> list[dict]:
     items = []
     current_reading = None
-    for idx, line in enumerate(lines, 1):
+    for line_number, line in enumerate(lines, 1):
         if line.startswith('## READING'):
             current_reading = normalize_heading(line)
         if re.match(r'^# \d+\.', line) and current_reading:
             prompt = normalize_heading(line)
             items.append({
-                'id': f'reading-q-{idx}',
+                'id': f'reading-q-{line_number}',
                 'section': 'Reading y Paráfrasis',
                 'subsection': current_reading,
                 'kind': 'question',
@@ -237,29 +408,29 @@ def extract_reading_questions(lines: list[str]):
                 'acceptable_answers': [],
                 'model_answer': '',
                 'bad_answers': [],
-                'explanation_es': 'Pregunta de reading conservada del documento. Consulta el bloque del reading y la explicación/paráfrasis asociada en la guía maestra.',
+                'explanation_es': 'Pregunta de reading conservada del documento. Consulta el bloque del reading y la paráfrasis asociada en la guía maestra.',
                 'examples': [],
                 'mistakes': [],
                 'difficulty': 'intermediate',
                 'tags': ['reading', slug(current_reading)],
-                'source_block': f'ingles-definitivo-maestro.md:{idx}',
+                'source_block': f'ingles-definitivo-maestro.md:{line_number}',
                 'reading_id': slug(current_reading),
             })
     return items
 
 
-def main():
+def main() -> None:
     raw = SRC.read_text(encoding='utf-8')
     lines = raw.splitlines()
     blocks = parse_blocks(lines)
 
     guide_items = []
-    for i, block in enumerate(blocks, 1):
+    for index, block in enumerate(blocks, 1):
         headings = block['headings'] or ['Base']
         section = map_section(headings, block['content'])
         kind = kind_for(headings, block['content'])
-        item = {
-            'id': f"guide-{i:04d}-{slug(headings[-1])}",
+        guide_items.append({
+            'id': f"guide-{index:04d}-{slug(headings[-1])}",
             'section': section,
             'subsection': headings[-1],
             'kind': kind,
@@ -280,11 +451,11 @@ def main():
             'tags': [slug(section), slug(headings[-1])],
             'source_block': f"ingles-definitivo-maestro.md:{block['line_start']}-{block['line_end']}",
             'source_lines': {'start': block['line_start'], 'end': block['line_end']},
-        }
-        guide_items.append(item)
+        })
 
     question_items = []
-    question_items.extend(extract_questions_from_bullets(lines))
+    question_items.extend(extract_definition_questions(lines))
+    question_items.extend(extract_grammar_examples(lines))
     question_items.extend(extract_exam_items(raw))
     question_items.extend(extract_reading_questions(lines))
 
@@ -301,11 +472,17 @@ def main():
 
     GUIDE.write_text(json.dumps(guide_payload, ensure_ascii=False, indent=2), encoding='utf-8')
     QUEST.write_text(json.dumps(question_payload, ensure_ascii=False, indent=2), encoding='utf-8')
-
-    SCHEMA.write_text('''# Esquema de datos\n\n- `guia_maestra.json`: conserva **todo** el contenido del documento maestro en bloques estructurados con `id`, `section`, `subsection`, `kind`, `type`, `content_es`, `source_block` y metadatos.\n- `preguntas.json`: banco de práctica derivado y conservado a partir de elementos explícitos del documento (`*items`, preguntas de reading y sets de examen).\n- Ambos ficheros están pensados para GitHub Pages y carga vía `fetch`.\n''', encoding='utf-8')
+    SCHEMA.write_text(
+        '# Esquema de datos\n\n'
+        '- `guia_maestra.json`: conserva **todo** el contenido del documento maestro en bloques estructurados con `id`, `section`, `subsection`, `kind`, `type`, `content_es`, `source_block` y metadatos.\n'
+        '- `preguntas.json`: banco ampliado de preguntas generado desde el documento maestro (definiciones, gramática, readings y sets de examen).\n'
+        '- Ambos ficheros están pensados para GitHub Pages y carga vía `fetch`.\n',
+        encoding='utf-8',
+    )
 
     print(f'guide_items={len(guide_items)}')
     print(f'question_items={len(question_items)}')
+
 
 if __name__ == '__main__':
     main()

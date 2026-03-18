@@ -3,125 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Práctica de Inglés B1 · Policía Local de Canarias</title>
-  <meta name="theme-color" content="#10233d">
+  <title>TEST Policía Local · CGPC</title>
+  <meta name="theme-color" content="#0b1a30">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="h2d-logo.svg">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="hero">
-    <div class="hero__badge">Práctica directa</div>
-    <h1>Entrena con preguntas, corrige y sigue</h1>
-    <p>La web usa la base maestra internamente para generar ejercicios, pero en pantalla solo muestra práctica.</p>
+    <div class="hero__badge">OPOSICIONES · INGLÉS B1</div>
+    <h1>TEST <span>Policía Local · CGPC</span></h1>
+    <p id="heroSubtitle">Bloques reorganizados: expresiones, tiempos verbales, vocabulario, reading con paráfrasis y resto.</p>
   </header>
 
-  <main class="app-shell">
-    <section class="panel setup-panel">
-      <div class="panel__heading">
+  <div class="progress-strip" aria-hidden="true">
+    <div class="progress-strip__fill" id="progressFill"></div>
+  </div>
+
+  <section class="scoreboard">
+    <div class="scoreboard__item">
+      <span class="dot dot--ok"></span>
+      <span>Correctas <strong id="correctCount">0</strong></span>
+    </div>
+    <div class="scoreboard__center" id="questionCounter">Pregunta 1 de 30</div>
+    <div class="scoreboard__item scoreboard__item--right">
+      <span class="dot dot--error"></span>
+      <span>Errores <strong id="errorCount">0</strong></span>
+    </div>
+  </section>
+
+  <main class="layout">
+    <section class="generator-card" id="generatorCard">
+      <div class="generator-card__header">
         <div>
-          <p class="eyebrow">Configura tu sesión</p>
-          <h2>Selecciona qué quieres practicar</h2>
-        </div>
-        <div class="mode-toggle">
-          <label>
-            <span>Modo</span>
-            <select id="modeFilter">
-              <option value="sequential">Por filtro</option>
-              <option value="random">Aleatorio</option>
-            </select>
-          </label>
+          <h2>Generador de test policial</h2>
+          <p>Selecciona cuántas preguntas quieres, filtra por bloque y dificultad, o lanza un aleatorio total con el banco ampliado sacado del documento maestro.</p>
         </div>
       </div>
 
-      <div class="filters-grid">
+      <div class="section-grid" id="sectionGrid"></div>
+
+      <div class="generator-controls">
         <label>
-          <span>Sección</span>
-          <select id="sectionFilter"></select>
+          <span>Nº preguntas</span>
+          <input id="questionCountInput" type="number" min="1" max="30" value="30">
         </label>
-        <label>
-          <span>Tipo de ejercicio</span>
-          <select id="typeFilter"></select>
-        </label>
+
         <label>
           <span>Dificultad</span>
-          <select id="difficultyFilter"></select>
+          <select id="difficultySelect">
+            <option value="all">Todas</option>
+          </select>
         </label>
-        <label>
-          <span>Buscar</span>
-          <input id="searchInput" type="search" placeholder="reading, vocabulario, gramática...">
-        </label>
+
+        <button id="generateBtn" class="btn btn--primary" type="button">🎯 Generar test</button>
+        <button id="randomBtn" class="btn btn--accent" type="button">🎲 Aleatorio total</button>
       </div>
 
-      <div class="setup-actions">
-        <div class="session-stats" id="sessionStats"></div>
-        <div class="button-row">
-          <button id="startBtn" class="primary-btn">Empezar práctica</button>
-          <button id="shuffleBtn" class="ghost-btn" type="button">Barajar selección</button>
-          <button id="resetBtn" class="ghost-btn" type="button">Restablecer filtros</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel progress-panel hidden" id="progressPanel">
-      <div>
-        <p class="eyebrow">Progreso</p>
-        <h2 id="progressTitle">Pregunta 1 de 1</h2>
-        <p id="progressMeta">0 aciertos · 0 fallos</p>
-      </div>
-      <div class="progress-track" aria-hidden="true">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-    </section>
-
-    <section class="panel empty-state" id="emptyState">
-      Ajusta los filtros y pulsa <strong>Empezar práctica</strong> para cargar ejercicios.
+      <p class="generator-meta" id="generatorMeta"></p>
     </section>
 
     <section class="question-card hidden" id="questionCard">
-      <div class="question-card__header">
-        <div>
-          <p class="eyebrow" id="questionEyebrow"></p>
-          <h2 id="questionTitle"></h2>
+      <header class="question-card__header">
+        <div class="question-number" id="questionNumber">1</div>
+        <div class="question-heading">
+          <p class="question-label" id="questionLabel">VOCABULARIO · INTERMEDIATE</p>
+          <p class="question-subtitle" id="questionSubtitle">Vocabulario</p>
         </div>
-        <div class="pill-group" id="questionPills"></div>
+        <div class="question-type" id="questionType">VOCABULARIO</div>
+      </header>
+
+      <div class="question-body">
+        <p class="question-context" id="questionContext"></p>
+        <h2 class="question-prompt" id="questionPrompt"></h2>
+        <p class="question-help" id="questionHelp"></p>
       </div>
 
-      <section class="reading-box hidden" id="readingBox">
-        <h3>Texto del ejercicio</h3>
-        <p id="readingText"></p>
-      </section>
-
-      <section class="prompt-box">
-        <p id="questionPrompt"></p>
-      </section>
-
       <form id="answerForm" class="answer-form">
-        <div id="choiceList" class="choice-list"></div>
-        <div id="textAnswerWrap" class="text-answer-wrap hidden">
-          <label>
-            <span>Tu respuesta</span>
-            <input id="textAnswer" type="text" autocomplete="off" placeholder="Escribe tu respuesta">
-          </label>
-        </div>
+        <div class="option-list" id="optionList"></div>
+        <label class="text-answer hidden" id="textAnswerWrap">
+          <span>Tu respuesta</span>
+          <input id="textAnswer" type="text" autocomplete="off" placeholder="Escribe la respuesta aquí">
+        </label>
 
-        <div class="button-row">
-          <button id="checkBtn" class="primary-btn" type="submit">Comprobar</button>
-          <button id="nextBtn" class="ghost-btn hidden" type="button">Siguiente</button>
-        </div>
+        <div class="answer-actions"><button id="checkBtn" class="btn btn--primary" type="submit">Comprobar</button><button id="nextBtn" class="btn btn--primary hidden" type="button">Siguiente pregunta</button></div>
       </form>
 
       <section class="feedback hidden" id="feedbackBox">
-        <div class="feedback__status" id="feedbackStatus"></div>
-        <div class="feedback__block">
-          <h3>Respuesta correcta</h3>
-          <p id="correctAnswer"></p>
-        </div>
-        <div class="feedback__block">
-          <h3>Explicación</h3>
-          <p id="answerExplanation"></p>
+        <div class="feedback__verdict" id="feedbackVerdict"></div>
+        <div class="feedback__answer" id="feedbackAnswer"></div>
+        <div class="feedback__body">
+          <div>
+            <h3>Explicación</h3>
+            <p id="feedbackExplanation"></p>
+          </div>
+          <div>
+            <h3>Fuente</h3>
+            <p id="feedbackSource"></p>
+          </div>
         </div>
       </section>
+    </section>
+
+    <section class="result-card hidden" id="resultCard">
+      <p class="result-card__badge">SESIÓN COMPLETADA</p>
+      <h2 class="result-card__score"><span id="resultCorrect">0</span>/<span id="resultTotal">0</span></h2>
+      <p class="result-card__summary" id="resultSummary"></p>
+      <button id="restartBtn" class="btn btn--primary" type="button">Crear otro test</button>
     </section>
   </main>
 

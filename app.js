@@ -38,7 +38,6 @@ const els = {
   feedbackAnswer: document.getElementById('feedbackAnswer'),
   feedbackExplanation: document.getElementById('feedbackExplanation'),
   feedbackOptionList: document.getElementById('feedbackOptionList'),
-  feedbackSource: document.getElementById('feedbackSource'),
   resultCard: document.getElementById('resultCard'),
   resultCorrect: document.getElementById('resultCorrect'),
   resultTotal: document.getElementById('resultTotal'),
@@ -76,7 +75,7 @@ function normalizeQuestion(item) {
       key: choice.key,
       label: choice.label,
       isCorrect: index === 0,
-      explanation: index === 0 ? 'Correcta según el documento maestro.' : 'Incorrecta según el documento maestro.',
+      explanation: index === 0 ? 'Correcta: es la opción válida para esta consigna.' : 'Incorrecta: no resuelve correctamente la consigna.',
     }));
   const answerKey = (item.answer || '').match(/^([a-d])\)/i)?.[1]?.toLowerCase() || (optionDetails.find((detail) => detail.isCorrect) || {}).key || 'a';
   const answerIndex = Math.max(0, parsedChoices.findIndex((choice) => choice.key === answerKey));
@@ -90,7 +89,7 @@ function normalizeQuestion(item) {
     displayAnswer: parsedChoices[answerIndex] ? `${parsedChoices[answerIndex].key}) ${parsedChoices[answerIndex].label}` : 'Revisa la explicación.',
     explanation: compactText(item.explanation_es || 'Sin explicación adicional.'),
     context: compactText(item.context || item.title || item.section),
-    helpText: compactText(item.help_text || (item.reading_id ? `Reading asociado: ${item.reading_id}` : (item.tags || []).slice(0, 3).join(' · '))),
+    helpText: compactText(item.help_text || (item.reading_id ? 'Selecciona la opción que mejor resume la idea principal del texto.' : (item.tags || []).slice(0, 3).join(' · '))),
   };
 }
 
@@ -159,7 +158,7 @@ function updateGeneratorMeta() {
   const selectedLabel = selectedSections.length ? selectedSections.join(' · ') : 'sin filtros por bloque';
 
   els.generatorMeta.textContent = `${eligible.length} preguntas tipo test disponibles · ${Math.min(requested, eligible.length || requested)} por sesión · ${selectedLabel}`;
-  els.heroSubtitle.textContent = `Banco actual: ${state.bank.length} preguntas cerradas de 4 opciones, derivadas del documento maestro con explicación por alternativa.`;
+  els.heroSubtitle.textContent = `Banco actual: ${state.bank.length} preguntas cerradas de 4 opciones con explicación académica por alternativa.`;
 }
 
 function startSession(forceRandom) {
@@ -261,7 +260,6 @@ function showFeedback(question, correct, userAnswer) {
     ? `Has acertado: ${question.displayAnswer}`
     : `Tu elección: ${selectedChoice ? `${selectedChoice.key}) ${selectedChoice.label}` : '-'} · Respuesta correcta: ${question.displayAnswer}`;
   els.feedbackExplanation.textContent = question.explanation;
-  els.feedbackSource.textContent = question.source_block || 'Documento maestro';
   renderFeedbackOptions(question, normalizeText(userAnswer));
   els.nextBtn.classList.remove('hidden');
 }

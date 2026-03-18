@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guía Maestra Inglés B1 · Policía Local de Canarias</title>
+  <title>Práctica de Inglés B1 · Policía Local de Canarias</title>
   <meta name="theme-color" content="#10233d">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="h2d-logo.svg">
@@ -11,85 +11,119 @@
 </head>
 <body>
   <header class="hero">
-    <div class="hero__badge">Fuente única de verdad: ingles-definitivo-maestro.md</div>
-    <h1>Guía Maestra Interactiva · Inglés B1 Policía Local de Canarias</h1>
-    <p>Teoría, banco de preguntas, readings, paráfrasis, errores típicos, vocabulario y simulacros en una sola web.</p>
+    <div class="hero__badge">Práctica directa</div>
+    <h1>Entrena con preguntas, corrige y sigue</h1>
+    <p>La web usa la base maestra internamente para generar ejercicios, pero en pantalla solo muestra práctica.</p>
   </header>
 
-  <main class="layout">
-    <section class="panel summary" id="summary"></section>
+  <main class="app-shell">
+    <section class="panel setup-panel">
+      <div class="panel__heading">
+        <div>
+          <p class="eyebrow">Configura tu sesión</p>
+          <h2>Selecciona qué quieres practicar</h2>
+        </div>
+        <div class="mode-toggle">
+          <label>
+            <span>Modo</span>
+            <select id="modeFilter">
+              <option value="sequential">Por filtro</option>
+              <option value="random">Aleatorio</option>
+            </select>
+          </label>
+        </div>
+      </div>
 
-    <section class="panel controls">
-      <div class="controls__grid">
+      <div class="filters-grid">
         <label>
           <span>Sección</span>
           <select id="sectionFilter"></select>
         </label>
         <label>
-          <span>Kind</span>
-          <select id="kindFilter"></select>
-        </label>
-        <label>
-          <span>Tipo</span>
+          <span>Tipo de ejercicio</span>
           <select id="typeFilter"></select>
         </label>
         <label>
-          <span>Modo</span>
-          <select id="datasetFilter">
-            <option value="all">Guía + preguntas</option>
-            <option value="guide">Solo guía</option>
-            <option value="questions">Solo práctica</option>
-          </select>
+          <span>Dificultad</span>
+          <select id="difficultyFilter"></select>
         </label>
-        <label class="search-box">
+        <label>
           <span>Buscar</span>
-          <input id="searchInput" type="search" placeholder="gramática, charged with, reading, etc.">
+          <input id="searchInput" type="search" placeholder="reading, vocabulario, gramática...">
         </label>
       </div>
-      <div class="quick-links" id="quickLinks"></div>
-    </section>
 
-    <section class="panel readings-panel">
-      <h2>Readings conservados</h2>
-      <div id="readingsList" class="chip-list"></div>
-    </section>
-
-    <section class="results-header">
-      <div>
-        <h2 id="resultsTitle">Contenido cargado</h2>
-        <p id="resultsMeta"></p>
-      </div>
-      <button id="resetBtn" class="ghost-btn">Restablecer filtros</button>
-    </section>
-
-    <section id="cards" class="cards"></section>
-  </main>
-
-  <template id="cardTemplate">
-    <article class="card">
-      <div class="card__top">
-        <div>
-          <p class="eyebrow"></p>
-          <h3 class="card__title"></h3>
+      <div class="setup-actions">
+        <div class="session-stats" id="sessionStats"></div>
+        <div class="button-row">
+          <button id="startBtn" class="primary-btn">Empezar práctica</button>
+          <button id="shuffleBtn" class="ghost-btn" type="button">Barajar selección</button>
+          <button id="resetBtn" class="ghost-btn" type="button">Restablecer filtros</button>
         </div>
-        <div class="pill-group"></div>
       </div>
-      <p class="card__prompt"></p>
-      <details class="card__section details--content" open>
-        <summary>Contenido / teoría</summary>
-        <div class="markdown card__content"></div>
-      </details>
-      <details class="card__section details--answer hidden">
-        <summary>Respuesta / modelo</summary>
-        <div class="markdown card__answer"></div>
-      </details>
-      <details class="card__section details--explanation hidden">
-        <summary>Explicación</summary>
-        <div class="markdown card__explanation"></div>
-      </details>
-      <footer class="card__footer"></footer>
-    </article>
-  </template>
+    </section>
+
+    <section class="panel progress-panel hidden" id="progressPanel">
+      <div>
+        <p class="eyebrow">Progreso</p>
+        <h2 id="progressTitle">Pregunta 1 de 1</h2>
+        <p id="progressMeta">0 aciertos · 0 fallos</p>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </section>
+
+    <section class="panel empty-state" id="emptyState">
+      Ajusta los filtros y pulsa <strong>Empezar práctica</strong> para cargar ejercicios.
+    </section>
+
+    <section class="question-card hidden" id="questionCard">
+      <div class="question-card__header">
+        <div>
+          <p class="eyebrow" id="questionEyebrow"></p>
+          <h2 id="questionTitle"></h2>
+        </div>
+        <div class="pill-group" id="questionPills"></div>
+      </div>
+
+      <section class="reading-box hidden" id="readingBox">
+        <h3>Texto del ejercicio</h3>
+        <p id="readingText"></p>
+      </section>
+
+      <section class="prompt-box">
+        <p id="questionPrompt"></p>
+      </section>
+
+      <form id="answerForm" class="answer-form">
+        <div id="choiceList" class="choice-list"></div>
+        <div id="textAnswerWrap" class="text-answer-wrap hidden">
+          <label>
+            <span>Tu respuesta</span>
+            <input id="textAnswer" type="text" autocomplete="off" placeholder="Escribe tu respuesta">
+          </label>
+        </div>
+
+        <div class="button-row">
+          <button id="checkBtn" class="primary-btn" type="submit">Comprobar</button>
+          <button id="nextBtn" class="ghost-btn hidden" type="button">Siguiente</button>
+        </div>
+      </form>
+
+      <section class="feedback hidden" id="feedbackBox">
+        <div class="feedback__status" id="feedbackStatus"></div>
+        <div class="feedback__block">
+          <h3>Respuesta correcta</h3>
+          <p id="correctAnswer"></p>
+        </div>
+        <div class="feedback__block">
+          <h3>Explicación</h3>
+          <p id="answerExplanation"></p>
+        </div>
+      </section>
+    </section>
+  </main>
 
   <script src="app.js"></script>
 </body>

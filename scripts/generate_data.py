@@ -217,14 +217,18 @@ def simplify(text: str) -> str:
     )
 
 
+def canonical_sentence(text: str) -> str:
+    return re.sub(r'[^a-z0-9]+', '', simplify(text))
+
+
 def make_choice_objects(options: list[str]) -> list[dict[str, str]]:
     letters = ['a', 'b', 'c', 'd']
     return [{'key': letters[index], 'label': normalize_option_label(option)} for index, option in enumerate(options[:4])]
 
 
 def make_option_explanations(choices: list[dict[str, str]], answer_index: int, explanations: dict[str, str] | None = None, *,
-                             default_correct: str = 'Es la forma correcta según el documento maestro.',
-                             default_incorrect: str = 'No encaja con el enunciado según el documento maestro.'):
+                             default_correct: str = 'Es la forma correcta para esta consigna.',
+                             default_incorrect: str = 'No encaja con el enunciado propuesto.'):
     explanations = explanations or {}
     details = []
     for index, choice in enumerate(choices):
@@ -348,6 +352,8 @@ def looks_spanish_token(token: str) -> bool:
         return True
     if cleaned in ENGLISH_ALLOWLIST:
         return False
+    if cleaned.endswith(('ar', 'er', 'ir')) and len(cleaned) > 4:
+        return True
     if cleaned.endswith(('ción', 'sión', 'mente', 'dad', 'tad', 'ario', 'aria', 'ez', 'eza', 'ado', 'ada', 'idos', 'idas', 'ismo', 'ista')):
         return True
     return False
@@ -374,6 +380,36 @@ def split_term_definition(text: str) -> tuple[str, str]:
     return term, definition
 
 
+def primary_definition(definition: str) -> str:
+    cleaned = compact_text(definition)
+    cleaned = re.sub(r'\([^)]*\)', '', cleaned)
+    for separator in [' / ', '/', ';', ',']:
+        if separator in cleaned:
+            cleaned = cleaned.split(separator)[0]
+            break
+    return compact_text(cleaned)
+
+
+def definition_prompt(section: str, subsection: str, definition: str) -> str:
+    label = primary_definition(definition)
+    if section == 'Tiempos verbales y gramática' and subsection == 'Irregulares':
+        return f'Elige el verbo irregular que mejor expresa esta acción policial: {label}.'
+    if section == 'Tiempos verbales y gramática' and subsection == 'Regulares muy Policiales':
+        return f'Elige el verbo regular adecuado para esta acción policial: {label}.'
+    if section == 'Collocations / Idioms / Fixed Expressions / False Friends':
+        return f'¿Qué expresión profesional encaja mejor con esta idea? {label}.'
+    return f'¿Qué opción expresa mejor esta idea? {label}.'
+
+
+def build_definition_explanation(entry: dict) -> str:
+    label = primary_definition(entry['definition'])
+    return (
+        f"Explicación académica: la opción correcta activa la equivalencia léxica clave para '{label}' "
+        f"y mantiene la forma exacta que debe reconocerse en un test B1 policial. "
+        f"Traducción orientativa: '{entry['term']}' = '{label}'."
+    )
+
+
 def extract_definition_questions(lines: list[str]) -> list[dict]:
     parsed_entries = []
     current_headings: list[str] = []
@@ -391,14 +427,23 @@ def extract_definition_questions(lines: list[str]) -> list[dict]:
             continue
 
         section = map_section(current_headings, line)
-        if section == 'Exámenes / sets / simulacros':
-            continue
-
-        term, definition = split_term_definition(line)
-        if not term or not definition:
+        if section in {'Exámenes / sets / simulacros', 'Collocations / Idioms / Fixed Expressions / False Friends'}:
             continue
 
         subsection = current_headings[-1] if current_headings else section
+        if section == 'Tiempos verbales y gramática' and subsection in {'Irregulares', 'Regulares muy Policiales'}:
+            cleaned = compact_text(re.sub(r'^[*\-]\s*', '', line))
+            tokens = cleaned.split()
+            if len(tokens) < 4:
+                continue
+            term = compact_text(' '.join(tokens[:3]))
+            definition = compact_text(' '.join(tokens[3:]))
+        else:
+            term, definition = split_term_definition(line)
+
+        if not term or not definition:
+            continue
+
         parsed_entries.append({
             'term': term,
             'definition': definition,
@@ -414,7 +459,14 @@ def extract_definition_questions(lines: list[str]) -> list[dict]:
 
     questions = []
     for (section, subsection), entries in by_bucket.items():
+        seen_prompts: set[str] = set()
         for index, entry in enumerate(entries):
+            definition_label = primary_definition(entry['definition'])
+            prompt = definition_prompt(section, subsection, definition_label)
+            prompt_key = simplify(prompt)
+            if prompt_key in seen_prompts:
+                continue
+            seen_prompts.add(prompt_key)
             distractor_pool = [candidate['term'] for candidate in entries if candidate['term'] != entry['term']]
             distractor_pool.extend([
                 candidate['term']
@@ -429,23 +481,30 @@ def extract_definition_questions(lines: list[str]) -> list[dict]:
             explanations = {}
             for choice in choices:
                 if choice['key'] == choices[answer_index]['key']:
-                    explanations[choice['key']] = f"Correcta: en el documento, '{entry['term']}' se vincula con '{entry['definition']}'."
+                    explanations[choice['key']] = (
+                        f"Correcta: '{entry['term']}' expresa la idea de '{definition_label}'. "
+                        f"Traducción: '{definition_label}'."
+                    )
                 else:
-                    explanations[choice['key']] = f"Incorrecta: '{choice['label']}' aparece en el documento, pero no significa '{entry['definition']}'."
-            prompt = f"¿Qué expresión encaja mejor con esta idea? {entry['definition']}"
+                    explanations[choice['key']] = (
+                        f"Incorrecta: '{choice['label']}' es una forma válida del banco, "
+                        f"pero no corresponde al significado principal '{definition_label}'."
+                    )
             questions.append(build_question_item(
                 item_id=f"def-{slug(section)}-{slug(subsection)}-{index + 1}",
                 section=section,
                 subsection=subsection,
                 qtype='multiple_choice',
-                title=f'{subsection} · definición',
+                title=f'{subsection} · precisión léxica',
                 prompt=prompt,
                 choices=choices,
                 answer_index=answer_index,
-                explanation=f"Elemento derivado directamente del documento maestro: {entry['raw']}",
+                explanation=build_definition_explanation(entry),
                 source_block=f'ingles-definitivo-maestro.md:{entry["line_number"]}',
                 tags=[slug(section), 'derived-definition'],
                 option_explanations=make_option_explanations(choices, answer_index, explanations),
+                context=f'{subsection} · léxico policial esencial',
+                help_text='Selecciona la opción con el significado principal más preciso para un examen B1 policial.',
             ))
     return questions
 
@@ -461,21 +520,21 @@ def extract_curated_collocations() -> list[dict]:
         explanations = {}
         for choice in choices:
             if choice['key'] == choices[answer_index]['key']:
-                explanations[choice['key']] = f"Correcta: '{term}' es la collocation o fixed expression recogida en el documento para '{meaning}'."
+                explanations[choice['key']] = f"Correcta: '{term}' es la collocation adecuada para expresar '{meaning}'."
             elif simplify(choice['label']) == simplify(typical_mistake):
-                explanations[choice['key']] = f"Incorrecta: el documento marca '{typical_mistake}' como error típico para esta idea."
+                explanations[choice['key']] = f"Incorrecta: '{typical_mistake}' es un error típico en este tipo de estructura."
             else:
-                explanations[choice['key']] = f"Incorrecta: '{choice['label']}' sí aparece en el documento, pero corresponde a otra acción o estructura policial."
+                explanations[choice['key']] = f"Incorrecta: '{choice['label']}' corresponde a otra acción o estructura policial."
         items.append(build_question_item(
             item_id=f'collocation-curated-{index}',
             section='Collocations / Idioms / Fixed Expressions / False Friends',
             subsection='Collocations y Fixed Expressions',
             qtype='multiple_choice',
             title='Collocations policiales',
-            prompt=f"¿Qué collocation del documento corresponde a esta idea? {meaning}",
+            prompt=f"¿Qué collocation profesional corresponde a esta idea? {meaning}.",
             choices=choices,
             answer_index=answer_index,
-            explanation=f"Collocation seleccionada del bloque maestro y contrastada con el error típico '{typical_mistake}'.",
+            explanation=f"Explicación académica: la combinación correcta es '{term}', una collocation policial estable. Traducción: '{meaning}'. Error típico a evitar: '{typical_mistake}'.",
             source_block=f'ingles-definitivo-maestro.md:{line_number}',
             tags=['collocations', 'fixed-expressions', 'curated'],
             option_explanations=make_option_explanations(choices, answer_index, explanations),
@@ -486,7 +545,77 @@ def extract_curated_collocations() -> list[dict]:
 # ---------- grammar / exam / reading extraction ----------
 
 def extract_grammar_examples(lines: list[str]) -> list[dict]:
-    questions = []
+    def is_real_sentence(text: str) -> bool:
+        compact = compact_text(text)
+        return 'S +' not in compact and len(compact.split()) >= 4
+
+    def infer_focus(affirmative: str, negative: str, interrogative: str) -> tuple[str, str]:
+        joined = f'{affirmative} {negative} {interrogative}'.lower()
+        if 'used to' in joined:
+            return 'Used to', 'hábito o estado pasado que ya no ocurre'
+        if 'going to' in joined:
+            return 'Going to', 'intención o predicción basada en indicios'
+        if re.search(r'\bwill\b', joined):
+            return 'Will', 'decisión rápida o promesa'
+        if re.search(r'\bhas\b|\bhave\b', joined):
+            return 'Present Perfect', 'acción que empezó en el pasado y conecta con el presente'
+        if re.search(r'\bhad\b', joined):
+            return 'Past Perfect', 'acción anterior a otro momento del pasado'
+        if re.search(r'\bwas\b|\bwere\b', joined) and 'when' in joined:
+            return 'Past Continuous + when', 'acción en progreso interrumpida por un hecho puntual'
+        if joined.startswith('while ') or ' while ' in joined:
+            return 'While + Past Continuous', 'dos acciones en desarrollo dentro del mismo marco temporal'
+        if re.search(r'\bwas\b|\bwere\b', joined) and re.search(r'ing\b', joined):
+            if re.search(r'\b(arrested|committed|submitted|presented)\b', joined):
+                return 'Past Passive', 'estilo de informe donde importa el hecho, no el agente'
+            return 'Past Continuous', 'acción en progreso en un momento del pasado'
+        if re.search(r'\bdoes\b|\bdon’t\b|\bdoesn’t\b', joined) or 'leaves at' in joined:
+            return 'Present Simple (future)', 'horario oficial o programación fija'
+        if re.search(r'\bam\b|\bis\b|\bare\b', joined) and re.search(r'ing\b', joined):
+            return 'Present Continuous (future)', 'plan ya decidido o agenda cerrada'
+        if re.search(r'\bwas arrested\b|\bwere submitted\b', joined):
+            return 'Past Passive', 'estilo de informe donde importa el hecho, no el agente'
+        return 'Past Simple', 'hecho terminado en el pasado'
+
+    sentence_translations = {
+        'The officer stopped the car.': 'El agente detuvo el vehículo.',
+        'The officer didn’t stop the car.': 'El agente no detuvo el vehículo.',
+        'Did the officer stop the car?': '¿Detuvo el agente el vehículo?',
+        'We were patrolling the area.': 'Estábamos patrullando la zona.',
+        'We weren’t patrolling the area.': 'No estábamos patrullando la zona.',
+        'Were we patrolling the area?': '¿Estábamos patrullando la zona?',
+        'We were checking IDs when the suspect ran away.': 'Estábamos comprobando identificaciones cuando el sospechoso huyó.',
+        'We weren’t checking IDs when the suspect ran away.': 'No estábamos comprobando identificaciones cuando el sospechoso huyó.',
+        'Were we checking IDs when the suspect ran away?': '¿Estábamos comprobando identificaciones cuando el sospechoso huyó?',
+        'While we were interviewing the witness, another officer called for backup.': 'Mientras entrevistábamos al testigo, otro agente pidió refuerzos.',
+        'While we weren’t interviewing the witness, another officer called for backup.': 'Mientras no entrevistábamos al testigo, otro agente pidió refuerzos.',
+        'While we were interviewing the witness, did another officer call for backup?': 'Mientras entrevistábamos al testigo, ¿pidió otro agente refuerzos?',
+        'He has provided his ID.': 'Ha entregado su identificación.',
+        'He hasn’t provided his ID.': 'No ha entregado su identificación.',
+        'Has he provided his ID?': '¿Ha entregado su identificación?',
+        'The suspect had left before the police arrived.': 'El sospechoso se había marchado antes de que llegara la policía.',
+        'The suspect hadn’t left before the police arrived.': 'El sospechoso no se había marchado antes de que llegara la policía.',
+        'Had the suspect left before the police arrived?': '¿Se había marchado el sospechoso antes de que llegara la policía?',
+        'He used to work nights.': 'Antes trabajaba de noche.',
+        'He didn’t use to work nights.': 'Antes no trabajaba de noche.',
+        'Did he use to work nights?': '¿Antes trabajaba de noche?',
+        'The suspect was arrested.': 'El sospechoso fue detenido.',
+        'The suspect wasn’t arrested.': 'El sospechoso no fue detenido.',
+        'Was the suspect arrested?': '¿Fue detenido el sospechoso?',
+        'We are leaving tomorrow morning.': 'Nos vamos mañana por la mañana.',
+        'We aren’t leaving tomorrow morning.': 'No nos vamos mañana por la mañana.',
+        'Are we leaving tomorrow morning?': '¿Nos vamos mañana por la mañana?',
+        'The train leaves at 7:45.': 'El tren sale a las 7:45.',
+        'The train doesn’t leave at 7:45.': 'El tren no sale a las 7:45.',
+        'Does the train leave at 7:45?': '¿Sale el tren a las 7:45?',
+        'I will take a taxi.': 'Cogeré un taxi.',
+        'I won’t take a taxi.': 'No cogeré un taxi.',
+        'Will I take a taxi?': '¿Cogeré un taxi?',
+        'He is going to report the incident.': 'Va a denunciar el incidente.',
+        'He isn’t going to report the incident.': 'No va a denunciar el incidente.',
+        'Is he going to report the incident?': '¿Va a denunciar el incidente?',
+    }
+
     current_headings: list[str] = []
     subsection_examples: dict[str, list[str]] = defaultdict(list)
     raw_examples = []
@@ -505,16 +634,41 @@ def extract_grammar_examples(lines: list[str]) -> list[dict]:
             continue
 
         affirmative, negative, interrogative = [compact_text(group) for group in match.groups()]
-        subsection = current_headings[-1] if current_headings else 'Gramática'
-        subsection_examples[subsection].extend([affirmative, negative, interrogative])
-        raw_examples.append((line_number, subsection, affirmative, negative, interrogative, line))
+        if not all(is_real_sentence(example) for example in (affirmative, negative, interrogative)):
+            continue
 
-    for line_number, subsection, affirmative, negative, interrogative, raw_line in raw_examples:
-        title = subsection
+        subsection = current_headings[-1] if current_headings else 'Gramática'
+        focus, use_description = infer_focus(affirmative, negative, interrogative)
+        subsection_examples[subsection].extend([affirmative, negative, interrogative])
+        raw_examples.append({
+            'line_number': line_number,
+            'subsection': subsection,
+            'focus': focus,
+            'use_description': use_description,
+            'affirmative': affirmative,
+            'negative': negative,
+            'interrogative': interrogative,
+        })
+
+    questions = []
+    form_labels = {
+        'affirmative': ('forma afirmativa', 'afirmativa'),
+        'negative': ('forma negativa', 'negativa'),
+        'question': ('forma interrogativa', 'interrogativa'),
+    }
+
+    for entry in raw_examples:
+        subsection = entry['subsection']
+        affirmative = entry['affirmative']
+        negative = entry['negative']
+        interrogative = entry['interrogative']
+        focus = entry['focus']
+        use_description = entry['use_description']
+
         prompts = [
-            ('affirmative', '¿Cuál es el ejemplo afirmativo correcto según el documento?', affirmative, [affirmative, negative, interrogative]),
-            ('negative', '¿Cuál es el ejemplo negativo correcto según el documento?', negative, [negative, affirmative, interrogative]),
-            ('question', '¿Cuál es la pregunta correcta según el documento?', interrogative, [interrogative, affirmative, negative]),
+            ('affirmative', f'Elige la frase correcta para expresar {use_description} en {focus}, en forma afirmativa.', affirmative, [affirmative, negative, interrogative]),
+            ('negative', f'Elige la frase correcta para expresar {use_description} en {focus}, en forma negativa.', negative, [negative, affirmative, interrogative]),
+            ('question', f'Elige la frase correcta para expresar {use_description} en {focus}, en forma interrogativa.', interrogative, [interrogative, affirmative, negative]),
         ]
 
         extra_pool = [candidate for candidate in subsection_examples[subsection] if candidate not in {affirmative, negative, interrogative}]
@@ -524,25 +678,46 @@ def extract_grammar_examples(lines: list[str]) -> list[dict]:
                 continue
             choices = make_choice_objects(options)
             answer_index = find_correct_index(options, answer)
+            target_form_label, short_form = form_labels[label]
             explanations = {}
             for choice in choices:
                 if choice['key'] == choices[answer_index]['key']:
-                    explanations[choice['key']] = f'Correcta: el documento presenta exactamente este ejemplo para la forma {label}.'
+                    translation = sentence_translations.get(choice['label'], '')
+                    explanations[choice['key']] = (
+                        f"Correcta: usa {focus} con la {short_form} pedida y mantiene la estructura propia de este tiempo verbal."
+                        + (f" Traducción: {translation}" if translation else '')
+                    )
+                elif canonical_sentence(choice['label']) == canonical_sentence(affirmative):
+                    explanations[choice['key']] = f'Incorrecta: la oración está bien construida, pero aparece en forma afirmativa y aquí se pide {target_form_label}.' if label != 'affirmative' else f'Incorrecta: aunque es afirmativa, no resuelve la consigna concreta de este ítem.'
+                elif canonical_sentence(choice['label']) == canonical_sentence(negative):
+                    explanations[choice['key']] = f'Incorrecta: la oración está bien construida, pero aparece en forma negativa y aquí se pide {target_form_label}.' if label != 'negative' else f'Incorrecta: aunque es negativa, no resuelve la consigna concreta de este ítem.'
+                elif canonical_sentence(choice['label']) == canonical_sentence(interrogative):
+                    explanations[choice['key']] = f'Incorrecta: la oración está bien construida, pero aparece en forma interrogativa y aquí se pide {target_form_label}.' if label != 'question' else f'Incorrecta: aunque es interrogativa, no resuelve la consigna concreta de este ítem.'
                 else:
-                    explanations[choice['key']] = f'Incorrecta: esta opción aparece en el documento, pero no corresponde a la forma {label} pedida.'
+                    other_focus, _ = infer_focus(choice['label'], choice['label'], choice['label'])
+                    explanations[choice['key']] = f'Incorrecta: es una frase válida, pero pertenece a {other_focus} y no a {focus}.'
+
+            translation = sentence_translations.get(answer, '').rstrip('.')
+            explanation = (
+                f'Explicación académica: {focus} se utiliza para {use_description}. '
+                f'La respuesta correcta presenta la {short_form} adecuada y respeta la estructura exigida en pruebas tipo test.'
+                + (f" Traducción del modelo: {translation}." if translation else '')
+            )
             questions.append(build_question_item(
-                item_id=f'grammar-{slug(subsection)}-{line_number}-{offset}',
+                item_id=f'grammar-{slug(focus)}-{entry["line_number"]}-{offset}',
                 section='Tiempos verbales y gramática',
-                subsection=subsection,
+                subsection=focus,
                 qtype='grammar_choice',
-                title=f'{title} · {label}',
+                title=f'{focus} · {target_form_label}',
                 prompt=prompt,
                 choices=choices,
                 answer_index=answer_index,
-                explanation=f'Ejemplo A/N/Q conservado del documento maestro. Línea original: {raw_line}',
-                source_block=f'ingles-definitivo-maestro.md:{line_number}',
-                tags=['grammar', slug(subsection), label],
+                explanation=explanation,
+                source_block=f'ingles-definitivo-maestro.md:{entry["line_number"]}',
+                tags=['grammar', slug(focus), label],
                 option_explanations=make_option_explanations(choices, answer_index, explanations),
+                context=f'Tiempo verbal: {focus}',
+                help_text=f'Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de {focus}.',
             ))
     return questions
 
@@ -593,7 +768,7 @@ def extract_exam_items(text: str) -> list[dict]:
             if choice['key'] in normalized_map:
                 explanations[choice['key']] = normalized_map[choice['key']]
             elif choice['key'] == choices[answer_index]['key']:
-                explanations[choice['key']] = 'Correcta: es la opción que resuelve el ítem según la solución del documento.'
+                explanations[choice['key']] = 'Correcta: es la opción que resuelve el ítem y completa correctamente la estructura pedida.'
             else:
                 explanations[choice['key']] = 'Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida.'
         items.append(build_question_item(
@@ -631,7 +806,7 @@ def extract_reading_questions(text: str) -> list[dict]:
         explanations = {}
         for choice in choices:
             if choice['key'] == choices[answer_index]['key']:
-                explanations[choice['key']] = 'Correcta: coincide con la respuesta oficial y con la paráfrasis explicada del reading del paseo marítimo.'
+                explanations[choice['key']] = 'Correcta: resume con precisión la idea principal del reading del paseo marítimo.'
             else:
                 explanations[choice['key']] = 'Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta.'
         items.append(build_question_item(
@@ -648,7 +823,7 @@ def extract_reading_questions(text: str) -> list[dict]:
             tags=['reading', 'bag-theft'],
             reading_id='bag-theft-on-the-promenade',
             option_explanations=make_option_explanations(choices, answer_index, explanations),
-            help_text='Elige la paráfrasis que mejor resume la respuesta oficial del documento.',
+            help_text='Elige la paráfrasis que mejor resume la idea principal del texto.',
         ))
 
     murder_prompts = [
@@ -682,7 +857,7 @@ def extract_reading_questions(text: str) -> list[dict]:
             tags=['reading', 'murder-mystery'],
             reading_id='reading-1-murder-mystery',
             option_explanations=make_option_explanations(choices, answer_index, explanations),
-            help_text='Selecciona la paráfrasis correcta basada en la respuesta modelo del documento.',
+            help_text='Selecciona la paráfrasis correcta basada en la idea principal del texto.',
         ))
 
     return items

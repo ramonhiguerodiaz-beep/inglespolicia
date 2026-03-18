@@ -187,32 +187,6 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
       <button class="start-btn" onclick="startRandomMode()">🎲 Aleatorio total</button>
     </div>
   </section>
-  <section class="study-panel">
-    <h2>Cómo trabajar la paráfrasis en reading</h2>
-    <p>Aquí <strong>paráfrasis</strong> no significa solo cambiar una palabra por otra. Significa <strong>leer un texto breve y expresar la misma información con otras palabras</strong>, sin copiar literalmente el enunciado.</p>
-    <div class="study-grid">
-      <article class="study-card">
-        <span class="study-tag">Paso a paso</span>
-        <h3>Qué debes hacer</h3>
-        <ul>
-          <li>Lee la idea principal del texto.</li>
-          <li>Busca sinónimos o expresiones equivalentes.</li>
-          <li>Cambia la estructura de la frase si hace falta.</li>
-          <li>Mantén el mismo significado sin repetir las mismas palabras.</li>
-        </ul>
-      </article>
-      <article class="study-card full">
-        <span class="study-tag">Ejemplo real</span>
-        <h3>Reading + decir lo mismo con otras palabras</h3>
-        <ul>
-          <li><strong>Texto:</strong> The police warned residents not to leave valuables in their cars after a series of break-ins.</li>
-          <li><strong>Misma información, con otras palabras:</strong> The police advised local people to keep expensive items out of their vehicles after several burglaries.</li>
-          <li><strong>Cambios clave:</strong> warned → advised · residents → local people · valuables → expensive items · cars → vehicles · a series of break-ins → several burglaries.</li>
-          <li><strong>Modelo de respuesta:</strong> The text says that the police told residents to be careful and not keep valuable things inside their vehicles.</li>
-        </ul>
-      </article>
-    </div>
-  </section>
   <div class="q-meta" id="qm"></div>
   <div id="app"></div>
 </main>
@@ -2207,158 +2181,340 @@ rows:[
 ],note:"🎓 Collocations legales: <em>search warrant</em> / <em>arrest warrant</em>."}},
 
 {cat:"Paráfrasis",type:"coll",level:"basic",
-q:"In an emergency, officers must ___ citizens quickly from the building.",
-opts:["a) carry out","b) move out","c) get out","d) rule out"],ans:2,
-exp:{h:"✓ Respuesta correcta: c) get out",
+q:"Choose the option that says the same thing:<br><strong>The officer told the crowd to remain calm.</strong>",
+opts:[
+"a) The officer asked the crowd to stay calm.",
+"b) The officer warned the crowd to leave immediately.",
+"c) The officer expected the crowd to move closer.",
+"d) The officer told the crowd to make more noise."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) The officer asked the crowd to stay calm.",
 rows:[
-{ok:0,l:"A",t:"<strong>Carry out</strong>: realizar (una tarea), no sacar personas de un lugar."},
-{ok:0,l:"B",t:"<strong>Move out</strong>: mudarse, normalmente de forma permanente. No encaja en evacuaciones urgentes."},
-{ok:1,l:"C",t:"<strong>Get out</strong> ✓: salir / sacar rápidamente. Frase de dos palabras muy usada en emergencias: <em>Get out now!</em>."},
-{ok:0,l:"D",t:"<strong>Rule out</strong>: descartar una hipótesis."},
-],note:"🎓 PARÁFRASIS · <em>evacuate immediately</em> = <em>get out now</em>. Frase corta y frecuente en instrucciones policiales."}},
-
-{cat:"Paráfrasis",type:"coll",level:"intermediate",
-q:"The detective checked the CCTV again to ___ any possible suspect.",
-opts:["a) rule out","b) bring in","c) go over","d) look after"],ans:0,
-exp:{h:"✓ Respuesta correcta: a) rule out",
-rows:[
-{ok:1,l:"A",t:"<strong>Rule out</strong> ✓: descartar. Frase de dos palabras clave en investigación: <em>rule out a suspect</em>."},
-{ok:0,l:"B",t:"<strong>Bring in</strong>: traer/detener para interrogar. No significa descartar."},
-{ok:0,l:"C",t:"<strong>Go over</strong>: revisar. Se acerca, pero no expresa la idea final de 'descartar'."},
-{ok:0,l:"D",t:"<strong>Look after</strong>: cuidar de alguien."},
-],note:"🎓 PARÁFRASIS · <em>exclude a suspect</em> = <em>rule out a suspect</em>. Añade este binomio al vocabulario técnico."}},
-
-{cat:"Paráfrasis",type:"coll",level:"intermediate",
-q:"We need to ___ the witness statement once more before sending the report.",
-opts:["a) set up","b) go over","c) back up","d) run into"],ans:1,
-exp:{h:"✓ Respuesta correcta: b) go over",
-rows:[
-{ok:0,l:"A",t:"<strong>Set up</strong>: organizar/instalar. No significa revisar un documento."},
-{ok:1,l:"B",t:"<strong>Go over</strong> ✓: repasar/revisar con detalle. Muy útil para parafrasear <em>review</em> o <em>check carefully</em>."},
-{ok:0,l:"C",t:"<strong>Back up</strong>: apoyar o hacer copia de seguridad. No encaja en este contexto."},
-{ok:0,l:"D",t:"<strong>Run into</strong>: encontrarse con / chocar con un problema."},
-],note:"🎓 PARÁFRASIS · <em>review the statement</em> = <em>go over the statement</em>. Frase de dos palabras típica de examen."}},
+{ok:1,l:"A",t:"Expresa la misma idea con otras palabras: <em>told</em> → <em>asked</em> y <em>remain calm</em> → <em>stay calm</em>."},
+{ok:0,l:"B",t:"Cambia el significado porque habla de marcharse inmediatamente."},
+{ok:0,l:"C",t:"Añade la idea de acercarse, que no aparece en la frase original."},
+{ok:0,l:"D",t:"Dice lo contrario: hacer más ruido en vez de mantener la calma."},
+],note:"🎓 PARÁFRASIS · La correcta mantiene exactamente la misma situación e intención."}},
 
 {cat:"Paráfrasis",type:"coll",level:"basic",
-q:"The patrol told everyone to ___ calm while officers checked the area.",
-opts:["a) keep","b) take","c) do","d) stay up"],ans:0,
-exp:{h:"✓ Respuesta correcta: a) keep",
+q:"Choose the option that says the same thing:<br><strong>The suspect ran away when he saw the patrol car.</strong>",
+opts:[
+"a) The suspect waited for the patrol car to stop.",
+"b) The suspect escaped after noticing the police vehicle.",
+"c) The suspect drove the patrol car away.",
+"d) The suspect reported the patrol car."
+],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The suspect escaped after noticing the police vehicle.",
 rows:[
-{ok:1,l:"A",t:"<strong>Keep</strong> ✓: <em>keep calm</em> es la paráfrasis natural de <em>remain calm</em>. Muy frecuente en instrucciones policiales."},
-{ok:0,l:"B",t:"<strong>Take</strong>: no forma la expresión correcta en este contexto."},
-{ok:0,l:"C",t:"<strong>Do</strong>: no se usa para expresar mantener la calma."},
-{ok:0,l:"D",t:"<strong>Stay up</strong>: quedarse despierto, significado distinto."},
-],note:"🎓 PARÁFRASIS · <em>remain calm</em> = <em>keep calm</em>. Aprende esta equivalencia para órdenes e instrucciones."}},
+{ok:0,l:"A",t:"Dice lo contrario: esperar en vez de huir."},
+{ok:1,l:"B",t:"Mantiene el mismo significado: <em>ran away</em> → <em>escaped</em> y <em>saw</em> → <em>noticed</em>."},
+{ok:0,l:"C",t:"Introduce la idea de conducir el coche policial, que no aparece."},
+{ok:0,l:"D",t:"Habla de denunciar o informar, algo distinto."},
+],note:"🎓 PARÁFRASIS · Busca equivalencias como <em>run away</em> = <em>escape</em>."}},
 
 {cat:"Paráfrasis",type:"coll",level:"basic",
-q:"The witness said the thief ___ very fast after leaving the shop.",
-opts:["a) went over","b) ran away","c) turned up","d) held on"],ans:1,
-exp:{h:"✓ Respuesta correcta: b) ran away",
+q:"Choose the option that says the same thing:<br><strong>Please switch off the engine before leaving the car.</strong>",
+opts:[
+"a) Please start the engine before getting out.",
+"b) Please check the engine before driving away.",
+"c) Please turn off the engine before getting out of the car.",
+"d) Please leave the engine running while you wait."
+],ans:2,
+exp:{h:"✓ Respuesta correcta: c) Please turn off the engine before getting out of the car.",
 rows:[
-{ok:0,l:"A",t:"<strong>Went over</strong>: revisar o repasar."},
-{ok:1,l:"B",t:"<strong>Ran away</strong> ✓: paráfrasis directa de <em>escaped</em> o <em>fled</em>. Muy común en relatos policiales."},
-{ok:0,l:"C",t:"<strong>Turned up</strong>: aparecer."},
-{ok:0,l:"D",t:"<strong>Held on</strong>: agarrarse o esperar en línea."},
-],note:"🎓 PARÁFRASIS · <em>escape/flee</em> = <em>run away</em>. Equivalencia muy rentable para examen."}},
+{ok:0,l:"A",t:"Dice lo contrario: arrancar en vez de apagar."},
+{ok:0,l:"B",t:"Habla de revisar, no de apagar."},
+{ok:1,l:"C",t:"Es la misma idea: <em>switch off</em> → <em>turn off</em> y <em>leaving</em> → <em>getting out of</em>."},
+{ok:0,l:"D",t:"También contradice la frase original."},
+],note:"🎓 PARÁFRASIS · La acción principal debe seguir siendo exactamente la misma."}},
 
 {cat:"Paráfrasis",type:"coll",level:"basic",
-q:"Officers asked the driver to ___ the engine immediately.",
-opts:["a) turn off","b) carry on","c) bring back","d) set off"],ans:0,
-exp:{h:"✓ Respuesta correcta: a) turn off",
+q:"Choose the option that says the same thing:<br><strong>The witness could not identify the man clearly.</strong>",
+opts:[
+"a) The witness was unable to recognise the man clearly.",
+"b) The witness decided to speak to the man privately.",
+"c) The witness clearly knew who the man was.",
+"d) The witness arrested the man immediately."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) The witness was unable to recognise the man clearly.",
 rows:[
-{ok:1,l:"A",t:"<strong>Turn off</strong> ✓: apagar. Es la paráfrasis natural de <em>switch off</em> para motor, radio o luces."},
-{ok:0,l:"B",t:"<strong>Carry on</strong>: continuar."},
-{ok:0,l:"C",t:"<strong>Bring back</strong>: devolver o traer de vuelta."},
-{ok:0,l:"D",t:"<strong>Set off</strong>: partir o activar una alarma."},
-],note:"🎓 PARÁFRASIS · <em>switch off the engine</em> = <em>turn off the engine</em>."}},
+{ok:1,l:"A",t:"Paráfrasis correcta: <em>could not identify</em> → <em>was unable to recognise</em>."},
+{ok:0,l:"B",t:"Habla de conversar, no de identificar."},
+{ok:0,l:"C",t:"Cambia el sentido porque ahora sí lo identifica con claridad."},
+{ok:0,l:"D",t:"Introduce una detención que no aparece en el original."},
+],note:"🎓 PARÁFRASIS · Fíjate en equivalencias verbales como <em>identify</em> = <em>recognise</em>."}},
+
+{cat:"Paráfrasis",type:"coll",level:"basic",
+q:"Choose the option that says the same thing:<br><strong>The police arrived a few minutes later.</strong>",
+opts:[
+"a) The police left a few minutes earlier.",
+"b) The police turned up a few minutes later.",
+"c) The police worked there for a few minutes.",
+"d) The police called a few minutes later."
+],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The police turned up a few minutes later.",
+rows:[
+{ok:0,l:"A",t:"Dice lo contrario: salir antes."},
+{ok:1,l:"B",t:"Mantiene el mismo significado: <em>arrived</em> → <em>turned up</em>."},
+{ok:0,l:"C",t:"No habla de llegar, sino de trabajar."},
+{ok:0,l:"D",t:"Habla de llamar, no de presentarse."},
+],note:"🎓 PARÁFRASIS · <em>arrive</em> y <em>turn up</em> pueden equivaler según el contexto."}},
+
+{cat:"Paráfrasis",type:"coll",level:"basic",
+q:"Choose the option that says the same thing:<br><strong>The guard asked everyone to leave the building.</strong>",
+opts:[
+"a) The guard told everyone to get out of the building.",
+"b) The guard invited everyone into the building.",
+"c) The guard asked everyone to wait outside the station.",
+"d) The guard ordered everyone to search the building."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) The guard told everyone to get out of the building.",
+rows:[
+{ok:1,l:"A",t:"Paráfrasis correcta: <em>leave the building</em> → <em>get out of the building</em>."},
+{ok:0,l:"B",t:"Invierte el sentido porque dice entrar."},
+{ok:0,l:"C",t:"Añade un lugar diferente y otra acción."},
+{ok:0,l:"D",t:"Habla de registrar el edificio."},
+],note:"🎓 PARÁFRASIS · Debe conservarse la orden original sin añadir información nueva."}},
 
 {cat:"Paráfrasis",type:"coll",level:"intermediate",
-q:"We need to ___ the area to make sure nobody goes in or out.",
-opts:["a) hand over","b) seal off","c) give away","d) slow down"],ans:1,
-exp:{h:"✓ Respuesta correcta: b) seal off",
+q:"Choose the option that says the same thing:<br><strong>Detectives reviewed the CCTV footage again.</strong>",
+opts:[
+"a) Detectives went over the CCTV footage again.",
+"b) Detectives deleted the CCTV footage immediately.",
+"c) Detectives recorded the CCTV footage for the first time.",
+"d) Detectives ignored the CCTV footage completely."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) Detectives went over the CCTV footage again.",
 rows:[
-{ok:0,l:"A",t:"<strong>Hand over</strong>: entregar."},
-{ok:1,l:"B",t:"<strong>Seal off</strong> ✓: acordonar o aislar una zona. Paráfrasis muy natural de <em>close the area completely</em>."},
-{ok:0,l:"C",t:"<strong>Give away</strong>: regalar o revelar."},
-{ok:0,l:"D",t:"<strong>Slow down</strong>: reducir velocidad."},
-],note:"🎓 PARÁFRASIS · <em>close off / isolate the area</em> = <em>seal off the area</em>."}},
+{ok:1,l:"A",t:"Paráfrasis correcta: <em>reviewed</em> → <em>went over</em>."},
+{ok:0,l:"B",t:"Eliminar no equivale a revisar."},
+{ok:0,l:"C",t:"Grabar por primera vez es una acción diferente."},
+{ok:0,l:"D",t:"También cambia totalmente el significado."},
+],note:"🎓 PARÁFRASIS · <em>review</em> = <em>go over</em> cuando se repasa material."}},
 
 {cat:"Paráfrasis",type:"coll",level:"intermediate",
-q:"The inspector asked the suspect to ___ the facts clearly and honestly.",
-opts:["a) make up","b) come clean","c) drop off","d) take over"],ans:1,
-exp:{h:"✓ Respuesta correcta: b) come clean",
+q:"Choose the option that says the same thing:<br><strong>The officers sealed off the area after the explosion.</strong>",
+opts:[
+"a) The officers opened the area after the explosion.",
+"b) The officers kept the area under observation for a week.",
+"c) The officers closed the area completely after the explosion.",
+"d) The officers left the area immediately after the explosion."
+],ans:2,
+exp:{h:"✓ Respuesta correcta: c) The officers closed the area completely after the explosion.",
 rows:[
-{ok:0,l:"A",t:"<strong>Make up</strong>: inventar."},
-{ok:1,l:"B",t:"<strong>Come clean</strong> ✓: admitir la verdad o confesar con franqueza. Paráfrasis perfecta de <em>tell the truth openly</em>."},
-{ok:0,l:"C",t:"<strong>Drop off</strong>: dejar algo o quedarse dormido."},
-{ok:0,l:"D",t:"<strong>Take over</strong>: asumir el control."},
-],note:"🎓 PARÁFRASIS · <em>confess honestly</em> = <em>come clean</em>."}},
+{ok:0,l:"A",t:"Dice lo contrario: abrir el área."},
+{ok:0,l:"B",t:"Vigilar no es lo mismo que acordonar o aislar."},
+{ok:1,l:"C",t:"Mantiene la misma idea: <em>sealed off</em> → <em>closed completely</em>."},
+{ok:0,l:"D",t:"Habla de marcharse, no de bloquear el acceso."},
+],note:"🎓 PARÁFRASIS · Piensa en el significado global, no solo en una palabra aislada."}},
 
 {cat:"Paráfrasis",type:"coll",level:"intermediate",
-q:"The officers had to ___ the noise complaint before midnight.",
-opts:["a) deal with","b) break into","c) put away","d) make out"],ans:0,
-exp:{h:"✓ Respuesta correcta: a) deal with",
+q:"Choose the option that says the same thing:<br><strong>The suspect finally admitted what he had done.</strong>",
+opts:[
+"a) The suspect finally came clean about his actions.",
+"b) The suspect finally forgot what he had done.",
+"c) The suspect finally denied everything in court.",
+"d) The suspect finally repeated the question."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) The suspect finally came clean about his actions.",
 rows:[
-{ok:1,l:"A",t:"<strong>Deal with</strong> ✓: encargarse de, gestionar. Paráfrasis muy habitual de <em>handle</em>."},
-{ok:0,l:"B",t:"<strong>Break into</strong>: entrar por la fuerza."},
-{ok:0,l:"C",t:"<strong>Put away</strong>: guardar o encarcelar informalmente."},
-{ok:0,l:"D",t:"<strong>Make out</strong>: entender o distinguir; también besarse, según el contexto."},
-],note:"🎓 PARÁFRASIS · <em>handle a complaint</em> = <em>deal with a complaint</em>."}},
+{ok:1,l:"A",t:"Paráfrasis correcta: <em>admitted what he had done</em> → <em>came clean about his actions</em>."},
+{ok:0,l:"B",t:"Habla de olvidar, no de admitir."},
+{ok:0,l:"C",t:"Es lo contrario: negar todo."},
+{ok:0,l:"D",t:"No expresa confesión."},
+],note:"🎓 PARÁFRASIS · <em>admit</em> y <em>come clean</em> pueden expresar la misma idea."}},
 
 {cat:"Paráfrasis",type:"coll",level:"intermediate",
-q:"The sergeant told the rookie officer to ___ every detail in the notebook.",
-opts:["a) write down","b) turn in","c) take off","d) show up"],ans:0,
-exp:{h:"✓ Respuesta correcta: a) write down",
+q:"Choose the option that says the same thing:<br><strong>The sergeant handled the complaint quickly.</strong>",
+opts:[
+"a) The sergeant dealt with the complaint quickly.",
+"b) The sergeant caused the complaint quickly.",
+"c) The sergeant ignored the complaint quickly.",
+"d) The sergeant copied the complaint quickly."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) The sergeant dealt with the complaint quickly.",
 rows:[
-{ok:1,l:"A",t:"<strong>Write down</strong> ✓: anotar. Paráfrasis directa de <em>record in writing</em>."},
-{ok:0,l:"B",t:"<strong>Turn in</strong>: entregar o acostarse."},
-{ok:0,l:"C",t:"<strong>Take off</strong>: despegar o quitarse algo."},
-{ok:0,l:"D",t:"<strong>Show up</strong>: aparecer."},
-],note:"🎓 PARÁFRASIS · <em>note / record</em> = <em>write down</em> cuando se trata de apuntes rápidos."}},
+{ok:1,l:"A",t:"Paráfrasis correcta: <em>handled</em> → <em>dealt with</em>."},
+{ok:0,l:"B",t:"Provocar una queja no es gestionarla."},
+{ok:0,l:"C",t:"Ignorar cambia el sentido."},
+{ok:0,l:"D",t:"Copiar tampoco equivale a gestionar."},
+],note:"🎓 PARÁFRASIS · <em>handle</em> suele equivaler a <em>deal with</em>."}},
 
 {cat:"Paráfrasis",type:"coll",level:"intermediate",
-q:"The witness could not ___ the registration number because it was too dark.",
-opts:["a) carry out","b) make out","c) set up","d) call off"],ans:1,
-exp:{h:"✓ Respuesta correcta: b) make out",
+q:"Choose the option that says the same thing:<br><strong>Please write down everything the witness says.</strong>",
+opts:[
+"a) Please memorise everything the witness says.",
+"b) Please note everything the witness says in writing.",
+"c) Please change everything the witness says.",
+"d) Please hide everything the witness says."
+],ans:1,
+exp:{h:"✓ Respuesta correcta: b) Please note everything the witness says in writing.",
 rows:[
-{ok:0,l:"A",t:"<strong>Carry out</strong>: realizar."},
-{ok:1,l:"B",t:"<strong>Make out</strong> ✓: distinguir o descifrar con dificultad. Muy útil para parafrasear <em>see clearly</em> o <em>read clearly</em>."},
-{ok:0,l:"C",t:"<strong>Set up</strong>: montar, preparar o incriminar según contexto."},
-{ok:0,l:"D",t:"<strong>Call off</strong>: cancelar."},
-],note:"🎓 PARÁFRASIS · <em>couldn't read/see clearly</em> = <em>couldn't make out</em>."}},
+{ok:0,l:"A",t:"Memorizar no es lo mismo que anotarlo."},
+{ok:1,l:"B",t:"Mantiene la misma idea: <em>write down</em> → <em>note ... in writing</em>."},
+{ok:0,l:"C",t:"Cambiar la información altera el significado."},
+{ok:0,l:"D",t:"Ocultar no tiene relación con anotar."},
+],note:"🎓 PARÁFRASIS · Las opciones correctas suelen reformular con otra estructura."}},
 
 {cat:"Paráfrasis",type:"coll",level:"intermediate",
-q:"The chief decided to ___ the operation because the weather was too dangerous.",
-opts:["a) call off","b) put through","c) take in","d) hold up"],ans:0,
-exp:{h:"✓ Respuesta correcta: a) call off",
+q:"Choose the option that says the same thing:<br><strong>The witness could barely make out the registration number.</strong>",
+opts:[
+"a) The witness could read the registration number very easily.",
+"b) The witness could hardly see the registration number clearly.",
+"c) The witness wrote the registration number for the suspect.",
+"d) The witness changed the registration number."
+],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The witness could hardly see the registration number clearly.",
 rows:[
-{ok:1,l:"A",t:"<strong>Call off</strong> ✓: cancelar. Paráfrasis clara de <em>cancel</em> o <em>abort</em>."},
-{ok:0,l:"B",t:"<strong>Put through</strong>: comunicar una llamada o hacer pasar por una experiencia."},
-{ok:0,l:"C",t:"<strong>Take in</strong>: acoger, engañar o comprender según el contexto."},
-{ok:0,l:"D",t:"<strong>Hold up</strong>: atracar o retrasar."},
-],note:"🎓 PARÁFRASIS · <em>cancel the operation</em> = <em>call off the operation</em>."}},
+{ok:0,l:"A",t:"Dice lo contrario: verlo fácilmente."},
+{ok:1,l:"B",t:"Paráfrasis correcta: <em>could barely make out</em> → <em>could hardly see clearly</em>."},
+{ok:0,l:"C",t:"No habla de escribirlo."},
+{ok:0,l:"D",t:"Mucho menos de cambiarlo."},
+],note:"🎓 PARÁFRASIS · Expresiones como <em>barely</em> y <em>hardly</em> suelen equivaler."}},
 
 {cat:"Paráfrasis",type:"coll",level:"intermediate",
-q:"The patrol car ___ at the station just after the emergency call ended.",
-opts:["a) gave up","b) turned down","c) got back","d) ran into"],ans:2,
-exp:{h:"✓ Respuesta correcta: c) got back",
+q:"Choose the option that says the same thing:<br><strong>The chief cancelled the operation because of the storm.</strong>",
+opts:[
+"a) The chief called off the operation because of the storm.",
+"b) The chief planned the operation because of the storm.",
+"c) The chief delayed the storm because of the operation.",
+"d) The chief explained the operation because of the storm."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) The chief called off the operation because of the storm.",
 rows:[
-{ok:0,l:"A",t:"<strong>Gave up</strong>: rendirse."},
-{ok:0,l:"B",t:"<strong>Turned down</strong>: rechazar o bajar volumen."},
-{ok:1,l:"C",t:"<strong>Got back</strong> ✓: regresar. Buena paráfrasis de <em>returned</em>."},
-{ok:0,l:"D",t:"<strong>Ran into</strong>: encontrarse con o chocar con problemas."},
-],note:"🎓 PARÁFRASIS · <em>return to the station</em> = <em>get back to the station</em>."}},
+{ok:1,l:"A",t:"Paráfrasis correcta: <em>cancelled</em> → <em>called off</em>."},
+{ok:0,l:"B",t:"Planificar no es cancelar."},
+{ok:0,l:"C",t:"No tiene sentido lógico ni coincide con la frase original."},
+{ok:0,l:"D",t:"Explicar tampoco equivale a cancelar."},
+],note:"🎓 PARÁFRASIS · <em>cancel</em> y <em>call off</em> son equivalentes frecuentes."}},
 
 {cat:"Paráfrasis",type:"coll",level:"intermediate",
-q:"The detective asked backup units to ___ and support the arrest team.",
-opts:["a) stand by","b) get over","c) bring up","d) show off"],ans:0,
-exp:{h:"✓ Respuesta correcta: a) stand by",
+q:"Choose the option that says the same thing:<br><strong>The patrol returned to the station after the incident.</strong>",
+opts:[
+"a) The patrol got back to the station after the incident.",
+"b) The patrol stayed at the station during the incident.",
+"c) The patrol destroyed the station after the incident.",
+"d) The patrol avoided the station after the incident."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) The patrol got back to the station after the incident.",
 rows:[
-{ok:1,l:"A",t:"<strong>Stand by</strong> ✓: mantenerse preparados. Paráfrasis habitual de <em>remain ready</em>."},
-{ok:0,l:"B",t:"<strong>Get over</strong>: superar."},
-{ok:0,l:"C",t:"<strong>Bring up</strong>: mencionar o criar."},
-{ok:0,l:"D",t:"<strong>Show off</strong>: presumir."},
-],note:"🎓 PARÁFRASIS · <em>remain ready</em> = <em>stand by</em>. Muy frecuente en coordinación policial."}},
+{ok:1,l:"A",t:"Paráfrasis correcta: <em>returned</em> → <em>got back</em>."},
+{ok:0,l:"B",t:"Dice que ya estaba allí, no que regresó."},
+{ok:0,l:"C",t:"Destruir no tiene relación con volver."},
+{ok:0,l:"D",t:"Evitar el lugar cambia completamente el significado."},
+],note:"🎓 PARÁFRASIS · El verbo puede cambiar, pero la secuencia de hechos debe mantenerse."}},
+
+{cat:"Paráfrasis",type:"coll",level:"intermediate",
+q:"Choose the option that says the same thing:<br><strong>Backup units were told to remain ready.</strong>",
+opts:[
+"a) Backup units were told to stand by.",
+"b) Backup units were told to leave the scene.",
+"c) Backup units were told to surrender.",
+"d) Backup units were told to slow down."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) Backup units were told to stand by.",
+rows:[
+{ok:1,l:"A",t:"Paráfrasis correcta: <em>remain ready</em> → <em>stand by</em>."},
+{ok:0,l:"B",t:"Marcharse no equivale a estar preparados."},
+{ok:0,l:"C",t:"Rendirse es otro significado."},
+{ok:0,l:"D",t:"Reducir velocidad tampoco encaja."},
+],note:"🎓 PARÁFRASIS · En contexto operativo, <em>stand by</em> suele equivaler a estar preparado."}},
+
+{cat:"Paráfrasis",type:"coll",level:"advanced",
+q:"Choose the option that says the same thing:<br><strong>The report stated that the door had not been secured properly.</strong>",
+opts:[
+"a) The report stated that the door had been painted recently.",
+"b) The report stated that the door had not been locked properly.",
+"c) The report stated that the door had been forced open immediately.",
+"d) The report stated that the door had not been used properly."
+],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The report stated that the door had not been locked properly.",
+rows:[
+{ok:0,l:"A",t:"Habla de pintura, idea totalmente ajena."},
+{ok:1,l:"B",t:"Paráfrasis correcta: <em>had not been secured properly</em> → <em>had not been locked properly</em>."},
+{ok:0,l:"C",t:"Introduce forzamiento, que no aparece en el original."},
+{ok:0,l:"D",t:"Usar la puerta no equivale a asegurarla."},
+],note:"🎓 PARÁFRASIS · A veces la clave está en un verbo técnico como <em>secure</em>."}},
+
+{cat:"Paráfrasis",type:"coll",level:"advanced",
+q:"Choose the option that says the same thing:<br><strong>The inspector warned residents not to leave valuables in their cars.</strong>",
+opts:[
+"a) The inspector advised residents to keep valuable items out of their vehicles.",
+"b) The inspector forced residents to sell their cars.",
+"c) The inspector told residents to buy more expensive vehicles.",
+"d) The inspector reminded residents to clean their cars."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) The inspector advised residents to keep valuable items out of their vehicles.",
+rows:[
+{ok:1,l:"A",t:"Paráfrasis correcta: <em>warned</em> → <em>advised</em> y <em>cars</em> → <em>vehicles</em>."},
+{ok:0,l:"B",t:"Habla de vender los coches, algo distinto."},
+{ok:0,l:"C",t:"Añade la idea de comprar vehículos más caros."},
+{ok:0,l:"D",t:"Limpiar los coches no tiene relación."},
+],note:"🎓 PARÁFRASIS · Una buena paráfrasis cambia el léxico sin alterar la información."}},
+
+{cat:"Paráfrasis",type:"coll",level:"advanced",
+q:"Choose the option that says the same thing:<br><strong>The suspect was arrested on two earlier occasions for similar offences.</strong>",
+opts:[
+"a) The suspect was never questioned about related offences.",
+"b) The suspect had two previous arrests for comparable crimes.",
+"c) The suspect committed two offences after being released today.",
+"d) The suspect admitted two completely different crimes."
+],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The suspect had two previous arrests for comparable crimes.",
+rows:[
+{ok:0,l:"A",t:"Niega una información que sí aparece en la frase original."},
+{ok:1,l:"B",t:"Paráfrasis correcta: <em>earlier occasions</em> → <em>previous</em> y <em>similar offences</em> → <em>comparable crimes</em>."},
+{ok:0,l:"C",t:"Introduce hechos nuevos y un marco temporal distinto."},
+{ok:0,l:"D",t:"Habla de admisión, no de arrestos previos."},
+],note:"🎓 PARÁFRASIS · También cuenta como correcta una reformulación con sustantivos equivalentes."}},
+
+{cat:"Paráfrasis",type:"coll",level:"advanced",
+q:"Choose the option that says the same thing:<br><strong>Any use of force must be proportional to the threat.</strong>",
+opts:[
+"a) Officers may use any level of force they prefer.",
+"b) Force must match the level of danger involved.",
+"c) Threats should always be ignored by officers.",
+"d) Officers should avoid reporting any use of force."
+],ans:1,
+exp:{h:"✓ Respuesta correcta: b) Force must match the level of danger involved.",
+rows:[
+{ok:0,l:"A",t:"Dice algo mucho más amplio y distinto."},
+{ok:1,l:"B",t:"Paráfrasis correcta: <em>be proportional to the threat</em> → <em>match the level of danger involved</em>."},
+{ok:0,l:"C",t:"No tiene relación con la proporcionalidad del uso de la fuerza."},
+{ok:0,l:"D",t:"Habla de no informar, idea inexistente en el original."},
+],note:"🎓 PARÁFRASIS · Aquí la clave está en reformular la relación entre fuerza y amenaza."}},
+
+{cat:"Paráfrasis",type:"coll",level:"advanced",
+q:"Choose the option that says the same thing:<br><strong>Failure to follow this procedure may result in disciplinary action.</strong>",
+opts:[
+"a) Ignoring this procedure could lead to disciplinary consequences.",
+"b) This procedure should be repeated without any changes.",
+"c) Following this procedure always causes legal action.",
+"d) This procedure only applies to disciplinary officers."
+],ans:0,
+exp:{h:"✓ Respuesta correcta: a) Ignoring this procedure could lead to disciplinary consequences.",
+rows:[
+{ok:1,l:"A",t:"Paráfrasis correcta: <em>failure to follow</em> → <em>ignoring</em> y <em>may result in</em> → <em>could lead to</em>."},
+{ok:0,l:"B",t:"No habla de incumplir la norma ni de consecuencias."},
+{ok:0,l:"C",t:"Dice que seguirla causa acción legal, que es justo otra idea."},
+{ok:0,l:"D",t:"Limita el alcance del procedimiento sin base textual."},
+],note:"🎓 PARÁFRASIS · Revisa siempre si la consecuencia y la condición siguen siendo las mismas."}},
+
+{cat:"Paráfrasis",type:"coll",level:"advanced",
+q:"Choose the option that says the same thing:<br><strong>The building was evacuated after staff noticed smoke on the third floor.</strong>",
+opts:[
+"a) Staff were told to return to the third floor after the evacuation.",
+"b) The building was emptied once employees saw smoke on the third floor.",
+"c) Staff caused smoke on the third floor during the evacuation.",
+"d) The building stayed open although staff noticed smoke."
+],ans:1,
+exp:{h:"✓ Respuesta correcta: b) The building was emptied once employees saw smoke on the third floor.",
+rows:[
+{ok:0,l:"A",t:"Habla de volver a la planta, no de evacuar."},
+{ok:1,l:"B",t:"Paráfrasis correcta: <em>was evacuated</em> → <em>was emptied</em> y <em>noticed</em> → <em>saw</em>."},
+{ok:0,l:"C",t:"Culpa al personal de provocar el humo, algo no dicho."},
+{ok:0,l:"D",t:"Contradice la evacuación."},
+],note:"🎓 PARÁFRASIS · La mejor opción conserva causa, momento y resultado."}},
 
 {cat:"Tiempos verbales",type:"gram",level:"intermediate",
 q:"The suspect ___ away when the officer arrived.",

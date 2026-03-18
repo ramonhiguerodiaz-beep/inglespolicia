@@ -166,7 +166,7 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
   <section class="start-panel">
     <div>
       <div class="start-title">Generador de test policial</div>
-      <div class="start-sub">Selecciona cuántas preguntas quieres (máx. 30) y si el test será aleatorio total o solo de uno o varios apartados.</div>
+      <div class="start-sub">Selecciona cuántas preguntas quieres (máx. 30) y genera un test aleatorio o centrado solo en los bloques que marques.</div>
       <div class="sections-box" id="sectionsBox"></div>
     </div>
     <div class="start-controls">
@@ -2718,47 +2718,46 @@ let selectedDifficulty="all";
 let currentMode="custom";
 
 const SEC_ORDER=[
-  "1. Comprensión",
-  "2. Expresiones",
-  "3. Comunicación policial",
-  "4. Lenguaje técnico-policial",
-  "5. Especialidades",
-  "6. Tiempos verbales"
+  "1. Reading y comprensión",
+  "2. Gramática y tiempos verbales",
+  "3. Expresiones y uso natural",
+  "4. Comunicación policial",
+  "5. Vocabulario policial y especialidades"
 ];
 
 const CAT_TO_SEC={
-  "Reading":"1. Comprensión",
-  "Contrastes útiles":"1. Comprensión",
-  "False Friends":"1. Comprensión",
-  "Errores frecuentes":"1. Comprensión",
-  "Gramática":"1. Comprensión",
-  "Preposiciones":"1. Comprensión",
+  "Reading":"1. Reading y comprensión",
+  "Contrastes útiles":"1. Reading y comprensión",
 
-  "Idioms":"2. Expresiones",
-  "Fixed expressions":"2. Expresiones",
-  "Collocations":"2. Expresiones",
+  "Gramática":"2. Gramática y tiempos verbales",
+  "Preposiciones":"2. Gramática y tiempos verbales",
+  "Errores frecuentes":"2. Gramática y tiempos verbales",
+  "Tiempos verbales":"2. Gramática y tiempos verbales",
 
-  "Comunicación":"3. Comunicación policial",
-  "Atención ciudadana":"3. Comunicación policial",
-  "Entrevista policial":"3. Comunicación policial",
-  "Radio policial":"3. Comunicación policial",
-  "Comunicación policial":"3. Comunicación policial",
+  "Idioms":"3. Expresiones y uso natural",
+  "Fixed expressions":"3. Expresiones y uso natural",
+  "Collocations":"3. Expresiones y uso natural",
+  "False Friends":"3. Expresiones y uso natural",
+  "Paráfrasis":"3. Expresiones y uso natural",
 
-  "Procedimiento":"4. Lenguaje técnico-policial",
-  "Paráfrasis":"4. Lenguaje técnico-policial",
-  "Documentación":"4. Lenguaje técnico-policial",
-  "Verbos policiales":"4. Lenguaje técnico-policial",
-  "Delitos":"4. Lenguaje técnico-policial",
-  "Personas":"4. Lenguaje técnico-policial",
-  "Investigación":"4. Lenguaje técnico-policial",
-  "Juicio":"4. Lenguaje técnico-policial",
-  "Prisión":"4. Lenguaje técnico-policial",
-  "Vocabulario extra":"4. Lenguaje técnico-policial",
-  "Lenguaje técnico-policial":"4. Lenguaje técnico-policial",
+  "Comunicación":"4. Comunicación policial",
+  "Atención ciudadana":"4. Comunicación policial",
+  "Entrevista policial":"4. Comunicación policial",
+  "Radio policial":"4. Comunicación policial",
+  "Comunicación policial":"4. Comunicación policial",
 
-  "Tráfico":"5. Especialidades",
-  "Especialidades":"5. Especialidades",
-  "Tiempos verbales":"6. Tiempos verbales"
+  "Procedimiento":"5. Vocabulario policial y especialidades",
+  "Documentación":"5. Vocabulario policial y especialidades",
+  "Verbos policiales":"5. Vocabulario policial y especialidades",
+  "Delitos":"5. Vocabulario policial y especialidades",
+  "Personas":"5. Vocabulario policial y especialidades",
+  "Investigación":"5. Vocabulario policial y especialidades",
+  "Juicio":"5. Vocabulario policial y especialidades",
+  "Prisión":"5. Vocabulario policial y especialidades",
+  "Vocabulario extra":"5. Vocabulario policial y especialidades",
+  "Lenguaje técnico-policial":"5. Vocabulario policial y especialidades",
+  "Tráfico":"5. Vocabulario policial y especialidades",
+  "Especialidades":"5. Vocabulario policial y especialidades"
 };
 
 function secOf(q){
@@ -2777,10 +2776,10 @@ function qLevel(q){
 function getQ(count=requestedCount,secs=selectedSections,diff=selectedDifficulty){
   const useSecs=Array.isArray(secs)?secs:[];
   const bySection=useSecs.length?Q.filter(q=>useSecs.includes(secOf(q))):Q;
-  const pool=diff&&diff!=="all"?bySection.filter(q=>qLevel(q)===diff):bySection;
-  const n=Math.min(Math.max(1,Number(count)||MAX_TEST_SIZE),MAX_TEST_SIZE,pool.length||Q.length);
-  const src=pool.length?pool:Q;
-  return shu(src).slice(0,n);
+  const byDifficulty=diff&&diff!=="all"?bySection.filter(q=>qLevel(q)===diff):bySection;
+  const src=byDifficulty.length?byDifficulty:bySection;
+  const n=Math.min(Math.max(1,Number(count)||MAX_TEST_SIZE),MAX_TEST_SIZE,src.length||Q.length);
+  return shu(src.length?src:Q).slice(0,n);
 }
 
 function cleanTxt(s){return String(s||"").replace(/<[^>]*>/g,"").replace(/\s+/g," ").trim()}

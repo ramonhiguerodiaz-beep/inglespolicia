@@ -154,7 +154,7 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
 <header>
   <div class="h-badge">Oposiciones · Inglés B1</div>
   <h1>TEST <em>Policía Local · CGPC</em></h1>
-  <p>Bloques reorganizados: expresiones, tiempos verbales, vocabulario, paráfrasis y resto</p>
+  <p>Bloques reorganizados: expresiones, tiempos verbales, vocabulario, reading con paráfrasis y resto</p>
 </header>
 <div class="prog-wrap"><div class="prog-fill" id="pf" style="width:0%"></div></div>
 <div class="stats">
@@ -185,6 +185,32 @@ main{max-width:700px;margin:0 auto;padding:14px 14px 50px}
       </div>
       <button class="start-btn" onclick="startCustomMode()">🎯 Generar test</button>
       <button class="start-btn" onclick="startRandomMode()">🎲 Aleatorio total</button>
+    </div>
+  </section>
+  <section class="study-panel">
+    <h2>Cómo trabajar la paráfrasis en reading</h2>
+    <p>Aquí <strong>paráfrasis</strong> no significa solo cambiar una palabra por otra. Significa <strong>leer un texto breve y expresar la misma información con otras palabras</strong>, sin copiar literalmente el enunciado.</p>
+    <div class="study-grid">
+      <article class="study-card">
+        <span class="study-tag">Paso a paso</span>
+        <h3>Qué debes hacer</h3>
+        <ul>
+          <li>Lee la idea principal del texto.</li>
+          <li>Busca sinónimos o expresiones equivalentes.</li>
+          <li>Cambia la estructura de la frase si hace falta.</li>
+          <li>Mantén el mismo significado sin repetir las mismas palabras.</li>
+        </ul>
+      </article>
+      <article class="study-card full">
+        <span class="study-tag">Ejemplo real</span>
+        <h3>Reading + decir lo mismo con otras palabras</h3>
+        <ul>
+          <li><strong>Texto:</strong> The police warned residents not to leave valuables in their cars after a series of break-ins.</li>
+          <li><strong>Misma información, con otras palabras:</strong> The police advised local people to keep expensive items out of their vehicles after several burglaries.</li>
+          <li><strong>Cambios clave:</strong> warned → advised · residents → local people · valuables → expensive items · cars → vehicles · a series of break-ins → several burglaries.</li>
+          <li><strong>Modelo de respuesta:</strong> The text says that the police told residents to be careful and not keep valuable things inside their vehicles.</li>
+        </ul>
+      </article>
     </div>
   </section>
   <div class="q-meta" id="qm"></div>
@@ -2895,12 +2921,12 @@ const SEC_ORDER=[
   "1. Collocations / False Friends / Idioms / Fixed expressions",
   "2. Tiempos verbales e irregulares",
   "3. Vocabulario",
-  "4. Paráfrasis de frases",
+  "4. Reading y paráfrasis",
   "5. Resto"
 ];
 
 function secOf(q){
-  if(q.cat==="Paráfrasis")return "4. Paráfrasis de frases";
+  if(q.cat==="Paráfrasis"||q.type==="read")return "4. Reading y paráfrasis";
   if(q.type==="idiom"||q.type==="false"||q.type==="coll"||q.cat==="Fixed expressions")return "1. Collocations / False Friends / Idioms / Fixed expressions";
   if(q.type==="gram")return "2. Tiempos verbales e irregulares";
   if(q.type==="vocab")return "3. Vocabulario";

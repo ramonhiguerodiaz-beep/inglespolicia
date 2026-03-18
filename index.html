@@ -13,7 +13,7 @@
   <header class="hero">
     <div class="hero__badge">OPOSICIONES · INGLÉS B1</div>
     <h1>TEST <span>Policía Local · CGPC</span></h1>
-    <p id="heroSubtitle">Bloques reorganizados: expresiones, tiempos verbales, vocabulario, reading con paráfrasis y resto.</p>
+    <p id="heroSubtitle">Banco tipo test de 4 opciones, generado desde el documento maestro con explicaciones por alternativa.</p>
   </header>
 
   <div class="progress-strip" aria-hidden="true">
@@ -37,7 +37,7 @@
       <div class="generator-card__header">
         <div>
           <h2>Generador de test policial</h2>
-          <p>Selecciona cuántas preguntas quieres, filtra por bloque y dificultad, o lanza un aleatorio total con el banco ampliado sacado del documento maestro.</p>
+          <p>Selecciona cuántas preguntas quieres, filtra por bloque y dificultad, o lanza un aleatorio total con el banco tipo test generado desde <strong>ingles-definitivo-maestro.md</strong>.</p>
         </div>
       </div>
 
@@ -81,12 +81,7 @@
 
       <form id="answerForm" class="answer-form">
         <div class="option-list" id="optionList"></div>
-        <label class="text-answer hidden" id="textAnswerWrap">
-          <span>Tu respuesta</span>
-          <input id="textAnswer" type="text" autocomplete="off" placeholder="Escribe la respuesta aquí">
-        </label>
-
-        <div class="answer-actions"><button id="checkBtn" class="btn btn--primary" type="submit">Comprobar</button><button id="nextBtn" class="btn btn--primary hidden" type="button">Siguiente pregunta</button></div>
+        <div class="answer-actions"><button id="nextBtn" class="btn btn--primary hidden" type="button">Siguiente pregunta</button></div>
       </form>
 
       <section class="feedback hidden" id="feedbackBox">
@@ -94,8 +89,12 @@
         <div class="feedback__answer" id="feedbackAnswer"></div>
         <div class="feedback__body">
           <div>
-            <h3>Explicación</h3>
+            <h3>Resumen</h3>
             <p id="feedbackExplanation"></p>
+          </div>
+          <div>
+            <h3>Por qué cada opción está bien o mal</h3>
+            <div id="feedbackOptionList" class="feedback-option-list"></div>
           </div>
           <div>
             <h3>Fuente</h3>

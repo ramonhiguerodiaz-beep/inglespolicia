@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import random
 import re
 from collections import defaultdict
 from pathlib import Path
@@ -59,6 +60,40 @@ ENGLISH_ALLOWLIST = {
     'sentence', 'penalty', 'ruling', 'security', 'camera', 'cctv', 'crime', 'scene', 'police', 'station', 'assistant',
 }
 
+CURATED_COLLOCATIONS = [
+    ('make an arrest', 'efectuar una detención', 'do an arrest', 430),
+    ('place someone under arrest', 'poner a alguien bajo arresto', 'make someone under arrest', 431),
+    ('commit a crime', 'cometer un delito', 'make a crime', 433),
+    ('carry out an investigation', 'llevar a cabo una investigación', 'do an investigation', 434),
+    ('launch an inquiry', 'iniciar una investigación formal', 'make an inquiry', 437),
+    ('gather evidence', 'recopilar pruebas', 'gather proofs / collect evidences', 439),
+    ('question a suspect', 'interrogar a un sospechoso', 'question to a suspect', 440),
+    ('file a report', 'redactar o presentar un informe', 'make a report', 441),
+    ('press charges', 'presentar cargos', 'put charges', 442),
+    ('open / close a case', 'abrir o cerrar un caso', 'open the crime', 443),
+    ('patrol an area', 'patrullar una zona', 'patrol in the area', 444),
+    ('respond to an incident', 'responder a un incidente', 'respond an incident', 445),
+    ('use reasonable force', 'usar fuerza proporcionada', 'use reasonable forces', 447),
+    ('face charges', 'enfrentarse a cargos', 'face to charges', 453),
+    ('give evidence', 'declarar como prueba', 'say evidence', 454),
+    ('serve a sentence', 'cumplir condena', 'do a sentence', 455),
+    ('take a risk', 'asumir un riesgo', 'do a risk', 458),
+    ('make a decision', 'tomar una decisión', 'do a decision', 459),
+    ('issue a summons', 'emitir una citación oficial', 'give a summons', 1110),
+    ('cooperate with the police', 'cooperar con la policía', 'cooperate to the police', 569),
+    ('take someone into custody', 'poner bajo custodia', 'take someone in custody', 573),
+    ('be under arrest', 'estar detenido', 'be in arrest', 577),
+    ('be on the run', 'estar huido o a la fuga', 'be in the run', 579),
+    ('be released on bail', 'quedar en libertad bajo fianza', 'be in bail', 581),
+    ('break into a house', 'entrar forzando en una vivienda o local', 'break in the house', 583),
+    ('cordon off an area', 'acordonar una zona', 'cordon an area', 587),
+    ('comply with the rules', 'cumplir las normas', 'comply the rules', 590),
+    ('be charged with a crime', 'ser acusado de un delito', 'be charged of', 594),
+    ('plead not guilty to all charges', 'declararse no culpable de todos los cargos', 'plead not guilty of', 598),
+]
+
+
+# ---------- generic helpers ----------
 
 def slug(value: str) -> str:
     value = value.lower().strip()
@@ -157,17 +192,56 @@ def parse_blocks(lines: list[str]):
 
 
 def compact_text(text: str) -> str:
-    return re.sub(r'\s+', ' ', str(text or '')).strip()
+    text = re.sub(r'<!--.*?-->', ' ', str(text or ''), flags=re.S)
+    text = text.replace('###', ' ')
+    return re.sub(r'\s+', ' ', text).strip()
+
+
+def normalize_option_label(text: str) -> str:
+    return compact_text(text).strip(' .;:')
+
+
+def normalize_key(text: str) -> str:
+    return compact_text(text).lower().normalize('NFD') if hasattr(str, 'normalize') else compact_text(text).lower()
+
+
+def simplify(text: str) -> str:
+    return (
+        compact_text(text)
+        .lower()
+        .replace('’', "'")
+        .replace('“', '"')
+        .replace('”', '"')
+        .replace('–', '-')
+        .replace('—', '-')
+    )
 
 
 def make_choice_objects(options: list[str]) -> list[dict[str, str]]:
     letters = ['a', 'b', 'c', 'd']
-    return [{'key': letters[index], 'label': option} for index, option in enumerate(options[:4])]
+    return [{'key': letters[index], 'label': normalize_option_label(option)} for index, option in enumerate(options[:4])]
+
+
+def make_option_explanations(choices: list[dict[str, str]], answer_index: int, explanations: dict[str, str] | None = None, *,
+                             default_correct: str = 'Es la forma correcta según el documento maestro.',
+                             default_incorrect: str = 'No encaja con el enunciado según el documento maestro.'):
+    explanations = explanations or {}
+    details = []
+    for index, choice in enumerate(choices):
+        key = choice['key']
+        details.append({
+            'key': key,
+            'label': choice['label'],
+            'is_correct': index == answer_index,
+            'explanation': compact_text(explanations.get(key) or (default_correct if index == answer_index else default_incorrect)),
+        })
+    return details
 
 
 def build_question_item(*, item_id: str, section: str, subsection: str, qtype: str, title: str, prompt: str,
                         choices: list[dict[str, str]], answer_index: int, explanation: str, source_block: str,
-                        difficulty: str = 'intermediate', tags: list[str] | None = None, reading_id: str | None = None):
+                        difficulty: str = 'intermediate', tags: list[str] | None = None, reading_id: str | None = None,
+                        option_explanations: list[dict] | None = None, context: str = '', help_text: str = ''):
     answer = f"{chr(97 + answer_index)}) {choices[answer_index]['label']}" if choices else ''
     return {
         'id': item_id,
@@ -190,9 +264,79 @@ def build_question_item(*, item_id: str, section: str, subsection: str, qtype: s
         'difficulty': difficulty,
         'tags': tags or [],
         'source_block': source_block,
+        'option_explanations': option_explanations or [],
+        'context': context,
+        'help_text': help_text,
         **({'reading_id': reading_id} if reading_id else {}),
     }
 
+
+def add_fourth_option(options: list[str], extra_pool: list[str], correct_option: str, used: set[str] | None = None) -> list[str]:
+    used = used or set()
+    result = []
+    seen: set[str] = set()
+    for option in options:
+        cleaned = normalize_option_label(option)
+        key = simplify(cleaned)
+        if cleaned and key not in seen:
+            result.append(cleaned)
+            seen.add(key)
+    for candidate in extra_pool:
+        cleaned = normalize_option_label(candidate)
+        key = simplify(cleaned)
+        if not cleaned or key in seen or key == simplify(correct_option) or key in used:
+            continue
+        result.append(cleaned)
+        seen.add(key)
+        if len(result) == 4:
+            return result
+    fillers = ['all of a sudden', 'at first sight', 'under control', 'keep a record']
+    for filler in fillers:
+        key = simplify(filler)
+        if key not in seen and key != simplify(correct_option):
+            result.append(filler)
+            seen.add(key)
+        if len(result) == 4:
+            break
+    return result[:4]
+
+
+def parse_choice_block(chunk: str) -> list[tuple[str, str]]:
+    match = re.search(r'Opciones:\s*(.+?)\s*Respuesta\s+correcta:', chunk, re.I | re.S)
+    if not match:
+        return []
+    segment = compact_text(match.group(1))
+    found = re.findall(r'([a-d])\)\s*(.+?)(?=\s+[a-d]\)\s+|$)', segment, re.I)
+    return [(key.lower(), normalize_option_label(label)) for key, label in found]
+
+
+def parse_option_explanations(chunk: str) -> dict[str, str]:
+    match = re.search(r'Explicación\s+por\s+opción:\s*(.+)$', chunk, re.I | re.S)
+    if not match:
+        return {}
+    segment = compact_text(match.group(1))
+    parsed = {}
+    for key, verdict, explanation in re.findall(r'([a-d])\)\s*(Correcta|Incorrecta)\s*:\s*(.+?)(?=\s+[a-d]\)\s*(?:Correcta|Incorrecta)\s*:|$)', segment, re.I):
+        parsed[key.lower()] = f'{verdict.capitalize()}: {compact_text(explanation)}'
+    return parsed
+
+
+def find_correct_index(choices: list[str], answer_text: str) -> int:
+    answer_text = compact_text(answer_text)
+    answer_key_match = re.match(r'([a-d])\)', answer_text, re.I)
+    if answer_key_match:
+        return ord(answer_key_match.group(1).lower()) - 97
+    normalized = simplify(answer_text)
+    for index, choice in enumerate(choices):
+        if simplify(choice) == normalized:
+            return index
+    for index, choice in enumerate(choices):
+        if simplify(choice) in normalized or normalized in simplify(choice):
+            return index
+    return 0
+
+
+# ---------- definition / collocation extraction ----------
 
 def looks_spanish_token(token: str) -> bool:
     cleaned = token.strip('.,;:()[]¿?¡!*/').lower()
@@ -272,19 +416,23 @@ def extract_definition_questions(lines: list[str]) -> list[dict]:
     for (section, subsection), entries in by_bucket.items():
         for index, entry in enumerate(entries):
             distractor_pool = [candidate['term'] for candidate in entries if candidate['term'] != entry['term']]
-            if len(distractor_pool) < 3:
-                distractor_pool.extend([
-                    candidate['term']
-                    for candidate in parsed_entries
-                    if candidate['section'] == section and candidate['term'] != entry['term'] and candidate['term'] not in distractor_pool
-                ])
-            distractors = distractor_pool[:3]
-            if len(distractors) < 3:
+            distractor_pool.extend([
+                candidate['term']
+                for candidate in parsed_entries
+                if candidate['term'] != entry['term'] and candidate['term'] not in distractor_pool
+            ])
+            options = add_fourth_option([entry['term']], distractor_pool, entry['term'])
+            if len(options) < 4:
                 continue
-
-            options = [entry['term'], *distractors]
             choices = make_choice_objects(options)
-            prompt = f"¿Qué expresión o término encaja mejor con esta idea? {entry['definition']}"
+            answer_index = next((i for i, option in enumerate(options) if simplify(option) == simplify(entry['term'])), 0)
+            explanations = {}
+            for choice in choices:
+                if choice['key'] == choices[answer_index]['key']:
+                    explanations[choice['key']] = f"Correcta: en el documento, '{entry['term']}' se vincula con '{entry['definition']}'."
+                else:
+                    explanations[choice['key']] = f"Incorrecta: '{choice['label']}' aparece en el documento, pero no significa '{entry['definition']}'."
+            prompt = f"¿Qué expresión encaja mejor con esta idea? {entry['definition']}"
             questions.append(build_question_item(
                 item_id=f"def-{slug(section)}-{slug(subsection)}-{index + 1}",
                 section=section,
@@ -293,17 +441,55 @@ def extract_definition_questions(lines: list[str]) -> list[dict]:
                 title=f'{subsection} · definición',
                 prompt=prompt,
                 choices=choices,
-                answer_index=0,
+                answer_index=answer_index,
                 explanation=f"Elemento derivado directamente del documento maestro: {entry['raw']}",
                 source_block=f'ingles-definitivo-maestro.md:{entry["line_number"]}',
                 tags=[slug(section), 'derived-definition'],
+                option_explanations=make_option_explanations(choices, answer_index, explanations),
             ))
     return questions
 
 
+def extract_curated_collocations() -> list[dict]:
+    all_terms = [term for term, _, _, _ in CURATED_COLLOCATIONS]
+    items = []
+    for index, (term, meaning, typical_mistake, line_number) in enumerate(CURATED_COLLOCATIONS, 1):
+        distractor_pool = [candidate for candidate in all_terms if candidate != term]
+        options = add_fourth_option([term], distractor_pool, term)
+        choices = make_choice_objects(options)
+        answer_index = next(i for i, option in enumerate(options) if simplify(option) == simplify(term))
+        explanations = {}
+        for choice in choices:
+            if choice['key'] == choices[answer_index]['key']:
+                explanations[choice['key']] = f"Correcta: '{term}' es la collocation o fixed expression recogida en el documento para '{meaning}'."
+            elif simplify(choice['label']) == simplify(typical_mistake):
+                explanations[choice['key']] = f"Incorrecta: el documento marca '{typical_mistake}' como error típico para esta idea."
+            else:
+                explanations[choice['key']] = f"Incorrecta: '{choice['label']}' sí aparece en el documento, pero corresponde a otra acción o estructura policial."
+        items.append(build_question_item(
+            item_id=f'collocation-curated-{index}',
+            section='Collocations / Idioms / Fixed Expressions / False Friends',
+            subsection='Collocations y Fixed Expressions',
+            qtype='multiple_choice',
+            title='Collocations policiales',
+            prompt=f"¿Qué collocation del documento corresponde a esta idea? {meaning}",
+            choices=choices,
+            answer_index=answer_index,
+            explanation=f"Collocation seleccionada del bloque maestro y contrastada con el error típico '{typical_mistake}'.",
+            source_block=f'ingles-definitivo-maestro.md:{line_number}',
+            tags=['collocations', 'fixed-expressions', 'curated'],
+            option_explanations=make_option_explanations(choices, answer_index, explanations),
+        ))
+    return items
+
+
+# ---------- grammar / exam / reading extraction ----------
+
 def extract_grammar_examples(lines: list[str]) -> list[dict]:
     questions = []
     current_headings: list[str] = []
+    subsection_examples: dict[str, list[str]] = defaultdict(list)
+    raw_examples = []
 
     for line_number, raw_line in enumerate(lines, 1):
         line = compact_text(raw_line)
@@ -319,105 +505,190 @@ def extract_grammar_examples(lines: list[str]) -> list[dict]:
             continue
 
         affirmative, negative, interrogative = [compact_text(group) for group in match.groups()]
-        section = map_section(current_headings, line)
-        subsection = current_headings[-1] if current_headings else section
-        title = subsection if subsection != section else 'Gramática'
+        subsection = current_headings[-1] if current_headings else 'Gramática'
+        subsection_examples[subsection].extend([affirmative, negative, interrogative])
+        raw_examples.append((line_number, subsection, affirmative, negative, interrogative, line))
 
+    for line_number, subsection, affirmative, negative, interrogative, raw_line in raw_examples:
+        title = subsection
         prompts = [
             ('affirmative', '¿Cuál es el ejemplo afirmativo correcto según el documento?', affirmative, [affirmative, negative, interrogative]),
             ('negative', '¿Cuál es el ejemplo negativo correcto según el documento?', negative, [negative, affirmative, interrogative]),
             ('question', '¿Cuál es la pregunta correcta según el documento?', interrogative, [interrogative, affirmative, negative]),
         ]
 
-        for offset, (label, prompt, answer, options) in enumerate(prompts, 1):
+        extra_pool = [candidate for candidate in subsection_examples[subsection] if candidate not in {affirmative, negative, interrogative}]
+        for offset, (label, prompt, answer, options_seed) in enumerate(prompts, 1):
+            options = add_fourth_option(options_seed, extra_pool, answer)
+            if len(options) < 4:
+                continue
+            choices = make_choice_objects(options)
+            answer_index = find_correct_index(options, answer)
+            explanations = {}
+            for choice in choices:
+                if choice['key'] == choices[answer_index]['key']:
+                    explanations[choice['key']] = f'Correcta: el documento presenta exactamente este ejemplo para la forma {label}.'
+                else:
+                    explanations[choice['key']] = f'Incorrecta: esta opción aparece en el documento, pero no corresponde a la forma {label} pedida.'
             questions.append(build_question_item(
-                item_id=f"grammar-{slug(subsection)}-{line_number}-{offset}",
+                item_id=f'grammar-{slug(subsection)}-{line_number}-{offset}',
                 section='Tiempos verbales y gramática',
                 subsection=subsection,
                 qtype='grammar_choice',
                 title=f'{title} · {label}',
                 prompt=prompt,
-                choices=make_choice_objects(options),
-                answer_index=0,
-                explanation=f"Ejemplo A/N/Q conservado del documento maestro. Línea original: {line}",
+                choices=choices,
+                answer_index=answer_index,
+                explanation=f'Ejemplo A/N/Q conservado del documento maestro. Línea original: {raw_line}',
                 source_block=f'ingles-definitivo-maestro.md:{line_number}',
                 tags=['grammar', slug(subsection), label],
+                option_explanations=make_option_explanations(choices, answer_index, explanations),
             ))
     return questions
 
 
 def extract_exam_items(text: str) -> list[dict]:
+    compact = compact_text(text)
+    set_titles = ['Set 01', 'Set 02', 'Set 03']
+    set_slices = []
+    for index, title in enumerate(set_titles):
+        start = compact.find(title)
+        if start == -1:
+            continue
+        next_positions = [compact.find(next_title, start + len(title)) for next_title in set_titles[index + 1:]]
+        next_positions = [position for position in next_positions if position != -1]
+        end = min(next_positions) if next_positions else len(compact)
+        set_slices.append((title, compact[start:end]))
+
     items = []
-    set_pattern = re.compile(r'## (Set 0[123].*?)(?=\n## |\Z)', re.S)
-    for match in set_pattern.finditer(text):
-        title = compact_text(match.group(1))
-        body = match.group(0)
-        question_matches = list(re.finditer(r'(?:^|\n)(?:-\s*)?(\d+)\)\s*(.*?)(?=(?:\n(?:-\s*)?\d+\)|\Z))', body, re.S))
-        for question_match in question_matches:
-            number = question_match.group(1)
-            chunk = compact_text(question_match.group(2))
-            answer = ''
-            answer_match = re.search(r'Respuesta\s+correcta:\s*(.+?)(?:\s+Explicación|\n|$)', chunk, re.I)
-            if answer_match:
-                answer = compact_text(answer_match.group(1))
-            items.append({
-                'id': f"exam-{slug(title)}-{number}",
-                'section': 'Exámenes / sets / simulacros',
-                'subsection': title,
-                'kind': 'exam_item',
-                'type': 'multiple_choice',
-                'title': f'{title} · Pregunta {number}',
-                'prompt': chunk,
-                'content_es': chunk,
-                'content_en': '',
-                'choices': [],
-                'answer': answer,
-                'acceptable_answers': [answer] if answer else [],
-                'model_answer': '',
-                'bad_answers': [],
-                'explanation_es': 'Ítem conservado del simulacro del documento maestro. El bloque completo incluye opciones y explicación por opción en el contenido.',
-                'examples': [],
-                'mistakes': [],
-                'difficulty': 'intermediate',
-                'tags': ['exam', slug(title)],
-                'source_block': 'ingles-definitivo-maestro.md',
-            })
+    global_pool: list[str] = []
+    parsed_blocks = []
+    for title, chunk in set_slices:
+        question_chunks = re.findall(r'(\d+\)\s*.*?)(?=\s+\d+\)\s+|$)', chunk)
+        for raw_chunk in question_chunks:
+            raw_chunk = compact_text(raw_chunk)
+            choices_parsed = parse_choice_block(raw_chunk)
+            if not choices_parsed:
+                continue
+            options = [label for _, label in choices_parsed]
+            answer_match = re.search(r'Respuesta\s+correcta:\s*(.+?)(?:\s+Explicación\s+por\s+opción:|$)', raw_chunk, re.I)
+            answer_text = compact_text(answer_match.group(1)) if answer_match else ''
+            explanation_map = parse_option_explanations(raw_chunk)
+            stem = compact_text(re.split(r'Opciones:', raw_chunk, flags=re.I)[0])
+            stem = re.sub(r'^\d+\)\s*', '', stem).strip(' .')
+            parsed_blocks.append((title, stem, options, answer_text, explanation_map, raw_chunk))
+            global_pool.extend(options)
+
+    for index, (title, stem, options_seed, answer_text, explanation_map, raw_chunk) in enumerate(parsed_blocks, 1):
+        correct_option = options_seed[find_correct_index(options_seed, answer_text)]
+        extra_pool = [candidate for candidate in global_pool if candidate not in options_seed]
+        options = add_fourth_option(options_seed, extra_pool, correct_option)
+        if len(options) < 4:
+            continue
+        choices = make_choice_objects(options)
+        answer_index = next(i for i, option in enumerate(options) if simplify(option) == simplify(correct_option))
+        normalized_map = {key.lower(): value for key, value in explanation_map.items()}
+        explanations = {}
+        for choice in choices:
+            if choice['key'] in normalized_map:
+                explanations[choice['key']] = normalized_map[choice['key']]
+            elif choice['key'] == choices[answer_index]['key']:
+                explanations[choice['key']] = 'Correcta: es la opción que resuelve el ítem según la solución del documento.'
+            else:
+                explanations[choice['key']] = 'Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida.'
+        items.append(build_question_item(
+            item_id=f'exam-{slug(title)}-{index}',
+            section='Exámenes / sets / simulacros',
+            subsection=title,
+            qtype='multiple_choice',
+            title=f'{title} · Pregunta {index}',
+            prompt=stem,
+            choices=choices,
+            answer_index=answer_index,
+            explanation='Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.',
+            source_block='ingles-definitivo-maestro.md',
+            tags=['exam', slug(title)],
+            option_explanations=make_option_explanations(choices, answer_index, explanations),
+        ))
     return items
 
 
-def extract_reading_questions(lines: list[str]) -> list[dict]:
+def extract_reading_questions(text: str) -> list[dict]:
     items = []
-    current_reading = None
-    for line_number, line in enumerate(lines, 1):
-        if line.startswith('## READING'):
-            current_reading = normalize_heading(line)
-        if re.match(r'^# \d+\.', line) and current_reading:
-            prompt = normalize_heading(line)
-            items.append({
-                'id': f'reading-q-{line_number}',
-                'section': 'Reading y Paráfrasis',
-                'subsection': current_reading,
-                'kind': 'question',
-                'type': 'reading_comprehension',
-                'title': prompt,
-                'prompt': prompt,
-                'content_es': '',
-                'content_en': '',
-                'choices': [],
-                'answer': '',
-                'acceptable_answers': [],
-                'model_answer': '',
-                'bad_answers': [],
-                'explanation_es': 'Pregunta de reading conservada del documento. Consulta el bloque del reading y la paráfrasis asociada en la guía maestra.',
-                'examples': [],
-                'mistakes': [],
-                'difficulty': 'intermediate',
-                'tags': ['reading', slug(current_reading)],
-                'source_block': f'ingles-definitivo-maestro.md:{line_number}',
-                'reading_id': slug(current_reading),
-            })
+
+    bag_prompts = [
+        ('1', 'What details does the text provide about the atmosphere on the promenade?', 'According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach.'),
+        ('2', 'Why was the handbag stolen so easily?', 'Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying.'),
+        ('3', 'What helped the police locate the stolen bag quickly?', 'The witness description and the CCTV images helped the police identify the suspect later that night.'),
+        ('4', 'What was recovered from the bag, and what was still missing?', 'The documents and the phone were recovered from the bag, but the cash was still missing.'),
+    ]
+    bag_pool = [answer for _, _, answer in bag_prompts]
+    for number, prompt, answer in bag_prompts:
+        distractors = [candidate for _, _, candidate in bag_prompts if candidate != answer]
+        options = add_fourth_option([answer], distractors, answer)
+        choices = make_choice_objects(options)
+        answer_index = find_correct_index(options, answer)
+        explanations = {}
+        for choice in choices:
+            if choice['key'] == choices[answer_index]['key']:
+                explanations[choice['key']] = 'Correcta: coincide con la respuesta oficial y con la paráfrasis explicada del reading del paseo marítimo.'
+            else:
+                explanations[choice['key']] = 'Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta.'
+        items.append(build_question_item(
+            item_id=f'reading-bag-{number}',
+            section='Reading y Paráfrasis',
+            subsection='Reading — Bag Theft on the Promenade',
+            qtype='reading_comprehension',
+            title=f'Reading — Bag Theft on the Promenade · Pregunta {number}',
+            prompt=prompt,
+            choices=choices,
+            answer_index=answer_index,
+            explanation='Respuesta oficial del reading convertida a pregunta tipo test con cuatro alternativas cerradas.',
+            source_block='ingles-definitivo-maestro.md:1771-1899',
+            tags=['reading', 'bag-theft'],
+            reading_id='bag-theft-on-the-promenade',
+            option_explanations=make_option_explanations(choices, answer_index, explanations),
+            help_text='Elige la paráfrasis que mejor resume la respuesta oficial del documento.',
+        ))
+
+    murder_prompts = [
+        ('1', 'What primarily contributed to the students’ heightened excitement during the event in Cambridge?', 'According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic.'),
+        ('2', 'In the narrator’s early experience at the dinner-party mystery, what aspect of the game appealed to them the most?', 'Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group.'),
+        ('3', 'What does the narrator imply about the logistics of hosting murder mystery events in public places?', 'As explained in the text, these events have to be held in private spaces so that other customers are not disturbed.'),
+        ('4', 'Why does the narrator particularly value historic venues such as castles for their events?', 'According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive.'),
+    ]
+    for number, prompt, answer in murder_prompts:
+        distractors = [candidate for _, _, candidate in murder_prompts if candidate != answer]
+        options = add_fourth_option([answer], distractors, answer)
+        choices = make_choice_objects(options)
+        answer_index = find_correct_index(options, answer)
+        explanations = {}
+        for choice in choices:
+            if choice['key'] == choices[answer_index]['key']:
+                explanations[choice['key']] = 'Correcta: resume la respuesta explicada del reading 1 sin copiarla palabra por palabra.'
+            else:
+                explanations[choice['key']] = 'Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque.'
+        items.append(build_question_item(
+            item_id=f'reading-murder-{number}',
+            section='Reading y Paráfrasis',
+            subsection='Reading 1 — Murder Mystery',
+            qtype='reading_comprehension',
+            title=f'Reading 1 — Murder Mystery · Pregunta {number}',
+            prompt=prompt,
+            choices=choices,
+            answer_index=answer_index,
+            explanation='Respuesta explicada del reading 1 convertida a formato test con cuatro opciones cerradas.',
+            source_block='ingles-definitivo-maestro.md:3775-4105',
+            tags=['reading', 'murder-mystery'],
+            reading_id='reading-1-murder-mystery',
+            option_explanations=make_option_explanations(choices, answer_index, explanations),
+            help_text='Selecciona la paráfrasis correcta basada en la respuesta modelo del documento.',
+        ))
+
     return items
 
+
+# ---------- main ----------
 
 def main() -> None:
     raw = SRC.read_text(encoding='utf-8')
@@ -455,9 +726,12 @@ def main() -> None:
 
     question_items = []
     question_items.extend(extract_definition_questions(lines))
+    question_items.extend(extract_curated_collocations())
     question_items.extend(extract_grammar_examples(lines))
     question_items.extend(extract_exam_items(raw))
-    question_items.extend(extract_reading_questions(lines))
+    question_items.extend(extract_reading_questions(raw))
+
+    question_items = [item for item in question_items if len(item.get('choices', [])) == 4]
 
     guide_payload = {
         'source': 'ingles-definitivo-maestro.md',
@@ -475,7 +749,7 @@ def main() -> None:
     SCHEMA.write_text(
         '# Esquema de datos\n\n'
         '- `guia_maestra.json`: conserva **todo** el contenido del documento maestro en bloques estructurados con `id`, `section`, `subsection`, `kind`, `type`, `content_es`, `source_block` y metadatos.\n'
-        '- `preguntas.json`: banco ampliado de preguntas generado desde el documento maestro (definiciones, gramática, readings y sets de examen).\n'
+        '- `preguntas.json`: banco ampliado de preguntas generado desde el documento maestro y convertido a formato **tipo test de 4 opciones** con explicaciones por alternativa.\n'
         '- Ambos ficheros están pensados para GitHub Pages y carga vía `fetch`.\n',
         encoding='utf-8',
     )
@@ -485,4 +759,5 @@ def main() -> None:
 
 
 if __name__ == '__main__':
+    random.seed(7)
     main()

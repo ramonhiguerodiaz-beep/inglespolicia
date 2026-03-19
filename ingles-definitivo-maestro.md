@@ -1615,6 +1615,51 @@ clave
 the
 shop
 - “entered” → went into (sinónimo recomendado en tus listas)
+
+### Preguntas extra de práctica (reading + paráfrasis):
+
+5) What did the police do when the disagreement became more serious?
+Answer (modelo): According to the text, the officers separated the people involved and took them out of the room to prevent the situation from getting worse.
+
+6) How did the boys react when nobody believed their explanation immediately?
+Answer (modelo): Based on the text, they became more agitated because they felt they were being accused unfairly.
+
+7) Why was the assistant manager’s comment so important for the case?
+Answer (modelo): As explained in the text, her observation weakened the accusation because she confirmed that the boys already had the hat before entering the shop.
+
+8) What shows that the officers were uncertain at first?
+Answer (modelo): The text indicates that the officers were unsure because the guard and the boys gave different versions of what had happened.
+
+9) How can the atmosphere in the back room be described after the accusation?
+Answer (modelo): According to the text, the atmosphere became stressful and uncomfortable after the accusation created an argument between the people involved.
+
+10) What key detail supports the boys’ version of events?
+Answer (modelo): A key detail is that the hat had already been on the boys when they entered, which supports their claim that it was not stolen inside the shop.
+
+11) Why did the accusation become difficult to prove?
+Answer (modelo): According to the text, the accusation became difficult to prove because the assistant manager remembered seeing the boys with the hat before they entered the shop.
+
+12) What role did the security guard play in the incident?
+Answer (modelo): Based on the text, the guard was the person who became suspicious first, followed the boys, and reported the alleged theft to the police.
+
+13) Why can this situation be described as a misunderstanding at first?
+Answer (modelo): As explained in the text, the case looked like a misunderstanding because there were conflicting versions and the facts were not clear immediately.
+
+14) What was the consequence of having two different stories?
+Answer (modelo): The text indicates that the consequence was confusion, since the officers could not decide at once who was telling the truth.
+
+15) How did Remedios help calm the situation?
+Answer (modelo): According to the text, she helped calm the situation by checking the hat carefully and giving an observation that clarified an important fact.
+
+16) What can be inferred about the boys’ behaviour once they were accused?
+Answer (modelo): Based on the text, it can be inferred that they felt pressured and upset, because they became more nervous as the argument continued.
+
+17) Why is the moment when the boys entered the shop so important?
+Answer (modelo): A key detail is that this moment helps establish whether the hat came from inside the shop or whether they already had it before.
+
+18) What does the text suggest about the officers’ approach to the case?
+Answer (modelo): As explained in the text, the officers tried to control the situation first and understand the facts before reaching a final conclusion.
+
 ## READING — BAG THEFT ON THE PROMENADE
 
 It was a warm Friday evening in Playa del Inglés, Gran Canaria, and the promenade was full
@@ -2112,6 +2157,50 @@ had
 already
 been
 taken
+
+### Preguntas extra de práctica (reading + paráfrasis):
+
+5) What was the victim doing when the theft took place?
+Answer (modelo): According to the text, she was paying for some drinks when the thief took advantage of the situation and grabbed the handbag.
+
+6) Why were the officers able to react so quickly after the theft?
+Answer (modelo): Based on the text, they were nearby on patrol and heard the waiter shouting for help immediately.
+
+7) What information did the police need from Anna M. right after the incident?
+Answer (modelo): As explained in the text, they needed to know what items were inside the bag so they could understand the loss and identify important documents.
+
+8) How did local businesses help the investigation?
+Answer (modelo): The text indicates that a shop owner reviewed the CCTV images and told the officers which direction the suspect had taken.
+
+9) What suggests that the thief was mainly interested in money?
+Answer (modelo): A key detail is that the passport, phone and documents were left in the bag, while only the cash had disappeared.
+
+10) Why was the suspect identified later that night?
+Answer (modelo): According to the text, the combination of witness descriptions and CCTV footage allowed the police to recognise the suspect afterwards.
+
+11) What made the promenade a convenient place for witnesses?
+Answer (modelo): Based on the text, there were many people around, so several individuals were able to notice the theft and react quickly.
+
+12) How did the waiter contribute to the first stage of the police response?
+Answer (modelo): As explained in the text, the waiter alerted everyone immediately, which helped the officers start chasing the suspect without delay.
+
+13) Why was the bag found before the suspect was arrested?
+Answer (modelo): The text indicates that the officers followed the direction given by witnesses and CCTV, which led them to the stolen bag first.
+
+14) What can be inferred from the place where the handbag was discovered?
+Answer (modelo): According to the text, the thief probably abandoned the bag near the rubbish container after taking the money and keeping only what seemed valuable at that moment.
+
+15) Why was Anna M.’s description of the missing items important?
+Answer (modelo): A key detail is that her description told the police exactly what they had to look for and helped them confirm what had been recovered later.
+
+16) What does the text suggest about police coordination during the incident?
+Answer (modelo): Based on the text, the officers worked in a coordinated way because some chased the suspect while another officer spoke to the victim.
+
+17) How did technology support the investigation?
+Answer (modelo): As explained in the text, CCTV footage provided visual information about the suspect’s route and later helped with the identification.
+
+18) What was the final result of combining witness evidence and CCTV images?
+Answer (modelo): The text indicates that combining both sources allowed the police to identify the suspect later that same night.
 
 <!-- Página 46 -->
 
@@ -4246,6 +4335,48 @@ y
 la
 investigación
 .
+
+### Preguntas extra de práctica (reading + paráfrasis):
+
+6) Why did the children take the first mystery so seriously?
+Answer (modelo): According to the text, they took it seriously because the game involved many teachers and the situation seemed realistic to them.
+
+7) What happened after the narrator first acted as a victim in Cambridge?
+Answer (modelo): Based on the text, that experience became the beginning of the narrator’s later interest and career in murder mystery events.
+
+8) Why did the narrator need to avoid smiling on the floor?
+Answer (modelo): As explained in the text, the narrator had to stay in character so the students would believe the victim was really dead within the game.
+
+9) What was the purpose of dressing up at the dinner party?
+Answer (modelo): The text indicates that the guests dressed up to become different characters and make the mystery feel more convincing.
+
+10) What skills were needed during the dinner-party game?
+Answer (modelo): According to the text, the players had to share key information, ask questions, and decide who the murderer was at the end.
+
+11) Why does the narrator organise these events in restaurants or historic buildings?
+Answer (modelo): Based on the text, those places create the right atmosphere for an entertaining mystery experience during dinner.
+
+12) What does the narrator do personally for the events?
+Answer (modelo): As explained in the text, the narrator writes the scripts, hires actors, and organises the setting for each mystery evening.
+
+13) Why are castles especially effective locations for these events?
+Answer (modelo): The text indicates that castles are especially effective because their atmosphere makes the story feel richer, darker, and more dramatic.
+
+14) What seems to make the experience enjoyable for paying guests?
+Answer (modelo): According to the text, guests enjoy the mixture of drama, role-play, investigation, and dinner all in the same event.
+
+15) What happens near the end of the evening for the participants?
+Answer (modelo): A key detail is that there is a prize for the table that correctly guesses who the murderer is.
+
+16) What can be inferred about the narrator’s attitude to this kind of work?
+Answer (modelo): Based on the text, the narrator feels proud and amused by the job, as shown by the humorous final comment about making a career out of murder.
+
+17) How is the police element used to increase excitement during the events?
+Answer (modelo): As explained in the text, the arrival of the police adds suspense because they take fingerprints and question suspects in front of the guests.
+
+18) Why might participants feel fully involved in the mystery?
+Answer (modelo): The text indicates that participants feel fully involved because they do not just watch the story; they actively question people and try to solve the crime themselves.
+
 ## IDIOMS
 
 # 1. Original: The politician avoided answering the question directly.

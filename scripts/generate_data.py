@@ -908,6 +908,62 @@ def extract_reading_questions(text: str) -> list[dict]:
             'context': '"The handbag was found in a narrow alley, but the cash was missing. Her documents and mobile phone were still inside."',
             'explanation': 'Explicación académica: la opción válida distingue con precisión entre los objetos recuperados y el elemento que faltaba. Traducción orientativa: se recuperaron los documentos y el móvil, pero no el dinero.',
         },
+        {
+            'number': '5',
+            'prompt': 'What does the text suggest about the thief’s priority once the handbag had been stolen?',
+            'options': [
+                'The passage implies that the thief was mainly interested in obtaining cash quickly, since the bag was abandoned after the money had been taken but the documents and phone were left behind.',
+                'The text indicates that the thief’s real objective was to steal the victim’s identity documents in order to use them later, which is why the money was left untouched inside the bag.',
+                'According to the passage, the suspect intended to keep the entire handbag as a personal item, but dropped it only because officers physically cornered him in the alley a few seconds later.',
+                'The text suggests that the thief wanted the mobile phone most of all, and only threw the bag away after discovering that the device could not be unlocked at the scene.',
+            ],
+            'answer': 0,
+            'context': '"The handbag was found in a narrow alley, but the cash was missing. Her documents and mobile phone were still inside."',
+            'explanation': 'Explicación académica: la inferencia correcta sale de comparar lo recuperado con lo que faltaba. Si el dinero desaparece pero el resto queda dentro, el foco del robo era el efectivo, no los documentos.',
+            'difficulty': 'advanced',
+        },
+        {
+            'number': '6',
+            'prompt': 'Why was the first witness response especially valuable during the investigation?',
+            'options': [
+                'According to the text, the witness reaction was crucial because it provided officers with an immediate description of the suspect that could later be checked against CCTV images.',
+                'The passage shows that the witness became essential because he detained the suspect himself before the police arrived and personally recovered the money from the handbag.',
+                'The text suggests that the main value of the witness statement was that it replaced the need to interview the victim, who was unable to remember any relevant detail after the theft.',
+                'According to the passage, the witness response mattered mostly because it confirmed that no crime had actually taken place and that the bag had simply been moved by mistake.',
+            ],
+            'answer': 0,
+            'context': '"A witness gave a clear description, and CCTV images from a nearby shop helped the police identify the suspect."',
+            'explanation': 'Explicación académica: la respuesta buena conecta dos pruebas distintas y entiende su relación: primero hay una descripción útil y después esa información se refuerza con las imágenes.',
+            'difficulty': 'advanced',
+        },
+        {
+            'number': '7',
+            'prompt': 'What can be inferred about the officers’ deployment during the incident?',
+            'options': [
+                'The text implies that the officers divided tasks efficiently, because one part of the response focused on pursuing the suspect while another officer remained with the victim to gather information.',
+                'The passage indicates that all officers stayed with the victim at the café until a senior inspector arrived and authorised any attempt to search the surrounding streets.',
+                'The text suggests that the patrol abandoned the chase almost immediately because they considered recovering the handbag less important than taking written statements first.',
+                'According to the passage, the officers waited for a forensic team before moving, as they believed any immediate pursuit might damage physical evidence on the promenade.',
+            ],
+            'answer': 0,
+            'context': '"One officer stayed with the victim while the others searched the area where the suspect had been seen running."',
+            'explanation': 'Explicación académica: aquí no se pregunta un dato aislado, sino una deducción organizativa. El fragmento deja ver una actuación coordinada y simultánea, no una respuesta pasiva o desordenada.',
+            'difficulty': 'advanced',
+        },
+        {
+            'number': '8',
+            'prompt': 'Which statement best captures how different sources of evidence worked together in the case?',
+            'options': [
+                'The passage shows that the investigation advanced because eyewitness information and shop-camera footage complemented each other, allowing the police to trace the suspect’s movements more reliably.',
+                'The text explains that the case depended entirely on the victim’s memory, since the available cameras were damaged and no independent witness was able to describe what had happened.',
+                'According to the passage, the police solved the theft mainly through forensic analysis of fingerprints on the café chair where the handbag had been left for a short time.',
+                'The text suggests that evidence from local businesses created confusion, because it contradicted every witness version and forced the officers to close the case without an arrest.',
+            ],
+            'answer': 0,
+            'context': '"A witness gave a clear description, and CCTV images from a nearby shop helped the police identify the suspect."',
+            'explanation': 'Explicación académica: la mejor paráfrasis expresa cooperación entre pruebas humanas y tecnológicas. Los distractores fallan porque sustituyen esa combinación por pruebas no mencionadas o por una conclusión contraria.',
+            'difficulty': 'advanced',
+        },
     ]
     for item in bag_prompts:
         choices = make_choice_objects(item['options'])
@@ -933,6 +989,7 @@ def extract_reading_questions(text: str) -> list[dict]:
             reading_id='bag-theft-on-the-promenade',
             option_explanations=make_option_explanations(choices, answer_index, explanations),
             context=item['context'],
+            difficulty=item.get('difficulty', 'intermediate'),
             help_text='Fragmento clave del reading: usa esta pista y elige la paráfrasis más fiel al texto. Fíjate en la idea principal y evita opciones que añadan información no mencionada.',
         ))
 
@@ -989,6 +1046,62 @@ def extract_reading_questions(text: str) -> list[dict]:
             'context': '"Castles and other historic venues create exactly the kind of atmosphere that makes a murder mystery much more dramatic."',
             'explanation': 'Explicación académica: la paráfrasis correcta se centra en el valor ambiental del espacio histórico, que intensifica la experiencia narrativa. Traducción orientativa: los castillos aportan una atmósfera que vuelve el misterio más inmersivo y dramático.',
         },
+        {
+            'number': '5',
+            'prompt': 'What does the text imply about the narrator’s professional role in these events?',
+            'options': [
+                'The passage suggests that the narrator is involved in more than one aspect of the business, since they do not simply perform but also help design and organise the overall experience.',
+                'The text states that the narrator only appears briefly at the end of each evening to present a prize and has no part in the scripts, actors or preparation of the venue.',
+                'According to the passage, the narrator mainly works as a police consultant who checks whether the fictional investigations follow real forensic procedure in every detail.',
+                'The text implies that the narrator is responsible only for catering arrangements, while the dramatic side of each event is outsourced to independent theatre companies.',
+            ],
+            'answer': 0,
+            'context': '"I write the scripts, hire the actors and help organise the event from start to finish."',
+            'explanation': 'Explicación académica: la inferencia correcta resume varias tareas en una sola idea global: el narrador tiene un papel amplio de diseño y coordinación, no una función mínima o puramente técnica.',
+            'difficulty': 'advanced',
+        },
+        {
+            'number': '6',
+            'prompt': 'Why is staying in character presented as such an important part of the experience?',
+            'options': [
+                'According to the text, remaining in character helps preserve the illusion of the mystery, so participants respond as if the situation were part of a believable investigation rather than a simple classroom exercise.',
+                'The passage suggests that actors must stay in character mainly because they are not allowed to speak to students directly until the police arrive and formally interview them one by one.',
+                'The text indicates that staying in character matters only for safety reasons, as smiling or moving too early could cause participants to stop eating during the dinner service.',
+                'According to the passage, the narrator insists on staying in character because the script depends on memorising technical legal vocabulary that guests are later asked to repeat in writing.',
+            ],
+            'answer': 0,
+            'context': '"I had to lie there and avoid smiling so the students would believe the scene and take the mystery seriously."',
+            'explanation': 'Explicación académica: la respuesta válida conecta la conducta del narrador con el efecto buscado en los participantes: credibilidad. Las otras opciones añaden reglas o fines que el texto no menciona.',
+            'difficulty': 'advanced',
+        },
+        {
+            'number': '7',
+            'prompt': 'What broader appeal of murder mystery evenings can be inferred from the narrator’s description?',
+            'options': [
+                'The passage indicates that these events attract people because they combine entertainment with active participation, allowing guests to question suspects, share clues and solve the case themselves.',
+                'The text suggests that the main attraction is the possibility of learning formal police procedure in a highly accurate training environment supervised by serving officers.',
+                'According to the passage, guests attend mostly for the competitive financial reward offered to the winning table rather than for the dramatic or social side of the evening.',
+                'The text implies that participants prefer the events because they can remain silent observers throughout the dinner and are not expected to interact with anyone around them.',
+            ],
+            'answer': 0,
+            'context': '"Guests question suspects, compare clues at their tables and try to decide who the murderer is before the end of the evening."',
+            'explanation': 'Explicación académica: la clave está en captar el atractivo general del formato: no es solo ver una historia, sino implicarse en ella. Por eso la opción correcta combina diversión y participación activa.',
+            'difficulty': 'advanced',
+        },
+        {
+            'number': '8',
+            'prompt': 'How does the police element function within the structure of the event?',
+            'options': [
+                'The text suggests that the police element intensifies suspense and gives the evening a stronger investigative frame, because questioning suspects and examining clues make guests feel part of an unfolding case.',
+                'The passage explains that the police element is included purely for comic relief, since the officers deliberately interrupt the story to make fun of the guests’ theories.',
+                'According to the text, the arrival of the police serves mainly to end the game quickly, because once they appear participants are no longer allowed to discuss the case.',
+                'The passage indicates that the police element is optional and usually removed from the programme whenever the venue has limited space for costumes and props.',
+            ],
+            'answer': 0,
+            'context': '"The arrival of the police, the questioning of suspects and the collection of clues add another layer of excitement to the evening."',
+            'explanation': 'Explicación académica: la buena opción entiende la función narrativa del componente policial: aumentar la tensión y reforzar la sensación de investigación. No es un detalle decorativo ni un cierre brusco.',
+            'difficulty': 'advanced',
+        },
     ]
     for item in murder_prompts:
         choices = make_choice_objects(item['options'])
@@ -1014,6 +1127,7 @@ def extract_reading_questions(text: str) -> list[dict]:
             reading_id='reading-1-murder-mystery',
             option_explanations=make_option_explanations(choices, answer_index, explanations),
             context=item['context'],
+            difficulty=item.get('difficulty', 'intermediate'),
             help_text='Fragmento clave del reading: identifica la idea principal y escoge la opción que la reformula con precisión, sin copiarla ni añadir información nueva.',
         ))
 

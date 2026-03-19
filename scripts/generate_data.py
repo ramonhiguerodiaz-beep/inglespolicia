@@ -687,26 +687,27 @@ def extract_grammar_examples(lines: list[str]) -> list[dict]:
             current_headings.append(heading)
             continue
 
-        match = re.search(r'A:\s*(.+?)\s+N:\s*(.+?)\s+Q:\s*(.+)', line)
-        if not match:
-            continue
+        for example_chunk in re.split(r'\s+[●•]\s+', line):
+            match = re.search(r'A:\s*(.+?)\s+N:\s*(.+?)\s+Q:\s*(.+)', example_chunk)
+            if not match:
+                continue
 
-        affirmative, negative, interrogative = [compact_text(group) for group in match.groups()]
-        if not all(is_real_sentence(example) for example in (affirmative, negative, interrogative)):
-            continue
+            affirmative, negative, interrogative = [compact_text(group) for group in match.groups()]
+            if not all(is_real_sentence(example) for example in (affirmative, negative, interrogative)):
+                continue
 
-        subsection = current_headings[-1] if current_headings else 'Gramática'
-        focus, use_description = infer_focus(affirmative, negative, interrogative)
-        subsection_examples[subsection].extend([affirmative, negative, interrogative])
-        raw_examples.append({
-            'line_number': line_number,
-            'subsection': subsection,
-            'focus': focus,
-            'use_description': use_description,
-            'affirmative': affirmative,
-            'negative': negative,
-            'interrogative': interrogative,
-        })
+            subsection = current_headings[-1] if current_headings else 'Gramática'
+            focus, use_description = infer_focus(affirmative, negative, interrogative)
+            subsection_examples[subsection].extend([affirmative, negative, interrogative])
+            raw_examples.append({
+                'line_number': line_number,
+                'subsection': subsection,
+                'focus': focus,
+                'use_description': use_description,
+                'affirmative': affirmative,
+                'negative': negative,
+                'interrogative': interrogative,
+            })
 
     questions = []
     form_labels = {

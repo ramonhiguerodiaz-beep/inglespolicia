@@ -9411,14 +9411,14 @@
       "help_text": "Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de Past Passive."
     },
     {
-      "id": "grammar-going-to-362-1",
+      "id": "grammar-present-continuous-future-362-1",
       "section": "Tiempos verbales y gramática",
-      "subsection": "Going to",
+      "subsection": "Present Continuous (future)",
       "kind": "question",
       "type": "grammar_choice",
-      "title": "Going to · forma afirmativa",
-      "prompt": "Elige la frase correcta para expresar intención o predicción basada en indicios en Going to, en forma afirmativa.",
-      "content_es": "Elige la frase correcta para expresar intención o predicción basada en indicios en Going to, en forma afirmativa.",
+      "title": "Present Continuous (future) · forma afirmativa",
+      "prompt": "Elige la frase correcta para expresar plan ya decidido o agenda cerrada en Present Continuous (future), en forma afirmativa.",
+      "content_es": "Elige la frase correcta para expresar plan ya decidido o agenda cerrada en Present Continuous (future), en forma afirmativa.",
       "content_en": "",
       "choices": [
         {
@@ -9431,11 +9431,11 @@
         },
         {
           "key": "c",
-          "label": "Are we leaving tomorrow morning? ● Horario oficial — Present Simple (future) A: The train leaves at 7:45. N: The train doesn’t leave at 7:45. Q: Does the train leave at 7:45? ● Decisión rápida / promesa — Will A: I will take a taxi. N: I won’t take a taxi. Q: Will I take a taxi? ● Intención / predicción — Going to A: He is going to report the incident. N: He isn’t going to report the incident. Q: Is he going to report the incident?"
+          "label": "Are we leaving tomorrow morning?"
         },
         {
           "key": "d",
-          "label": "in the surrounding area"
+          "label": "The train leaves at 7:45"
         }
       ],
       "answer": "a) We are leaving tomorrow morning",
@@ -9445,7 +9445,673 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Explicación académica: Going to se utiliza para intención o predicción basada en indicios. La respuesta correcta presenta la afirmativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: Nos vamos mañana por la mañana.",
+      "explanation_es": "Explicación académica: Present Continuous (future) se utiliza para plan ya decidido o agenda cerrada. La respuesta correcta presenta la afirmativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: Nos vamos mañana por la mañana.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "grammar",
+        "present-continuous-future",
+        "affirmative"
+      ],
+      "source_block": "ingles-definitivo-maestro.md:362",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "We are leaving tomorrow morning",
+          "is_correct": true,
+          "explanation": "Correcta: usa Present Continuous (future) con la afirmativa pedida y mantiene la estructura propia de este tiempo verbal."
+        },
+        {
+          "key": "b",
+          "label": "We aren’t leaving tomorrow morning",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma negativa y aquí se pide forma afirmativa."
+        },
+        {
+          "key": "c",
+          "label": "Are we leaving tomorrow morning?",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma interrogativa y aquí se pide forma afirmativa."
+        },
+        {
+          "key": "d",
+          "label": "The train leaves at 7:45",
+          "is_correct": false,
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Simple (future) y no a Present Continuous (future)."
+        }
+      ],
+      "context": "Tiempo verbal: Present Continuous (future)",
+      "help_text": "Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de Present Continuous (future)."
+    },
+    {
+      "id": "grammar-present-continuous-future-362-2",
+      "section": "Tiempos verbales y gramática",
+      "subsection": "Present Continuous (future)",
+      "kind": "question",
+      "type": "grammar_choice",
+      "title": "Present Continuous (future) · forma negativa",
+      "prompt": "Elige la frase correcta para expresar plan ya decidido o agenda cerrada en Present Continuous (future), en forma negativa.",
+      "content_es": "Elige la frase correcta para expresar plan ya decidido o agenda cerrada en Present Continuous (future), en forma negativa.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "We aren’t leaving tomorrow morning"
+        },
+        {
+          "key": "b",
+          "label": "We are leaving tomorrow morning"
+        },
+        {
+          "key": "c",
+          "label": "Are we leaving tomorrow morning?"
+        },
+        {
+          "key": "d",
+          "label": "The train leaves at 7:45"
+        }
+      ],
+      "answer": "a) We aren’t leaving tomorrow morning",
+      "acceptable_answers": [
+        "a) We aren’t leaving tomorrow morning",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: Present Continuous (future) se utiliza para plan ya decidido o agenda cerrada. La respuesta correcta presenta la negativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: No nos vamos mañana por la mañana.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "grammar",
+        "present-continuous-future",
+        "negative"
+      ],
+      "source_block": "ingles-definitivo-maestro.md:362",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "We aren’t leaving tomorrow morning",
+          "is_correct": true,
+          "explanation": "Correcta: usa Present Continuous (future) con la negativa pedida y mantiene la estructura propia de este tiempo verbal."
+        },
+        {
+          "key": "b",
+          "label": "We are leaving tomorrow morning",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma afirmativa y aquí se pide forma negativa."
+        },
+        {
+          "key": "c",
+          "label": "Are we leaving tomorrow morning?",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma interrogativa y aquí se pide forma negativa."
+        },
+        {
+          "key": "d",
+          "label": "The train leaves at 7:45",
+          "is_correct": false,
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Simple (future) y no a Present Continuous (future)."
+        }
+      ],
+      "context": "Tiempo verbal: Present Continuous (future)",
+      "help_text": "Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de Present Continuous (future)."
+    },
+    {
+      "id": "grammar-present-continuous-future-362-3",
+      "section": "Tiempos verbales y gramática",
+      "subsection": "Present Continuous (future)",
+      "kind": "question",
+      "type": "grammar_choice",
+      "title": "Present Continuous (future) · forma interrogativa",
+      "prompt": "Elige la frase correcta para expresar plan ya decidido o agenda cerrada en Present Continuous (future), en forma interrogativa.",
+      "content_es": "Elige la frase correcta para expresar plan ya decidido o agenda cerrada en Present Continuous (future), en forma interrogativa.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "Are we leaving tomorrow morning?"
+        },
+        {
+          "key": "b",
+          "label": "We are leaving tomorrow morning"
+        },
+        {
+          "key": "c",
+          "label": "We aren’t leaving tomorrow morning"
+        },
+        {
+          "key": "d",
+          "label": "The train leaves at 7:45"
+        }
+      ],
+      "answer": "a) Are we leaving tomorrow morning?",
+      "acceptable_answers": [
+        "a) Are we leaving tomorrow morning?",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: Present Continuous (future) se utiliza para plan ya decidido o agenda cerrada. La respuesta correcta presenta la interrogativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: ¿Nos vamos mañana por la mañana?.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "grammar",
+        "present-continuous-future",
+        "question"
+      ],
+      "source_block": "ingles-definitivo-maestro.md:362",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "Are we leaving tomorrow morning?",
+          "is_correct": true,
+          "explanation": "Correcta: usa Present Continuous (future) con la interrogativa pedida y mantiene la estructura propia de este tiempo verbal. Traducción: ¿Nos vamos mañana por la mañana?"
+        },
+        {
+          "key": "b",
+          "label": "We are leaving tomorrow morning",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma afirmativa y aquí se pide forma interrogativa."
+        },
+        {
+          "key": "c",
+          "label": "We aren’t leaving tomorrow morning",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma negativa y aquí se pide forma interrogativa."
+        },
+        {
+          "key": "d",
+          "label": "The train leaves at 7:45",
+          "is_correct": false,
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Simple (future) y no a Present Continuous (future)."
+        }
+      ],
+      "context": "Tiempo verbal: Present Continuous (future)",
+      "help_text": "Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de Present Continuous (future)."
+    },
+    {
+      "id": "grammar-present-simple-future-362-1",
+      "section": "Tiempos verbales y gramática",
+      "subsection": "Present Simple (future)",
+      "kind": "question",
+      "type": "grammar_choice",
+      "title": "Present Simple (future) · forma afirmativa",
+      "prompt": "Elige la frase correcta para expresar horario oficial o programación fija en Present Simple (future), en forma afirmativa.",
+      "content_es": "Elige la frase correcta para expresar horario oficial o programación fija en Present Simple (future), en forma afirmativa.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "The train leaves at 7:45"
+        },
+        {
+          "key": "b",
+          "label": "The train doesn’t leave at 7:45"
+        },
+        {
+          "key": "c",
+          "label": "Does the train leave at 7:45?"
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning"
+        }
+      ],
+      "answer": "a) The train leaves at 7:45",
+      "acceptable_answers": [
+        "a) The train leaves at 7:45",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: Present Simple (future) se utiliza para horario oficial o programación fija. La respuesta correcta presenta la afirmativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: El tren sale a las 7:45.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "grammar",
+        "present-simple-future",
+        "affirmative"
+      ],
+      "source_block": "ingles-definitivo-maestro.md:362",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "The train leaves at 7:45",
+          "is_correct": true,
+          "explanation": "Correcta: usa Present Simple (future) con la afirmativa pedida y mantiene la estructura propia de este tiempo verbal."
+        },
+        {
+          "key": "b",
+          "label": "The train doesn’t leave at 7:45",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma negativa y aquí se pide forma afirmativa."
+        },
+        {
+          "key": "c",
+          "label": "Does the train leave at 7:45?",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma interrogativa y aquí se pide forma afirmativa."
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning",
+          "is_correct": false,
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Continuous (future) y no a Present Simple (future)."
+        }
+      ],
+      "context": "Tiempo verbal: Present Simple (future)",
+      "help_text": "Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de Present Simple (future)."
+    },
+    {
+      "id": "grammar-present-simple-future-362-2",
+      "section": "Tiempos verbales y gramática",
+      "subsection": "Present Simple (future)",
+      "kind": "question",
+      "type": "grammar_choice",
+      "title": "Present Simple (future) · forma negativa",
+      "prompt": "Elige la frase correcta para expresar horario oficial o programación fija en Present Simple (future), en forma negativa.",
+      "content_es": "Elige la frase correcta para expresar horario oficial o programación fija en Present Simple (future), en forma negativa.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "The train doesn’t leave at 7:45"
+        },
+        {
+          "key": "b",
+          "label": "The train leaves at 7:45"
+        },
+        {
+          "key": "c",
+          "label": "Does the train leave at 7:45?"
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning"
+        }
+      ],
+      "answer": "a) The train doesn’t leave at 7:45",
+      "acceptable_answers": [
+        "a) The train doesn’t leave at 7:45",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: Present Simple (future) se utiliza para horario oficial o programación fija. La respuesta correcta presenta la negativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: El tren no sale a las 7:45.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "grammar",
+        "present-simple-future",
+        "negative"
+      ],
+      "source_block": "ingles-definitivo-maestro.md:362",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "The train doesn’t leave at 7:45",
+          "is_correct": true,
+          "explanation": "Correcta: usa Present Simple (future) con la negativa pedida y mantiene la estructura propia de este tiempo verbal."
+        },
+        {
+          "key": "b",
+          "label": "The train leaves at 7:45",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma afirmativa y aquí se pide forma negativa."
+        },
+        {
+          "key": "c",
+          "label": "Does the train leave at 7:45?",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma interrogativa y aquí se pide forma negativa."
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning",
+          "is_correct": false,
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Continuous (future) y no a Present Simple (future)."
+        }
+      ],
+      "context": "Tiempo verbal: Present Simple (future)",
+      "help_text": "Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de Present Simple (future)."
+    },
+    {
+      "id": "grammar-present-simple-future-362-3",
+      "section": "Tiempos verbales y gramática",
+      "subsection": "Present Simple (future)",
+      "kind": "question",
+      "type": "grammar_choice",
+      "title": "Present Simple (future) · forma interrogativa",
+      "prompt": "Elige la frase correcta para expresar horario oficial o programación fija en Present Simple (future), en forma interrogativa.",
+      "content_es": "Elige la frase correcta para expresar horario oficial o programación fija en Present Simple (future), en forma interrogativa.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "Does the train leave at 7:45?"
+        },
+        {
+          "key": "b",
+          "label": "The train leaves at 7:45"
+        },
+        {
+          "key": "c",
+          "label": "The train doesn’t leave at 7:45"
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning"
+        }
+      ],
+      "answer": "a) Does the train leave at 7:45?",
+      "acceptable_answers": [
+        "a) Does the train leave at 7:45?",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: Present Simple (future) se utiliza para horario oficial o programación fija. La respuesta correcta presenta la interrogativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: ¿Sale el tren a las 7:45?.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "grammar",
+        "present-simple-future",
+        "question"
+      ],
+      "source_block": "ingles-definitivo-maestro.md:362",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "Does the train leave at 7:45?",
+          "is_correct": true,
+          "explanation": "Correcta: usa Present Simple (future) con la interrogativa pedida y mantiene la estructura propia de este tiempo verbal. Traducción: ¿Sale el tren a las 7:45?"
+        },
+        {
+          "key": "b",
+          "label": "The train leaves at 7:45",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma afirmativa y aquí se pide forma interrogativa."
+        },
+        {
+          "key": "c",
+          "label": "The train doesn’t leave at 7:45",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma negativa y aquí se pide forma interrogativa."
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning",
+          "is_correct": false,
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Continuous (future) y no a Present Simple (future)."
+        }
+      ],
+      "context": "Tiempo verbal: Present Simple (future)",
+      "help_text": "Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de Present Simple (future)."
+    },
+    {
+      "id": "grammar-will-362-1",
+      "section": "Tiempos verbales y gramática",
+      "subsection": "Will",
+      "kind": "question",
+      "type": "grammar_choice",
+      "title": "Will · forma afirmativa",
+      "prompt": "Elige la frase correcta para expresar decisión rápida o promesa en Will, en forma afirmativa.",
+      "content_es": "Elige la frase correcta para expresar decisión rápida o promesa en Will, en forma afirmativa.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "I will take a taxi"
+        },
+        {
+          "key": "b",
+          "label": "I won’t take a taxi"
+        },
+        {
+          "key": "c",
+          "label": "Will I take a taxi?"
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning"
+        }
+      ],
+      "answer": "a) I will take a taxi",
+      "acceptable_answers": [
+        "a) I will take a taxi",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: Will se utiliza para decisión rápida o promesa. La respuesta correcta presenta la afirmativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: Cogeré un taxi.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "grammar",
+        "will",
+        "affirmative"
+      ],
+      "source_block": "ingles-definitivo-maestro.md:362",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "I will take a taxi",
+          "is_correct": true,
+          "explanation": "Correcta: usa Will con la afirmativa pedida y mantiene la estructura propia de este tiempo verbal."
+        },
+        {
+          "key": "b",
+          "label": "I won’t take a taxi",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma negativa y aquí se pide forma afirmativa."
+        },
+        {
+          "key": "c",
+          "label": "Will I take a taxi?",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma interrogativa y aquí se pide forma afirmativa."
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning",
+          "is_correct": false,
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Continuous (future) y no a Will."
+        }
+      ],
+      "context": "Tiempo verbal: Will",
+      "help_text": "Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de Will."
+    },
+    {
+      "id": "grammar-will-362-2",
+      "section": "Tiempos verbales y gramática",
+      "subsection": "Will",
+      "kind": "question",
+      "type": "grammar_choice",
+      "title": "Will · forma negativa",
+      "prompt": "Elige la frase correcta para expresar decisión rápida o promesa en Will, en forma negativa.",
+      "content_es": "Elige la frase correcta para expresar decisión rápida o promesa en Will, en forma negativa.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "I won’t take a taxi"
+        },
+        {
+          "key": "b",
+          "label": "I will take a taxi"
+        },
+        {
+          "key": "c",
+          "label": "Will I take a taxi?"
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning"
+        }
+      ],
+      "answer": "a) I won’t take a taxi",
+      "acceptable_answers": [
+        "a) I won’t take a taxi",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: Will se utiliza para decisión rápida o promesa. La respuesta correcta presenta la negativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: No cogeré un taxi.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "grammar",
+        "will",
+        "negative"
+      ],
+      "source_block": "ingles-definitivo-maestro.md:362",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "I won’t take a taxi",
+          "is_correct": true,
+          "explanation": "Correcta: usa Will con la negativa pedida y mantiene la estructura propia de este tiempo verbal."
+        },
+        {
+          "key": "b",
+          "label": "I will take a taxi",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma afirmativa y aquí se pide forma negativa."
+        },
+        {
+          "key": "c",
+          "label": "Will I take a taxi?",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma interrogativa y aquí se pide forma negativa."
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning",
+          "is_correct": false,
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Continuous (future) y no a Will."
+        }
+      ],
+      "context": "Tiempo verbal: Will",
+      "help_text": "Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de Will."
+    },
+    {
+      "id": "grammar-will-362-3",
+      "section": "Tiempos verbales y gramática",
+      "subsection": "Will",
+      "kind": "question",
+      "type": "grammar_choice",
+      "title": "Will · forma interrogativa",
+      "prompt": "Elige la frase correcta para expresar decisión rápida o promesa en Will, en forma interrogativa.",
+      "content_es": "Elige la frase correcta para expresar decisión rápida o promesa en Will, en forma interrogativa.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "Will I take a taxi?"
+        },
+        {
+          "key": "b",
+          "label": "I will take a taxi"
+        },
+        {
+          "key": "c",
+          "label": "I won’t take a taxi"
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning"
+        }
+      ],
+      "answer": "a) Will I take a taxi?",
+      "acceptable_answers": [
+        "a) Will I take a taxi?",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: Will se utiliza para decisión rápida o promesa. La respuesta correcta presenta la interrogativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: ¿Cogeré un taxi?.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "grammar",
+        "will",
+        "question"
+      ],
+      "source_block": "ingles-definitivo-maestro.md:362",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "Will I take a taxi?",
+          "is_correct": true,
+          "explanation": "Correcta: usa Will con la interrogativa pedida y mantiene la estructura propia de este tiempo verbal. Traducción: ¿Cogeré un taxi?"
+        },
+        {
+          "key": "b",
+          "label": "I will take a taxi",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma afirmativa y aquí se pide forma interrogativa."
+        },
+        {
+          "key": "c",
+          "label": "I won’t take a taxi",
+          "is_correct": false,
+          "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma negativa y aquí se pide forma interrogativa."
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning",
+          "is_correct": false,
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Continuous (future) y no a Will."
+        }
+      ],
+      "context": "Tiempo verbal: Will",
+      "help_text": "Pista académica: identifica si el examen pide afirmación, negación o pregunta, y después verifica la estructura de Will."
+    },
+    {
+      "id": "grammar-going-to-362-1",
+      "section": "Tiempos verbales y gramática",
+      "subsection": "Going to",
+      "kind": "question",
+      "type": "grammar_choice",
+      "title": "Going to · forma afirmativa",
+      "prompt": "Elige la frase correcta para expresar intención o predicción basada en indicios en Going to, en forma afirmativa.",
+      "content_es": "Elige la frase correcta para expresar intención o predicción basada en indicios en Going to, en forma afirmativa.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "He is going to report the incident"
+        },
+        {
+          "key": "b",
+          "label": "He isn’t going to report the incident"
+        },
+        {
+          "key": "c",
+          "label": "Is he going to report the incident?"
+        },
+        {
+          "key": "d",
+          "label": "We are leaving tomorrow morning"
+        }
+      ],
+      "answer": "a) He is going to report the incident",
+      "acceptable_answers": [
+        "a) He is going to report the incident",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: Going to se utiliza para intención o predicción basada en indicios. La respuesta correcta presenta la afirmativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: Va a denunciar el incidente.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -9458,27 +10124,27 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "We are leaving tomorrow morning",
+          "label": "He is going to report the incident",
           "is_correct": true,
           "explanation": "Correcta: usa Going to con la afirmativa pedida y mantiene la estructura propia de este tiempo verbal."
         },
         {
           "key": "b",
-          "label": "We aren’t leaving tomorrow morning",
+          "label": "He isn’t going to report the incident",
           "is_correct": false,
           "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma negativa y aquí se pide forma afirmativa."
         },
         {
           "key": "c",
-          "label": "Are we leaving tomorrow morning? ● Horario oficial — Present Simple (future) A: The train leaves at 7:45. N: The train doesn’t leave at 7:45. Q: Does the train leave at 7:45? ● Decisión rápida / promesa — Will A: I will take a taxi. N: I won’t take a taxi. Q: Will I take a taxi? ● Intención / predicción — Going to A: He is going to report the incident. N: He isn’t going to report the incident. Q: Is he going to report the incident?",
+          "label": "Is he going to report the incident?",
           "is_correct": false,
           "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma interrogativa y aquí se pide forma afirmativa."
         },
         {
           "key": "d",
-          "label": "in the surrounding area",
+          "label": "We are leaving tomorrow morning",
           "is_correct": false,
-          "explanation": "Incorrecta: es una frase válida, pero pertenece a Past Simple y no a Going to."
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Continuous (future) y no a Going to."
         }
       ],
       "context": "Tiempo verbal: Going to",
@@ -9497,29 +10163,29 @@
       "choices": [
         {
           "key": "a",
-          "label": "We aren’t leaving tomorrow morning"
+          "label": "He isn’t going to report the incident"
         },
         {
           "key": "b",
-          "label": "We are leaving tomorrow morning"
+          "label": "He is going to report the incident"
         },
         {
           "key": "c",
-          "label": "Are we leaving tomorrow morning? ● Horario oficial — Present Simple (future) A: The train leaves at 7:45. N: The train doesn’t leave at 7:45. Q: Does the train leave at 7:45? ● Decisión rápida / promesa — Will A: I will take a taxi. N: I won’t take a taxi. Q: Will I take a taxi? ● Intención / predicción — Going to A: He is going to report the incident. N: He isn’t going to report the incident. Q: Is he going to report the incident?"
+          "label": "Is he going to report the incident?"
         },
         {
           "key": "d",
-          "label": "in the surrounding area"
+          "label": "We are leaving tomorrow morning"
         }
       ],
-      "answer": "a) We aren’t leaving tomorrow morning",
+      "answer": "a) He isn’t going to report the incident",
       "acceptable_answers": [
-        "a) We aren’t leaving tomorrow morning",
+        "a) He isn’t going to report the incident",
         "a"
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Explicación académica: Going to se utiliza para intención o predicción basada en indicios. La respuesta correcta presenta la negativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: No nos vamos mañana por la mañana.",
+      "explanation_es": "Explicación académica: Going to se utiliza para intención o predicción basada en indicios. La respuesta correcta presenta la negativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: No va a denunciar el incidente.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -9532,27 +10198,27 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "We aren’t leaving tomorrow morning",
+          "label": "He isn’t going to report the incident",
           "is_correct": true,
           "explanation": "Correcta: usa Going to con la negativa pedida y mantiene la estructura propia de este tiempo verbal."
         },
         {
           "key": "b",
-          "label": "We are leaving tomorrow morning",
+          "label": "He is going to report the incident",
           "is_correct": false,
           "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma afirmativa y aquí se pide forma negativa."
         },
         {
           "key": "c",
-          "label": "Are we leaving tomorrow morning? ● Horario oficial — Present Simple (future) A: The train leaves at 7:45. N: The train doesn’t leave at 7:45. Q: Does the train leave at 7:45? ● Decisión rápida / promesa — Will A: I will take a taxi. N: I won’t take a taxi. Q: Will I take a taxi? ● Intención / predicción — Going to A: He is going to report the incident. N: He isn’t going to report the incident. Q: Is he going to report the incident?",
+          "label": "Is he going to report the incident?",
           "is_correct": false,
           "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma interrogativa y aquí se pide forma negativa."
         },
         {
           "key": "d",
-          "label": "in the surrounding area",
+          "label": "We are leaving tomorrow morning",
           "is_correct": false,
-          "explanation": "Incorrecta: es una frase válida, pero pertenece a Past Simple y no a Going to."
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Continuous (future) y no a Going to."
         }
       ],
       "context": "Tiempo verbal: Going to",
@@ -9571,29 +10237,29 @@
       "choices": [
         {
           "key": "a",
-          "label": "Are we leaving tomorrow morning? ● Horario oficial — Present Simple (future) A: The train leaves at 7:45. N: The train doesn’t leave at 7:45. Q: Does the train leave at 7:45? ● Decisión rápida / promesa — Will A: I will take a taxi. N: I won’t take a taxi. Q: Will I take a taxi? ● Intención / predicción — Going to A: He is going to report the incident. N: He isn’t going to report the incident. Q: Is he going to report the incident?"
+          "label": "Is he going to report the incident?"
         },
         {
           "key": "b",
-          "label": "We are leaving tomorrow morning"
+          "label": "He is going to report the incident"
         },
         {
           "key": "c",
-          "label": "We aren’t leaving tomorrow morning"
+          "label": "He isn’t going to report the incident"
         },
         {
           "key": "d",
-          "label": "in the surrounding area"
+          "label": "We are leaving tomorrow morning"
         }
       ],
-      "answer": "a) Are we leaving tomorrow morning? ● Horario oficial — Present Simple (future) A: The train leaves at 7:45. N: The train doesn’t leave at 7:45. Q: Does the train leave at 7:45? ● Decisión rápida / promesa — Will A: I will take a taxi. N: I won’t take a taxi. Q: Will I take a taxi? ● Intención / predicción — Going to A: He is going to report the incident. N: He isn’t going to report the incident. Q: Is he going to report the incident?",
+      "answer": "a) Is he going to report the incident?",
       "acceptable_answers": [
-        "a) Are we leaving tomorrow morning? ● Horario oficial — Present Simple (future) A: The train leaves at 7:45. N: The train doesn’t leave at 7:45. Q: Does the train leave at 7:45? ● Decisión rápida / promesa — Will A: I will take a taxi. N: I won’t take a taxi. Q: Will I take a taxi? ● Intención / predicción — Going to A: He is going to report the incident. N: He isn’t going to report the incident. Q: Is he going to report the incident?",
+        "a) Is he going to report the incident?",
         "a"
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Explicación académica: Going to se utiliza para intención o predicción basada en indicios. La respuesta correcta presenta la interrogativa adecuada y respeta la estructura exigida en pruebas tipo test.",
+      "explanation_es": "Explicación académica: Going to se utiliza para intención o predicción basada en indicios. La respuesta correcta presenta la interrogativa adecuada y respeta la estructura exigida en pruebas tipo test. Traducción del modelo: ¿Va a denunciar el incidente?.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -9606,27 +10272,27 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "Are we leaving tomorrow morning? ● Horario oficial — Present Simple (future) A: The train leaves at 7:45. N: The train doesn’t leave at 7:45. Q: Does the train leave at 7:45? ● Decisión rápida / promesa — Will A: I will take a taxi. N: I won’t take a taxi. Q: Will I take a taxi? ● Intención / predicción — Going to A: He is going to report the incident. N: He isn’t going to report the incident. Q: Is he going to report the incident?",
+          "label": "Is he going to report the incident?",
           "is_correct": true,
-          "explanation": "Correcta: usa Going to con la interrogativa pedida y mantiene la estructura propia de este tiempo verbal."
+          "explanation": "Correcta: usa Going to con la interrogativa pedida y mantiene la estructura propia de este tiempo verbal. Traducción: ¿Va a denunciar el incidente?"
         },
         {
           "key": "b",
-          "label": "We are leaving tomorrow morning",
+          "label": "He is going to report the incident",
           "is_correct": false,
           "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma afirmativa y aquí se pide forma interrogativa."
         },
         {
           "key": "c",
-          "label": "We aren’t leaving tomorrow morning",
+          "label": "He isn’t going to report the incident",
           "is_correct": false,
           "explanation": "Incorrecta: la oración está bien construida, pero aparece en forma negativa y aquí se pide forma interrogativa."
         },
         {
           "key": "d",
-          "label": "in the surrounding area",
+          "label": "We are leaving tomorrow morning",
           "is_correct": false,
-          "explanation": "Incorrecta: es una frase válida, pero pertenece a Past Simple y no a Going to."
+          "explanation": "Incorrecta: es una frase válida, pero pertenece a Present Continuous (future) y no a Going to."
         }
       ],
       "context": "Tiempo verbal: Going to",

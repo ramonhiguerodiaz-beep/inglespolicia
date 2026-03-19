@@ -88,8 +88,8 @@ function normalizeQuestion(item) {
     answerIndex,
     displayAnswer: parsedChoices[answerIndex] ? `${parsedChoices[answerIndex].key}) ${parsedChoices[answerIndex].label}` : 'Revisa la explicación.',
     explanation: compactText(item.explanation_es || 'Sin explicación adicional.'),
-    context: compactText(item.context || item.title || item.section),
-    helpText: compactText(item.help_text || (item.reading_id ? 'Selecciona la opción que mejor resume la idea principal del texto.' : (item.tags || []).slice(0, 3).join(' · '))),
+    context: compactText(item.context || item.reading_excerpt || item.title || item.section),
+    helpText: compactText(item.help_text || (item.reading_id ? 'Lee el fragmento citado y selecciona la paráfrasis que mejor responde a la pregunta.' : (item.tags || []).slice(0, 3).join(' · '))),
   };
 }
 
@@ -202,7 +202,7 @@ function renderQuestion() {
   els.questionLabel.textContent = `${(question.difficulty || 'intermediate').toUpperCase()} · ${question.section.toUpperCase()}`;
   els.questionSubtitle.textContent = question.subsection || question.section;
   els.questionType.textContent = typeLabel(question);
-  els.questionContext.textContent = question.context;
+  els.questionContext.textContent = question.reading_id ? `Fragmento clave: ${question.context}` : question.context;
   els.questionPrompt.textContent = compactText(question.prompt || 'Selecciona la respuesta correcta.');
   els.questionHelp.textContent = question.helpText;
 

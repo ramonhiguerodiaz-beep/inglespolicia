@@ -158,7 +158,7 @@ function updateGeneratorMeta() {
   const selectedLabel = selectedSections.length ? selectedSections.join(' · ') : 'sin filtros por bloque';
 
   els.generatorMeta.textContent = `${eligible.length} preguntas tipo test disponibles · ${Math.min(requested, eligible.length || requested)} por sesión · ${selectedLabel}`;
-  els.heroSubtitle.textContent = `Banco actual: ${state.bank.length} preguntas cerradas de 4 opciones con explicación académica por alternativa.`;
+  els.heroSubtitle.textContent = `Banco actual: ${state.bank.length} preguntas cerradas de 4 opciones con distractores verosímiles, explicaciones académicas en español y enfoque real de academia para opositores.`;
 }
 
 function startSession(forceRandom) {

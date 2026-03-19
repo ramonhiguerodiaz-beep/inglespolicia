@@ -9435,7 +9435,7 @@
         },
         {
           "key": "d",
-          "label": "all of a sudden"
+          "label": "in the surrounding area"
         }
       ],
       "answer": "a) We are leaving tomorrow morning",
@@ -9476,7 +9476,7 @@
         },
         {
           "key": "d",
-          "label": "all of a sudden",
+          "label": "in the surrounding area",
           "is_correct": false,
           "explanation": "Incorrecta: es una frase válida, pero pertenece a Past Simple y no a Going to."
         }
@@ -9509,7 +9509,7 @@
         },
         {
           "key": "d",
-          "label": "all of a sudden"
+          "label": "in the surrounding area"
         }
       ],
       "answer": "a) We aren’t leaving tomorrow morning",
@@ -9550,7 +9550,7 @@
         },
         {
           "key": "d",
-          "label": "all of a sudden",
+          "label": "in the surrounding area",
           "is_correct": false,
           "explanation": "Incorrecta: es una frase válida, pero pertenece a Past Simple y no a Going to."
         }
@@ -9583,7 +9583,7 @@
         },
         {
           "key": "d",
-          "label": "all of a sudden"
+          "label": "in the surrounding area"
         }
       ],
       "answer": "a) Are we leaving tomorrow morning? ● Horario oficial — Present Simple (future) A: The train leaves at 7:45. N: The train doesn’t leave at 7:45. Q: Does the train leave at 7:45? ● Decisión rápida / promesa — Will A: I will take a taxi. N: I won’t take a taxi. Q: Will I take a taxi? ● Intención / predicción — Going to A: He is going to report the incident. N: He isn’t going to report the incident. Q: Is he going to report the incident?",
@@ -9624,7 +9624,7 @@
         },
         {
           "key": "d",
-          "label": "all of a sudden",
+          "label": "in the surrounding area",
           "is_correct": false,
           "explanation": "Incorrecta: es una frase válida, pero pertenece a Past Simple y no a Going to."
         }
@@ -9645,7 +9645,7 @@
       "choices": [
         {
           "key": "a",
-          "label": "studying / one time"
+          "label": "studying / once"
         },
         {
           "key": "b",
@@ -9657,7 +9657,7 @@
         },
         {
           "key": "d",
-          "label": "a lots of"
+          "label": "to study / twice"
         }
       ],
       "answer": "b) to study / once",
@@ -9667,7 +9667,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -9679,7 +9679,7 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "studying / one time",
+          "label": "studying / once",
           "is_correct": false,
           "explanation": "Incorrecta: en imperativo, la estructura es forget to + infinitive (no *forget + -ing*). Además, *one time a week* suena poco natural aquí; lo estándar es *once a week*."
         },
@@ -9697,13 +9697,13 @@
         },
         {
           "key": "d",
-          "label": "a lots of",
+          "label": "to study / twice",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-01-2",
@@ -9718,7 +9718,7 @@
       "choices": [
         {
           "key": "a",
-          "label": "a lots of"
+          "label": "a great deal of"
         },
         {
           "key": "b",
@@ -9730,7 +9730,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "b) plenty of",
@@ -9740,7 +9740,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -9752,7 +9752,7 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "a lots of",
+          "label": "a great deal of",
           "is_correct": false,
           "explanation": "Incorrecta: la forma correcta es a lot of (sin *s*) o lots of (sin *a*)."
         },
@@ -9770,13 +9770,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-01-3",
@@ -9803,7 +9803,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "for"
         }
       ],
       "answer": "a) to",
@@ -9813,7 +9813,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -9843,13 +9843,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "for",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-01-4",
@@ -9876,7 +9876,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "for"
         }
       ],
       "answer": "c) near",
@@ -9886,7 +9886,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -9916,13 +9916,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "for",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-01-5",
@@ -9949,7 +9949,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "to be working"
         }
       ],
       "answer": "c) a and b",
@@ -9959,7 +9959,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -9989,13 +9989,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "to be working",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-01-6",
@@ -10022,7 +10022,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "Either / nor"
         }
       ],
       "answer": "b) Either / or",
@@ -10032,7 +10032,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10062,13 +10062,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "Either / nor",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-7",
@@ -10095,7 +10095,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "since last year"
         }
       ],
       "answer": "c) ’ve lived",
@@ -10105,7 +10105,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10135,13 +10135,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "since last year",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-8",
@@ -10168,7 +10168,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "according to procedure"
         }
       ],
       "answer": "a) for two years",
@@ -10178,7 +10178,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10208,13 +10208,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "according to procedure",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-9",
@@ -10241,7 +10241,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "according to procedure"
         }
       ],
       "answer": "b) have you been",
@@ -10251,7 +10251,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10281,13 +10281,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "according to procedure",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-10",
@@ -10314,7 +10314,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "c) were",
@@ -10324,7 +10324,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10354,13 +10354,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-11",
@@ -10387,7 +10387,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "according to procedure"
         }
       ],
       "answer": "a) Did Alfred Hitchcock die",
@@ -10397,7 +10397,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10427,13 +10427,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "according to procedure",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-12",
@@ -10460,7 +10460,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "according to procedure"
         }
       ],
       "answer": "a) used to wear",
@@ -10470,7 +10470,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10500,13 +10500,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "according to procedure",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-13",
@@ -10533,7 +10533,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "according to procedure"
         }
       ],
       "answer": "b) didn’t use to",
@@ -10543,7 +10543,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10573,13 +10573,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "according to procedure",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-14",
@@ -10606,7 +10606,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "c) was",
@@ -10616,7 +10616,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10646,13 +10646,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-15",
@@ -10679,7 +10679,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "c) was written",
@@ -10689,7 +10689,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10719,13 +10719,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-16",
@@ -10752,7 +10752,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "according to procedure"
         }
       ],
       "answer": "a) was invented by",
@@ -10762,7 +10762,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10792,13 +10792,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "according to procedure",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-02-17",
@@ -10825,7 +10825,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "b) reminded",
@@ -10835,7 +10835,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10865,13 +10865,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-18",
@@ -10898,7 +10898,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "b) whose",
@@ -10908,7 +10908,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -10938,13 +10938,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-19",
@@ -10971,7 +10971,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "b) fabricating",
@@ -10981,7 +10981,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11011,13 +11011,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-20",
@@ -11044,7 +11044,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "for"
         }
       ],
       "answer": "b) on",
@@ -11054,7 +11054,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11084,13 +11084,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "for",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-21",
@@ -11117,7 +11117,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "b) were",
@@ -11127,7 +11127,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11157,13 +11157,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-22",
@@ -11190,7 +11190,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "for"
         }
       ],
       "answer": "b) with",
@@ -11200,7 +11200,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11230,13 +11230,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "for",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-23",
@@ -11263,7 +11263,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "b) appeared",
@@ -11273,7 +11273,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11303,13 +11303,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-24",
@@ -11336,7 +11336,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "a) question",
@@ -11346,7 +11346,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11376,13 +11376,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-25",
@@ -11409,7 +11409,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "a) under",
@@ -11419,7 +11419,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11449,13 +11449,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-26",
@@ -11482,7 +11482,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "rather"
         }
       ],
       "answer": "a) appeal",
@@ -11492,7 +11492,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11522,13 +11522,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-27",
@@ -11555,7 +11555,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "for"
         }
       ],
       "answer": "a) from",
@@ -11565,7 +11565,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11595,13 +11595,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "for",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "exam-set-03-28",
@@ -11628,7 +11628,7 @@
         },
         {
           "key": "d",
-          "label": "studying / one time"
+          "label": "to be working"
         }
       ],
       "answer": "b) beat around the bush",
@@ -11638,7 +11638,7 @@
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.",
+      "explanation_es": "Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11668,13 +11668,13 @@
         },
         {
           "key": "d",
-          "label": "studying / one time",
+          "label": "to be working",
           "is_correct": false,
-          "explanation": "Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida."
+          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
         }
       ],
       "context": "",
-      "help_text": ""
+      "help_text": "Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial."
     },
     {
       "id": "reading-bag-1",
@@ -11689,29 +11689,29 @@
       "choices": [
         {
           "key": "a",
-          "label": "According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach"
+          "label": "According to the passage, the promenade was busy and cheerful, with tourists and local residents enjoying the evening and watching the sunset by the sea"
         },
         {
           "key": "b",
-          "label": "Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying"
+          "label": "The text suggests that the promenade was almost empty because most people had already left after the cafés and shops closed earlier than usual"
         },
         {
           "key": "c",
-          "label": "The witness description and the CCTV images helped the police identify the suspect later that night"
+          "label": "The passage focuses on a tense and silent atmosphere created by a heavy storm that forced pedestrians to leave the beach area"
         },
         {
           "key": "d",
-          "label": "The documents and the phone were recovered from the bag, but the cash was still missing"
+          "label": "The text mainly describes a police cordon that prevented residents and visitors from walking near the promenade during the evening"
         }
       ],
-      "answer": "a) According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach",
+      "answer": "a) According to the passage, the promenade was busy and cheerful, with tourists and local residents enjoying the evening and watching the sunset by the sea",
       "acceptable_answers": [
-        "a) According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach",
+        "a) According to the passage, the promenade was busy and cheerful, with tourists and local residents enjoying the evening and watching the sunset by the sea",
         "a"
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Respuesta oficial del reading convertida a pregunta tipo test con cuatro alternativas cerradas.",
+      "explanation_es": "Explicación académica: la opción correcta parafrasea la descripción del ambiente general sin copiar literalmente el texto. Traducción orientativa: el paseo estaba animado, concurrido y con gente disfrutando de la tarde junto al mar.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11723,31 +11723,31 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach",
+          "label": "According to the passage, the promenade was busy and cheerful, with tourists and local residents enjoying the evening and watching the sunset by the sea",
           "is_correct": true,
-          "explanation": "Correcta: resume con precisión la idea principal del reading del paseo marítimo."
+          "explanation": "Correcta: esta opción reformula la información esencial del fragmento con otras palabras y mantiene el mismo significado en español."
         },
         {
           "key": "b",
-          "label": "Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying",
+          "label": "The text suggests that the promenade was almost empty because most people had already left after the cafés and shops closed earlier than usual",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         },
         {
           "key": "c",
-          "label": "The witness description and the CCTV images helped the police identify the suspect later that night",
+          "label": "The passage focuses on a tense and silent atmosphere created by a heavy storm that forced pedestrians to leave the beach area",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         },
         {
           "key": "d",
-          "label": "The documents and the phone were recovered from the bag, but the cash was still missing",
+          "label": "The text mainly describes a police cordon that prevented residents and visitors from walking near the promenade during the evening",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         }
       ],
-      "context": "\"The promenade was full of tourists and local residents… taking pictures of the sunset.\"",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "context": "\"The promenade was full of tourists and local residents... taking pictures of the sunset.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis más fiel al texto. Fíjate en la idea principal y evita opciones que añadan información no mencionada.",
       "reading_id": "bag-theft-on-the-promenade"
     },
     {
@@ -11763,29 +11763,29 @@
       "choices": [
         {
           "key": "a",
-          "label": "Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying"
+          "label": "The text explains that the theft was easy because the woman left her handbag unattended for a brief moment while she was paying at the café"
         },
         {
           "key": "b",
-          "label": "According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach"
+          "label": "The passage indicates that the thief forced the café door open at night and stole the bag after the victim had already gone home"
         },
         {
           "key": "c",
-          "label": "The witness description and the CCTV images helped the police identify the suspect later that night"
+          "label": "The text suggests that the victim handed her bag to a stranger who offered to help her carry several shopping bags to the car"
         },
         {
           "key": "d",
-          "label": "The documents and the phone were recovered from the bag, but the cash was still missing"
+          "label": "The passage states that the handbag disappeared when the owner dropped it on the promenade and continued walking without noticing it"
         }
       ],
-      "answer": "a) Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying",
+      "answer": "a) The text explains that the theft was easy because the woman left her handbag unattended for a brief moment while she was paying at the café",
       "acceptable_answers": [
-        "a) Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying",
+        "a) The text explains that the theft was easy because the woman left her handbag unattended for a brief moment while she was paying at the café",
         "a"
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Respuesta oficial del reading convertida a pregunta tipo test con cuatro alternativas cerradas.",
+      "explanation_es": "Explicación académica: la paráfrasis correcta mantiene la causa principal del robo: un descuido breve mientras la víctima pagaba. Traducción orientativa: el bolso fue sustraído porque quedó sin vigilancia durante unos segundos.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11797,31 +11797,31 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying",
+          "label": "The text explains that the theft was easy because the woman left her handbag unattended for a brief moment while she was paying at the café",
           "is_correct": true,
-          "explanation": "Correcta: resume con precisión la idea principal del reading del paseo marítimo."
+          "explanation": "Correcta: esta opción reformula la información esencial del fragmento con otras palabras y mantiene el mismo significado en español."
         },
         {
           "key": "b",
-          "label": "According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach",
+          "label": "The passage indicates that the thief forced the café door open at night and stole the bag after the victim had already gone home",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         },
         {
           "key": "c",
-          "label": "The witness description and the CCTV images helped the police identify the suspect later that night",
+          "label": "The text suggests that the victim handed her bag to a stranger who offered to help her carry several shopping bags to the car",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         },
         {
           "key": "d",
-          "label": "The documents and the phone were recovered from the bag, but the cash was still missing",
+          "label": "The passage states that the handbag disappeared when the owner dropped it on the promenade and continued walking without noticing it",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         }
       ],
-      "context": "\"Anna M. left her handbag under her chair for a few minutes while she paid for some drinks.\"",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "context": "\"She had left her handbag on the chair beside her table for a moment while paying the bill.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis más fiel al texto. Fíjate en la idea principal y evita opciones que añadan información no mencionada.",
       "reading_id": "bag-theft-on-the-promenade"
     },
     {
@@ -11837,29 +11837,29 @@
       "choices": [
         {
           "key": "a",
-          "label": "The witness description and the CCTV images helped the police identify the suspect later that night"
+          "label": "According to the passage, a witness description together with nearby CCTV footage allowed officers to identify the suspect and find the bag later that night"
         },
         {
           "key": "b",
-          "label": "According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach"
+          "label": "The text says that the victim used a mobile phone tracking application that immediately showed the exact location of the handbag on a city map"
         },
         {
           "key": "c",
-          "label": "Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying"
+          "label": "The passage explains that the suspect returned voluntarily to the café and admitted taking the bag before any witnesses spoke to the police"
         },
         {
           "key": "d",
-          "label": "The documents and the phone were recovered from the bag, but the cash was still missing"
+          "label": "The text suggests that officers found the bag after closing all nearby streets and searching every parked vehicle along the promenade"
         }
       ],
-      "answer": "a) The witness description and the CCTV images helped the police identify the suspect later that night",
+      "answer": "a) According to the passage, a witness description together with nearby CCTV footage allowed officers to identify the suspect and find the bag later that night",
       "acceptable_answers": [
-        "a) The witness description and the CCTV images helped the police identify the suspect later that night",
+        "a) According to the passage, a witness description together with nearby CCTV footage allowed officers to identify the suspect and find the bag later that night",
         "a"
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Respuesta oficial del reading convertida a pregunta tipo test con cuatro alternativas cerradas.",
+      "explanation_es": "Explicación académica: aquí la clave es combinar dos pruebas del texto, la descripción del testigo y las imágenes de CCTV. Traducción orientativa: ambas pistas permitieron identificar al sospechoso con rapidez.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11871,31 +11871,31 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "The witness description and the CCTV images helped the police identify the suspect later that night",
+          "label": "According to the passage, a witness description together with nearby CCTV footage allowed officers to identify the suspect and find the bag later that night",
           "is_correct": true,
-          "explanation": "Correcta: resume con precisión la idea principal del reading del paseo marítimo."
+          "explanation": "Correcta: esta opción reformula la información esencial del fragmento con otras palabras y mantiene el mismo significado en español."
         },
         {
           "key": "b",
-          "label": "According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach",
+          "label": "The text says that the victim used a mobile phone tracking application that immediately showed the exact location of the handbag on a city map",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         },
         {
           "key": "c",
-          "label": "Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying",
+          "label": "The passage explains that the suspect returned voluntarily to the café and admitted taking the bag before any witnesses spoke to the police",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         },
         {
           "key": "d",
-          "label": "The documents and the phone were recovered from the bag, but the cash was still missing",
+          "label": "The text suggests that officers found the bag after closing all nearby streets and searching every parked vehicle along the promenade",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         }
       ],
-      "context": "\"A waiter shouted for help… a shop owner checked his CCTV footage.\"",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "context": "\"A witness gave a clear description, and CCTV images from a nearby shop helped the police identify the suspect.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis más fiel al texto. Fíjate en la idea principal y evita opciones que añadan información no mencionada.",
       "reading_id": "bag-theft-on-the-promenade"
     },
     {
@@ -11911,29 +11911,29 @@
       "choices": [
         {
           "key": "a",
-          "label": "The documents and the phone were recovered from the bag, but the cash was still missing"
+          "label": "The text states that the documents and the phone were recovered, but the cash had disappeared and was still missing when the bag was found"
         },
         {
           "key": "b",
-          "label": "According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach"
+          "label": "According to the passage, the entire bag was recovered intact, including the money, and nothing was missing once the police completed their search"
         },
         {
           "key": "c",
-          "label": "Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying"
+          "label": "The text explains that only the victim’s bank cards were recovered, while her documents, her phone and the rest of the bag were never found"
         },
         {
           "key": "d",
-          "label": "The witness description and the CCTV images helped the police identify the suspect later that night"
+          "label": "The passage suggests that the police recovered the cash first, but they could not locate the handbag itself or any personal belongings inside it"
         }
       ],
-      "answer": "a) The documents and the phone were recovered from the bag, but the cash was still missing",
+      "answer": "a) The text states that the documents and the phone were recovered, but the cash had disappeared and was still missing when the bag was found",
       "acceptable_answers": [
-        "a) The documents and the phone were recovered from the bag, but the cash was still missing",
+        "a) The text states that the documents and the phone were recovered, but the cash had disappeared and was still missing when the bag was found",
         "a"
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Respuesta oficial del reading convertida a pregunta tipo test con cuatro alternativas cerradas.",
+      "explanation_es": "Explicación académica: la opción válida distingue con precisión entre los objetos recuperados y el elemento que faltaba. Traducción orientativa: se recuperaron los documentos y el móvil, pero no el dinero.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -11945,31 +11945,31 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "The documents and the phone were recovered from the bag, but the cash was still missing",
+          "label": "The text states that the documents and the phone were recovered, but the cash had disappeared and was still missing when the bag was found",
           "is_correct": true,
-          "explanation": "Correcta: resume con precisión la idea principal del reading del paseo marítimo."
+          "explanation": "Correcta: esta opción reformula la información esencial del fragmento con otras palabras y mantiene el mismo significado en español."
         },
         {
           "key": "b",
-          "label": "According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach",
+          "label": "According to the passage, the entire bag was recovered intact, including the money, and nothing was missing once the police completed their search",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         },
         {
           "key": "c",
-          "label": "Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying",
+          "label": "The text explains that only the victim’s bank cards were recovered, while her documents, her phone and the rest of the bag were never found",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         },
         {
           "key": "d",
-          "label": "The witness description and the CCTV images helped the police identify the suspect later that night",
+          "label": "The passage suggests that the police recovered the cash first, but they could not locate the handbag itself or any personal belongings inside it",
           "is_correct": false,
-          "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
+          "explanation": "Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento."
         }
       ],
-      "context": "\"The passport, documents and phone were still inside, but the cash was missing.\"",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "context": "\"The handbag was found in a narrow alley, but the cash was missing. Her documents and mobile phone were still inside.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis más fiel al texto. Fíjate en la idea principal y evita opciones que añadan información no mencionada.",
       "reading_id": "bag-theft-on-the-promenade"
     },
     {
@@ -11985,29 +11985,29 @@
       "choices": [
         {
           "key": "a",
-          "label": "According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic"
+          "label": "According to the text, the students became especially excited when they saw teachers acting as victims, because that made the whole event feel more realistic and dramatic"
         },
         {
           "key": "b",
-          "label": "Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group"
+          "label": "The passage suggests that the students were mainly excited because they were allowed to leave lessons early and spend the entire afternoon outside the classroom"
         },
         {
           "key": "c",
-          "label": "As explained in the text, these events have to be held in private spaces so that other customers are not disturbed"
+          "label": "The text explains that the students were impressed above all by the expensive costumes and special effects that had been brought from London for the activity"
         },
         {
           "key": "d",
-          "label": "According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive"
+          "label": "The passage indicates that the students were most interested in winning a financial prize that was offered to the group that solved the case first"
         }
       ],
-      "answer": "a) According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic",
+      "answer": "a) According to the text, the students became especially excited when they saw teachers acting as victims, because that made the whole event feel more realistic and dramatic",
       "acceptable_answers": [
-        "a) According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic",
+        "a) According to the text, the students became especially excited when they saw teachers acting as victims, because that made the whole event feel more realistic and dramatic",
         "a"
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Respuesta explicada del reading 1 convertida a formato test con cuatro opciones cerradas.",
+      "explanation_es": "Explicación académica: la respuesta correcta recoge la causa principal de la emoción de los alumnos y la expresa mediante una reformulación natural. Traducción orientativa: ver a profesores haciendo de víctimas hizo que la actividad pareciera mucho más real.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -12019,31 +12019,31 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic",
+          "label": "According to the text, the students became especially excited when they saw teachers acting as victims, because that made the whole event feel more realistic and dramatic",
           "is_correct": true,
-          "explanation": "Correcta: resume la respuesta explicada del reading 1 sin copiarla palabra por palabra."
+          "explanation": "Correcta: es una paráfrasis fiel del texto, ya que mantiene la idea central y la reformula con vocabulario distinto."
         },
         {
           "key": "b",
-          "label": "Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group",
+          "label": "The passage suggests that the students were mainly excited because they were allowed to leave lessons early and spend the entire afternoon outside the classroom",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         },
         {
           "key": "c",
-          "label": "As explained in the text, these events have to be held in private spaces so that other customers are not disturbed",
+          "label": "The text explains that the students were impressed above all by the expensive costumes and special effects that had been brought from London for the activity",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         },
         {
           "key": "d",
-          "label": "According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive",
+          "label": "The passage indicates that the students were most interested in winning a financial prize that was offered to the group that solved the case first",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         }
       ],
-      "context": "\"Many teachers were ‘dying’, so the children were all very excited.\"",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "context": "\"Several teachers lay on the floor pretending to be dead, which made the scene look much more real to the students.\"",
+      "help_text": "Fragmento clave del reading: identifica la idea principal y escoge la opción que la reformula con precisión, sin copiarla ni añadir información nueva.",
       "reading_id": "reading-1-murder-mystery"
     },
     {
@@ -12059,29 +12059,29 @@
       "choices": [
         {
           "key": "a",
-          "label": "Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group"
+          "label": "The narrator was most attracted by the chance to play a character and by the suspense of not knowing whether someone at the table might be the murderer"
         },
         {
           "key": "b",
-          "label": "According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic"
+          "label": "The passage shows that the narrator enjoyed the event mainly because the dinner was luxurious and the guests were served by professional actors in costume"
         },
         {
           "key": "c",
-          "label": "As explained in the text, these events have to be held in private spaces so that other customers are not disturbed"
+          "label": "The text suggests that the narrator’s favourite part was collecting physical evidence and comparing fingerprints in a highly technical forensic exercise"
         },
         {
           "key": "d",
-          "label": "According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive"
+          "label": "The passage explains that the narrator preferred the event because it required very little interaction and allowed guests to observe quietly from a distance"
         }
       ],
-      "answer": "a) Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group",
+      "answer": "a) The narrator was most attracted by the chance to play a character and by the suspense of not knowing whether someone at the table might be the murderer",
       "acceptable_answers": [
-        "a) Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group",
+        "a) The narrator was most attracted by the chance to play a character and by the suspense of not knowing whether someone at the table might be the murderer",
         "a"
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Respuesta explicada del reading 1 convertida a formato test con cuatro opciones cerradas.",
+      "explanation_es": "Explicación académica: la paráfrasis correcta conserva las dos ideas del fragmento: interpretar un papel y sentir suspense dentro del grupo. Traducción orientativa: al narrador le atraían el juego de rol y la intriga de no saber quién era el asesino.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -12093,31 +12093,31 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group",
+          "label": "The narrator was most attracted by the chance to play a character and by the suspense of not knowing whether someone at the table might be the murderer",
           "is_correct": true,
-          "explanation": "Correcta: resume la respuesta explicada del reading 1 sin copiarla palabra por palabra."
+          "explanation": "Correcta: es una paráfrasis fiel del texto, ya que mantiene la idea central y la reformula con vocabulario distinto."
         },
         {
           "key": "b",
-          "label": "According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic",
+          "label": "The passage shows that the narrator enjoyed the event mainly because the dinner was luxurious and the guests were served by professional actors in costume",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         },
         {
           "key": "c",
-          "label": "As explained in the text, these events have to be held in private spaces so that other customers are not disturbed",
+          "label": "The text suggests that the narrator’s favourite part was collecting physical evidence and comparing fingerprints in a highly technical forensic exercise",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         },
         {
           "key": "d",
-          "label": "According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive",
+          "label": "The passage explains that the narrator preferred the event because it required very little interaction and allowed guests to observe quietly from a distance",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         }
       ],
-      "context": "\"I loved playing a part… one of the people in the room was a ‘murderer’.\"",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "context": "\"I loved playing a role and the thrill of wondering whether the murderer might be sitting right next to me.\"",
+      "help_text": "Fragmento clave del reading: identifica la idea principal y escoge la opción que la reformula con precisión, sin copiarla ni añadir información nueva.",
       "reading_id": "reading-1-murder-mystery"
     },
     {
@@ -12133,29 +12133,29 @@
       "choices": [
         {
           "key": "a",
-          "label": "As explained in the text, these events have to be held in private spaces so that other customers are not disturbed"
+          "label": "The text implies that these events should be organised in private venues so that regular customers are not disturbed by the performance and the investigation"
         },
         {
           "key": "b",
-          "label": "According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic"
+          "label": "The passage argues that public restaurants are the best choice because random customers can join the mystery and make the story more unpredictable"
         },
         {
           "key": "c",
-          "label": "Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group"
+          "label": "The text suggests that large shopping centres are ideal locations since background noise helps participants concentrate on the clues more effectively"
         },
         {
           "key": "d",
-          "label": "According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive"
+          "label": "The narrator explains that public venues are only a problem when actors are inexperienced, but suitable if the script is short and easy to follow"
         }
       ],
-      "answer": "a) As explained in the text, these events have to be held in private spaces so that other customers are not disturbed",
+      "answer": "a) The text implies that these events should be organised in private venues so that regular customers are not disturbed by the performance and the investigation",
       "acceptable_answers": [
-        "a) As explained in the text, these events have to be held in private spaces so that other customers are not disturbed",
+        "a) The text implies that these events should be organised in private venues so that regular customers are not disturbed by the performance and the investigation",
         "a"
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Respuesta explicada del reading 1 convertida a formato test con cuatro opciones cerradas.",
+      "explanation_es": "Explicación académica: la opción válida deduce correctamente la exigencia logística del texto: estos eventos funcionan mejor en espacios privados. Traducción orientativa: se prefieren lugares privados para no molestar a otros clientes.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -12167,31 +12167,31 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "As explained in the text, these events have to be held in private spaces so that other customers are not disturbed",
+          "label": "The text implies that these events should be organised in private venues so that regular customers are not disturbed by the performance and the investigation",
           "is_correct": true,
-          "explanation": "Correcta: resume la respuesta explicada del reading 1 sin copiarla palabra por palabra."
+          "explanation": "Correcta: es una paráfrasis fiel del texto, ya que mantiene la idea central y la reformula con vocabulario distinto."
         },
         {
           "key": "b",
-          "label": "According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic",
+          "label": "The passage argues that public restaurants are the best choice because random customers can join the mystery and make the story more unpredictable",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         },
         {
           "key": "c",
-          "label": "Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group",
+          "label": "The text suggests that large shopping centres are ideal locations since background noise helps participants concentrate on the clues more effectively",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         },
         {
           "key": "d",
-          "label": "According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive",
+          "label": "The narrator explains that public venues are only a problem when actors are inexperienced, but suitable if the script is short and easy to follow",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         }
       ],
-      "context": "\"I hire a private room so that the ‘murder’ doesn’t upset other guests.\"",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "context": "\"We usually need private spaces because the event can disturb other customers if it is held in a normal public venue.\"",
+      "help_text": "Fragmento clave del reading: identifica la idea principal y escoge la opción que la reformula con precisión, sin copiarla ni añadir información nueva.",
       "reading_id": "reading-1-murder-mystery"
     },
     {
@@ -12207,29 +12207,29 @@
       "choices": [
         {
           "key": "a",
-          "label": "According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive"
+          "label": "According to the text, historic places such as castles enhance the atmosphere of the event and make the mystery feel more immersive, dramatic and memorable"
         },
         {
           "key": "b",
-          "label": "According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic"
+          "label": "The passage states that castles are preferred mainly because they offer lower rental prices and can host larger groups without any prior decoration work"
         },
         {
           "key": "c",
-          "label": "Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group"
+          "label": "The text suggests that old venues are useful above all because their modern surveillance systems make it easier to control participants during the event"
         },
         {
           "key": "d",
-          "label": "As explained in the text, these events have to be held in private spaces so that other customers are not disturbed"
+          "label": "The narrator explains that castles are chosen chiefly because they are easier to reach by public transport than hotels, restaurants or conference halls"
         }
       ],
-      "answer": "a) According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive",
+      "answer": "a) According to the text, historic places such as castles enhance the atmosphere of the event and make the mystery feel more immersive, dramatic and memorable",
       "acceptable_answers": [
-        "a) According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive",
+        "a) According to the text, historic places such as castles enhance the atmosphere of the event and make the mystery feel more immersive, dramatic and memorable",
         "a"
       ],
       "model_answer": "",
       "bad_answers": [],
-      "explanation_es": "Respuesta explicada del reading 1 convertida a formato test con cuatro opciones cerradas.",
+      "explanation_es": "Explicación académica: la paráfrasis correcta se centra en el valor ambiental del espacio histórico, que intensifica la experiencia narrativa. Traducción orientativa: los castillos aportan una atmósfera que vuelve el misterio más inmersivo y dramático.",
       "examples": [],
       "mistakes": [],
       "difficulty": "intermediate",
@@ -12241,504 +12241,32 @@
       "option_explanations": [
         {
           "key": "a",
-          "label": "According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive",
+          "label": "According to the text, historic places such as castles enhance the atmosphere of the event and make the mystery feel more immersive, dramatic and memorable",
           "is_correct": true,
-          "explanation": "Correcta: resume la respuesta explicada del reading 1 sin copiarla palabra por palabra."
+          "explanation": "Correcta: es una paráfrasis fiel del texto, ya que mantiene la idea central y la reformula con vocabulario distinto."
         },
         {
           "key": "b",
-          "label": "According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic",
+          "label": "The passage states that castles are preferred mainly because they offer lower rental prices and can host larger groups without any prior decoration work",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         },
         {
           "key": "c",
-          "label": "Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group",
+          "label": "The text suggests that old venues are useful above all because their modern surveillance systems make it easier to control participants during the event",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         },
         {
           "key": "d",
-          "label": "As explained in the text, these events have to be held in private spaces so that other customers are not disturbed",
+          "label": "The narrator explains that castles are chosen chiefly because they are easier to reach by public transport than hotels, restaurants or conference halls",
           "is_correct": false,
-          "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
+          "explanation": "Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada."
         }
       ],
-      "context": "\"Castles are particularly popular… because they’re so atmospheric.\"",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "context": "\"Castles and other historic venues create exactly the kind of atmosphere that makes a murder mystery much more dramatic.\"",
+      "help_text": "Fragmento clave del reading: identifica la idea principal y escoge la opción que la reformula con precisión, sin copiarla ni añadir información nueva.",
       "reading_id": "reading-1-murder-mystery"
-    },
-    {
-      "id": "reading-bag-5",
-      "kind": "question",
-      "section": "Reading y Paráfrasis",
-      "subsection": "Reading — Bag Theft on the Promenade",
-      "type": "reading_comprehension",
-      "difficulty": "intermediate",
-      "title": "Reading — Bag Theft on the Promenade · Pregunta 5",
-      "reading_id": "bag-theft-on-the-promenade",
-      "context": "\"A man wearing a dark hoodie suddenly grabbed the bag and ran towards a narrow alley behind the cafés.\"",
-      "prompt": "What does the text suggest about how the thief left the scene?",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
-      "choices": [
-        {
-          "key": "a",
-          "label": "According to the text, the suspect escaped quickly by running from the cafés into a narrow alley"
-        },
-        {
-          "key": "b",
-          "label": "The victim immediately followed the thief and recovered the handbag herself"
-        },
-        {
-          "key": "c",
-          "label": "The police had already identified the suspect before the bag was taken"
-        },
-        {
-          "key": "d",
-          "label": "The handbag was found intact with all the cash still inside"
-        }
-      ],
-      "answer": "a) According to the text, the suspect escaped quickly by running from the cafés into a narrow alley",
-      "option_explanations": [
-        {
-          "key": "a",
-          "label": "According to the text, the suspect escaped quickly by running from the cafés into a narrow alley",
-          "is_correct": true,
-          "explanation": "Correcta: parafrasea que cogió el bolso y huyó por un callejón estrecho."
-        },
-        {
-          "key": "b",
-          "label": "The victim immediately followed the thief and recovered the handbag herself",
-          "is_correct": false,
-          "explanation": "Incorrecta: la víctima no persigue al ladrón ni recupera ella sola el bolso."
-        },
-        {
-          "key": "c",
-          "label": "The police had already identified the suspect before the bag was taken",
-          "is_correct": false,
-          "explanation": "Incorrecta: la identificación fue posterior, gracias a testigos y CCTV."
-        },
-        {
-          "key": "d",
-          "label": "The handbag was found intact with all the cash still inside",
-          "is_correct": false,
-          "explanation": "Incorrecta: el dinero faltaba cuando encontraron el bolso."
-        }
-      ],
-      "explanation_es": "Nueva pregunta de paráfrasis basada en el fragmento de la huida del sospechoso."
-    },
-    {
-      "id": "reading-bag-6",
-      "kind": "question",
-      "section": "Reading y Paráfrasis",
-      "subsection": "Reading — Bag Theft on the Promenade",
-      "type": "reading_comprehension",
-      "difficulty": "intermediate",
-      "title": "Reading — Bag Theft on the Promenade · Pregunta 6",
-      "reading_id": "bag-theft-on-the-promenade",
-      "context": "\"Two local police officers… ran after the suspect. At the same time, another officer asked the victim what had been inside the bag.\"",
-      "prompt": "How did the officers respond immediately after the theft?",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
-      "choices": [
-        {
-          "key": "a",
-          "label": "Based on the text, the police split their tasks between chasing the suspect and gathering information from the victim"
-        },
-        {
-          "key": "b",
-          "label": "The officers waited for the shop owner before taking any action"
-        },
-        {
-          "key": "c",
-          "label": "All the officers stayed with the victim and nobody followed the thief"
-        },
-        {
-          "key": "d",
-          "label": "The police first checked the rubbish containers before speaking to witnesses"
-        }
-      ],
-      "answer": "a) Based on the text, the police split their tasks between chasing the suspect and gathering information from the victim",
-      "option_explanations": [
-        {
-          "key": "a",
-          "label": "Based on the text, the police split their tasks between chasing the suspect and gathering information from the victim",
-          "is_correct": true,
-          "explanation": "Correcta: unos agentes persiguen y otro pregunta por el contenido del bolso."
-        },
-        {
-          "key": "b",
-          "label": "The officers waited for the shop owner before taking any action",
-          "is_correct": false,
-          "explanation": "Incorrecta: reaccionan de inmediato, antes de revisar las cámaras."
-        },
-        {
-          "key": "c",
-          "label": "All the officers stayed with the victim and nobody followed the thief",
-          "is_correct": false,
-          "explanation": "Incorrecta: el texto dice que dos agentes corrieron tras el sospechoso."
-        },
-        {
-          "key": "d",
-          "label": "The police first checked the rubbish containers before speaking to witnesses",
-          "is_correct": false,
-          "explanation": "Incorrecta: eso ocurre después, no en la respuesta inmediata."
-        }
-      ],
-      "explanation_es": "Nueva pregunta de paráfrasis sobre la reacción policial inicial."
-    },
-    {
-      "id": "reading-bag-7",
-      "kind": "question",
-      "section": "Reading y Paráfrasis",
-      "subsection": "Reading — Bag Theft on the Promenade",
-      "type": "reading_comprehension",
-      "difficulty": "intermediate",
-      "title": "Reading — Bag Theft on the Promenade · Pregunta 7",
-      "reading_id": "bag-theft-on-the-promenade",
-      "context": "\"A shop owner nearby checked his CCTV footage and told the officers that the suspect had turned left into a side street.\"",
-      "prompt": "What role did the nearby shop owner play in the investigation?",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
-      "choices": [
-        {
-          "key": "a",
-          "label": "According to the text, he provided video evidence and direction details that helped guide the officers"
-        },
-        {
-          "key": "b",
-          "label": "He arrested the suspect after seeing him on camera"
-        },
-        {
-          "key": "c",
-          "label": "He returned the stolen cash to the victim that same night"
-        },
-        {
-          "key": "d",
-          "label": "He warned tourists to avoid the promenade after sunset"
-        }
-      ],
-      "answer": "a) According to the text, he provided video evidence and direction details that helped guide the officers",
-      "option_explanations": [
-        {
-          "key": "a",
-          "label": "According to the text, he provided video evidence and direction details that helped guide the officers",
-          "is_correct": true,
-          "explanation": "Correcta: revisa el CCTV y señala hacia dónde huyó el sospechoso."
-        },
-        {
-          "key": "b",
-          "label": "He arrested the suspect after seeing him on camera",
-          "is_correct": false,
-          "explanation": "Incorrecta: el comerciante ayuda con información, pero no detiene al sospechoso."
-        },
-        {
-          "key": "c",
-          "label": "He returned the stolen cash to the victim that same night",
-          "is_correct": false,
-          "explanation": "Incorrecta: el dinero no apareció."
-        },
-        {
-          "key": "d",
-          "label": "He warned tourists to avoid the promenade after sunset",
-          "is_correct": false,
-          "explanation": "Incorrecta: eso no forma parte del reading."
-        }
-      ],
-      "explanation_es": "Nueva pregunta de paráfrasis sobre la ayuda del comerciante y el CCTV."
-    },
-    {
-      "id": "reading-bag-8",
-      "kind": "question",
-      "section": "Reading y Paráfrasis",
-      "subsection": "Reading — Bag Theft on the Promenade",
-      "type": "reading_comprehension",
-      "difficulty": "intermediate",
-      "title": "Reading — Bag Theft on the Promenade · Pregunta 8",
-      "reading_id": "bag-theft-on-the-promenade",
-      "context": "\"Thanks to the witness description and the CCTV images, the police identified the suspect later that night.\"",
-      "prompt": "What combination of evidence led to the suspect being identified?",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
-      "choices": [
-        {
-          "key": "a",
-          "label": "As explained in the text, the identification came from both eyewitness information and security camera images"
-        },
-        {
-          "key": "b",
-          "label": "The suspect confessed at the police station before any witness was interviewed"
-        },
-        {
-          "key": "c",
-          "label": "Only the missing cash connected the suspect to the crime"
-        },
-        {
-          "key": "d",
-          "label": "The victim had taken a clear photo of the thief during the robbery"
-        }
-      ],
-      "answer": "a) As explained in the text, the identification came from both eyewitness information and security camera images",
-      "option_explanations": [
-        {
-          "key": "a",
-          "label": "As explained in the text, the identification came from both eyewitness information and security camera images",
-          "is_correct": true,
-          "explanation": "Correcta: combina descripción de testigos e imágenes de seguridad."
-        },
-        {
-          "key": "b",
-          "label": "The suspect confessed at the police station before any witness was interviewed",
-          "is_correct": false,
-          "explanation": "Incorrecta: el texto no menciona confesión."
-        },
-        {
-          "key": "c",
-          "label": "Only the missing cash connected the suspect to the crime",
-          "is_correct": false,
-          "explanation": "Incorrecta: la identificación vino de testigos y CCTV, no del dinero desaparecido."
-        },
-        {
-          "key": "d",
-          "label": "The victim had taken a clear photo of the thief during the robbery",
-          "is_correct": false,
-          "explanation": "Incorrecta: esa situación no aparece en el reading."
-        }
-      ],
-      "explanation_es": "Nueva pregunta de paráfrasis centrada en las pruebas que permitieron identificar al sospechoso."
-    },
-    {
-      "id": "reading-murder-5",
-      "kind": "question",
-      "section": "Reading y Paráfrasis",
-      "subsection": "Reading 1 — Murder Mystery",
-      "type": "reading_comprehension",
-      "difficulty": "intermediate",
-      "title": "Reading 1 — Murder Mystery · Pregunta 5",
-      "reading_id": "reading-1-murder-mystery",
-      "context": "\"All of the teachers were either victims or suspects and all of the children were detectives trying to find out who the murderer was.\"",
-      "prompt": "How were the teachers and children involved in the school game?",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
-      "choices": [
-        {
-          "key": "a",
-          "label": "According to the text, the adults acted as possible criminals or victims, while the students investigated the case"
-        },
-        {
-          "key": "b",
-          "label": "The children performed as suspects and the teachers marked their work from the audience"
-        },
-        {
-          "key": "c",
-          "label": "Only a small group of older students were allowed to join the activity"
-        },
-        {
-          "key": "d",
-          "label": "The game was cancelled because the school hall was too crowded"
-        }
-      ],
-      "answer": "a) According to the text, the adults acted as possible criminals or victims, while the students investigated the case",
-      "option_explanations": [
-        {
-          "key": "a",
-          "label": "According to the text, the adults acted as possible criminals or victims, while the students investigated the case",
-          "is_correct": true,
-          "explanation": "Correcta: resume el reparto de papeles entre profesorado y alumnado."
-        },
-        {
-          "key": "b",
-          "label": "The children performed as suspects and the teachers marked their work from the audience",
-          "is_correct": false,
-          "explanation": "Incorrecta: es al revés; los niños eran detectives."
-        },
-        {
-          "key": "c",
-          "label": "Only a small group of older students were allowed to join the activity",
-          "is_correct": false,
-          "explanation": "Incorrecta: participó todo el colegio mencionado en el texto."
-        },
-        {
-          "key": "d",
-          "label": "The game was cancelled because the school hall was too crowded",
-          "is_correct": false,
-          "explanation": "Incorrecta: el juego sí se llevó a cabo."
-        }
-      ],
-      "explanation_es": "Nueva pregunta de paráfrasis sobre los papeles de profesores y alumnos."
-    },
-    {
-      "id": "reading-murder-6",
-      "kind": "question",
-      "section": "Reading y Paráfrasis",
-      "subsection": "Reading 1 — Murder Mystery",
-      "type": "reading_comprehension",
-      "difficulty": "intermediate",
-      "title": "Reading 1 — Murder Mystery · Pregunta 6",
-      "reading_id": "reading-1-murder-mystery",
-      "context": "\"I had to remember not to smile… so the students knew I was really ‘dead’.\"",
-      "prompt": "Why did the narrator try not to smile while acting as a victim?",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
-      "choices": [
-        {
-          "key": "a",
-          "label": "Based on the text, the narrator wanted the scene to look convincing for the students"
-        },
-        {
-          "key": "b",
-          "label": "The narrator was angry about being chosen for the role"
-        },
-        {
-          "key": "c",
-          "label": "The children had been told not to look at the teachers"
-        },
-        {
-          "key": "d",
-          "label": "Smiling would have signalled that the game was already over"
-        }
-      ],
-      "answer": "a) Based on the text, the narrator wanted the scene to look convincing for the students",
-      "option_explanations": [
-        {
-          "key": "a",
-          "label": "Based on the text, the narrator wanted the scene to look convincing for the students",
-          "is_correct": true,
-          "explanation": "Correcta: debía parecer realmente “muerto/a” para mantener el realismo."
-        },
-        {
-          "key": "b",
-          "label": "The narrator was angry about being chosen for the role",
-          "is_correct": false,
-          "explanation": "Incorrecta: de hecho dice que le encantaba ser la víctima."
-        },
-        {
-          "key": "c",
-          "label": "The children had been told not to look at the teachers",
-          "is_correct": false,
-          "explanation": "Incorrecta: el texto no dice eso."
-        },
-        {
-          "key": "d",
-          "label": "Smiling would have signalled that the game was already over",
-          "is_correct": false,
-          "explanation": "Incorrecta: la razón es mantener la credibilidad de la escena."
-        }
-      ],
-      "explanation_es": "Nueva pregunta de paráfrasis sobre el realismo de la actuación."
-    },
-    {
-      "id": "reading-murder-7",
-      "kind": "question",
-      "section": "Reading y Paráfrasis",
-      "subsection": "Reading 1 — Murder Mystery",
-      "type": "reading_comprehension",
-      "difficulty": "intermediate",
-      "title": "Reading 1 — Murder Mystery · Pregunta 7",
-      "reading_id": "reading-1-murder-mystery",
-      "context": "\"We had to tell the other characters important information and question people about the information they gave.\"",
-      "prompt": "What were the guests expected to do during the dinner-party mystery?",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
-      "choices": [
-        {
-          "key": "a",
-          "label": "According to the text, they had to share clues and ask each other questions to uncover the case"
-        },
-        {
-          "key": "b",
-          "label": "They only had to watch actors perform the story from their tables"
-        },
-        {
-          "key": "c",
-          "label": "They were required to write a police report before dinner started"
-        },
-        {
-          "key": "d",
-          "label": "They had to vote for the best costume without discussing the crime"
-        }
-      ],
-      "answer": "a) According to the text, they had to share clues and ask each other questions to uncover the case",
-      "option_explanations": [
-        {
-          "key": "a",
-          "label": "According to the text, they had to share clues and ask each other questions to uncover the case",
-          "is_correct": true,
-          "explanation": "Correcta: intercambian información y se interrogan para resolver el misterio."
-        },
-        {
-          "key": "b",
-          "label": "They only had to watch actors perform the story from their tables",
-          "is_correct": false,
-          "explanation": "Incorrecta: aquí los invitados participan activamente."
-        },
-        {
-          "key": "c",
-          "label": "They were required to write a police report before dinner started",
-          "is_correct": false,
-          "explanation": "Incorrecta: eso no aparece en el reading."
-        },
-        {
-          "key": "d",
-          "label": "They had to vote for the best costume without discussing the crime",
-          "is_correct": false,
-          "explanation": "Incorrecta: el foco era resolver quién era el asesino."
-        }
-      ],
-      "explanation_es": "Nueva pregunta de paráfrasis sobre la dinámica del dinner-party mystery."
-    },
-    {
-      "id": "reading-murder-8",
-      "kind": "question",
-      "section": "Reading y Paráfrasis",
-      "subsection": "Reading 1 — Murder Mystery",
-      "type": "reading_comprehension",
-      "difficulty": "intermediate",
-      "title": "Reading 1 — Murder Mystery · Pregunta 8",
-      "reading_id": "reading-1-murder-mystery",
-      "context": "\"There is always a lot of excitement when the police arrive to take fingerprints and interview key suspects.\"",
-      "prompt": "What moment do people reportedly enjoy most at the organised mystery dinners?",
-      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
-      "choices": [
-        {
-          "key": "a",
-          "label": "As explained in the text, guests especially enjoy the point when the police investigation begins"
-        },
-        {
-          "key": "b",
-          "label": "People mainly attend because the starter is better than the main course"
-        },
-        {
-          "key": "c",
-          "label": "The favourite part is leaving before the final solution is announced"
-        },
-        {
-          "key": "d",
-          "label": "Guests only enjoy the evening if they personally play the murderer"
-        }
-      ],
-      "answer": "a) As explained in the text, guests especially enjoy the point when the police investigation begins",
-      "option_explanations": [
-        {
-          "key": "a",
-          "label": "As explained in the text, guests especially enjoy the point when the police investigation begins",
-          "is_correct": true,
-          "explanation": "Correcta: el texto dice que ese momento genera mucha emoción y que la gente comenta que es la mejor parte."
-        },
-        {
-          "key": "b",
-          "label": "People mainly attend because the starter is better than the main course",
-          "is_correct": false,
-          "explanation": "Incorrecta: la comida no es la idea principal de ese fragmento."
-        },
-        {
-          "key": "c",
-          "label": "The favourite part is leaving before the final solution is announced",
-          "is_correct": false,
-          "explanation": "Incorrecta: no se menciona nada parecido."
-        },
-        {
-          "key": "d",
-          "label": "Guests only enjoy the evening if they personally play the murderer",
-          "is_correct": false,
-          "explanation": "Incorrecta: el texto indica que todo el mundo parece disfrutar del drama."
-        }
-      ],
-      "explanation_es": "Nueva pregunta de paráfrasis sobre el momento favorito del evento."
     }
   ]
 }

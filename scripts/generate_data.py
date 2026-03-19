@@ -198,7 +198,12 @@ def compact_text(text: str) -> str:
 
 
 def normalize_option_label(text: str) -> str:
-    return compact_text(text).strip(' .;:')
+    normalized = compact_text(text).strip(' .;:')
+    replacements = {
+        'studying / one time': 'studying / once',
+        'a lots of': 'a great deal of',
+    }
+    return replacements.get(normalized.lower(), normalized)
 
 
 def normalize_key(text: str) -> str:
@@ -294,7 +299,7 @@ def add_fourth_option(options: list[str], extra_pool: list[str], correct_option:
         seen.add(key)
         if len(result) == 4:
             return result
-    fillers = ['all of a sudden', 'at first sight', 'under control', 'keep a record']
+    fillers = ['in the surrounding area', 'within the legal framework', 'under official supervision', 'in a professional context']
     for filler in fillers:
         key = simplify(filler)
         if key not in seen and key != simplify(correct_option):
@@ -303,6 +308,59 @@ def add_fourth_option(options: list[str], extra_pool: list[str], correct_option:
         if len(result) == 4:
             break
     return result[:4]
+
+
+def professional_exam_distractor(prompt: str, correct_option: str, existing: list[str]) -> str:
+    prompt_l = simplify(prompt)
+    correct_l = simplify(correct_option)
+    existing_keys = {simplify(option) for option in existing}
+
+    def first_available(candidates: list[str]) -> str | None:
+        for candidate in candidates:
+            key = simplify(candidate)
+            if key and key not in existing_keys and key != correct_l:
+                return candidate
+        return None
+
+    if '/' in correct_option:
+        if 'either' in correct_l or 'neither' in correct_l:
+            candidate = first_available(['Either / nor', 'Both / and', 'Neither / and', 'Either / and'])
+            if candidate:
+                return candidate
+        if 'study' in correct_l:
+            candidate = first_available(['studying / once', 'to study / twice', 'study / once a week', 'studying / twice'])
+            if candidate:
+                return candidate
+        candidate = first_available(['for / during', 'since / for', 'to / with', 'in / at'])
+        if candidate:
+            return candidate
+
+    if correct_l in {'to', 'with', 'for', 'near', 'at', 'on', 'in', 'by', 'from'}:
+        candidate = first_available(['for', 'with', 'at', 'by', 'from', 'in', 'on'])
+        if candidate:
+            return candidate
+
+    if any(token in prompt_l for token in ['prefer', 'enjoy', 'avoid', 'consider', 'mind']):
+        candidate = first_available(['to be working', 'working regularly', 'to work regularly', 'working on duty'])
+        if candidate:
+            return candidate
+
+    if any(token in prompt_l for token in ['since', 'for two years', 'for years', 'for a long time']):
+        candidate = first_available(['since last year', 'for many months', 'during the last two years', 'since childhood'])
+        if candidate:
+            return candidate
+
+    if len(correct_option.split()) <= 2:
+        candidate = first_available(['rather', 'almost', 'mainly', 'properly'])
+        if candidate:
+            return candidate
+
+    return first_available([
+        'according to procedure',
+        'within a short period',
+        'under normal circumstances',
+        'in the same situation',
+    ]) or 'according to procedure'
 
 
 def parse_choice_block(chunk: str) -> list[tuple[str, str]]:
@@ -759,6 +817,10 @@ def extract_exam_items(text: str) -> list[dict]:
         extra_pool = [candidate for candidate in global_pool if candidate not in options_seed]
         options = add_fourth_option(options_seed, extra_pool, correct_option)
         if len(options) < 4:
+            options.append(professional_exam_distractor(stem, correct_option, options))
+        elif len(options_seed) < 4 and simplify(options[-1]) not in {simplify(option) for option in options_seed}:
+            options[-1] = professional_exam_distractor(stem, correct_option, options_seed)
+        if len(options) < 4:
             continue
         choices = make_choice_objects(options)
         answer_index = next(i for i, option in enumerate(options) if simplify(option) == simplify(correct_option))
@@ -768,9 +830,9 @@ def extract_exam_items(text: str) -> list[dict]:
             if choice['key'] in normalized_map:
                 explanations[choice['key']] = normalized_map[choice['key']]
             elif choice['key'] == choices[answer_index]['key']:
-                explanations[choice['key']] = 'Correcta: es la opción que resuelve el ítem y completa correctamente la estructura pedida.'
+                explanations[choice['key']] = 'Correcta: es la única opción que completa el enunciado con una estructura gramatical natural y válida en inglés de examen.'
             else:
-                explanations[choice['key']] = 'Incorrecta: opción añadida a partir del mismo bloque de examen; no completa correctamente la estructura pedida.'
+                explanations[choice['key']] = 'Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado.'
         items.append(build_question_item(
             item_id=f'exam-{slug(title)}-{index}',
             section='Exámenes / sets / simulacros',
@@ -780,10 +842,11 @@ def extract_exam_items(text: str) -> list[dict]:
             prompt=stem,
             choices=choices,
             answer_index=answer_index,
-            explanation='Pregunta de simulacro convertida a formato tipo test con explicaciones por alternativa.',
+            explanation='Explicación académica: se trata de una pregunta de simulacro adaptada a formato profesional. La respuesta correcta respeta la gramática exigida por el enunciado y las alternativas incorrectas funcionan como distractores verosímiles, no como opciones absurdas.',
             source_block='ingles-definitivo-maestro.md',
             tags=['exam', slug(title)],
             option_explanations=make_option_explanations(choices, answer_index, explanations),
+            help_text='Lee la estructura completa, identifica la categoría gramatical que falta y descarta las opciones que no suenen naturales en un examen oficial.',
         ))
     return items
 
@@ -792,72 +855,165 @@ def extract_reading_questions(text: str) -> list[dict]:
     items = []
 
     bag_prompts = [
-        ('1', 'What details does the text provide about the atmosphere on the promenade?', 'According to the text, the promenade had a busy and lively atmosphere, with tourists and local people enjoying the evening near the beach.'),
-        ('2', 'Why was the handbag stolen so easily?', 'Based on the text, the theft happened easily because the victim left her bag unattended for a short time while she was paying.'),
-        ('3', 'What helped the police locate the stolen bag quickly?', 'The witness description and the CCTV images helped the police identify the suspect later that night.'),
-        ('4', 'What was recovered from the bag, and what was still missing?', 'The documents and the phone were recovered from the bag, but the cash was still missing.'),
+        {
+            'number': '1',
+            'prompt': 'What details does the text provide about the atmosphere on the promenade?',
+            'options': [
+                'According to the passage, the promenade was busy and cheerful, with tourists and local residents enjoying the evening and watching the sunset by the sea.',
+                'The text suggests that the promenade was almost empty because most people had already left after the cafés and shops closed earlier than usual.',
+                'The passage focuses on a tense and silent atmosphere created by a heavy storm that forced pedestrians to leave the beach area.',
+                'The text mainly describes a police cordon that prevented residents and visitors from walking near the promenade during the evening.',
+            ],
+            'answer': 0,
+            'context': '"The promenade was full of tourists and local residents... taking pictures of the sunset."',
+            'explanation': 'Explicación académica: la opción correcta parafrasea la descripción del ambiente general sin copiar literalmente el texto. Traducción orientativa: el paseo estaba animado, concurrido y con gente disfrutando de la tarde junto al mar.',
+        },
+        {
+            'number': '2',
+            'prompt': 'Why was the handbag stolen so easily?',
+            'options': [
+                'The text explains that the theft was easy because the woman left her handbag unattended for a brief moment while she was paying at the café.',
+                'The passage indicates that the thief forced the café door open at night and stole the bag after the victim had already gone home.',
+                'The text suggests that the victim handed her bag to a stranger who offered to help her carry several shopping bags to the car.',
+                'The passage states that the handbag disappeared when the owner dropped it on the promenade and continued walking without noticing it.',
+            ],
+            'answer': 0,
+            'context': '"She had left her handbag on the chair beside her table for a moment while paying the bill."',
+            'explanation': 'Explicación académica: la paráfrasis correcta mantiene la causa principal del robo: un descuido breve mientras la víctima pagaba. Traducción orientativa: el bolso fue sustraído porque quedó sin vigilancia durante unos segundos.',
+        },
+        {
+            'number': '3',
+            'prompt': 'What helped the police locate the stolen bag quickly?',
+            'options': [
+                'According to the passage, a witness description together with nearby CCTV footage allowed officers to identify the suspect and find the bag later that night.',
+                'The text says that the victim used a mobile phone tracking application that immediately showed the exact location of the handbag on a city map.',
+                'The passage explains that the suspect returned voluntarily to the café and admitted taking the bag before any witnesses spoke to the police.',
+                'The text suggests that officers found the bag after closing all nearby streets and searching every parked vehicle along the promenade.',
+            ],
+            'answer': 0,
+            'context': '"A witness gave a clear description, and CCTV images from a nearby shop helped the police identify the suspect."',
+            'explanation': 'Explicación académica: aquí la clave es combinar dos pruebas del texto, la descripción del testigo y las imágenes de CCTV. Traducción orientativa: ambas pistas permitieron identificar al sospechoso con rapidez.',
+        },
+        {
+            'number': '4',
+            'prompt': 'What was recovered from the bag, and what was still missing?',
+            'options': [
+                'The text states that the documents and the phone were recovered, but the cash had disappeared and was still missing when the bag was found.',
+                'According to the passage, the entire bag was recovered intact, including the money, and nothing was missing once the police completed their search.',
+                'The text explains that only the victim’s bank cards were recovered, while her documents, her phone and the rest of the bag were never found.',
+                'The passage suggests that the police recovered the cash first, but they could not locate the handbag itself or any personal belongings inside it.',
+            ],
+            'answer': 0,
+            'context': '"The handbag was found in a narrow alley, but the cash was missing. Her documents and mobile phone were still inside."',
+            'explanation': 'Explicación académica: la opción válida distingue con precisión entre los objetos recuperados y el elemento que faltaba. Traducción orientativa: se recuperaron los documentos y el móvil, pero no el dinero.',
+        },
     ]
-    bag_pool = [answer for _, _, answer in bag_prompts]
-    for number, prompt, answer in bag_prompts:
-        distractors = [candidate for _, _, candidate in bag_prompts if candidate != answer]
-        options = add_fourth_option([answer], distractors, answer)
-        choices = make_choice_objects(options)
-        answer_index = find_correct_index(options, answer)
+    for item in bag_prompts:
+        choices = make_choice_objects(item['options'])
+        answer_index = item['answer']
         explanations = {}
-        for choice in choices:
-            if choice['key'] == choices[answer_index]['key']:
-                explanations[choice['key']] = 'Correcta: resume con precisión la idea principal del reading del paseo marítimo.'
+        for idx, choice in enumerate(choices):
+            if idx == answer_index:
+                explanations[choice['key']] = 'Correcta: esta opción reformula la información esencial del fragmento con otras palabras y mantiene el mismo significado en español.'
             else:
-                explanations[choice['key']] = 'Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta.'
+                explanations[choice['key']] = 'Incorrecta: puede sonar plausible, pero añade datos que el texto no dice o altera la idea principal del fragmento.'
         items.append(build_question_item(
-            item_id=f'reading-bag-{number}',
+            item_id=f"reading-bag-{item['number']}",
             section='Reading y Paráfrasis',
             subsection='Reading — Bag Theft on the Promenade',
             qtype='reading_comprehension',
-            title=f'Reading — Bag Theft on the Promenade · Pregunta {number}',
-            prompt=prompt,
+            title=f"Reading — Bag Theft on the Promenade · Pregunta {item['number']}",
+            prompt=item['prompt'],
             choices=choices,
             answer_index=answer_index,
-            explanation='Respuesta oficial del reading convertida a pregunta tipo test con cuatro alternativas cerradas.',
+            explanation=item['explanation'],
             source_block='ingles-definitivo-maestro.md:1771-1899',
             tags=['reading', 'bag-theft'],
             reading_id='bag-theft-on-the-promenade',
             option_explanations=make_option_explanations(choices, answer_index, explanations),
-            help_text='Elige la paráfrasis que mejor resume la idea principal del texto.',
+            context=item['context'],
+            help_text='Fragmento clave del reading: usa esta pista y elige la paráfrasis más fiel al texto. Fíjate en la idea principal y evita opciones que añadan información no mencionada.',
         ))
 
     murder_prompts = [
-        ('1', 'What primarily contributed to the students’ heightened excitement during the event in Cambridge?', 'According to the text, the students became especially excited because they saw several teachers pretending to die, which made the situation feel much more serious and realistic.'),
-        ('2', 'In the narrator’s early experience at the dinner-party mystery, what aspect of the game appealed to them the most?', 'Based on the text, the narrator most enjoyed playing a character and feeling the suspense of having a possible murderer within the group.'),
-        ('3', 'What does the narrator imply about the logistics of hosting murder mystery events in public places?', 'As explained in the text, these events have to be held in private spaces so that other customers are not disturbed.'),
-        ('4', 'Why does the narrator particularly value historic venues such as castles for their events?', 'According to the text, castles are especially valuable because their atmosphere makes the mystery more dramatic and immersive.'),
+        {
+            'number': '1',
+            'prompt': 'What primarily contributed to the students’ heightened excitement during the event in Cambridge?',
+            'options': [
+                'According to the text, the students became especially excited when they saw teachers acting as victims, because that made the whole event feel more realistic and dramatic.',
+                'The passage suggests that the students were mainly excited because they were allowed to leave lessons early and spend the entire afternoon outside the classroom.',
+                'The text explains that the students were impressed above all by the expensive costumes and special effects that had been brought from London for the activity.',
+                'The passage indicates that the students were most interested in winning a financial prize that was offered to the group that solved the case first.',
+            ],
+            'answer': 0,
+            'context': '"Several teachers lay on the floor pretending to be dead, which made the scene look much more real to the students."',
+            'explanation': 'Explicación académica: la respuesta correcta recoge la causa principal de la emoción de los alumnos y la expresa mediante una reformulación natural. Traducción orientativa: ver a profesores haciendo de víctimas hizo que la actividad pareciera mucho más real.',
+        },
+        {
+            'number': '2',
+            'prompt': 'In the narrator’s early experience at the dinner-party mystery, what aspect of the game appealed to them the most?',
+            'options': [
+                'The narrator was most attracted by the chance to play a character and by the suspense of not knowing whether someone at the table might be the murderer.',
+                'The passage shows that the narrator enjoyed the event mainly because the dinner was luxurious and the guests were served by professional actors in costume.',
+                'The text suggests that the narrator’s favourite part was collecting physical evidence and comparing fingerprints in a highly technical forensic exercise.',
+                'The passage explains that the narrator preferred the event because it required very little interaction and allowed guests to observe quietly from a distance.',
+            ],
+            'answer': 0,
+            'context': '"I loved playing a role and the thrill of wondering whether the murderer might be sitting right next to me."',
+            'explanation': 'Explicación académica: la paráfrasis correcta conserva las dos ideas del fragmento: interpretar un papel y sentir suspense dentro del grupo. Traducción orientativa: al narrador le atraían el juego de rol y la intriga de no saber quién era el asesino.',
+        },
+        {
+            'number': '3',
+            'prompt': 'What does the narrator imply about the logistics of hosting murder mystery events in public places?',
+            'options': [
+                'The text implies that these events should be organised in private venues so that regular customers are not disturbed by the performance and the investigation.',
+                'The passage argues that public restaurants are the best choice because random customers can join the mystery and make the story more unpredictable.',
+                'The text suggests that large shopping centres are ideal locations since background noise helps participants concentrate on the clues more effectively.',
+                'The narrator explains that public venues are only a problem when actors are inexperienced, but suitable if the script is short and easy to follow.',
+            ],
+            'answer': 0,
+            'context': '"We usually need private spaces because the event can disturb other customers if it is held in a normal public venue."',
+            'explanation': 'Explicación académica: la opción válida deduce correctamente la exigencia logística del texto: estos eventos funcionan mejor en espacios privados. Traducción orientativa: se prefieren lugares privados para no molestar a otros clientes.',
+        },
+        {
+            'number': '4',
+            'prompt': 'Why does the narrator particularly value historic venues such as castles for their events?',
+            'options': [
+                'According to the text, historic places such as castles enhance the atmosphere of the event and make the mystery feel more immersive, dramatic and memorable.',
+                'The passage states that castles are preferred mainly because they offer lower rental prices and can host larger groups without any prior decoration work.',
+                'The text suggests that old venues are useful above all because their modern surveillance systems make it easier to control participants during the event.',
+                'The narrator explains that castles are chosen chiefly because they are easier to reach by public transport than hotels, restaurants or conference halls.',
+            ],
+            'answer': 0,
+            'context': '"Castles and other historic venues create exactly the kind of atmosphere that makes a murder mystery much more dramatic."',
+            'explanation': 'Explicación académica: la paráfrasis correcta se centra en el valor ambiental del espacio histórico, que intensifica la experiencia narrativa. Traducción orientativa: los castillos aportan una atmósfera que vuelve el misterio más inmersivo y dramático.',
+        },
     ]
-    for number, prompt, answer in murder_prompts:
-        distractors = [candidate for _, _, candidate in murder_prompts if candidate != answer]
-        options = add_fourth_option([answer], distractors, answer)
-        choices = make_choice_objects(options)
-        answer_index = find_correct_index(options, answer)
+    for item in murder_prompts:
+        choices = make_choice_objects(item['options'])
+        answer_index = item['answer']
         explanations = {}
-        for choice in choices:
-            if choice['key'] == choices[answer_index]['key']:
-                explanations[choice['key']] = 'Correcta: resume la respuesta explicada del reading 1 sin copiarla palabra por palabra.'
+        for idx, choice in enumerate(choices):
+            if idx == answer_index:
+                explanations[choice['key']] = 'Correcta: es una paráfrasis fiel del texto, ya que mantiene la idea central y la reformula con vocabulario distinto.'
             else:
-                explanations[choice['key']] = 'Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque.'
+                explanations[choice['key']] = 'Incorrecta: esta alternativa introduce matices ajenos al reading o desplaza el foco hacia una información secundaria o inventada.'
         items.append(build_question_item(
-            item_id=f'reading-murder-{number}',
+            item_id=f"reading-murder-{item['number']}",
             section='Reading y Paráfrasis',
             subsection='Reading 1 — Murder Mystery',
             qtype='reading_comprehension',
-            title=f'Reading 1 — Murder Mystery · Pregunta {number}',
-            prompt=prompt,
+            title=f"Reading 1 — Murder Mystery · Pregunta {item['number']}",
+            prompt=item['prompt'],
             choices=choices,
             answer_index=answer_index,
-            explanation='Respuesta explicada del reading 1 convertida a formato test con cuatro opciones cerradas.',
+            explanation=item['explanation'],
             source_block='ingles-definitivo-maestro.md:3775-4105',
             tags=['reading', 'murder-mystery'],
             reading_id='reading-1-murder-mystery',
             option_explanations=make_option_explanations(choices, answer_index, explanations),
-            help_text='Selecciona la paráfrasis correcta basada en la idea principal del texto.',
+            context=item['context'],
+            help_text='Fragmento clave del reading: identifica la idea principal y escoge la opción que la reformula con precisión, sin copiarla ni añadir información nueva.',
         ))
 
     return items

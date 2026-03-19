@@ -11746,8 +11746,8 @@
           "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
         }
       ],
-      "context": "",
-      "help_text": "Elige la paráfrasis que mejor resume la idea principal del texto.",
+      "context": "\"The promenade was full of tourists and local residents… taking pictures of the sunset.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
       "reading_id": "bag-theft-on-the-promenade"
     },
     {
@@ -11820,8 +11820,8 @@
           "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
         }
       ],
-      "context": "",
-      "help_text": "Elige la paráfrasis que mejor resume la idea principal del texto.",
+      "context": "\"Anna M. left her handbag under her chair for a few minutes while she paid for some drinks.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
       "reading_id": "bag-theft-on-the-promenade"
     },
     {
@@ -11894,8 +11894,8 @@
           "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
         }
       ],
-      "context": "",
-      "help_text": "Elige la paráfrasis que mejor resume la idea principal del texto.",
+      "context": "\"A waiter shouted for help… a shop owner checked his CCTV footage.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
       "reading_id": "bag-theft-on-the-promenade"
     },
     {
@@ -11968,8 +11968,8 @@
           "explanation": "Incorrecta: es información real del mismo reading, pero responde a otra pregunta distinta."
         }
       ],
-      "context": "",
-      "help_text": "Elige la paráfrasis que mejor resume la idea principal del texto.",
+      "context": "\"The passport, documents and phone were still inside, but the cash was missing.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
       "reading_id": "bag-theft-on-the-promenade"
     },
     {
@@ -12042,8 +12042,8 @@
           "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
         }
       ],
-      "context": "",
-      "help_text": "Selecciona la paráfrasis correcta basada en la idea principal del texto.",
+      "context": "\"Many teachers were ‘dying’, so the children were all very excited.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
       "reading_id": "reading-1-murder-mystery"
     },
     {
@@ -12116,8 +12116,8 @@
           "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
         }
       ],
-      "context": "",
-      "help_text": "Selecciona la paráfrasis correcta basada en la idea principal del texto.",
+      "context": "\"I loved playing a part… one of the people in the room was a ‘murderer’.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
       "reading_id": "reading-1-murder-mystery"
     },
     {
@@ -12190,8 +12190,8 @@
           "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
         }
       ],
-      "context": "",
-      "help_text": "Selecciona la paráfrasis correcta basada en la idea principal del texto.",
+      "context": "\"I hire a private room so that the ‘murder’ doesn’t upset other guests.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
       "reading_id": "reading-1-murder-mystery"
     },
     {
@@ -12264,9 +12264,481 @@
           "explanation": "Incorrecta: usa ideas del mismo reading 1, pero responde a otra de las preguntas del bloque."
         }
       ],
-      "context": "",
-      "help_text": "Selecciona la paráfrasis correcta basada en la idea principal del texto.",
+      "context": "\"Castles are particularly popular… because they’re so atmospheric.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
       "reading_id": "reading-1-murder-mystery"
+    },
+    {
+      "id": "reading-bag-5",
+      "kind": "question",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading — Bag Theft on the Promenade",
+      "type": "reading_comprehension",
+      "difficulty": "intermediate",
+      "title": "Reading — Bag Theft on the Promenade · Pregunta 5",
+      "reading_id": "bag-theft-on-the-promenade",
+      "context": "\"A man wearing a dark hoodie suddenly grabbed the bag and ran towards a narrow alley behind the cafés.\"",
+      "prompt": "What does the text suggest about how the thief left the scene?",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "choices": [
+        {
+          "key": "a",
+          "label": "According to the text, the suspect escaped quickly by running from the cafés into a narrow alley"
+        },
+        {
+          "key": "b",
+          "label": "The victim immediately followed the thief and recovered the handbag herself"
+        },
+        {
+          "key": "c",
+          "label": "The police had already identified the suspect before the bag was taken"
+        },
+        {
+          "key": "d",
+          "label": "The handbag was found intact with all the cash still inside"
+        }
+      ],
+      "answer": "a) According to the text, the suspect escaped quickly by running from the cafés into a narrow alley",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "According to the text, the suspect escaped quickly by running from the cafés into a narrow alley",
+          "is_correct": true,
+          "explanation": "Correcta: parafrasea que cogió el bolso y huyó por un callejón estrecho."
+        },
+        {
+          "key": "b",
+          "label": "The victim immediately followed the thief and recovered the handbag herself",
+          "is_correct": false,
+          "explanation": "Incorrecta: la víctima no persigue al ladrón ni recupera ella sola el bolso."
+        },
+        {
+          "key": "c",
+          "label": "The police had already identified the suspect before the bag was taken",
+          "is_correct": false,
+          "explanation": "Incorrecta: la identificación fue posterior, gracias a testigos y CCTV."
+        },
+        {
+          "key": "d",
+          "label": "The handbag was found intact with all the cash still inside",
+          "is_correct": false,
+          "explanation": "Incorrecta: el dinero faltaba cuando encontraron el bolso."
+        }
+      ],
+      "explanation_es": "Nueva pregunta de paráfrasis basada en el fragmento de la huida del sospechoso."
+    },
+    {
+      "id": "reading-bag-6",
+      "kind": "question",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading — Bag Theft on the Promenade",
+      "type": "reading_comprehension",
+      "difficulty": "intermediate",
+      "title": "Reading — Bag Theft on the Promenade · Pregunta 6",
+      "reading_id": "bag-theft-on-the-promenade",
+      "context": "\"Two local police officers… ran after the suspect. At the same time, another officer asked the victim what had been inside the bag.\"",
+      "prompt": "How did the officers respond immediately after the theft?",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "choices": [
+        {
+          "key": "a",
+          "label": "Based on the text, the police split their tasks between chasing the suspect and gathering information from the victim"
+        },
+        {
+          "key": "b",
+          "label": "The officers waited for the shop owner before taking any action"
+        },
+        {
+          "key": "c",
+          "label": "All the officers stayed with the victim and nobody followed the thief"
+        },
+        {
+          "key": "d",
+          "label": "The police first checked the rubbish containers before speaking to witnesses"
+        }
+      ],
+      "answer": "a) Based on the text, the police split their tasks between chasing the suspect and gathering information from the victim",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "Based on the text, the police split their tasks between chasing the suspect and gathering information from the victim",
+          "is_correct": true,
+          "explanation": "Correcta: unos agentes persiguen y otro pregunta por el contenido del bolso."
+        },
+        {
+          "key": "b",
+          "label": "The officers waited for the shop owner before taking any action",
+          "is_correct": false,
+          "explanation": "Incorrecta: reaccionan de inmediato, antes de revisar las cámaras."
+        },
+        {
+          "key": "c",
+          "label": "All the officers stayed with the victim and nobody followed the thief",
+          "is_correct": false,
+          "explanation": "Incorrecta: el texto dice que dos agentes corrieron tras el sospechoso."
+        },
+        {
+          "key": "d",
+          "label": "The police first checked the rubbish containers before speaking to witnesses",
+          "is_correct": false,
+          "explanation": "Incorrecta: eso ocurre después, no en la respuesta inmediata."
+        }
+      ],
+      "explanation_es": "Nueva pregunta de paráfrasis sobre la reacción policial inicial."
+    },
+    {
+      "id": "reading-bag-7",
+      "kind": "question",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading — Bag Theft on the Promenade",
+      "type": "reading_comprehension",
+      "difficulty": "intermediate",
+      "title": "Reading — Bag Theft on the Promenade · Pregunta 7",
+      "reading_id": "bag-theft-on-the-promenade",
+      "context": "\"A shop owner nearby checked his CCTV footage and told the officers that the suspect had turned left into a side street.\"",
+      "prompt": "What role did the nearby shop owner play in the investigation?",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "choices": [
+        {
+          "key": "a",
+          "label": "According to the text, he provided video evidence and direction details that helped guide the officers"
+        },
+        {
+          "key": "b",
+          "label": "He arrested the suspect after seeing him on camera"
+        },
+        {
+          "key": "c",
+          "label": "He returned the stolen cash to the victim that same night"
+        },
+        {
+          "key": "d",
+          "label": "He warned tourists to avoid the promenade after sunset"
+        }
+      ],
+      "answer": "a) According to the text, he provided video evidence and direction details that helped guide the officers",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "According to the text, he provided video evidence and direction details that helped guide the officers",
+          "is_correct": true,
+          "explanation": "Correcta: revisa el CCTV y señala hacia dónde huyó el sospechoso."
+        },
+        {
+          "key": "b",
+          "label": "He arrested the suspect after seeing him on camera",
+          "is_correct": false,
+          "explanation": "Incorrecta: el comerciante ayuda con información, pero no detiene al sospechoso."
+        },
+        {
+          "key": "c",
+          "label": "He returned the stolen cash to the victim that same night",
+          "is_correct": false,
+          "explanation": "Incorrecta: el dinero no apareció."
+        },
+        {
+          "key": "d",
+          "label": "He warned tourists to avoid the promenade after sunset",
+          "is_correct": false,
+          "explanation": "Incorrecta: eso no forma parte del reading."
+        }
+      ],
+      "explanation_es": "Nueva pregunta de paráfrasis sobre la ayuda del comerciante y el CCTV."
+    },
+    {
+      "id": "reading-bag-8",
+      "kind": "question",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading — Bag Theft on the Promenade",
+      "type": "reading_comprehension",
+      "difficulty": "intermediate",
+      "title": "Reading — Bag Theft on the Promenade · Pregunta 8",
+      "reading_id": "bag-theft-on-the-promenade",
+      "context": "\"Thanks to the witness description and the CCTV images, the police identified the suspect later that night.\"",
+      "prompt": "What combination of evidence led to the suspect being identified?",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "choices": [
+        {
+          "key": "a",
+          "label": "As explained in the text, the identification came from both eyewitness information and security camera images"
+        },
+        {
+          "key": "b",
+          "label": "The suspect confessed at the police station before any witness was interviewed"
+        },
+        {
+          "key": "c",
+          "label": "Only the missing cash connected the suspect to the crime"
+        },
+        {
+          "key": "d",
+          "label": "The victim had taken a clear photo of the thief during the robbery"
+        }
+      ],
+      "answer": "a) As explained in the text, the identification came from both eyewitness information and security camera images",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "As explained in the text, the identification came from both eyewitness information and security camera images",
+          "is_correct": true,
+          "explanation": "Correcta: combina descripción de testigos e imágenes de seguridad."
+        },
+        {
+          "key": "b",
+          "label": "The suspect confessed at the police station before any witness was interviewed",
+          "is_correct": false,
+          "explanation": "Incorrecta: el texto no menciona confesión."
+        },
+        {
+          "key": "c",
+          "label": "Only the missing cash connected the suspect to the crime",
+          "is_correct": false,
+          "explanation": "Incorrecta: la identificación vino de testigos y CCTV, no del dinero desaparecido."
+        },
+        {
+          "key": "d",
+          "label": "The victim had taken a clear photo of the thief during the robbery",
+          "is_correct": false,
+          "explanation": "Incorrecta: esa situación no aparece en el reading."
+        }
+      ],
+      "explanation_es": "Nueva pregunta de paráfrasis centrada en las pruebas que permitieron identificar al sospechoso."
+    },
+    {
+      "id": "reading-murder-5",
+      "kind": "question",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading 1 — Murder Mystery",
+      "type": "reading_comprehension",
+      "difficulty": "intermediate",
+      "title": "Reading 1 — Murder Mystery · Pregunta 5",
+      "reading_id": "reading-1-murder-mystery",
+      "context": "\"All of the teachers were either victims or suspects and all of the children were detectives trying to find out who the murderer was.\"",
+      "prompt": "How were the teachers and children involved in the school game?",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "choices": [
+        {
+          "key": "a",
+          "label": "According to the text, the adults acted as possible criminals or victims, while the students investigated the case"
+        },
+        {
+          "key": "b",
+          "label": "The children performed as suspects and the teachers marked their work from the audience"
+        },
+        {
+          "key": "c",
+          "label": "Only a small group of older students were allowed to join the activity"
+        },
+        {
+          "key": "d",
+          "label": "The game was cancelled because the school hall was too crowded"
+        }
+      ],
+      "answer": "a) According to the text, the adults acted as possible criminals or victims, while the students investigated the case",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "According to the text, the adults acted as possible criminals or victims, while the students investigated the case",
+          "is_correct": true,
+          "explanation": "Correcta: resume el reparto de papeles entre profesorado y alumnado."
+        },
+        {
+          "key": "b",
+          "label": "The children performed as suspects and the teachers marked their work from the audience",
+          "is_correct": false,
+          "explanation": "Incorrecta: es al revés; los niños eran detectives."
+        },
+        {
+          "key": "c",
+          "label": "Only a small group of older students were allowed to join the activity",
+          "is_correct": false,
+          "explanation": "Incorrecta: participó todo el colegio mencionado en el texto."
+        },
+        {
+          "key": "d",
+          "label": "The game was cancelled because the school hall was too crowded",
+          "is_correct": false,
+          "explanation": "Incorrecta: el juego sí se llevó a cabo."
+        }
+      ],
+      "explanation_es": "Nueva pregunta de paráfrasis sobre los papeles de profesores y alumnos."
+    },
+    {
+      "id": "reading-murder-6",
+      "kind": "question",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading 1 — Murder Mystery",
+      "type": "reading_comprehension",
+      "difficulty": "intermediate",
+      "title": "Reading 1 — Murder Mystery · Pregunta 6",
+      "reading_id": "reading-1-murder-mystery",
+      "context": "\"I had to remember not to smile… so the students knew I was really ‘dead’.\"",
+      "prompt": "Why did the narrator try not to smile while acting as a victim?",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "choices": [
+        {
+          "key": "a",
+          "label": "Based on the text, the narrator wanted the scene to look convincing for the students"
+        },
+        {
+          "key": "b",
+          "label": "The narrator was angry about being chosen for the role"
+        },
+        {
+          "key": "c",
+          "label": "The children had been told not to look at the teachers"
+        },
+        {
+          "key": "d",
+          "label": "Smiling would have signalled that the game was already over"
+        }
+      ],
+      "answer": "a) Based on the text, the narrator wanted the scene to look convincing for the students",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "Based on the text, the narrator wanted the scene to look convincing for the students",
+          "is_correct": true,
+          "explanation": "Correcta: debía parecer realmente “muerto/a” para mantener el realismo."
+        },
+        {
+          "key": "b",
+          "label": "The narrator was angry about being chosen for the role",
+          "is_correct": false,
+          "explanation": "Incorrecta: de hecho dice que le encantaba ser la víctima."
+        },
+        {
+          "key": "c",
+          "label": "The children had been told not to look at the teachers",
+          "is_correct": false,
+          "explanation": "Incorrecta: el texto no dice eso."
+        },
+        {
+          "key": "d",
+          "label": "Smiling would have signalled that the game was already over",
+          "is_correct": false,
+          "explanation": "Incorrecta: la razón es mantener la credibilidad de la escena."
+        }
+      ],
+      "explanation_es": "Nueva pregunta de paráfrasis sobre el realismo de la actuación."
+    },
+    {
+      "id": "reading-murder-7",
+      "kind": "question",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading 1 — Murder Mystery",
+      "type": "reading_comprehension",
+      "difficulty": "intermediate",
+      "title": "Reading 1 — Murder Mystery · Pregunta 7",
+      "reading_id": "reading-1-murder-mystery",
+      "context": "\"We had to tell the other characters important information and question people about the information they gave.\"",
+      "prompt": "What were the guests expected to do during the dinner-party mystery?",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "choices": [
+        {
+          "key": "a",
+          "label": "According to the text, they had to share clues and ask each other questions to uncover the case"
+        },
+        {
+          "key": "b",
+          "label": "They only had to watch actors perform the story from their tables"
+        },
+        {
+          "key": "c",
+          "label": "They were required to write a police report before dinner started"
+        },
+        {
+          "key": "d",
+          "label": "They had to vote for the best costume without discussing the crime"
+        }
+      ],
+      "answer": "a) According to the text, they had to share clues and ask each other questions to uncover the case",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "According to the text, they had to share clues and ask each other questions to uncover the case",
+          "is_correct": true,
+          "explanation": "Correcta: intercambian información y se interrogan para resolver el misterio."
+        },
+        {
+          "key": "b",
+          "label": "They only had to watch actors perform the story from their tables",
+          "is_correct": false,
+          "explanation": "Incorrecta: aquí los invitados participan activamente."
+        },
+        {
+          "key": "c",
+          "label": "They were required to write a police report before dinner started",
+          "is_correct": false,
+          "explanation": "Incorrecta: eso no aparece en el reading."
+        },
+        {
+          "key": "d",
+          "label": "They had to vote for the best costume without discussing the crime",
+          "is_correct": false,
+          "explanation": "Incorrecta: el foco era resolver quién era el asesino."
+        }
+      ],
+      "explanation_es": "Nueva pregunta de paráfrasis sobre la dinámica del dinner-party mystery."
+    },
+    {
+      "id": "reading-murder-8",
+      "kind": "question",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading 1 — Murder Mystery",
+      "type": "reading_comprehension",
+      "difficulty": "intermediate",
+      "title": "Reading 1 — Murder Mystery · Pregunta 8",
+      "reading_id": "reading-1-murder-mystery",
+      "context": "\"There is always a lot of excitement when the police arrive to take fingerprints and interview key suspects.\"",
+      "prompt": "What moment do people reportedly enjoy most at the organised mystery dinners?",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis correcta.",
+      "choices": [
+        {
+          "key": "a",
+          "label": "As explained in the text, guests especially enjoy the point when the police investigation begins"
+        },
+        {
+          "key": "b",
+          "label": "People mainly attend because the starter is better than the main course"
+        },
+        {
+          "key": "c",
+          "label": "The favourite part is leaving before the final solution is announced"
+        },
+        {
+          "key": "d",
+          "label": "Guests only enjoy the evening if they personally play the murderer"
+        }
+      ],
+      "answer": "a) As explained in the text, guests especially enjoy the point when the police investigation begins",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "As explained in the text, guests especially enjoy the point when the police investigation begins",
+          "is_correct": true,
+          "explanation": "Correcta: el texto dice que ese momento genera mucha emoción y que la gente comenta que es la mejor parte."
+        },
+        {
+          "key": "b",
+          "label": "People mainly attend because the starter is better than the main course",
+          "is_correct": false,
+          "explanation": "Incorrecta: la comida no es la idea principal de ese fragmento."
+        },
+        {
+          "key": "c",
+          "label": "The favourite part is leaving before the final solution is announced",
+          "is_correct": false,
+          "explanation": "Incorrecta: no se menciona nada parecido."
+        },
+        {
+          "key": "d",
+          "label": "Guests only enjoy the evening if they personally play the murderer",
+          "is_correct": false,
+          "explanation": "Incorrecta: el texto indica que todo el mundo parece disfrutar del drama."
+        }
+      ],
+      "explanation_es": "Nueva pregunta de paráfrasis sobre el momento favorito del evento."
     }
   ]
 }

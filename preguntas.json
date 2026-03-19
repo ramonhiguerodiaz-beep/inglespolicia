@@ -10359,7 +10359,7 @@
           "key": "c",
           "label": "to study / one",
           "is_correct": false,
-          "explanation": "Incorrecta: *to study* está bien, pero one a week está incompleto. Sería *once a week* o *one day/time a week*. -"
+          "explanation": "Incorrecta: *to study* está bien, pero one a week está incompleto. Sería *once a week* o *one day/time a week*."
         },
         {
           "key": "d",
@@ -10432,7 +10432,7 @@
           "key": "c",
           "label": "too much",
           "is_correct": false,
-          "explanation": "Incorrecta: too much se usa con incontables; con plurales contables sería too many. Además, cambia el sentido a \"demasiadas\". -"
+          "explanation": "Incorrecta: too much se usa con incontables; con plurales contables sería too many. Además, cambia el sentido a \"demasiadas\"."
         },
         {
           "key": "d",
@@ -10639,19 +10639,19 @@
           "key": "a",
           "label": "working",
           "is_correct": false,
-          "explanation": "Correcta: prefer + -ing para preferencias generales (*I prefer working…*)."
+          "explanation": "Incorrecta: \"working\" puede ser correcta en inglés, pero en este test la opción válida es \"a and b\" porque tanto a como b funcionan."
         },
         {
           "key": "b",
           "label": "to work",
           "is_correct": false,
-          "explanation": "Correcta: prefer + to + infinitive también es válida (*I prefer to work…*)."
+          "explanation": "Incorrecta: \"to work\" puede ser correcta en inglés, pero en este test la opción válida es \"a and b\" porque tanto a como b funcionan."
         },
         {
           "key": "c",
           "label": "a and b",
           "is_correct": true,
-          "explanation": "Correcta: como a y b son correctas, la opción correcta del test es a and b. -"
+          "explanation": "Correcta: como \"working\" y \"to work\" son ambas formas válidas tras \"prefer\", la respuesta del test es \"a and b\"."
         },
         {
           "key": "d",
@@ -10797,7 +10797,7 @@
           "key": "c",
           "label": "’ve lived",
           "is_correct": true,
-          "explanation": "Correcta: I’ve lived expresa una acción que empezó en el pasado y sigue en el presente. -"
+          "explanation": "Correcta: I’ve lived expresa una acción que empezó en el pasado y sigue en el presente."
         },
         {
           "key": "d",
@@ -10870,7 +10870,7 @@
           "key": "c",
           "label": "two years ago",
           "is_correct": false,
-          "explanation": "Incorrecta: ago suele pedir Past Simple , no Present Perfect . -"
+          "explanation": "Incorrecta: ago suele pedir Past Simple , no Present Perfect."
         },
         {
           "key": "d",
@@ -10943,7 +10943,7 @@
           "key": "c",
           "label": "you have been",
           "is_correct": false,
-          "explanation": "Incorrecta: you have been mantiene el orden de afirmativa, no de pregunta. -"
+          "explanation": "Incorrecta: you have been mantiene el orden de afirmativa, no de pregunta."
         },
         {
           "key": "d",
@@ -11016,7 +11016,7 @@
           "key": "c",
           "label": "were",
           "is_correct": true,
-          "explanation": "Correcta: were es Past Simple y encaja porque el matrimonio terminó en el pasado. -"
+          "explanation": "Correcta: were es Past Simple y encaja porque el matrimonio terminó en el pasado."
         },
         {
           "key": "d",
@@ -11089,7 +11089,7 @@
           "key": "c",
           "label": "has Alfred Hitchcock died",
           "is_correct": false,
-          "explanation": "Incorrecta: no se usa When con Present Perfect en este tipo de pregunta cerrada sobre un momento pasado. -"
+          "explanation": "Incorrecta: no se usa When con Present Perfect en este tipo de pregunta cerrada sobre un momento pasado."
         },
         {
           "key": "d",
@@ -11162,7 +11162,7 @@
           "key": "c",
           "label": "used to wearing",
           "is_correct": false,
-          "explanation": "Incorrecta: después de used to va verbo base, no -ing . -"
+          "explanation": "Incorrecta: después de used to va verbo base, no -ing."
         },
         {
           "key": "d",
@@ -11235,7 +11235,7 @@
           "key": "c",
           "label": "didn’t used to",
           "is_correct": false,
-          "explanation": "Incorrecta: después de didn’t el verbo va en base, por eso no es used sino use . -"
+          "explanation": "Incorrecta: después de didn’t el verbo va en base, por eso no es used sino use."
         },
         {
           "key": "d",
@@ -11308,7 +11308,7 @@
           "key": "c",
           "label": "was",
           "is_correct": true,
-          "explanation": "Correcta: la pasiva en pasado singular es was + participle . -"
+          "explanation": "Correcta: la pasiva en pasado singular es was + participle."
         },
         {
           "key": "d",
@@ -11381,7 +11381,7 @@
           "key": "c",
           "label": "was written",
           "is_correct": true,
-          "explanation": "Correcta: la estructura correcta de pasiva es was written . -"
+          "explanation": "Correcta: la estructura correcta de pasiva es was written."
         },
         {
           "key": "d",
@@ -11454,7 +11454,7 @@
           "key": "c",
           "label": "was invented for",
           "is_correct": false,
-          "explanation": "Incorrecta: for no indica agente; cambia completamente el sentido. -"
+          "explanation": "Incorrecta: for no indica agente; cambia completamente el sentido."
         },
         {
           "key": "d",
@@ -11600,7 +11600,7 @@
           "key": "c",
           "label": "which",
           "is_correct": false,
-          "explanation": "Incorrecta: which se usa para cosas, pero aquí lo que se necesita es un posesivo. -"
+          "explanation": "Incorrecta: which se usa para cosas, pero aquí lo que se necesita es un posesivo."
         },
         {
           "key": "d",
@@ -11673,7 +11673,7 @@
           "key": "c",
           "label": "fabricate",
           "is_correct": false,
-          "explanation": "Incorrecta: no puede ir el verbo base solo después de deny . -"
+          "explanation": "Incorrecta: no puede ir el verbo base solo después de deny."
         },
         {
           "key": "d",
@@ -11746,7 +11746,7 @@
           "key": "c",
           "label": "at",
           "is_correct": false,
-          "explanation": "Incorrecta: at bail es incorrecto. -"
+          "explanation": "Incorrecta: at bail es incorrecto."
         },
         {
           "key": "d",
@@ -11819,7 +11819,7 @@
           "key": "c",
           "label": "is",
           "is_correct": false,
-          "explanation": "Incorrecta: is está en singular. -"
+          "explanation": "Incorrecta: is está en singular."
         },
         {
           "key": "d",
@@ -11892,7 +11892,7 @@
           "key": "c",
           "label": "by",
           "is_correct": false,
-          "explanation": "Incorrecta: by no se usa aquí. -"
+          "explanation": "Incorrecta: by no se usa aquí."
         },
         {
           "key": "d",
@@ -11965,7 +11965,7 @@
           "key": "c",
           "label": "appearing",
           "is_correct": false,
-          "explanation": "Incorrecta: appearing no encaja tras had en esta estructura. -"
+          "explanation": "Incorrecta: appearing no encaja tras had en esta estructura."
         },
         {
           "key": "d",
@@ -12038,7 +12038,7 @@
           "key": "c",
           "label": "questioned",
           "is_correct": false,
-          "explanation": "Incorrecta: questioned es pasado, y no corresponde a esta estructura. -"
+          "explanation": "Incorrecta: questioned es pasado, y no corresponde a esta estructura."
         },
         {
           "key": "d",
@@ -12111,7 +12111,7 @@
           "key": "c",
           "label": "with",
           "is_correct": false,
-          "explanation": "Incorrecta: with duress no es natural ni correcto. -"
+          "explanation": "Incorrecta: with duress no es natural ni correcto."
         },
         {
           "key": "d",
@@ -12184,7 +12184,7 @@
           "key": "c",
           "label": "convict",
           "is_correct": false,
-          "explanation": "Incorrecta: convict significa condenar / declarar culpable. -"
+          "explanation": "Incorrecta: convict significa condenar / declarar culpable."
         },
         {
           "key": "d",
@@ -12257,7 +12257,7 @@
           "key": "c",
           "label": "out",
           "is_correct": false,
-          "explanation": "Incorrecta: out solo no funciona aquí. ## READING 1 — MURDER MYSTERY Once, when I was teaching English to children in Cambridge, I died while eating my dinner. The children were eleven to fourteen years old and there were about one hundred and twenty of them in the large hall of a boarding school. We were all eating ice cream when ## I made strange noises and fell forward onto my plate. This was not some unusual way of teaching the children about crime, but a murder mystery game. It was a bit like a play in the theatre, but the whole school was involved. All of the teachers were either victims or suspects and all of the children were detectives trying to find out who the murderer was. The children knew the situation was serious as many teachers were “dying”, so they were all very excited. Lying next to my ice cream, I loved being a “victim”. However, I had to remember not to smile as the teachers dragged me across the floor to get rid of my dead body so the students knew ## I was really “dead”. This was just the start of my murder mystery career! Soon after that, one of my friends bought a murder mystery game and invited me and several other friends to a dinner party. We all had to dress up as different characters. The story was that one of our close friends had been murdered and we were all suspects. We had to tell the other characters important information and question people about the information they gave. Then, at the end of the evening, we tried to work out who had done it. I wasn’t very good at the police investigation part, but ## I loved playing a part and the excitement of knowing that one of the people in the room was a “murderer”. Now I run my own company - Murder Mystery Occasions. I organise murder mystery parties in restaurants or historic buildings. Usually ## I hire a private room so that the “murder” doesn’t upset other guests. Castles are particularly popular with my guests because they’re so atmospheric, so I use them if they’re available. ## I write the scripts and employ actors to be some of the key characters. People pay to come along and join in with the fun while having a wonderful dinner. The murder usually happens somewhere between the starter and the main course and there is always a lot of excitement when the police arrive to take fingerprints and interview key suspects. People tell me that’s the best part. Then, at the end of the evening, there is a prize for the table that guesses who is the murderer, but everybody who comes along seems to enjoy the drama. So, you could say I’ve made a good, honest career out of murder. ##"
+          "explanation": "Incorrecta: out solo no funciona aquí."
         },
         {
           "key": "d",
@@ -12318,19 +12318,19 @@
           "key": "a",
           "label": "go straight",
           "is_correct": false,
-          "explanation": "Correcta: convincing es el adjetivo correcto para evidence ."
+          "explanation": "Incorrecta: \"go straight\" significa reformarse o ir por el buen camino, no evitar responder de forma directa."
         },
         {
           "key": "b",
           "label": "beat around the bush",
           "is_correct": true,
-          "explanation": "Incorrecta: convincible se aplica a personas que pueden ser convencidas, no a la evidencia."
+          "explanation": "Correcta: \"beat around the bush\" significa no ir al grano o evitar responder directamente, justo lo que expresa el enunciado."
         },
         {
           "key": "c",
           "label": "cooked the books",
           "is_correct": false,
-          "explanation": "Incorrecta: conclusives es un error gramatical; en inglés los adjetivos no llevan -s en plural."
+          "explanation": "Incorrecta: \"cooked the books\" significa falsear cuentas, así que pertenece a un contexto distinto."
         },
         {
           "key": "d",

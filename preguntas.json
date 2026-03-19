@@ -13525,6 +13525,302 @@
       "context": "\"The arrival of the police, the questioning of suspects and the collection of clues add another layer of excitement to the evening.\"",
       "help_text": "Fragmento clave del reading: identifica la idea principal y escoge la opción que la reformula con precisión, sin copiarla ni añadir información nueva.",
       "reading_id": "reading-1-murder-mystery"
+    },
+    {
+      "id": "reading-hat-confusion-1",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading — Incident report #4 Hat confusion in Lanzarote",
+      "kind": "question",
+      "type": "reading_comprehension",
+      "title": "Reading — Incident report #4 Hat confusion in Lanzarote · Pregunta 1",
+      "prompt": "What details does the text provide about the atmosphere at the shopping center?",
+      "content_es": "What details does the text provide about the atmosphere at the shopping center?",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "According to the text, the shopping centre had a busy and relaxed atmosphere, as it was a sunny Saturday and many people were enjoying the day there"
+        },
+        {
+          "key": "b",
+          "label": "The passage describes a deserted shopping area where most shops were closed because of bad weather and very few people stayed outside"
+        },
+        {
+          "key": "c",
+          "label": "The text mainly presents a tense environment caused by an emergency evacuation that left the centre almost completely empty"
+        },
+        {
+          "key": "d",
+          "label": "The passage focuses on a noisy protest inside the shopping centre, with customers gathering to complain about security controls"
+        }
+      ],
+      "answer": "a) According to the text, the shopping centre had a busy and relaxed atmosphere, as it was a sunny Saturday and many people were enjoying the day there",
+      "acceptable_answers": [
+        "a) According to the text, the shopping centre had a busy and relaxed atmosphere, as it was a sunny Saturday and many people were enjoying the day there",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: la opción correcta resume el ambiente general sin copiar literalmente el texto. Traducción orientativa: era una tarde concurrida y agradable, con sol y bastante gente disfrutando en el centro comercial.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "reading",
+        "hat-confusion"
+      ],
+      "source_block": "local-examen-hat-confusion-lanzarote",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "According to the text, the shopping centre had a busy and relaxed atmosphere, as it was a sunny Saturday and many people were enjoying the day there",
+          "is_correct": true,
+          "explanation": "Correcta: reformula con precisión la idea del texto sobre el ambiente general del centro comercial."
+        },
+        {
+          "key": "b",
+          "label": "The passage describes a deserted shopping area where most shops were closed because of bad weather and very few people stayed outside",
+          "is_correct": false,
+          "explanation": "Incorrecta: añade una situación de mal tiempo y poca afluencia que no aparece en el fragmento."
+        },
+        {
+          "key": "c",
+          "label": "The text mainly presents a tense environment caused by an emergency evacuation that left the centre almost completely empty",
+          "is_correct": false,
+          "explanation": "Incorrecta: introduce una evacuación y un ambiente vacío que contradicen la descripción inicial."
+        },
+        {
+          "key": "d",
+          "label": "The passage focuses on a noisy protest inside the shopping centre, with customers gathering to complain about security controls",
+          "is_correct": false,
+          "explanation": "Incorrecta: inventa una protesta que no forma parte del incidente narrado."
+        }
+      ],
+      "context": "\"It was a busy Saturday afternoon... The sun was shining, and many people were enjoying the day.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis más fiel al texto. Fíjate en la idea principal y evita opciones que añadan información no mencionada.",
+      "reading_id": "hat-confusion-in-lanzarote"
+    },
+    {
+      "id": "reading-hat-confusion-2",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading — Incident report #4 Hat confusion in Lanzarote",
+      "kind": "question",
+      "type": "reading_comprehension",
+      "title": "Reading — Incident report #4 Hat confusion in Lanzarote · Pregunta 2",
+      "prompt": "Why did the security guard start following the two young boys, and what was their behavior that generated suspicion?",
+      "content_es": "Why did the security guard start following the two young boys, and what was their behavior that generated suspicion?",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "Based on the text, the guard followed them because they left the shop quickly, and that hurried behaviour made them seem suspicious"
+        },
+        {
+          "key": "b",
+          "label": "The text says the guard chased them because he had already seen them hiding several stolen items inside their jackets before they reached the exit"
+        },
+        {
+          "key": "c",
+          "label": "According to the passage, the boys became suspicious only after they started insulting customers and throwing objects in the shopping centre"
+        },
+        {
+          "key": "d",
+          "label": "The guard followed them because the assistant manager had personally warned him that the boys were known troublemakers from earlier incidents"
+        }
+      ],
+      "answer": "a) Based on the text, the guard followed them because they left the shop quickly, and that hurried behaviour made them seem suspicious",
+      "acceptable_answers": [
+        "a) Based on the text, the guard followed them because they left the shop quickly, and that hurried behaviour made them seem suspicious",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: la opción correcta parafrasea la causa de la sospecha: salir de la tienda con prisa. Traducción orientativa: el vigilante los siguió porque su manera de salir apresuradamente le pareció sospechosa.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "reading",
+        "hat-confusion"
+      ],
+      "source_block": "local-examen-hat-confusion-lanzarote",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "Based on the text, the guard followed them because they left the shop quickly, and that hurried behaviour made them seem suspicious",
+          "is_correct": true,
+          "explanation": "Correcta: recoge la razón exacta de la sospecha sin copiar literalmente el enunciado original."
+        },
+        {
+          "key": "b",
+          "label": "The text says the guard chased them because he had already seen them hiding several stolen items inside their jackets before they reached the exit",
+          "is_correct": false,
+          "explanation": "Incorrecta: introduce detalles sobre varias prendas robadas que el texto no menciona."
+        },
+        {
+          "key": "c",
+          "label": "According to the passage, the boys became suspicious only after they started insulting customers and throwing objects in the shopping centre",
+          "is_correct": false,
+          "explanation": "Incorrecta: inventa una conducta agresiva hacia clientes que no aparece en la historia."
+        },
+        {
+          "key": "d",
+          "label": "The guard followed them because the assistant manager had personally warned him that the boys were known troublemakers from earlier incidents",
+          "is_correct": false,
+          "explanation": "Incorrecta: atribuye la sospecha a un aviso previo inexistente en el texto."
+        }
+      ],
+      "context": "\"A security guard from the ALE-HOP store noticed two boys leaving the shop in a hurry. He followed them...\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis más fiel al texto. Fíjate en la idea principal y evita opciones que añadan información no mencionada.",
+      "reading_id": "hat-confusion-in-lanzarote"
+    },
+    {
+      "id": "reading-hat-confusion-3",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading — Incident report #4 Hat confusion in Lanzarote",
+      "kind": "question",
+      "type": "reading_comprehension",
+      "title": "Reading — Incident report #4 Hat confusion in Lanzarote · Pregunta 3",
+      "prompt": "What caused the tension in the room, and what was the consequence of this tension?",
+      "content_es": "What caused the tension in the room, and what was the consequence of this tension?",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "As explained in the text, the room became tense because the stories did not match, and the police ended up taking everyone out after the boys became agitated"
+        },
+        {
+          "key": "b",
+          "label": "The atmosphere changed because the shop manager admitted the theft immediately, so the officers closed the room and questioned only the security staff"
+        },
+        {
+          "key": "c",
+          "label": "According to the passage, tension started when the police found the cash register open, which led them to arrest the assistant manager on the spot"
+        },
+        {
+          "key": "d",
+          "label": "The disagreement in the room was caused by a missing radio message, and as a result the officers left without speaking to any witness"
+        }
+      ],
+      "answer": "a) As explained in the text, the room became tense because the stories did not match, and the police ended up taking everyone out after the boys became agitated",
+      "acceptable_answers": [
+        "a) As explained in the text, the room became tense because the stories did not match, and the police ended up taking everyone out after the boys became agitated",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: la opción correcta une las dos ideas esenciales: había versiones contradictorias y, cuando los chicos se alteraron, la policía sacó a todos de la sala. Traducción orientativa: la tensión vino del desacuerdo y terminó con la intervención policial para despejar la habitación.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "reading",
+        "hat-confusion"
+      ],
+      "source_block": "local-examen-hat-confusion-lanzarote",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "As explained in the text, the room became tense because the stories did not match, and the police ended up taking everyone out after the boys became agitated",
+          "is_correct": true,
+          "explanation": "Correcta: mantiene la secuencia real de los hechos y resume la consecuencia directa de la tensión."
+        },
+        {
+          "key": "b",
+          "label": "The atmosphere changed because the shop manager admitted the theft immediately, so the officers closed the room and questioned only the security staff",
+          "is_correct": false,
+          "explanation": "Incorrecta: cambia completamente los hechos y atribuye una admisión que nunca ocurre."
+        },
+        {
+          "key": "c",
+          "label": "According to the passage, tension started when the police found the cash register open, which led them to arrest the assistant manager on the spot",
+          "is_correct": false,
+          "explanation": "Incorrecta: mezcla elementos ajenos al caso, como una caja registradora y un arresto inexistente."
+        },
+        {
+          "key": "d",
+          "label": "The disagreement in the room was caused by a missing radio message, and as a result the officers left without speaking to any witness",
+          "is_correct": false,
+          "explanation": "Incorrecta: la tensión no surge por la radio y además los agentes sí intervienen y continúan con el procedimiento."
+        }
+      ],
+      "context": "\"The police weren’t sure whom to believe... The boys got more agitated... The police officers then escorted everyone out of the room.\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis más fiel al texto. Fíjate en la idea principal y evita opciones que añadan información no mencionada.",
+      "reading_id": "hat-confusion-in-lanzarote"
+    },
+    {
+      "id": "reading-hat-confusion-4",
+      "section": "Reading y Paráfrasis",
+      "subsection": "Reading — Incident report #4 Hat confusion in Lanzarote",
+      "kind": "question",
+      "type": "reading_comprehension",
+      "title": "Reading — Incident report #4 Hat confusion in Lanzarote · Pregunta 4",
+      "prompt": "What important observation did the assistant manager make about the hat, and how did it impact the situation?",
+      "content_es": "What important observation did the assistant manager make about the hat, and how did it impact the situation?",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "According to the text, Remedios pointed out that the boys already had the hat on when they entered, which undermined the claim that it had been stolen from the shop"
+        },
+        {
+          "key": "b",
+          "label": "The assistant manager stated that the hat had a hidden price tag inside, proving that the boys had removed it just before the police arrived"
+        },
+        {
+          "key": "c",
+          "label": "The passage says Remedios recognised the hat as shop property because it was part of a damaged display, so the accusation became stronger"
+        },
+        {
+          "key": "d",
+          "label": "Remedios noticed that the boys were trying on several hats, and this confirmed that they intended to return later to pay for one of them"
+        }
+      ],
+      "answer": "a) According to the text, Remedios pointed out that the boys already had the hat on when they entered, which undermined the claim that it had been stolen from the shop",
+      "acceptable_answers": [
+        "a) According to the text, Remedios pointed out that the boys already had the hat on when they entered, which undermined the claim that it had been stolen from the shop",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: la observación clave es que los chicos ya llevaban la gorra al entrar. Esa información debilita claramente la acusación de robo. Traducción orientativa: la encargada aportó un dato que cambiaba la interpretación del incidente.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "reading",
+        "hat-confusion"
+      ],
+      "source_block": "local-examen-hat-confusion-lanzarote",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "According to the text, Remedios pointed out that the boys already had the hat on when they entered, which undermined the claim that it had been stolen from the shop",
+          "is_correct": true,
+          "explanation": "Correcta: resume la observación decisiva de Remedios y su efecto sobre la acusación."
+        },
+        {
+          "key": "b",
+          "label": "The assistant manager stated that the hat had a hidden price tag inside, proving that the boys had removed it just before the police arrived",
+          "is_correct": false,
+          "explanation": "Incorrecta: introduce una etiqueta oculta y una prueba material que el texto no menciona."
+        },
+        {
+          "key": "c",
+          "label": "The passage says Remedios recognised the hat as shop property because it was part of a damaged display, so the accusation became stronger",
+          "is_correct": false,
+          "explanation": "Incorrecta: invierte el sentido de la intervención de Remedios, que en realidad favorece a los chicos."
+        },
+        {
+          "key": "d",
+          "label": "Remedios noticed that the boys were trying on several hats, and this confirmed that they intended to return later to pay for one of them",
+          "is_correct": false,
+          "explanation": "Incorrecta: añade una intención de compra futura y varias gorras que no aparecen en la narración."
+        }
+      ],
+      "context": "\"Remedios then looked from the boys to the police officers and said, ‘But these boys were wearing this hat when they entered.’\"",
+      "help_text": "Fragmento clave del reading: usa esta pista y elige la paráfrasis más fiel al texto. Fíjate en la idea principal y evita opciones que añadan información no mencionada.",
+      "reading_id": "hat-confusion-in-lanzarote"
     }
   ]
 }

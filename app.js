@@ -1,5 +1,36 @@
 const MAX_QUESTIONS = 30;
 
+
+const OPTION_TRANSLATIONS = {
+  'be under arrest': 'estar detenido',
+  'take someone into custody': 'poner bajo custodia / detener',
+  'be caught red-handed': 'ser pillado in fraganti',
+  'book someone': 'fichar / detener oficialmente a alguien',
+  'make an arrest': 'efectuar una detención',
+  'place someone under arrest': 'poner a alguien bajo arresto',
+  'commit a crime': 'cometer un delito',
+  'gather evidence': 'reunir / recopilar pruebas',
+  'question a suspect': 'interrogar a un sospechoso',
+  'press charges': 'presentar cargos',
+  'break the law': 'infringir la ley',
+  'face charges': 'enfrentarse a cargos',
+  'serve a sentence': 'cumplir condena',
+  'be on the run': 'estar huido / a la fuga',
+  'be released on bail': 'quedar en libertad bajo fianza',
+  'under duress': 'bajo coacción / presión',
+  'appeal the verdict': 'recurrir el veredicto',
+  'escape from prison': 'escapar de prisión',
+  'come clean': 'confesar / decir toda la verdad',
+  'go straight': 'reformarse / ir por el buen camino',
+  'turn a blind eye': 'hacer la vista gorda',
+  'bend the rules': 'saltarse / flexibilizar las normas',
+  'crack the case': 'resolver el caso',
+  'follow a lead': 'seguir una pista',
+  'get away with it': 'salir impune',
+  'be behind bars': 'estar entre rejas / en prisión',
+  'rat someone out': 'delatar a alguien',
+};
+
 const state = {
   bank: [],
   filtered: [],
@@ -286,11 +317,12 @@ function renderFeedbackOptions(question, selectedKey) {
   els.feedbackOptionList.innerHTML = '';
   question.optionDetails.forEach((detail) => {
     const item = document.createElement('article');
+    const labelWithTranslation = formatChoiceLabel(detail.label);
     item.className = `feedback-option ${detail.isCorrect ? 'feedback-option--ok' : 'feedback-option--error'}${selectedKey === detail.key ? ' feedback-option--selected' : ''}`;
     item.innerHTML = `
       <div class="feedback-option__header">
         <span class="feedback-option__key">${detail.key.toUpperCase()}</span>
-        <strong>${escapeHtml(detail.label)}</strong>
+        <strong>${escapeHtml(labelWithTranslation)}</strong>
       </div>
       <p>${escapeHtml(detail.explanation)}</p>
     `;
@@ -377,6 +409,17 @@ function computePriority(item) {
   if (context.includes('lexico policial esencial')) score -= 2;
 
   return score;
+}
+
+
+function formatChoiceLabel(label) {
+  const cleanedLabel = compactText(label);
+  const translation = getOptionTranslation(cleanedLabel);
+  return translation ? `${cleanedLabel} — ${translation}` : cleanedLabel;
+}
+
+function getOptionTranslation(label) {
+  return OPTION_TRANSLATIONS[normalizeText(label)] || '';
 }
 
 function buildPrompt(item) {

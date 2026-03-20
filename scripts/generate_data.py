@@ -438,9 +438,14 @@ def split_term_definition(text: str) -> tuple[str, str]:
     return term, definition
 
 
-def primary_definition(definition: str) -> str:
+def full_definition(definition: str) -> str:
     cleaned = compact_text(definition)
     cleaned = re.sub(r'\([^)]*\)', '', cleaned)
+    return compact_text(cleaned)
+
+
+def primary_definition(definition: str) -> str:
+    cleaned = full_definition(definition)
     for separator in [' / ', '/', ';', ',']:
         if separator in cleaned:
             cleaned = cleaned.split(separator)[0]
@@ -465,6 +470,112 @@ def build_definition_explanation(entry: dict) -> str:
         f"La opción correcta expresa '{label}' con precisión. "
         f"En español: '{entry['term']}' = '{label}'."
     )
+
+
+def build_phrase_glossary(lines: list[str]) -> dict[str, str]:
+    glossary: dict[str, str] = {}
+
+    def register(term: str, definition: str) -> None:
+        cleaned_term = compact_text(term)
+        cleaned_definition = full_definition(definition)
+        if len(cleaned_term.split()) < 2 or not cleaned_definition:
+            return
+        glossary.setdefault(simplify(cleaned_term), cleaned_definition)
+
+    for raw_line in lines:
+        line = compact_text(raw_line)
+        if not line or line.startswith('#'):
+            continue
+        term, definition = split_term_definition(line)
+        if not term or not definition:
+            continue
+
+        register(term, definition)
+
+        if term.startswith('be '):
+            bare_term = term[3:]
+            register(bare_term, definition)
+            bare_tokens = bare_term.split()
+            if len(bare_tokens) >= 2:
+                register(' '.join(bare_tokens[:2]), definition)
+
+    return glossary
+
+
+def explain_single_word_exam_option(stem: str, option: str, correct_option: str, phrase_glossary: dict[str, str], *, is_correct: bool) -> str:
+    completed_stem = compact_text(stem.replace('______', option).replace('____', option).replace('___', option))
+    correct_completed_stem = compact_text(stem.replace('______', correct_option).replace('____', correct_option).replace('___', correct_option))
+
+    def resolve_phrase_translation(candidate_stem: str, candidate_option: str) -> tuple[str, str]:
+        simplified_completed = simplify(candidate_stem)
+        direct_translation = phrase_glossary.get(simplified_completed, '')
+        if direct_translation:
+            return candidate_stem, direct_translation
+
+        matching_phrases = [
+            (term, found_translation)
+            for term, found_translation in phrase_glossary.items()
+            if term in simplified_completed and simplify(candidate_option) in term
+        ]
+        if matching_phrases:
+            return max(matching_phrases, key=lambda entry: len(entry[0]))
+        return '', ''
+
+    matched_phrase, phrase_translation = resolve_phrase_translation(completed_stem, option)
+    correct_matched_phrase, correct_phrase_translation = resolve_phrase_translation(correct_completed_stem, correct_option)
+
+    option_translation_map = {
+        'under': 'bajo',
+        'below': 'debajo de',
+        'with': 'con',
+        'rather': 'más bien',
+        'to': 'a',
+        'for': 'para / por',
+        'of': 'de',
+        'in': 'en / dentro de',
+        'on': 'sobre / en',
+        'at': 'en',
+        'by': 'por / junto a',
+        'from': 'de / desde',
+        'into': 'hacia dentro de',
+        'out': 'fuera',
+        'off': 'fuera de / apagado',
+        'over': 'sobre / por encima de',
+        'through': 'a través de',
+        'before': 'antes de',
+        'after': 'después de',
+    }
+    option_translation = option_translation_map.get(simplify(option), '')
+    display_phrase = matched_phrase or completed_stem
+    correct_display_phrase = correct_matched_phrase or correct_completed_stem
+
+    if is_correct:
+        if phrase_translation:
+            if simplify(display_phrase) != simplify(completed_stem):
+                return (
+                    f'Correcta: la expresión fija aquí es «{display_phrase}», dentro de la frase «{completed_stem}». '
+                    f'En español: «{phrase_translation}». '
+                ).strip()
+            return f'Correcta: la expresión completa es {completed_stem}. En español: «{phrase_translation}». '
+        if option_translation:
+            return f'Correcta: la expresión completa es {completed_stem}. «{option}» aquí significa «{option_translation}». '
+        return f'Correcta: la expresión completa es {completed_stem}.'
+
+    explanation = f'Incorrecta: {option}'
+    if option_translation:
+        explanation += f' significa «{option_translation}»,'
+    explanation += f' pero no completa correctamente la expresión {completed_stem if completed_stem != stem else "del enunciado"}.'
+    if simplify(option) != simplify(correct_option):
+        explanation += f' La forma correcta es «{correct_display_phrase}»'
+        if correct_phrase_translation:
+            explanation += f', que significa «{correct_phrase_translation}»'
+            if simplify(correct_display_phrase) != simplify(correct_completed_stem):
+                explanation += f' y en esta frase aparece como «{correct_completed_stem}».'
+            else:
+                explanation += '.'
+        else:
+            explanation += '.'
+    return explanation
 
 
 def extract_definition_questions(lines: list[str]) -> list[dict]:
@@ -781,6 +892,7 @@ def extract_grammar_examples(lines: list[str]) -> list[dict]:
 
 def extract_exam_items(text: str) -> list[dict]:
     compact = compact_text(text)
+    phrase_glossary = build_phrase_glossary(text.splitlines())
     set_titles = ['Set 01', 'Set 02', 'Set 03']
     set_slices = []
     for index, title in enumerate(set_titles):
@@ -824,9 +936,19 @@ def extract_exam_items(text: str) -> list[dict]:
         choices = make_choice_objects(options)
         answer_index = next(i for i, option in enumerate(options) if simplify(option) == simplify(correct_option))
         normalized_map = {key.lower(): value for key, value in explanation_map.items()}
+        single_word_options = all(' ' not in choice['label'].strip() for choice in choices)
+        has_blank_stem = bool(re.search(r'_{3,}', stem))
         explanations = {}
         for choice in choices:
-            if choice['key'] in normalized_map:
+            if single_word_options and has_blank_stem:
+                explanations[choice['key']] = explain_single_word_exam_option(
+                    stem,
+                    choice['label'],
+                    choices[answer_index]['label'],
+                    phrase_glossary,
+                    is_correct=choice['key'] == choices[answer_index]['key'],
+                )
+            elif choice['key'] in normalized_map:
                 explanations[choice['key']] = normalized_map[choice['key']]
             elif choice['key'] == choices[answer_index]['key']:
                 explanations[choice['key']] = 'Correcta: es la única opción que completa el enunciado con una estructura gramatical natural y válida en inglés de examen.'

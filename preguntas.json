@@ -11296,25 +11296,25 @@
           "key": "a",
           "label": "is",
           "is_correct": false,
-          "explanation": "Incorrecta: is está en presente, pero aquí se habla de un hecho pasado."
+          "explanation": "Incorrecta: is pero no completa correctamente la expresión Radium is discovered by Pierre and Marie Curie. La forma correcta es «Radium was discovered by Pierre and Marie Curie»."
         },
         {
           "key": "b",
           "label": "were",
           "is_correct": false,
-          "explanation": "Incorrecta: were es plural y Radium es singular."
+          "explanation": "Incorrecta: were pero no completa correctamente la expresión Radium were discovered by Pierre and Marie Curie. La forma correcta es «Radium was discovered by Pierre and Marie Curie»."
         },
         {
           "key": "c",
           "label": "was",
           "is_correct": true,
-          "explanation": "Correcta: la pasiva en pasado singular es was + participle . -"
+          "explanation": "Correcta: la expresión completa es Radium was discovered by Pierre and Marie Curie."
         },
         {
           "key": "d",
           "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: rather significa «más bien», pero no completa correctamente la expresión Radium rather discovered by Pierre and Marie Curie. La forma correcta es «Radium was discovered by Pierre and Marie Curie»."
         }
       ],
       "context": "",
@@ -11515,25 +11515,25 @@
           "key": "a",
           "label": "remember",
           "is_correct": false,
-          "explanation": "Incorrecta: remember no encaja ni por tiempo verbal ni por estructura."
+          "explanation": "Incorrecta: remember pero no completa correctamente la expresión The police officer remember me to take my passport last day. La forma correcta es «The police officer reminded me to take my passport last day»."
         },
         {
           "key": "b",
           "label": "reminded",
           "is_correct": true,
-          "explanation": "Correcta: remind someone to… significa recordar a otra persona que haga algo."
+          "explanation": "Correcta: la expresión completa es The police officer reminded me to take my passport last day."
         },
         {
           "key": "c",
           "label": "remembered",
           "is_correct": false,
-          "explanation": "Incorrecta: remembered significa que alguien se acordó, no que hizo recordar a otra persona. ##"
+          "explanation": "Incorrecta: remembered pero no completa correctamente la expresión The police officer remembered me to take my passport last day. La forma correcta es «The police officer reminded me to take my passport last day»."
         },
         {
           "key": "d",
           "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: rather significa «más bien», pero no completa correctamente la expresión The police officer rather me to take my passport last day. La forma correcta es «The police officer reminded me to take my passport last day»."
         }
       ],
       "context": "",
@@ -11588,25 +11588,25 @@
           "key": "a",
           "label": "who",
           "is_correct": false,
-          "explanation": "Incorrecta: who se usa para personas, no para indicar posesión."
+          "explanation": "Incorrecta: who pero no completa correctamente la expresión The witness who car was stolen identified the suspect. La forma correcta es «The witness whose car was stolen identified the suspect»."
         },
         {
           "key": "b",
           "label": "whose",
           "is_correct": true,
-          "explanation": "Correcta: whose expresa posesión: the witness whose car was stolen ."
+          "explanation": "Correcta: la expresión completa es The witness whose car was stolen identified the suspect."
         },
         {
           "key": "c",
           "label": "which",
           "is_correct": false,
-          "explanation": "Incorrecta: which se usa para cosas, pero aquí lo que se necesita es un posesivo. -"
+          "explanation": "Incorrecta: which pero no completa correctamente la expresión The witness which car was stolen identified the suspect. La forma correcta es «The witness whose car was stolen identified the suspect»."
         },
         {
           "key": "d",
           "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: rather significa «más bien», pero no completa correctamente la expresión The witness rather car was stolen identified the suspect. La forma correcta es «The witness whose car was stolen identified the suspect»."
         }
       ],
       "context": "",
@@ -11734,25 +11734,25 @@
           "key": "a",
           "label": "in",
           "is_correct": false,
-          "explanation": "Incorrecta: in bail no existe en esta expresión."
+          "explanation": "Incorrecta: in significa «en / dentro de», pero no completa correctamente la expresión The suspect was released in bail. La forma correcta es «released on bail», que significa «quedar en libertad bajo fianza» y en esta frase aparece como «The suspect was released on bail»."
         },
         {
           "key": "b",
           "label": "on",
           "is_correct": true,
-          "explanation": "Correcta: la estructura fija es released on bail ."
+          "explanation": "Correcta: la expresión fija aquí es «released on bail», dentro de la frase «The suspect was released on bail». En español: «quedar en libertad bajo fianza»."
         },
         {
           "key": "c",
           "label": "at",
           "is_correct": false,
-          "explanation": "Incorrecta: at bail es incorrecto. -"
+          "explanation": "Incorrecta: at significa «en», pero no completa correctamente la expresión The suspect was released at bail. La forma correcta es «released on bail», que significa «quedar en libertad bajo fianza» y en esta frase aparece como «The suspect was released on bail»."
         },
         {
           "key": "d",
           "label": "for",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: for significa «para / por», pero no completa correctamente la expresión The suspect was released for bail. La forma correcta es «released on bail», que significa «quedar en libertad bajo fianza» y en esta frase aparece como «The suspect was released on bail»."
         }
       ],
       "context": "",
@@ -11807,25 +11807,25 @@
           "key": "a",
           "label": "was",
           "is_correct": false,
-          "explanation": "Incorrecta: pieces está en plural, así que el verbo debe ir en plural."
+          "explanation": "Incorrecta: was pero no completa correctamente la expresión Several pieces of evidence was presented during the trial. La forma correcta es «Several pieces of evidence were presented during the trial»."
         },
         {
           "key": "b",
           "label": "were",
           "is_correct": true,
-          "explanation": "Correcta: pieces of evidence were presented es la estructura correcta."
+          "explanation": "Correcta: la expresión completa es Several pieces of evidence were presented during the trial."
         },
         {
           "key": "c",
           "label": "is",
           "is_correct": false,
-          "explanation": "Incorrecta: is está en singular. -"
+          "explanation": "Incorrecta: is pero no completa correctamente la expresión Several pieces of evidence is presented during the trial. La forma correcta es «Several pieces of evidence were presented during the trial»."
         },
         {
           "key": "d",
           "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: rather significa «más bien», pero no completa correctamente la expresión Several pieces of evidence rather presented during the trial. La forma correcta es «Several pieces of evidence were presented during the trial»."
         }
       ],
       "context": "",
@@ -11880,25 +11880,25 @@
           "key": "a",
           "label": "of",
           "is_correct": false,
-          "explanation": "Incorrecta: charged of no es la estructura correcta."
+          "explanation": "Incorrecta: of significa «de», pero no completa correctamente la expresión The defendant was charged of fraud. La forma correcta es «The defendant was charged with fraud»."
         },
         {
           "key": "b",
           "label": "with",
           "is_correct": true,
-          "explanation": "Correcta: la expresión fija es charged with ."
+          "explanation": "Correcta: la expresión completa es The defendant was charged with fraud. «with» aquí significa «con»."
         },
         {
           "key": "c",
           "label": "by",
           "is_correct": false,
-          "explanation": "Incorrecta: by no se usa aquí. -"
+          "explanation": "Incorrecta: by significa «por / junto a», pero no completa correctamente la expresión The defendant was charged by fraud. La forma correcta es «The defendant was charged with fraud»."
         },
         {
           "key": "d",
           "label": "for",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: for significa «para / por», pero no completa correctamente la expresión The defendant was charged for fraud. La forma correcta es «The defendant was charged with fraud»."
         }
       ],
       "context": "",
@@ -11953,25 +11953,25 @@
           "key": "a",
           "label": "appear",
           "is_correct": false,
-          "explanation": "Incorrecta: después de had en esta estructura va participio."
+          "explanation": "Incorrecta: appear pero no completa correctamente la expresión Had the suspect appear earlier, the police could have questioned him. La forma correcta es «Had the suspect appeared earlier, the police could have questioned him»."
         },
         {
           "key": "b",
           "label": "appeared",
           "is_correct": true,
-          "explanation": "Correcta: Had the suspect appeared earlier… es una inversión condicional formal."
+          "explanation": "Correcta: la expresión completa es Had the suspect appeared earlier, the police could have questioned him."
         },
         {
           "key": "c",
           "label": "appearing",
           "is_correct": false,
-          "explanation": "Incorrecta: appearing no encaja tras had en esta estructura. -"
+          "explanation": "Incorrecta: appearing pero no completa correctamente la expresión Had the suspect appearing earlier, the police could have questioned him. La forma correcta es «Had the suspect appeared earlier, the police could have questioned him»."
         },
         {
           "key": "d",
           "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: rather significa «más bien», pero no completa correctamente la expresión Had the suspect rather earlier, the police could have questioned him. La forma correcta es «Had the suspect appeared earlier, the police could have questioned him»."
         }
       ],
       "context": "",
@@ -12026,25 +12026,25 @@
           "key": "a",
           "label": "question",
           "is_correct": true,
-          "explanation": "Correcta: después de It is essential that… usamos verbo base ."
+          "explanation": "Correcta: la expresión completa es It is essential that officers question all witnesses carefully."
         },
         {
           "key": "b",
           "label": "questions",
           "is_correct": false,
-          "explanation": "Incorrecta: questions estaría mal porque aquí no va tercera persona singular."
+          "explanation": "Incorrecta: questions pero no completa correctamente la expresión It is essential that officers questions all witnesses carefully. La forma correcta es «It is essential that officers question all witnesses carefully»."
         },
         {
           "key": "c",
           "label": "questioned",
           "is_correct": false,
-          "explanation": "Incorrecta: questioned es pasado, y no corresponde a esta estructura. -"
+          "explanation": "Incorrecta: questioned pero no completa correctamente la expresión It is essential that officers questioned all witnesses carefully. La forma correcta es «It is essential that officers question all witnesses carefully»."
         },
         {
           "key": "d",
           "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: rather significa «más bien», pero no completa correctamente la expresión It is essential that officers rather all witnesses carefully. La forma correcta es «It is essential that officers question all witnesses carefully»."
         }
       ],
       "context": "",
@@ -12099,25 +12099,25 @@
           "key": "a",
           "label": "under",
           "is_correct": true,
-          "explanation": "Correcta: la expresión fija es under duress ."
+          "explanation": "Correcta: la expresión fija aquí es «under duress», dentro de la frase «The confession was obtained under duress». En español: «bajo coacción / presión»."
         },
         {
           "key": "b",
           "label": "below",
           "is_correct": false,
-          "explanation": "Incorrecta: below no se usa con este significado."
+          "explanation": "Incorrecta: below significa «debajo de», pero no completa correctamente la expresión The confession was obtained below duress. La forma correcta es «under duress», que significa «bajo coacción / presión» y en esta frase aparece como «The confession was obtained under duress»."
         },
         {
           "key": "c",
           "label": "with",
           "is_correct": false,
-          "explanation": "Incorrecta: with duress no es natural ni correcto. -"
+          "explanation": "Incorrecta: with significa «con», pero no completa correctamente la expresión The confession was obtained with duress. La forma correcta es «under duress», que significa «bajo coacción / presión» y en esta frase aparece como «The confession was obtained under duress»."
         },
         {
           "key": "d",
           "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: rather significa «más bien», pero no completa correctamente la expresión The confession was obtained rather duress. La forma correcta es «under duress», que significa «bajo coacción / presión» y en esta frase aparece como «The confession was obtained under duress»."
         }
       ],
       "context": "",
@@ -12172,25 +12172,25 @@
           "key": "a",
           "label": "appeal",
           "is_correct": true,
-          "explanation": "Correcta: appeal the verdict significa recurrir el veredicto."
+          "explanation": "Correcta: la expresión completa es The lawyer decided to appeal the verdict."
         },
         {
           "key": "b",
           "label": "accuse",
           "is_correct": false,
-          "explanation": "Incorrecta: accuse significa acusar, no recurrir una decisión."
+          "explanation": "Incorrecta: accuse pero no completa correctamente la expresión The lawyer decided to accuse the verdict. La forma correcta es «The lawyer decided to appeal the verdict»."
         },
         {
           "key": "c",
           "label": "convict",
           "is_correct": false,
-          "explanation": "Incorrecta: convict significa condenar / declarar culpable. -"
+          "explanation": "Incorrecta: convict pero no completa correctamente la expresión The lawyer decided to convict the verdict. La forma correcta es «The lawyer decided to appeal the verdict»."
         },
         {
           "key": "d",
           "label": "rather",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: rather significa «más bien», pero no completa correctamente la expresión The lawyer decided to rather the verdict. La forma correcta es «The lawyer decided to appeal the verdict»."
         }
       ],
       "context": "",
@@ -12245,25 +12245,25 @@
           "key": "a",
           "label": "from",
           "is_correct": true,
-          "explanation": "Correcta: la estructura correcta es escape from prison ."
+          "explanation": "Correcta: la expresión fija aquí es «escape from prison», dentro de la frase «The criminal managed to escape from prison». En español: «escapar de prisión escape prison»."
         },
         {
           "key": "b",
           "label": "of",
           "is_correct": false,
-          "explanation": "Incorrecta: escape of prison es incorrecto."
+          "explanation": "Incorrecta: of significa «de», pero no completa correctamente la expresión The criminal managed to escape of prison. La forma correcta es «escape from prison», que significa «escapar de prisión escape prison» y en esta frase aparece como «The criminal managed to escape from prison»."
         },
         {
           "key": "c",
           "label": "out",
           "is_correct": false,
-          "explanation": "Incorrecta: out solo no funciona aquí. ## READING 1 — MURDER MYSTERY Once, when I was teaching English to children in Cambridge, I died while eating my dinner. The children were eleven to fourteen years old and there were about one hundred and twenty of them in the large hall of a boarding school. We were all eating ice cream when ## I made strange noises and fell forward onto my plate. This was not some unusual way of teaching the children about crime, but a murder mystery game. It was a bit like a play in the theatre, but the whole school was involved. All of the teachers were either victims or suspects and all of the children were detectives trying to find out who the murderer was. The children knew the situation was serious as many teachers were “dying”, so they were all very excited. Lying next to my ice cream, I loved being a “victim”. However, I had to remember not to smile as the teachers dragged me across the floor to get rid of my dead body so the students knew ## I was really “dead”. This was just the start of my murder mystery career! Soon after that, one of my friends bought a murder mystery game and invited me and several other friends to a dinner party. We all had to dress up as different characters. The story was that one of our close friends had been murdered and we were all suspects. We had to tell the other characters important information and question people about the information they gave. Then, at the end of the evening, we tried to work out who had done it. I wasn’t very good at the police investigation part, but ## I loved playing a part and the excitement of knowing that one of the people in the room was a “murderer”. Now I run my own company - Murder Mystery Occasions. I organise murder mystery parties in restaurants or historic buildings. Usually ## I hire a private room so that the “murder” doesn’t upset other guests. Castles are particularly popular with my guests because they’re so atmospheric, so I use them if they’re available. ## I write the scripts and employ actors to be some of the key characters. People pay to come along and join in with the fun while having a wonderful dinner. The murder usually happens somewhere between the starter and the main course and there is always a lot of excitement when the police arrive to take fingerprints and interview key suspects. People tell me that’s the best part. Then, at the end of the evening, there is a prize for the table that guesses who is the murderer, but everybody who comes along seems to enjoy the drama. So, you could say I’ve made a good, honest career out of murder. ##"
+          "explanation": "Incorrecta: out significa «fuera», pero no completa correctamente la expresión The criminal managed to escape out prison. La forma correcta es «escape from prison», que significa «escapar de prisión escape prison» y en esta frase aparece como «The criminal managed to escape from prison»."
         },
         {
           "key": "d",
           "label": "for",
           "is_correct": false,
-          "explanation": "Incorrecta: aunque puede parecer razonable a primera vista, no encaja de forma gramatical o léxica con el contexto exacto del enunciado."
+          "explanation": "Incorrecta: for significa «para / por», pero no completa correctamente la expresión The criminal managed to escape for prison. La forma correcta es «escape from prison», que significa «escapar de prisión escape prison» y en esta frase aparece como «The criminal managed to escape from prison»."
         }
       ],
       "context": "",

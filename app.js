@@ -165,7 +165,7 @@ function updateGeneratorMeta() {
   const selectedLabel = selectedSections.length ? selectedSections.join(' · ') : 'sin filtros por bloque';
 
   els.generatorMeta.textContent = `${eligible.length} preguntas tipo test disponibles · ${Math.min(requested, eligible.length || requested)} por sesión · ${selectedLabel}`;
-  els.heroSubtitle.textContent = `Banco actual: ${state.bank.length} preguntas cerradas de 4 opciones con distractores verosímiles, explicaciones claras en español y enfoque práctico para opositores.`;
+  els.heroSubtitle.textContent = `${state.bank.length} preguntas tipo test de 4 opciones, con explicaciones breves en español y enfoque práctico para opositores.`;
 }
 
 function startSession(forceRandom) {
@@ -435,36 +435,44 @@ function buildHelpText(item) {
     .replace(/fragmento citado/gi, 'contexto');
 }
 
-function buildMainExplanation(item, correctChoice, optionDetails) {
-  const raw = compactText(item.explanation_es || '');
-  const sanitized = raw
+function simplifyExplanationText(text) {
+  return compactText(text)
     .replace(/explicaci[oó]n acad[eé]mica:\s*/gi, '')
     .replace(/elemento derivado directamente del documento maestro:\s*/gi, '')
     .replace(/documento maestro/gi, 'material de referencia')
     .replace(/fragmento citado/gi, 'contexto')
+    .replace(/traducci[oó]n orientativa:\s*/gi, 'En español: ')
+    .replace(/traducci[oó]n:\s*/gi, 'En español: ')
+    .replace(/es una forma v[aá]lida del banco, pero /gi, '')
+    .replace(/banco actual:\s*/gi, '')
+    .replace(/activa la equivalencia l[eé]xica clave para/gi, 'expresa')
+    .replace(/mantiene la forma exacta que debe reconocerse en un test b1 policial/gi, 'mantiene el sentido adecuado en la pregunta')
+    .replace(/corresponde al significado principal/gi, 'expresa')
+    .replace(/la opci[oó]n correcta /gi, 'La opción correcta ')
+    .replace(/\s+([.,;:])/g, '$1')
     .trim();
+}
+
+function buildMainExplanation(item, correctChoice, optionDetails) {
+  const raw = compactText(item.explanation_es || '');
+  const sanitized = simplifyExplanationText(raw);
 
   if (sanitized) return sanitized;
 
   const correctDetail = optionDetails.find((detail) => detail.isCorrect);
   if (correctDetail?.explanation) return correctDetail.explanation;
-  if (correctChoice?.label) return `La correcta es ${correctChoice.key}) ${correctChoice.label} porque es la única opción que responde con precisión a la consigna.`;
-  return 'La opción correcta es la única que mantiene el sentido exacto que exige la pregunta.';
+  if (correctChoice?.label) return `La correcta es ${correctChoice.key}) ${correctChoice.label} porque expresa la idea pedida con precisión.`;
+  return 'La opción correcta es la única que mantiene el sentido exacto de la pregunta.';
 }
 
 function buildOptionExplanation(item, detail) {
   const text = compactText(detail.explanation || '');
-  const sanitized = text
-    .replace(/explicaci[oó]n acad[eé]mica:\s*/gi, '')
-    .replace(/elemento derivado directamente del documento maestro:\s*/gi, '')
-    .replace(/documento maestro/gi, 'material de referencia')
-    .replace(/fragmento citado/gi, 'contexto')
-    .trim();
+  const sanitized = simplifyExplanationText(text);
 
   if (sanitized) return sanitized;
   return detail.isCorrect
-    ? 'Es la alternativa válida porque mantiene el significado exacto y encaja en el contexto planteado.'
-    : 'No es correcta porque cambia el significado, resulta demasiado general o introduce un matiz incorrecto.';
+    ? 'Correcta: mantiene el significado exacto y encaja en el contexto.'
+    : 'Incorrecta: cambia el significado o introduce un matiz inadecuado.';
 }
 
 function typeLabel(question) {

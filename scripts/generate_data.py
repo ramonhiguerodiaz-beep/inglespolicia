@@ -462,9 +462,8 @@ def definition_prompt(section: str, subsection: str, definition: str) -> str:
 def build_definition_explanation(entry: dict) -> str:
     label = primary_definition(entry['definition'])
     return (
-        f"Explicación académica: la opción correcta activa la equivalencia léxica clave para '{label}' "
-        f"y mantiene la forma exacta que debe reconocerse en un test B1 policial. "
-        f"Traducción orientativa: '{entry['term']}' = '{label}'."
+        f"La opción correcta expresa '{label}' con precisión. "
+        f"En español: '{entry['term']}' = '{label}'."
     )
 
 
@@ -541,12 +540,11 @@ def extract_definition_questions(lines: list[str]) -> list[dict]:
                 if choice['key'] == choices[answer_index]['key']:
                     explanations[choice['key']] = (
                         f"Correcta: '{entry['term']}' expresa la idea de '{definition_label}'. "
-                        f"Traducción: '{definition_label}'."
+                        f"En español: '{definition_label}'."
                     )
                 else:
                     explanations[choice['key']] = (
-                        f"Incorrecta: '{choice['label']}' es una forma válida del banco, "
-                        f"pero no corresponde al significado principal '{definition_label}'."
+                        f"Incorrecta: '{choice['label']}' no expresa la idea principal '{definition_label}'."
                     )
             questions.append(build_question_item(
                 item_id=f"def-{slug(section)}-{slug(subsection)}-{index + 1}",

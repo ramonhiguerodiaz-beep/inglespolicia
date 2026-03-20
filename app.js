@@ -20,6 +20,7 @@ const els = {
   difficultySelect: document.getElementById('difficultySelect'),
   generateBtn: document.getElementById('generateBtn'),
   randomBtn: document.getElementById('randomBtn'),
+  answerActions: document.querySelector('.answer-actions'),
   generatorMeta: document.getElementById('generatorMeta'),
   generatorCard: document.getElementById('generatorCard'),
   questionCard: document.getElementById('questionCard'),
@@ -79,17 +80,23 @@ function normalizeQuestion(item) {
     }));
   const answerKey = (item.answer || '').match(/^([a-d])\)/i)?.[1]?.toLowerCase() || (optionDetails.find((detail) => detail.isCorrect) || {}).key || 'a';
   const answerIndex = Math.max(0, parsedChoices.findIndex((choice) => choice.key === answerKey));
+  const cleanedContext = buildContext(item);
 
   return {
     ...item,
     parsedChoices,
-    optionDetails,
+    optionDetails: optionDetails.map((detail) => ({
+      ...detail,
+      explanation: buildOptionExplanation(item, detail),
+    })),
     answerKey,
     answerIndex,
     displayAnswer: parsedChoices[answerIndex] ? `${parsedChoices[answerIndex].key}) ${parsedChoices[answerIndex].label}` : 'Revisa la explicación.',
-    explanation: compactText(item.explanation_es || 'Sin explicación adicional.'),
-    context: compactText(item.context || item.reading_excerpt || item.title || item.section),
-    helpText: compactText(item.help_text || (item.reading_id ? 'Lee el fragmento citado y selecciona la paráfrasis que mejor responde a la pregunta.' : (item.tags || []).slice(0, 3).join(' · '))),
+    explanation: buildMainExplanation(item, parsedChoices[answerIndex], optionDetails),
+    context: cleanedContext,
+    helpText: buildHelpText(item),
+    promptText: buildPrompt(item, cleanedContext),
+    priority: computePriority(item),
   };
 }
 
@@ -158,13 +165,15 @@ function updateGeneratorMeta() {
   const selectedLabel = selectedSections.length ? selectedSections.join(' · ') : 'sin filtros por bloque';
 
   els.generatorMeta.textContent = `${eligible.length} preguntas tipo test disponibles · ${Math.min(requested, eligible.length || requested)} por sesión · ${selectedLabel}`;
-  els.heroSubtitle.textContent = `Banco actual: ${state.bank.length} preguntas cerradas de 4 opciones con distractores verosímiles, explicaciones académicas en español y enfoque real de academia para opositores.`;
+  els.heroSubtitle.textContent = `Banco actual: ${state.bank.length} preguntas cerradas de 4 opciones con distractores verosímiles, explicaciones claras en español y enfoque práctico para opositores.`;
 }
 
 function startSession(forceRandom) {
   const eligible = forceRandom ? [...state.bank] : getEligibleQuestions();
   const requested = getRequestedCount();
-  const picked = shuffle([...eligible]).slice(0, Math.min(requested, eligible.length));
+  const picked = forceRandom
+    ? shuffle([...eligible]).slice(0, Math.min(requested, eligible.length))
+    : pickQuestions(eligible, requested);
 
   if (!picked.length) {
     els.generatorMeta.textContent = 'No hay preguntas disponibles con esta combinación. Cambia los filtros o usa aleatorio total.';
@@ -197,17 +206,21 @@ function renderQuestion() {
   els.feedbackBox.classList.add('hidden');
   els.feedbackOptionList.innerHTML = '';
   els.nextBtn.classList.add('hidden');
+  els.answerActions.classList.remove('answer-actions--sticky');
 
   els.questionNumber.textContent = String(state.currentIndex + 1);
   els.questionLabel.textContent = `${(question.difficulty || 'intermediate').toUpperCase()} · ${question.section.toUpperCase()}`;
   els.questionSubtitle.textContent = question.subsection || question.section;
   els.questionType.textContent = typeLabel(question);
-  els.questionContext.textContent = question.reading_id ? `Fragmento clave: ${question.context}` : question.context;
-  els.questionPrompt.textContent = compactText(question.prompt || 'Selecciona la respuesta correcta.');
+  els.questionContext.textContent = question.context;
+  els.questionPrompt.textContent = question.promptText;
   els.questionHelp.textContent = question.helpText;
 
   renderChoiceButtons(question);
   updateHeaderCounts();
+  requestAnimationFrame(() => {
+    els.questionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 }
 
 function renderChoiceButtons(question) {
@@ -262,6 +275,11 @@ function showFeedback(question, correct, userAnswer) {
   els.feedbackExplanation.textContent = question.explanation;
   renderFeedbackOptions(question, normalizeText(userAnswer));
   els.nextBtn.classList.remove('hidden');
+  els.answerActions.classList.add('answer-actions--sticky');
+
+  requestAnimationFrame(() => {
+    els.feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 }
 
 function renderFeedbackOptions(question, selectedKey) {
@@ -290,7 +308,7 @@ function renderResults() {
   els.resultCard.classList.remove('hidden');
   els.resultCorrect.textContent = state.score.correct;
   els.resultTotal.textContent = state.session.length;
-  els.resultSummary.textContent = `${state.score.correct} aciertos · ${state.score.incorrect} fallos · ${state.session.length ? Math.round((state.score.correct / state.session.length) * 100) : 0}% de acierto. Todas las preguntas de esta sesión fueron de 4 opciones cerradas.`;
+  els.resultSummary.textContent = `${state.score.correct} aciertos · ${state.score.incorrect} fallos · ${state.session.length ? Math.round((state.score.correct / state.session.length) * 100) : 0}% de acierto. Se ha priorizado una mezcla equilibrada de bloques y preguntas con más contexto.`;
   updateHeaderCounts(true);
 }
 
@@ -301,6 +319,7 @@ function resetSession() {
   state.answered = false;
   els.questionCard.classList.add('hidden');
   els.resultCard.classList.add('hidden');
+  els.answerActions.classList.remove('answer-actions--sticky');
   updateHeaderCounts();
 }
 
@@ -314,6 +333,138 @@ function updateHeaderCounts(finished = false) {
   els.errorCount.textContent = state.score.incorrect;
   els.questionCounter.textContent = `Pregunta ${current} de ${total}`;
   els.progressFill.style.width = `${percent}%`;
+}
+
+function pickQuestions(eligible, requested) {
+  const groups = new Map();
+  shuffle([...eligible])
+    .sort((a, b) => b.priority - a.priority)
+    .forEach((item) => {
+      const key = item.section || 'General';
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(item);
+    });
+
+  const picked = [];
+  const target = Math.min(requested, eligible.length);
+  while (picked.length < target) {
+    let added = false;
+    for (const items of groups.values()) {
+      if (!items.length || picked.length >= target) continue;
+      picked.push(items.shift());
+      added = true;
+    }
+    if (!added) break;
+  }
+  return picked;
+}
+
+function computePriority(item) {
+  let score = 0;
+  const prompt = compactText(item.prompt);
+  const section = normalizeText(item.section);
+  const type = normalizeText(item.type);
+  const context = normalizeText(item.context);
+
+  if (item.difficulty === 'advanced') score += 8;
+  if (item.reading_id) score += 6;
+  if (section.includes('reading')) score += 5;
+  if (section.includes('collocations')) score += 4;
+  if (section.includes('simulacros')) score += 3;
+  if (type.includes('grammar')) score += 2;
+  if (/elige el verbo irregular que mejor expresa/i.test(prompt)) score -= 6;
+  if (/que opcion expresa mejor esta idea/i.test(normalizeText(prompt))) score -= 4;
+  if (context.includes('lexico policial esencial')) score -= 2;
+
+  return score;
+}
+
+function buildPrompt(item) {
+  const prompt = compactText(item.prompt || 'Selecciona la respuesta correcta.');
+  const normalized = normalizeText(prompt);
+
+  if (/elige el verbo irregular que mejor expresa esta accion policial:/i.test(normalized)) {
+    const target = prompt.split(':').pop()?.replace(/\.$/, '').trim();
+    return target
+      ? `¿Qué verbo irregular encaja mejor con la idea de “${target}”?`
+      : '¿Qué verbo irregular completa mejor la idea planteada?';
+  }
+
+  if (/que opcion expresa mejor esta idea/i.test(normalized)) {
+    const target = prompt.split('?').pop()?.replace(/\.$/, '').trim();
+    return target
+      ? `¿Qué opción transmite mejor “${target}” en inglés policial?`
+      : '¿Qué opción transmite mejor la idea propuesta?';
+  }
+
+  return prompt
+    .replace(/documento maestro/gi, 'material de referencia')
+    .replace(/fragmento citado/gi, 'texto')
+    .replace(/texto base/gi, 'texto');
+}
+
+function buildContext(item) {
+  const raw = compactText(item.context || item.reading_excerpt || item.title || item.section);
+  return raw
+    .replace(/fragmento clave:\s*/gi, '')
+    .replace(/documento maestro/gi, 'material de referencia')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
+
+function buildHelpText(item) {
+  const help = compactText(item.help_text);
+  const normalized = normalizeText(help);
+
+  if (!help) {
+    return item.reading_id
+      ? 'Apóyate en el contexto y elige la opción que mejor parafrasea la información relevante.'
+      : 'Fíjate en el matiz, el uso real y los distractores antes de responder.';
+  }
+
+  if (normalized.includes('fragmento citado')) {
+    return 'Usa el contexto y descarta la alternativa que solo repite palabras sin responder a la idea principal.';
+  }
+
+  if (normalized.includes('significado principal mas preciso')) {
+    return 'Elige la alternativa más precisa y evita opciones demasiado generales o parecidas solo en la forma.';
+  }
+
+  return help
+    .replace(/documento maestro/gi, 'material de referencia')
+    .replace(/fragmento citado/gi, 'contexto');
+}
+
+function buildMainExplanation(item, correctChoice, optionDetails) {
+  const raw = compactText(item.explanation_es || '');
+  const sanitized = raw
+    .replace(/explicaci[oó]n acad[eé]mica:\s*/gi, '')
+    .replace(/elemento derivado directamente del documento maestro:\s*/gi, '')
+    .replace(/documento maestro/gi, 'material de referencia')
+    .replace(/fragmento citado/gi, 'contexto')
+    .trim();
+
+  if (sanitized) return sanitized;
+
+  const correctDetail = optionDetails.find((detail) => detail.isCorrect);
+  if (correctDetail?.explanation) return correctDetail.explanation;
+  if (correctChoice?.label) return `La correcta es ${correctChoice.key}) ${correctChoice.label} porque es la única opción que responde con precisión a la consigna.`;
+  return 'La opción correcta es la única que mantiene el sentido exacto que exige la pregunta.';
+}
+
+function buildOptionExplanation(item, detail) {
+  const text = compactText(detail.explanation || '');
+  const sanitized = text
+    .replace(/explicaci[oó]n acad[eé]mica:\s*/gi, '')
+    .replace(/elemento derivado directamente del documento maestro:\s*/gi, '')
+    .replace(/documento maestro/gi, 'material de referencia')
+    .replace(/fragmento citado/gi, 'contexto')
+    .trim();
+
+  if (sanitized) return sanitized;
+  return detail.isCorrect
+    ? 'Es la alternativa válida porque mantiene el significado exacto y encaja en el contexto planteado.'
+    : 'No es correcta porque cambia el significado, resulta demasiado general o introduce un matiz incorrecto.';
 }
 
 function typeLabel(question) {

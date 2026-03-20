@@ -1134,6 +1134,262 @@ def extract_reading_questions(text: str) -> list[dict]:
     return items
 
 
+# ---------- difficulty upgrades ----------
+
+DERIVED_ITEM_FIXES = {
+    'def-situaciones-funcionales-preguntas-de-examen-2': {
+        'correct_label': 'take someone into custody',
+        'prompt_label': 'poner bajo custodia / detener',
+    },
+    'def-situaciones-funcionales-preguntas-de-examen-3': {
+        'correct_label': 'be caught red-handed',
+        'prompt_label': 'pillado in fraganti',
+    },
+    'def-situaciones-funcionales-preguntas-de-examen-8': {
+        'prompt_label': 'reunir / recopilar pruebas',
+    },
+    'def-situaciones-funcionales-preguntas-de-examen-9': {
+        'correct_label': 'question / interrogate a suspect',
+        'prompt_label': 'interrogar a un sospechoso',
+    },
+    'def-situaciones-funcionales-preguntas-de-examen-10': {
+        'prompt_label': 'redactar / presentar un informe',
+    },
+    'def-situaciones-funcionales-preguntas-de-examen-17': {
+        'prompt_label': 'infracción / violación de la ley',
+    },
+    'def-situaciones-funcionales-preguntas-de-examen-20': {
+        'prompt_label': 'evidencia / información que prueba hechos',
+    },
+}
+
+DERIVED_FAMILIES = {
+    'steal stole stolen': ['steal stole stolen', 'take took taken', 'catch caught caught', 'leave left left'],
+    'take took taken': ['take took taken', 'steal stole stolen', 'catch caught caught', 'leave left left'],
+    'flee fled fled': ['flee fled fled', 'run ran run', 'leave left left', 'drive drove driven'],
+    'run ran run': ['run ran run', 'flee fled fled', 'leave left left', 'drive drove driven'],
+    'catch caught caught': ['catch caught caught', 'find found found', 'see saw seen', 'take took taken'],
+    'find found found': ['find found found', 'see saw seen', 'hear heard heard', 'catch caught caught'],
+    'leave left left': ['leave left left', 'flee fled fled', 'run ran run', 'drive drove driven'],
+    'drive drove driven': ['drive drove driven', 'leave left left', 'run ran run', 'take took taken'],
+    'speak spoke spoken': ['speak spoke spoken', 'say said said', 'tell told told', 'hear heard heard'],
+    'tell told told': ['tell told told', 'say said said', 'speak spoke spoken', 'hear heard heard'],
+    'say said said': ['say said said', 'tell told told', 'speak spoke spoken', 'hear heard heard'],
+    'hear heard heard': ['hear heard heard', 'see saw seen', 'say said said', 'speak spoke spoken'],
+    'see saw seen': ['see saw seen', 'hear heard heard', 'find found found', 'catch caught caught'],
+    'shoot shot shot': ['shoot shot shot', 'catch caught caught', 'drive drove driven', 'run ran run'],
+    'ring rang rung': ['ring rang rung', 'hear heard heard', 'say said said', 'see saw seen'],
+    'arrest arrested arrested': ['arrest arrested arrested', 'detain detained detained', 'question questioned questioned', 'search searched searched'],
+    'report reported reported': ['report reported reported', 'issue issued issued', 'confirm confirmed confirmed', 'question questioned questioned'],
+    'identify identified identified': ['identify identified identified', 'confirm confirmed confirmed', 'question questioned questioned', 'approach approached approached'],
+    'check checked checked': ['check checked checked', 'search searched searched', 'identify identified identified', 'confirm confirmed confirmed'],
+    'search searched searched': ['search searched searched', 'seize seized seized', 'check checked checked', 'question questioned questioned'],
+    'seize seized seized': ['seize seized seized', 'search searched searched', 'issue issued issued', 'arrest arrested arrested'],
+    'issue issued issued': ['issue issued issued', 'report reported reported', 'confirm confirmed confirmed', 'arrest arrested arrested'],
+    'escort escorted escorted': ['escort escorted escorted', 'approach approached approached', 'arrest arrested arrested', 'question questioned questioned'],
+    'question questioned questioned': ['question questioned questioned', 'identify identified identified', 'report reported reported', 'arrest arrested arrested'],
+    'approach approached approached': ['approach approached approached', 'escort escorted escorted', 'identify identified identified', 'question questioned questioned'],
+    'incident incidente /': ['incident', 'crime', 'offense', 'crime scene'],
+    'evidence': ['evidence', 'proof', 'clues', 'footage'],
+    'eyewitness': ['eyewitness', 'security guard', 'police officers', 'suspect'],
+    'police officers': ['police officers', 'security guard', 'eyewitness', 'suspect'],
+    'security guard': ['security guard', 'police officers', 'eyewitness', 'assistant manager'],
+    'crime / offence': ['crime / offence', 'incident', 'offense', 'felony'],
+    'crime scene': ['crime scene', 'police station', 'incident', 'evidence'],
+    'police station': ['police station', 'crime scene', 'jail', 'prison'],
+    'security camera / cctv': ['security camera / CCTV', 'footage', 'evidence', 'crime scene'],
+    'footage': ['footage', 'evidence', 'proof', 'security camera / CCTV'],
+    'investigate': ['investigate', 'question', 'examine', 'follow'],
+    'question': ['question', 'investigate', 'examine', 'confirm'],
+    'collect (evidence)': ['collect (evidence)', 'confirm', 'examine', 'follow'],
+    'confirm': ['confirm', 'identify', 'check', 'question'],
+    'follow': ['follow', 'approach', 'escort', 'contact'],
+    'stop': ['stop', 'approach', 'escort', 'follow'],
+    'escort': ['escort', 'approach', 'follow', 'contact'],
+    'approach': ['approach', 'escort', 'contact', 'follow'],
+    'examine': ['examine', 'check', 'confirm', 'question'],
+    'contact': ['contact', 'question', 'confirm', 'approach'],
+    'flee / run away': ['flee / run away', 'approach', 'follow', 'stop'],
+    'busy': ['busy', 'crowded', 'agitated', 'in a hurry'],
+    'crowded': ['crowded', 'busy', 'agitated', 'sunny'],
+    'sunny': ['sunny', 'busy', 'crowded', 'agitated'],
+    'in a hurry': ['in a hurry', 'agitated', 'busy', 'crowded'],
+    'agitated': ['agitated', 'in a hurry', 'busy', 'crowded'],
+    'be under arrest': ['be under arrest', 'take someone into custody', 'be caught red-handed', 'book someone'],
+    'take someone into custody': ['take someone into custody', 'be under arrest', 'book someone', 'press charges'],
+    'be caught red-handed': ['be caught red-handed', 'be under arrest', 'get away with it', 'break the law'],
+    'book someone': ['book someone', 'take someone into custody', 'press charges', 'file a report'],
+    'get away with it': ['get away with it', 'break the law', 'be caught red-handed', 'bend the law'],
+    'crack the case': ['crack the case', 'follow a lead', 'uncover', 'gather evidence'],
+    'follow a lead': ['follow a lead', 'gather evidence', 'question / interrogate a suspect', 'crack the case'],
+    'gather evidence': ['gather evidence', 'file a report', 'press charges', 'follow a lead'],
+    'question / interrogate a suspect': ['question / interrogate a suspect', 'file a report', 'press charges', 'follow a lead'],
+    'file a report': ['file a report', 'press charges', 'gather evidence', 'question / interrogate a suspect'],
+    'press charges': ['press charges', 'file a report', 'book someone', 'break the law'],
+    'break the law': ['break the law', 'bend the law', 'get away with it', 'press charges'],
+    'uncover': ['uncover', 'crack the case', 'follow a lead', 'gather evidence'],
+    'bend the law': ['bend the law', 'break the law', 'get away with it', 'press charges'],
+    'actual': ['actual', 'current', 'present', 'recent'],
+    'crime': ['crime', 'offense', 'felony', 'misdemeanor'],
+    'offense': ['offense', 'crime', 'felony', 'misdemeanor'],
+    'felony': ['felony', 'misdemeanor', 'offense', 'crime'],
+    'misdemeanor': ['misdemeanor', 'felony', 'offense', 'crime'],
+    'proof': ['proof', 'evidence', 'clues', 'footage'],
+    'clues': ['clues', 'evidence', 'proof', 'footage'],
+    'prison': ['prison', 'jail', 'police station', 'crime scene'],
+    'jail': ['jail', 'prison', 'police station', 'crime scene'],
+}
+
+GRAMMAR_OPTION_SETS = {
+    'The officer stopped the car.': ['The officer stopped the car.', 'The officer was stopping the car.', 'The officer has stopped the car.', 'The officer stop the car.'],
+    'The officer didn’t stop the car.': ['The officer didn’t stop the car.', 'The officer wasn’t stopping the car.', 'The officer hasn’t stopped the car.', 'The officer didn’t stopped the car.'],
+    'Did the officer stop the car?': ['Did the officer stop the car?', 'Was the officer stop the car?', 'Did the officer stopped the car?', 'Has the officer stop the car?'],
+    'We were patrolling the area.': ['We were patrolling the area.', 'We patrolled the area.', 'We are patrolling the area.', 'We were patrol the area.'],
+    'We weren’t patrolling the area.': ['We weren’t patrolling the area.', 'We didn’t patrol the area.', 'We aren’t patrolling the area.', 'We weren’t patrol the area.'],
+    'Were we patrolling the area?': ['Were we patrolling the area?', 'Did we patrolling the area?', 'Were we patrol the area?', 'Are we patrolling the area?'],
+    'We were checking IDs when the suspect ran away.': ['We were checking IDs when the suspect ran away.', 'We checked IDs when the suspect was running away.', 'We were checking IDs when the suspect was run away.', 'We were checking IDs when the suspect run away.'],
+    'We weren’t checking IDs when the suspect ran away.': ['We weren’t checking IDs when the suspect ran away.', 'We didn’t check IDs when the suspect was running away.', 'We weren’t checking IDs when the suspect run away.', 'We weren’t check IDs when the suspect ran away.'],
+    'Were we checking IDs when the suspect ran away?': ['Were we checking IDs when the suspect ran away?', 'Did we checking IDs when the suspect ran away?', 'Were we check IDs when the suspect ran away?', 'Were we checking IDs when did the suspect run away?'],
+    'While we were interviewing the witness, another officer called for backup.': ['While we were interviewing the witness, another officer called for backup.', 'While we interviewed the witness, another officer called for backup.', 'While we were interviewing the witness, another officer was calling for backup.', 'While we were interviewing the witness, another officer call for backup.'],
+    'While we weren’t interviewing the witness, another officer called for backup.': ['While we weren’t interviewing the witness, another officer called for backup.', 'While we didn’t interview the witness, another officer called for backup.', 'While we weren’t interviewing the witness, another officer was calling for backup.', 'While we weren’t interview the witness, another officer called for backup.'],
+    'While we were interviewing the witness, did another officer call for backup?': ['While we were interviewing the witness, did another officer call for backup?', 'While we interviewed the witness, did another officer call for backup?', 'While we were interviewing the witness, did another officer called for backup?', 'While we were interviewing the witness, was another officer call for backup?'],
+    'He has provided his ID.': ['He has provided his ID.', 'He provided his ID.', 'He had provided his ID.', 'He has provide his ID.'],
+    'He hasn’t provided his ID.': ['He hasn’t provided his ID.', 'He didn’t provide his ID.', 'He hadn’t provided his ID.', 'He hasn’t provide his ID.'],
+    'Has he provided his ID?': ['Has he provided his ID?', 'Did he provided his ID?', 'Has he provide his ID?', 'Had he provided his ID?'],
+    'The suspect had left before the police arrived.': ['The suspect had left before the police arrived.', 'The suspect left before the police had arrived.', 'The suspect has left before the police arrived.', 'The suspect had leave before the police arrived.'],
+    'The suspect hadn’t left before the police arrived.': ['The suspect hadn’t left before the police arrived.', 'The suspect didn’t leave before the police arrived.', 'The suspect hasn’t left before the police arrived.', 'The suspect hadn’t leave before the police arrived.'],
+    'Had the suspect left before the police arrived?': ['Had the suspect left before the police arrived?', 'Did the suspect left before the police arrived?', 'Had the suspect leave before the police arrived?', 'Has the suspect left before the police arrived?'],
+    'He used to work nights.': ['He used to work nights.', 'He was used to work nights.', 'He use to work nights.', 'He used to working nights.'],
+    'He didn’t use to work nights.': ['He didn’t use to work nights.', 'He wasn’t used to work nights.', 'He didn’t used to work nights.', 'He hasn’t used to work nights.'],
+    'Did he use to work nights?': ['Did he use to work nights?', 'Was he used to work nights?', 'Did he used to work nights?', 'Has he use to work nights?'],
+    'The suspect was arrested.': ['The suspect was arrested.', 'The suspect arrested.', 'The suspect had arrested.', 'The suspect was arresting.'],
+    'The suspect wasn’t arrested.': ['The suspect wasn’t arrested.', 'The suspect didn’t arrested.', 'The suspect hasn’t been arrested.', 'The suspect wasn’t arrest.'],
+    'Was the suspect arrested?': ['Was the suspect arrested?', 'Did the suspect arrested?', 'Was the suspect arrest?', 'Has the suspect arrested?'],
+    'We are leaving tomorrow morning.': ['We are leaving tomorrow morning.', 'We leave tomorrow morning.', 'We will leaving tomorrow morning.', 'We are leave tomorrow morning.'],
+    'We aren’t leaving tomorrow morning.': ['We aren’t leaving tomorrow morning.', 'We don’t leave tomorrow morning.', 'We won’t leaving tomorrow morning.', 'We aren’t leave tomorrow morning.'],
+    'Are we leaving tomorrow morning?': ['Are we leaving tomorrow morning?', 'Do we leaving tomorrow morning?', 'Are we leave tomorrow morning?', 'Will we leaving tomorrow morning?'],
+    'The train leaves at 7:45.': ['The train leaves at 7:45.', 'The train is leaving at 7:45.', 'The train leave at 7:45.', 'The train has left at 7:45.'],
+    'The train doesn’t leave at 7:45.': ['The train doesn’t leave at 7:45.', 'The train isn’t leaving at 7:45.', 'The train doesn’t leaves at 7:45.', 'The train hasn’t left at 7:45.'],
+    'Does the train leave at 7:45?': ['Does the train leave at 7:45?', 'Is the train leave at 7:45?', 'Does the train leaves at 7:45?', 'Has the train leave at 7:45?'],
+    'I will take a taxi.': ['I will take a taxi.', 'I am going to take a taxi.', 'I will taking a taxi.', 'I will took a taxi.'],
+    'I won’t take a taxi.': ['I won’t take a taxi.', 'I am not going to take a taxi.', 'I won’t taking a taxi.', 'I won’t took a taxi.'],
+    'Will I take a taxi?': ['Will I take a taxi?', 'Am I going to take a taxi?', 'Will I taking a taxi?', 'Will I took a taxi?'],
+    'He is going to report the incident.': ['He is going to report the incident.', 'He will report the incident.', 'He is going report the incident.', 'He is going to reported the incident.'],
+    'He isn’t going to report the incident.': ['He isn’t going to report the incident.', 'He won’t report the incident.', 'He isn’t going report the incident.', 'He isn’t going to reported the incident.'],
+    'Is he going to report the incident?': ['Is he going to report the incident?', 'Will he report the incident?', 'Is he going report the incident?', 'Is he going to reported the incident?'],
+}
+
+
+def normalize_family_key(label: str) -> str:
+    return simplify(label).replace('incidente /', '').strip()
+
+
+def build_semantic_prompt(item: dict, prompt_label: str) -> str:
+    if item['subsection'] == 'Irregulares':
+        return f'En un contexto policial, elige la serie verbal irregular más precisa para expresar «{prompt_label}» frente a verbos muy cercanos.'
+    if item['subsection'] == 'Regulares muy Policiales':
+        return f'En un contexto policial, elige la serie verbal regular más precisa para expresar «{prompt_label}» frente a acciones muy parecidas.'
+    if item['section'] == 'Situaciones funcionales':
+        return f'En inglés policial, selecciona la expresión exacta para «{prompt_label}» y descarta las alternativas cercanas pero no equivalentes.'
+    return f'En vocabulario policial, elige la opción más precisa para «{prompt_label}» y descarta sinónimos parciales o términos próximos.'
+
+
+def build_semantic_explanation(correct_label: str, prompt_label: str, section: str) -> str:
+    if section == 'Situaciones funcionales':
+        return f'Explicación académica: la respuesta correcta es «{correct_label}», porque expresa exactamente «{prompt_label}». Las demás opciones son cercanas, pero cambian el matiz legal, procesal o léxico.'
+    return f'Explicación académica: la respuesta correcta es «{correct_label}», porque corresponde exactamente a «{prompt_label}». Los distractores pertenecen al mismo campo semántico para obligar a distinguir por matiz.'
+
+
+def upgrade_derived_definition_item(item: dict) -> dict:
+    override = DERIVED_ITEM_FIXES.get(item['id'], {})
+    correct_label = override.get('correct_label') or item['answer'].split(') ', 1)[1]
+    if correct_label == 'incident incidente /':
+        correct_label = 'incident'
+    prompt_label = override.get('prompt_label') or item['prompt'].rsplit(':', 1)[-1].strip(' .?¿¡')
+    prompt_label = re.sub(r'^(?:Qué opción expresa mejor esta idea\??\s*|Elige el verbo irregular que mejor expresa esta acción policial:\s*|Elige el verbo regular adecuado para esta acción policial:\s*)', '', prompt_label, flags=re.I).strip()
+    family_key = normalize_family_key(correct_label)
+    family = DERIVED_FAMILIES.get(family_key) or DERIVED_FAMILIES.get(simplify(correct_label)) or [correct_label] + [choice['label'] for choice in item['choices'] if choice['label'] != correct_label]
+    options = family[:]
+    if correct_label not in options:
+        options = [correct_label] + options
+    deduped = []
+    seen = set()
+    for option in options:
+        option = 'incident' if option == 'incident incidente /' else option
+        key = simplify(option)
+        if key not in seen:
+            deduped.append(option)
+            seen.add(key)
+    options = deduped[:4]
+    if len(options) < 4:
+        extras = [('incident' if choice['label'] == 'incident incidente /' else choice['label']) for choice in item['choices'] if simplify('incident' if choice['label'] == 'incident incidente /' else choice['label']) not in seen and simplify('incident' if choice['label'] == 'incident incidente /' else choice['label']) != simplify(correct_label)]
+        for extra in extras:
+            options.append(extra)
+            seen.add(simplify(extra))
+            if len(options) == 4:
+                break
+    choices = make_choice_objects(options)
+    answer_index = next(i for i, option in enumerate(options) if simplify(option) == simplify(correct_label))
+    explanations = {}
+    for choice in choices:
+        if choice['key'] == choices[answer_index]['key']:
+            explanations[choice['key']] = f'Correcta: «{choice["label"]}» es la equivalencia más precisa para «{prompt_label}» en este contexto.'
+        else:
+            explanations[choice['key']] = f'Incorrecta: «{choice["label"]}» pertenece al mismo campo léxico, pero no expresa exactamente «{prompt_label}».'
+    item.update({
+        'prompt': build_semantic_prompt(item, prompt_label),
+        'content_es': build_semantic_prompt(item, prompt_label),
+        'choices': choices,
+        'answer': f"{chr(97 + answer_index)}) {choices[answer_index]['label']}",
+        'acceptable_answers': [f"{chr(97 + answer_index)}) {choices[answer_index]['label']}", choices[answer_index]['key']],
+        'option_explanations': make_option_explanations(choices, answer_index, explanations),
+        'explanation_es': build_semantic_explanation(correct_label, prompt_label, item['section']),
+        'help_text': 'Las cuatro opciones son cercanas. Decide por el matiz exacto: procedimiento, gravedad, función policial o significado legal.',
+        'difficulty': 'upper-intermediate',
+        'context': f"{item['subsection']} · contraste léxico fino",
+    })
+    return item
+
+
+def upgrade_grammar_item(item: dict) -> dict:
+    correct_label = item['answer'].split(') ', 1)[1]
+    options = GRAMMAR_OPTION_SETS.get(correct_label) or GRAMMAR_OPTION_SETS.get(f'{correct_label}.')
+    if not options:
+        return item
+    choices = make_choice_objects(options)
+    answer_index = next(i for i, option in enumerate(options) if normalize_option_label(option) == normalize_option_label(correct_label))
+    requested_form = 'interrogativa' if 'question' in item.get('tags', []) else 'negativa' if 'negative' in item.get('tags', []) else 'afirmativa'
+    explanations = {}
+    for choice in choices:
+        if choice['key'] == choices[answer_index]['key']:
+            explanations[choice['key']] = f'Correcta: mantiene {item["subsection"]} y la forma {requested_form} pedida por el enunciado.'
+        else:
+            explanations[choice['key']] = f'Incorrecta: parece cercana, pero falla por auxiliar, forma verbal o tiempo respecto a {item["subsection"]}.'
+    item.update({
+        'choices': choices,
+        'answer': f"{chr(97 + answer_index)}) {choices[answer_index]['label']}",
+        'acceptable_answers': [f"{chr(97 + answer_index)}) {choices[answer_index]['label']}", choices[answer_index]['key']],
+        'option_explanations': make_option_explanations(choices, answer_index, explanations),
+        'explanation_es': f'Explicación académica: la opción correcta respeta {item["subsection"]} y la forma {requested_form}. Los distractores conservan una apariencia similar y solo cambian un auxiliar, una terminación o la combinación verbal decisiva.',
+        'help_text': f'Las cuatro alternativas están construidas como forma {requested_form}. Revisa auxiliar, orden, terminación y verbo principal.',
+        'difficulty': 'upper-intermediate',
+    })
+    return item
+
+
+def upgrade_question_bank(question_items: list[dict]) -> list[dict]:
+    upgraded = []
+    for item in question_items:
+        new_item = dict(item)
+        tags = set(new_item.get('tags', []))
+        if 'derived-definition' in tags:
+            new_item = upgrade_derived_definition_item(new_item)
+        elif 'grammar' in tags:
+            new_item = upgrade_grammar_item(new_item)
+        upgraded.append(new_item)
+    return upgraded
+
+
 # ---------- main ----------
 
 def main() -> None:
@@ -1178,6 +1434,7 @@ def main() -> None:
     question_items.extend(extract_reading_questions(raw))
 
     question_items = [item for item in question_items if len(item.get('choices', [])) == 4]
+    question_items = upgrade_question_bank(question_items)
 
     guide_payload = {
         'source': 'ingles-definitivo-maestro.md',

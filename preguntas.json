@@ -13525,6 +13525,832 @@
       "context": "\"The arrival of the police, the questioning of suspects and the collection of clues add another layer of excitement to the evening.\"",
       "help_text": "Fragmento clave del reading: identifica la idea principal y escoge la opción que la reformula con precisión, sin copiarla ni añadir información nueva.",
       "reading_id": "reading-1-murder-mystery"
+    },
+    {
+      "id": "exam-set-04-1",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 1",
+      "prompt": "I need ______ Italian quickly",
+      "content_es": "I need ______ Italian quickly",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "learning"
+        },
+        {
+          "key": "b",
+          "label": "learn"
+        },
+        {
+          "key": "c",
+          "label": "to learn"
+        },
+        {
+          "key": "d",
+          "label": "for learning"
+        }
+      ],
+      "answer": "c) to learn",
+      "acceptable_answers": [
+        "c) to learn",
+        "c"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: need va seguido de to + infinitivo. Por eso la forma correcta es to learn.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "infinitive",
+        "grammar"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "learning",
+          "is_correct": false,
+          "explanation": "Incorrecta: learning sería posible con verbos como enjoy, avoid o mind, pero no con need en esta estructura."
+        },
+        {
+          "key": "b",
+          "label": "learn",
+          "is_correct": false,
+          "explanation": "Incorrecta: después de need falta la partícula to."
+        },
+        {
+          "key": "c",
+          "label": "to learn",
+          "is_correct": true,
+          "explanation": "Correcta: la estructura fija es need to do something; aquí, need to learn Italian quickly."
+        },
+        {
+          "key": "d",
+          "label": "for learning",
+          "is_correct": false,
+          "explanation": "Incorrecta: for learning no encaja gramaticalmente después de need en este enunciado."
+        }
+      ],
+      "context": "",
+      "help_text": "Recuerda la regla: need + to + infinitivo."
+    },
+    {
+      "id": "exam-set-04-2",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 2",
+      "prompt": "I don't mind ______ up early every day",
+      "content_es": "I don't mind ______ up early every day",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "to get"
+        },
+        {
+          "key": "b",
+          "label": "get"
+        },
+        {
+          "key": "c",
+          "label": "getting"
+        },
+        {
+          "key": "d",
+          "label": "having got"
+        }
+      ],
+      "answer": "c) getting",
+      "acceptable_answers": [
+        "c) getting",
+        "c"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: después de mind usamos verbo en -ing. Por eso la opción correcta es getting.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "gerund",
+        "grammar"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "to get",
+          "is_correct": false,
+          "explanation": "Incorrecta: mind no acepta to + infinitivo en esta estructura."
+        },
+        {
+          "key": "b",
+          "label": "get",
+          "is_correct": false,
+          "explanation": "Incorrecta: después de mind el verbo debe llevar terminación -ing."
+        },
+        {
+          "key": "c",
+          "label": "getting",
+          "is_correct": true,
+          "explanation": "Correcta: la estructura correcta es mind + verbo-ing: I don't mind getting up early."
+        },
+        {
+          "key": "d",
+          "label": "having got",
+          "is_correct": false,
+          "explanation": "Incorrecta: esta forma no corresponde al valor simple y habitual del enunciado."
+        }
+      ],
+      "context": "",
+      "help_text": "Recuerda la regla: mind + verbo-ing."
+    },
+    {
+      "id": "exam-set-04-3",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 3",
+      "prompt": "What does 'start a lawsuit against somebody' mean?",
+      "content_es": "What does 'start a lawsuit against somebody' mean?",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "demand"
+        },
+        {
+          "key": "b",
+          "label": "take to court"
+        },
+        {
+          "key": "c",
+          "label": "trial"
+        },
+        {
+          "key": "d",
+          "label": "forgive in court"
+        }
+      ],
+      "answer": "b) take to court",
+      "acceptable_answers": [
+        "b) take to court",
+        "b"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: start a lawsuit against somebody significa iniciar una demanda contra alguien, es decir, take somebody to court.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "legal-vocabulary",
+        "vocabulary"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "demand",
+          "is_correct": false,
+          "explanation": "Incorrecta: demand significa exigir algo, pero no equivale a iniciar una demanda judicial contra alguien."
+        },
+        {
+          "key": "b",
+          "label": "take to court",
+          "is_correct": true,
+          "explanation": "Correcta: start a lawsuit against somebody equivale a take somebody to court."
+        },
+        {
+          "key": "c",
+          "label": "trial",
+          "is_correct": false,
+          "explanation": "Incorrecta: trial es el juicio en sí, no la acción de comenzar la demanda."
+        },
+        {
+          "key": "d",
+          "label": "forgive in court",
+          "is_correct": false,
+          "explanation": "Incorrecta: esta expresión no corresponde al significado jurídico del enunciado."
+        }
+      ],
+      "context": "",
+      "help_text": "Relaciona lawsuit con la idea de llevar a alguien a juicio."
+    },
+    {
+      "id": "exam-set-04-4",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 4",
+      "prompt": "______ somebody is a serious crime",
+      "content_es": "______ somebody is a serious crime",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "Kill"
+        },
+        {
+          "key": "b",
+          "label": "Killed"
+        },
+        {
+          "key": "c",
+          "label": "Killing"
+        },
+        {
+          "key": "d",
+          "label": "To killing"
+        }
+      ],
+      "answer": "c) Killing",
+      "acceptable_answers": [
+        "c) Killing",
+        "c"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: cuando una acción funciona como sujeto de la frase, se usa normalmente el verbo en -ing. Por eso la respuesta correcta es Killing.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "gerund",
+        "grammar"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "Kill",
+          "is_correct": false,
+          "explanation": "Incorrecta: el infinitivo sin to no puede funcionar aquí como sujeto natural de la oración."
+        },
+        {
+          "key": "b",
+          "label": "Killed",
+          "is_correct": false,
+          "explanation": "Incorrecta: killed es participio pasado y no encaja como sujeto en este enunciado."
+        },
+        {
+          "key": "c",
+          "label": "Killing",
+          "is_correct": true,
+          "explanation": "Correcta: una acción como sujeto suele expresarse con gerundio: Killing somebody is a serious crime."
+        },
+        {
+          "key": "d",
+          "label": "To killing",
+          "is_correct": false,
+          "explanation": "Incorrecta: to killing no existe como estructura correcta en inglés."
+        }
+      ],
+      "context": "",
+      "help_text": "Cuando la acción es el sujeto, piensa en verbo-ing: Stealing is a crime. Lying is wrong."
+    },
+    {
+      "id": "exam-set-04-5",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 5",
+      "prompt": "Be careful! It's dangerous ______ here late at night.",
+      "content_es": "Be careful! It's dangerous ______ here late at night.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "walk"
+        },
+        {
+          "key": "b",
+          "label": "to walk"
+        },
+        {
+          "key": "c",
+          "label": "for walk"
+        },
+        {
+          "key": "d",
+          "label": "walking to"
+        }
+      ],
+      "answer": "b) to walk",
+      "acceptable_answers": [
+        "b) to walk",
+        "b"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: después de it's + adjetivo usamos to + infinitivo para expresar la acción. Por eso la opción correcta es to walk.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "infinitive",
+        "grammar"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "walk",
+          "is_correct": false,
+          "explanation": "Incorrecta: después de It's dangerous falta la partícula to."
+        },
+        {
+          "key": "b",
+          "label": "to walk",
+          "is_correct": true,
+          "explanation": "Correcta: la estructura es it's + adjective + to + infinitive: It's dangerous to walk here late at night."
+        },
+        {
+          "key": "c",
+          "label": "for walk",
+          "is_correct": false,
+          "explanation": "Incorrecta: for walk no es una estructura gramatical válida en este contexto."
+        },
+        {
+          "key": "d",
+          "label": "walking to",
+          "is_correct": false,
+          "explanation": "Incorrecta: la frase requiere to walk, no un gerundio seguido de to."
+        }
+      ],
+      "context": "",
+      "help_text": "Recuerda el patrón: it's + adjetivo + to + infinitivo."
+    },
+    {
+      "id": "exam-set-04-6",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 6",
+      "prompt": "He went to court without ______ paid a lawyer",
+      "content_es": "He went to court without ______ paid a lawyer",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "having"
+        },
+        {
+          "key": "b",
+          "label": "have"
+        },
+        {
+          "key": "c",
+          "label": "to have"
+        },
+        {
+          "key": "d",
+          "label": "had"
+        }
+      ],
+      "answer": "a) having",
+      "acceptable_answers": [
+        "a) having",
+        "a"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: después de without usamos gerundio; cuando la acción es anterior, la estructura habitual es without having + participio. Por eso la opción correcta es having.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "upper-intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "perfect-gerund",
+        "grammar"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "having",
+          "is_correct": true,
+          "explanation": "Correcta: la estructura es without having paid a lawyer."
+        },
+        {
+          "key": "b",
+          "label": "have",
+          "is_correct": false,
+          "explanation": "Incorrecta: después de la preposición without no va el verbo base."
+        },
+        {
+          "key": "c",
+          "label": "to have",
+          "is_correct": false,
+          "explanation": "Incorrecta: después de without no usamos infinitivo con to."
+        },
+        {
+          "key": "d",
+          "label": "had",
+          "is_correct": false,
+          "explanation": "Incorrecta: had por sí solo no completa la estructura requerida tras without."
+        }
+      ],
+      "context": "",
+      "help_text": "Piensa en la secuencia: without having done / seen / paid."
+    },
+    {
+      "id": "exam-set-04-7",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 7",
+      "prompt": "You ______ pay to go into this place. It's free.",
+      "content_es": "You ______ pay to go into this place. It's free.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "mustn't"
+        },
+        {
+          "key": "b",
+          "label": "don't must"
+        },
+        {
+          "key": "c",
+          "label": "don't have to"
+        },
+        {
+          "key": "d",
+          "label": "can't to"
+        }
+      ],
+      "answer": "c) don't have to",
+      "acceptable_answers": [
+        "c) don't have to",
+        "c"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: si algo es gratis, no hay obligación de pagar. En inglés eso se expresa con don't have to.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "modals",
+        "grammar"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "mustn't",
+          "is_correct": false,
+          "explanation": "Incorrecta: mustn't indica prohibición, no ausencia de obligación."
+        },
+        {
+          "key": "b",
+          "label": "don't must",
+          "is_correct": false,
+          "explanation": "Incorrecta: don't must no existe en inglés estándar."
+        },
+        {
+          "key": "c",
+          "label": "don't have to",
+          "is_correct": true,
+          "explanation": "Correcta: don't have to expresa que no es necesario pagar porque la entrada es gratis."
+        },
+        {
+          "key": "d",
+          "label": "can't to",
+          "is_correct": false,
+          "explanation": "Incorrecta: can't to es gramaticalmente incorrecto."
+        }
+      ],
+      "context": "",
+      "help_text": "Distingue obligación de prohibición: don't have to = no es necesario; mustn't = está prohibido."
+    },
+    {
+      "id": "exam-set-04-8",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 8",
+      "prompt": "It's a secret, so you ______ tell anybody.",
+      "content_es": "It's a secret, so you ______ tell anybody.",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "mustn't to"
+        },
+        {
+          "key": "b",
+          "label": "mustn't"
+        },
+        {
+          "key": "c",
+          "label": "don't have"
+        },
+        {
+          "key": "d",
+          "label": "needn't to"
+        }
+      ],
+      "answer": "b) mustn't",
+      "acceptable_answers": [
+        "b) mustn't",
+        "b"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: si algo es secreto, existe una prohibición de contarlo. En inglés esa idea se expresa con mustn't.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "modals",
+        "grammar"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "mustn't to",
+          "is_correct": false,
+          "explanation": "Incorrecta: después de mustn't no se usa to."
+        },
+        {
+          "key": "b",
+          "label": "mustn't",
+          "is_correct": true,
+          "explanation": "Correcta: mustn't expresa prohibición absoluta: no debes contárselo a nadie."
+        },
+        {
+          "key": "c",
+          "label": "don't have",
+          "is_correct": false,
+          "explanation": "Incorrecta: la estructura está incompleta; sería don't have to, y además no expresaría prohibición."
+        },
+        {
+          "key": "d",
+          "label": "needn't to",
+          "is_correct": false,
+          "explanation": "Incorrecta: needn't to es incorrecto y tampoco transmite la prohibición fuerte del contexto."
+        }
+      ],
+      "context": "",
+      "help_text": "Mustn't va sin to y expresa prohibición."
+    },
+    {
+      "id": "exam-set-04-9",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 9",
+      "prompt": "We walked ______ the police station",
+      "content_es": "We walked ______ the police station",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "in"
+        },
+        {
+          "key": "b",
+          "label": "into"
+        },
+        {
+          "key": "c",
+          "label": "across"
+        },
+        {
+          "key": "d",
+          "label": "at"
+        }
+      ],
+      "answer": "b) into",
+      "acceptable_answers": [
+        "b) into",
+        "b"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: into expresa movimiento hacia el interior de un lugar. Por eso la opción correcta es into.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "prepositions",
+        "grammar"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "in",
+          "is_correct": false,
+          "explanation": "Incorrecta: in expresa posición estática, no movimiento hacia dentro."
+        },
+        {
+          "key": "b",
+          "label": "into",
+          "is_correct": true,
+          "explanation": "Correcta: walked into indica entrar caminando en la comisaría."
+        },
+        {
+          "key": "c",
+          "label": "across",
+          "is_correct": false,
+          "explanation": "Incorrecta: across indica cruzar de un lado a otro, no entrar al interior."
+        },
+        {
+          "key": "d",
+          "label": "at",
+          "is_correct": false,
+          "explanation": "Incorrecta: at indica ubicación, no movimiento hacia dentro."
+        }
+      ],
+      "context": "",
+      "help_text": "Movimiento hacia dentro = into. Posición estática = in."
+    },
+    {
+      "id": "exam-set-04-10",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 10",
+      "prompt": "He has been in prison for two years. Which sentence expresses the same idea?",
+      "content_es": "He has been in prison for two years. Which sentence expresses the same idea?",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "He was in prison two years ago"
+        },
+        {
+          "key": "b",
+          "label": "He got into prison two years ago"
+        },
+        {
+          "key": "c",
+          "label": "He got into prison for two years"
+        },
+        {
+          "key": "d",
+          "label": "He has got into prison since two years"
+        }
+      ],
+      "answer": "b) He got into prison two years ago",
+      "acceptable_answers": [
+        "b) He got into prison two years ago",
+        "b"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: has been in prison for two years indica una situación que empezó hace dos años y continúa ahora. La equivalencia correcta es He got into prison two years ago.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "upper-intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "present-perfect",
+        "grammar"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "He was in prison two years ago",
+          "is_correct": false,
+          "explanation": "Incorrecta: solo sitúa la acción en el pasado y no implica que siga en prisión ahora."
+        },
+        {
+          "key": "b",
+          "label": "He got into prison two years ago",
+          "is_correct": true,
+          "explanation": "Correcta: expresa el inicio hace dos años de una situación que continúa en el presente."
+        },
+        {
+          "key": "c",
+          "label": "He got into prison for two years",
+          "is_correct": false,
+          "explanation": "Incorrecta: la estructura con get into no se usa así para expresar duración."
+        },
+        {
+          "key": "d",
+          "label": "He has got into prison since two years",
+          "is_correct": false,
+          "explanation": "Incorrecta: la estructura since two years es incorrecta y la frase no expresa bien la equivalencia temporal."
+        }
+      ],
+      "context": "",
+      "help_text": "Si una situación empezó en el pasado y continúa ahora, una paráfrasis frecuente es indicar cuándo empezó: ... two years ago."
+    },
+    {
+      "id": "exam-set-04-11",
+      "section": "Exámenes / sets / simulacros",
+      "subsection": "Set 04",
+      "kind": "question",
+      "type": "multiple_choice",
+      "title": "Set 04 · Pregunta 11 (reserva)",
+      "prompt": "What does 'juror' mean?",
+      "content_es": "What does 'juror' mean?",
+      "content_en": "",
+      "choices": [
+        {
+          "key": "a",
+          "label": "a member of the court"
+        },
+        {
+          "key": "b",
+          "label": "a partner of the judge"
+        },
+        {
+          "key": "c",
+          "label": "a member of the jury"
+        },
+        {
+          "key": "d",
+          "label": "a police witness"
+        }
+      ],
+      "answer": "c) a member of the jury",
+      "acceptable_answers": [
+        "c) a member of the jury",
+        "c"
+      ],
+      "model_answer": "",
+      "bad_answers": [],
+      "explanation_es": "Explicación académica: juror significa miembro del jurado, es decir, una de las personas que forman la jury.",
+      "examples": [],
+      "mistakes": [],
+      "difficulty": "intermediate",
+      "tags": [
+        "exam",
+        "set-04",
+        "legal-vocabulary",
+        "vocabulary",
+        "reserva"
+      ],
+      "source_block": "user-request-2026-03-23",
+      "option_explanations": [
+        {
+          "key": "a",
+          "label": "a member of the court",
+          "is_correct": false,
+          "explanation": "Incorrecta: court se refiere al tribunal o juzgado, no al jurado."
+        },
+        {
+          "key": "b",
+          "label": "a partner of the judge",
+          "is_correct": false,
+          "explanation": "Incorrecta: esta opción no corresponde a ningún cargo jurídico real en este contexto."
+        },
+        {
+          "key": "c",
+          "label": "a member of the jury",
+          "is_correct": true,
+          "explanation": "Correcta: juror es cada persona que forma parte del jury."
+        },
+        {
+          "key": "d",
+          "label": "a police witness",
+          "is_correct": false,
+          "explanation": "Incorrecta: un juror no es un testigo policial, sino un miembro del jurado."
+        }
+      ],
+      "context": "",
+      "help_text": "Distingue jury (grupo) de juror (persona individual)."
     }
   ]
 }
